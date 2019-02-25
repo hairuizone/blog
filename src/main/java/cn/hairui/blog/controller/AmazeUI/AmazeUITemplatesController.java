@@ -1,4 +1,4 @@
-package cn.hairui.blog.AmazeUI;
+package cn.hairui.blog.controller.AmazeUI;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,87 +13,87 @@ public class AmazeUITemplatesController {
 
     @RequestMapping("/admin-404")
     public String admin404() {
-        return "admin-404";
+        return "AmazeUI/admin-404";
     }
 
     @RequestMapping("/admin-form")
     public String adminForm() {
-        return "admin-form";
+        return "AmazeUI/admin-form";
     }
 
     @RequestMapping("/admin-gallery")
     public String adminGallery() {
-        return "admin-gallery";
+        return "AmazeUI/admin-gallery";
     }
 
     @RequestMapping("/admin-help")
     public String adminHelp() {
-        return "admin-help";
+        return "AmazeUI/admin-help";
     }
 
     @RequestMapping("/admin-index")
     public String adminIndex() {
-        return "admin-index";
+        return "AmazeUI/admin-index";
     }
 
     @RequestMapping("/admin-log")
     public String adminLog() {
-        return "admin-log";
+        return "AmazeUI/admin-log";
     }
 
     @RequestMapping("/admin-table")
     public String adminTable() {
-        return "admin-table";
+        return "AmazeUI/admin-table";
     }
 
     @RequestMapping("/admin-user")
     public String adminUser() {
-        return "admin-user";
+        return "AmazeUI/admin-user";
     }
 
     @RequestMapping("/blog")
     public String blog() {
-        return "blog";
+        return "AmazeUI/blog";
     }
 
     @RequestMapping("/index")
     public String index() {
-        return "index";
+        return "AmazeUI/index";
     }
 
     @RequestMapping("/iscroll")
     public String iscroll() {
-        return "iscroll";
+        return "AmazeUI/iscroll";
     }
 
     @RequestMapping("/landing")
     public String landing() {
-        return "landing";
+        return "AmazeUI/landing";
     }
 
     @RequestMapping("/login")
     public String login() {
-        return "login";
+        return "AmazeUI/login";
     }
 
     @RequestMapping("/non-responsive")
     public String nonResponsive() {
-        return "non-responsive";
+        return "AmazeUI/non-responsive";
     }
 
     @RequestMapping("/sidebar")
     public String sidebar() {
-        return "sidebar";
+        return "AmazeUI/sidebar";
     }
 
     @RequestMapping("widget.basic")
     public String widgetBasic() {
-        return "widget.basic";
+        return "AmazeUI/widget.basic";
     }
 
     @RequestMapping("/widget")
     public String widget() {
-        return "widget";
+        return "AmazeUI/widget";
     }
 
 
