@@ -1,0 +1,43 @@
+body{
+    height: 1800px;
+}
+.navbar .container{
+
+
+}
+.navbar-default .container .navbar-form .btn{
+    background-color: #0E90D2;
+    color: #ffffff;
+}
+
+.navbar-nav li a{
+    font-size: 15px;
+}
+.navbar-brand .img-circle{
+    width: 30px;
+    height: 30px;
+
+}
+
+.navbar .nav > li .dropdown-menu {
+    margin: 0;
+}
+.navbar .nav > li:hover .dropdown-menu {
+    display: block;
+}
+
+/*
+.navbar-default button[type='submit']{
+    background: none;
+    border: none;
+}
+.navbar-default form{
+    position: relative;
+}
+.navbar-default .glyphicon-search{
+    position: absolute;
+
+}
+.navbar-form button{
+    background: #0b76ac;
+}*/
