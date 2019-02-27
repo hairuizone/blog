@@ -21,4 +21,13 @@ public class DefaultViewController {
 
 
     }
+
+    @RequestMapping(value = "/index2" ,method = RequestMethod.GET)
+    public String index2Page(){
+        return "index2";
+    }
+    @RequestMapping(value = "/index3" ,method = RequestMethod.GET)
+    public String index3Page(){
+        return "index3";
+    }
 }

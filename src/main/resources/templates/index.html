@@ -4,63 +4,85 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://localhost:8848/myblog/bootstarp/css/bootstrap.min.css">
-
     <!--自定义css样式-->
     <link rel="stylesheet" href="http://localhost:8848/myblog/css/style.css">
-    <title>首页</title>
+
+    <!-- Jquery JS -->
+    <script src="http://localhost:8848/myblog/jquery/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="http://localhost:8848/myblog/bootstarp/js/bootstrap.min.js"></script>
+    <script src="http://localhost:8848/myblog/js/common.js"></script>
+
+    <title>老干部的咖啡屋</title>
+    <script type="text/javascript">
+        $(function () {
+            $(".navbar-nav").find("li").mouseover(function () {
+                $(this).addClass("open");
+            });
+            $(".navbar-nav").find("li").mouseleave(function () {
+                $(this).removeClass("open");
+            })
+        })
+    </script>
 </head>
 <body>
-
-
-<nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar-default navbar-fixed-top">
         <div class="container">
             <a href="#" class="navbar-brand"><span><img class="img-circle" th:src="${bg_path}"></span>老干部的咖啡屋</a>
-            <ul class="nav navbar-nav">
-                <li class="active homepage"><a href=""><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
-
-
-                <li class="dropdown"><a href="#"><span class="glyphicon glyphicon-hdd"></span>&nbsp;数据库<span class="caret"></span></a>
+            <ul class="nav navbar-nav ">
+                <li class="dropdown active"><a href=""><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+                <li class="dropdown">
+                    <a href="#"><span class="glyphicon glyphicon-hdd"></span>&nbsp;数据库<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Oracle</a></li>
-                        <li><a href="#">DB2</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;mysql中文教程</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;canal源码分析</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;分布式事务学习</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;测试一个长标题一定要长长的长长的</a>
+                        </li>
                     </ul>
                 </li>
-
-                <li><a href="">操作系统</a></li>
-                <li><a href="">JAVA</a></li>
-                <li><a href="">我的故事</a></li>
-                <li><a href="">去火星</a></li>
-
+                <li class="dropdown">
+                    <a href=""><span class="glyphicon glyphicon-th-large"></span>&nbsp;操作系统<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Windows</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Unix&Linux</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;AIX</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Mac OS X</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href=""><span class="glyphicon glyphicon-list-alt"></span>&nbsp;常用技术<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Java基础知识</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Spring boot</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;redis缓存</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Apache反向代理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href=""><span class="glyphicon glyphicon-search"></span>&nbsp;一枚程序猿</a></li>
+                <li class="dropdown"><a href=""><span class="glyphicon glyphicon-time"></span>&nbsp;传送门</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <a href="#" class="navbar-text">写博客</a>
+                <li>
+                    <a href="">
+                        <label></label>
+                        <span>写博客</span>
+                    </a>
+                </li>
                 <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li>
-
             </ul>
-
-
             <!--<form class="navbar-form navbar-right" role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
                 <button type="submit" class="btn btn-sm">提交</button>
             </form>-->
-
-
-
-
-
         </div>
     </nav>
-
-
-
-
-<script src="http://localhost:8848/myblog/jquery/jquery-3.3.1.min.js"></script>
-<script src="http://localhost:8848/myblog/bootstarp/js/bootstrap.min.js"/>
 </body>
 </html>

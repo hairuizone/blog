@@ -1,29 +1,54 @@
-body{
+body {
     height: 1800px;
 }
-.navbar .container{
 
+.navbar .container {
 
 }
-.navbar-default .container .navbar-form .btn{
+
+.navbar-default .container .navbar-form .btn {
     background-color: #0E90D2;
     color: #ffffff;
 }
 
-.navbar-nav li a{
+.navbar-nav li a {
     font-size: 15px;
 }
-.navbar-brand .img-circle{
+.navbar-brand{
+    font-family: 微软雅黑;
+    font-weight: bolder;
+    font-size: 20px;
+}
+.navbar-brand .img-circle {
     width: 30px;
     height: 30px;
+    margin-right: 5px;
 
 }
 
-.navbar .nav > li .dropdown-menu {
-    margin: 0;
-}
 .navbar .nav > li:hover .dropdown-menu {
     display: block;
+}
+
+.navbar-default .navbar-nav .dropdown ul li {
+    display: block;
+
+}
+.navbar-default .navbar-nav .dropdown ul li a {
+    border-bottom: 1px #eee solid;
+    display: block;
+    white-space: nowrap;
+    padding: 8px 12px;
+}
+
+.navbar-default .container .navbar-nav .dropdown  a:hover {
+    background-color: #b1244e;
+    color: #fff;
+}
+
+
+a, input, textarea, b, button, i, span, figure img, img.avatar, ul.children, .post-social > div, .gallery_popup, .popup, .swiper-button, .sub-menu, .widget_shopping_cart_content, ::before, ::after {
+    transition: ease-in-out 0.2s;
 }
 
 /*
