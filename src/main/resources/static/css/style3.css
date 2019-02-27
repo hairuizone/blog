@@ -1,0 +1,43 @@
+.navbar{
+    margin-bottom: 0px;
+    border-radius: 0px;
+    background: #333;
+}
+.navbar .nav > li > a{
+    color: aqua;
+    background-color: #333;
+}
+.navbar .nav > li > a:hover {
+    color: aqua;
+    background-color: #282828;
+}
+.navbar .nav >li >a:active{
+    color: aqua;
+    background-color: #282828;
+}
+.navbar .nav >li >a:visited{
+    color: aqua;
+    background-color: #333;
+}
+.navbar .nav > li .dropdown:active {
+    color: aqua;
+    background-color: #282828;
+}
+.navbar .nav > li .dropdown-menu {
+    margin: 0;
+}
+.navbar .nav > li:hover .dropdown-menu {
+    display: block;
+}
+
+.navbar-nav>.active>a:hover{
+    color:#555;
+    background-color:#282828}
+
+.navbar-right{
+    margin-right: 5px;
+}
+.nav .navbar-nav .navbar-right >li >a:hover {
+    color: aqua;
+    background-color: #282828;
+}
