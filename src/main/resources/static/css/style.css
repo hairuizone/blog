@@ -95,6 +95,11 @@ a, input, textarea, b, button, i, span, figure img, img.avatar, ul.children, .po
     transition: ease-in-out 0.2s;
 }
 
+.page-sidebar{
+    margin-top: 50px;
+    width: 200px;
+    height: 100%;
+}
 /*
 .navbar-default button[type='submit']{
     background: none;
