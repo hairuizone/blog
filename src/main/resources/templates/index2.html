@@ -1,151 +1,277 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://localhost:8848/myblog/bootstarp/css/bootstrap.min.css">
-
-    <!--自定义css样式-->
-    <link rel="stylesheet" href="http://localhost:8848/myblog/css/style2.css">
-    <title>首页</title>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" href="favicon.ico"/>
+    <!--jquery库-->
+    <script src="http://localhost:8848/myblog/bootstrap2/js/jquery.min.js"></script>
+    <!--bootstrap库-->
+    <link href="http://localhost:8848/myblog/bootstrap2/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="http://localhost:8848/myblog/bootstrap2/js/bootstrap/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://localhost:8848/myblog/bootstrap2/js/bootstrap/html5shiv.min.js"></script>
+    <script src="http://localhost:8848/myblog/bootstrap2/js/bootstrap/respond.min.js"></script>
+    <![endif]-->
+    <!--font-awesome字体库-->
+    <link href="http://localhost:8848/myblog/bootstrap2/css/font-awesome.min.css" rel="stylesheet"/>
+    <!--页面加载进度条-->
+    <link href="http://localhost:8848/myblog/bootstrap2/css/pace/dataurl.css" rel="stylesheet"/>
+    <script src="http://localhost:8848/myblog/bootstrap2/js/pace/pace.min.js"></script>
+    <!--jquery.hammer手势插件-->
+    <script src="http://localhost:8848/myblog/bootstrap2/js/jquery.hammer/hammer.min.js"></script>
+    <script src="http://localhost:8848/myblog/bootstrap2/js/jquery.hammer/jquery.hammer.js"></script>
+    <!--平滑滚动到顶部库-->
+    <script src="http://localhost:8848/myblog/bootstrap2/js/jquery.scrolltopcontrol/scrolltopcontrol.js"
+            type="text/javascript"></script>
+    <!--主要写的jquery拓展方法-->
+    <script src="http://localhost:8848/myblog/bootstrap2/js/jquery.extend.js" type="text/javascript"></script>
+    <!--主要写的css代码-->
+    <link href="http://localhost:8848/myblog/bootstrap2/css/default.css" rel="stylesheet" type="text/css"/>
+    <link href="http://localhost:8848/myblog/css/style.css" rel="stylesheet" type="text/css"/>
+    <!--主要写的js代码-->
+    <script src="http://localhost:8848/myblog/bootstrap2/js/default.js" type="text/javascript"></script>
 </head>
 <body>
-<div class="page-sidebar">
-    <ul class="nav panel-group sidebar-menu" id="nav_parent">
-        <li class="panel">
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle show pull-left" data-target="sidebar">
+                <span class="glyphicon glyphicon-th-list" style="color: #fff"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><span><img class="img-circle" src="http://localhost:8848/myblog/img/brand.jpg">老干部的咖啡屋</span></a>
+        </div>
+
+        <div class="navbar-menu">
+            <ul class="nav navbar-nav ">
+                <li class="dropdown active"><a href=""><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+                <li class="dropdown">
+                    <a href="#"><span class="glyphicon glyphicon-hdd"></span>&nbsp;数据库<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;mysql中文教程</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;canal源码分析</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;分布式事务学习</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;测试一个长标题一定要长长的长长的</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href=""><span class="glyphicon glyphicon-th-large"></span>&nbsp;操作系统<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Windows</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Unix&Linux</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;AIX</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Mac OS X</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href=""><span class="glyphicon glyphicon-list-alt"></span>&nbsp;常用技术<span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Java基础知识</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Spring boot</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;redis缓存</a></li>
+                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Apache反向代理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href=""><span class="glyphicon glyphicon-search"></span>&nbsp;一枚程序猿</a></li>
+                <li class="dropdown"><a href=""><span class="glyphicon glyphicon-time"></span>&nbsp;传送门</a></li>
+            </ul>
+            <a class="write-blog" href="">
+                <span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span>
+            </a>
+            <a class="message-center" href="">
+                <span><img class="message-icon" src="http://localhost:8848/myblog/img/message-icon.png">消息中心</span>
+            </a>
             <a href="#">
-                <i class="menu-icon glyphicon glyphicon-home"></i>
-                <span class="menu-text"> Dashboard </span>
+                <button class="btn btn-sm">登录</button>
             </a>
-        </li>
-        <li class="panel">
-            <a class="panel-heading collapsed" href="#collapse1" data-toggle="collapse" data-parent="#nav_parent">
-                <i class="menu-icon glyphicon glyphicon-fire"></i>
-                <span class="menu-text">Elements</span>
-                <i class="glyphicon glyphicon-chevron-right menu-expand"></i>
+            <a href="#">
+                <button class="btn btn-sm">注册</button>
             </a>
-            <ul class="nav submenu collapse" id="collapse1">
-                <li>
-                    <a href="#"><span class="menu-text">Basic Elements</span></a>
-                </li>
-                <li>
-                    <a class="panel-heading collapsed" href="#collapse2" data-toggle="collapse">
-                        <span class="menu-text">Icons</span>
-                        <i class="glyphicon glyphicon-chevron-right menu-expand"></i>
-                    </a>
-                    <ul class="nav submenu collapse" id="collapse2">
-                        <li>
-                            <a href="#">
-                                <i class="menu-icon glyphicon glyphicon-stats"></i>
-                                <span class="menu-text">Font Awesome</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="menu-icon glyphicon glyphicon-stats"></i>
-                                <span class="menu-text">Glyph Icons</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-text">Tabs & Accordions</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-text">Alerts & Tooltips</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="menu-text">Modals & Wells</span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="panel">
-            <a class="panel-heading collapsed" href="#collapse5" data-toggle="collapse" data-parent="#nav_parent">
-                <i class="menu-icon glyphicon glyphicon-link"></i>
-                <span class="menu-text">More Pages</span>
-                <i class="glyphicon glyphicon-chevron-right menu-expand"></i>
-            </a>
-            <ul class="nav submenu collapse" id="collapse5">
-                <li>
-                    <a href="#"><span class="menu-text">Error 404</span></a>
-                </li>
-                <li>
-                    <a href="#"><span class="menu-text"> Grid</span></a>
-                </li>
-                <li>
-                    <a class="panel-heading collapsed" href="#collapse6" data-toggle="collapse">
-                        <span class="menu-text">Multi Level Menu</span>
-                        <i class="glyphicon glyphicon-chevron-right menu-expand"></i>
-                    </a>
-                    <ul class="nav submenu collapse" id="collapse6">
-                        <li>
-                            <a href="#">
-                                <i class="menu-icon glyphicon glyphicon-stats"></i>
-                                <span class="menu-text">Level 3</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="panel-heading collapsed" href="#collapse7" data-toggle="collapse">
-                                <i class="menu-icon glyphicon glyphicon-stats"></i>
-                                <span class="menu-text">Level 4</span>
-                                <i class="glyphicon glyphicon-chevron-right menu-expand"></i>
-                            </a>
-                            <ul class="nav submenu collapse" id="collapse7">
-                                <li>
-                                    <a href="#">
-                                        <i class="menu-icon glyphicon glyphicon-stats"></i>
-                                        <span class="menu-text">Some Item</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="menu-icon glyphicon glyphicon-stats"></i>
-                                        <span class="menu-text">Another Item</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+        </div>
+
+    </div>
+</nav>
+
+<div class="container-fluid all">
+
+    <div class="sidebar">
+        <div class="sidebar-scroll">
+
+            <ul class="nav">
+                <li class="sidebar-top-menu"><a href="###"><span class="glyphicon glyphicon-th"></span>&nbsp;&nbsp;分&nbsp;&nbsp;类</a></li>
+                <li><a href="###"><span class="glyphicon glyphicon-time"></span>&nbsp;&nbsp;归&nbsp;&nbsp;档</a></li>
+                <li><a href="###"><span class="glyphicon glyphicon-music"></span>&nbsp;&nbsp;音乐台</a></li>
+                <li><a href="###"><span class="glyphicon  glyphicon-user"></span>&nbsp;&nbsp;关于我</a></li>
+
+                <li class="has-sub">
+                    <a href="javascript:void(0);"><span class="glyphicon glyphicon-lock"></span>&nbsp;&nbsp;宇宙研究所<i class="fa fa-caret-right fa-fw pull-right"></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>&nbsp;超自然现象研究所</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>&nbsp;特殊物种研究所</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>&nbsp;古代文明的智慧</a></li>
                     </ul>
                 </li>
             </ul>
-        </li>
-    </ul>
+        </div>
+    </div>
+    <div class="maincontent row">
+        <!--&lt;!&ndash;我是主要内容 start&ndash;&gt;
+        <ul class="breadcrumb">
+            <li class="active">首页</li>
+        </ul>
+        <div class="col-sm-12">
+            <div class="jumbotron">
+                <h1>这是一套开源的基于bootstrap的简易框架</h1>
+                <p>所用插件和库几乎都属于开源（个别特殊的会做说明），且功能正在不间断更新中</p>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    核心库（现在页面呈现效果必须依赖的库）
+                </li>
+                <li class="list-group-item">
+                    jquery-1.12.4.js（<a href="https://jquery.com/" target="_blank">官网</a>）
+                </li>
+                <li class="list-group-item">
+                    bootstrap3.3.6（<a href="https://getbootstrap.com/" target="_blank">官网</a>）
+                </li>
+                <li class="list-group-item">
+                    font-awesome4.6.3（<a href="http://fontawesome.io/" target="_blank">官网</a>）
+                </li>
+                <li class="list-group-item">
+                    <p>让页面返回顶部时平滑滚动（<a href="sample/scrolltop.html" target="_blank">样例</a>）</p>
+                    <p>使用说明：页面需要引用scrolltopcontrol.js</p>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">2016.4.28</span>
+                    <p>让bootstrap的carousel插件支持手势（<a href="sample/carousel.html" target="_blank">样例</a>）（<a
+                            href="https://github.com/hammerjs/jquery.hammer.js" target="_blank">jquery.hammer官网</a>）（<a
+                            href="http://hammerjs.github.io/" target="_blank">hammer.js官网</a>）</p>
+                    <p>
+                        使用说明：页面需要引用hammer.min.js、jquery.hammer.js
+                    </p>
+                    <p>注意：已将carousel的手势绑定事件封装到了default.js中，如果页面已经引用了default.js，就不用再给carousel写手势绑定事件了</p>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">2016.7.1</span>
+                    <p>页面加载进度条（<a href="sample/pace.html" target="_blank">样例</a>）（<a
+                            href="http://github.hubspot.com/pace/docs/welcome/" target="_blank">官网</a>）</p>
+                    <p>
+                        使用说明：1.页面需要引用pace.min.js、dataurl.css <br/>
+                        2.官网提供多种样式供选择，只需要下载相应的css文件替换掉原来的css文件就行<br/>
+                        3.dataurl.css里面可以调整进度条位置
+                    </p>
+                </li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    更新日志
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Form库&nbsp;2016.4.19</span>
+                    <a href="form.html?#form-DateRangePicker">加入bootstrap-DateRangePicker时间范围选择插件</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Message库&nbsp;2016.4.20</span>
+                    <a href="message.html?#message-toastr">加入toastr通知插件</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Message库&nbsp;2016.4.20</span>
+                    <a href="message.html?#message-sweetalert">加入bootstrap-sweetalert通知插件</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">UI库&nbsp;2016.4.20</span>
+                    <a href="ui.html?#ui-metisMenu">加入metisMenu菜单样式特效库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">UI库&nbsp;2016.4.20</span>
+                    <a href="ui.html?#ui-vide">加入vide.js把视频作为背景特效库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Form库&nbsp;2016.4.21</span>
+                    <a href="form.html?#form-colorpicker">加入bootstrap-colorpicker颜色选择插件</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Animate库&nbsp;2016.4.21</span>
+                    <a href="animate.html?#animate-wow">加入WOW特效库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Animate库&nbsp;2016.4.21</span>
+                    <a href="animate.html?#animate-hover">加入Hover.css特效库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Animate库&nbsp;2016.4.21</span>
+                    <a href="animate.html?#animate-animo">加入animo特效库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">UI库&nbsp;2016.4.22</span>
+                    <a href="ui.html?#ui-switch">加入bootstrap-switch开关插件</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Form库&nbsp;2016.4.22</span>
+                    <a href="form.html?#form-datepicker">加入bootstrap-datepicker日期选择插件</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Form库&nbsp;2016.4.28</span>
+                    <a href="form.html?#form-datetimepicker">加入bootstrap-datetimepicker日期时间选择插件</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Form库&nbsp;2016.4.28</span>
+                    <a href="form.html?#form-formhelper">加入bootstrap-formhelper插件集合库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">UI库&nbsp;2016.4.29</span>
+                    <a href="ui.html?#ui-masonry">加入masonry流式布局插件&nbsp;<label
+                            class="label label-danger">强烈推荐</label></a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">UI库&nbsp;2016.5.4</span>
+                    <a href="ui.html?#ui-tabdrop">加入bootstrap-tab超出自动折叠插件</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Carousel库&nbsp;2016.9.10</span>
+                    <a href="carousel.html?#carousel-fotorama">加入jquery-fotorama图片滚动库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Carousel库&nbsp;2016.9.10</span>
+                    <a href="carousel.html?#carousel-owlcarousel2">加入jquery-owlcarousel2图片滚动库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Carousel库&nbsp;2016.9.10</span>
+                    <a href="carousel.html?#carousel-owlcarousel">加入jquery-owlcarousel图片滚动库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Carousel库&nbsp;2016.9.10</span>
+                    <a href="carousel.html?#carousel-fullpage">加入jquery-fullpage图片滚动库</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">UI库&nbsp;2016.9.10</span>
+                    <a href="ui.html?#ui-mmenu">加入jquery-mmenu Demo</a>
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Chart库&nbsp;2016.9.10</span>
+                    <a href="chart.html?chart-flot">加入jquery-flot库</a>
+                </li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    代码示例
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">2016.6.24</span>
+                    <a href="sample/iframe/parent.html" target="_blank">嵌套响应式iframe</a>
+                </li>
+            </ul>
+        </div>
+        &lt;!&ndash;我是主要内容 end&ndash;&gt;-->
+    </div>
 </div>
-<script src="http://localhost:8848/myblog/jquery/jquery-3.3.1.min.js"></script>
-<script src="http://localhost:8848/myblog/bootstarp/js/bootstrap.min.js"/>
-<script type="text/javascript">
-    $(function(){
-        //点击菜单箭头变化
-        $(".page-sidebar .sidebar-menu a").each(function(){
-            $(this).click(function(){
-                var Oele = $(this).children('.menu-expand');
-                if($(Oele)){
-                    if($(Oele).hasClass('glyphicon-chevron-right')){
-                        $(Oele).removeClass('glyphicon-chevron-right').addClass('glyphicon-chevron-down');
-                    }else{
-                        $(Oele).removeClass('glyphicon-chevron-down').addClass('glyphicon-chevron-right');
-                    }
-                }
-
-                //选中增加active
-                if(! $(this).hasClass('panel-heading')){
-                    $(".page-sidebar .sidebar-menu a").removeClass('active');
-                    $(this).addClass('active');
-                }
-            });
-        });
-    })
-</script>
-
 
 </body>
 </html>
