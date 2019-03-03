@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class DefaultViewController {
 
+
     @RequestMapping(value = "/" ,method = RequestMethod.GET)
     public String indexPage(Model model){
-        model.addAttribute("greetings","你的努力就是对自己最好的回报");
-        model.addAttribute("bg_path","http://localhost:8848/myblog/img/brand.jpg");
+
+        model.addAttribute("nickname","骑鱼的猫 | 老干部");
         model.addAttribute("brand","老干部的咖啡屋");
         return "index";
 
