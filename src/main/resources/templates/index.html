@@ -30,14 +30,15 @@
             <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="#"><span><img src="img/brand.jpg" class="img-circle"
-                                                    style="height: 30px;width: 30px"></span><label th:text="${brand}"/></a>
+                                                    style="height: 30px;width: 30px"></span><label
+                th:text="${myinfo.getWebname()}"/></a>
     </div>
     <div class="container">
         <div id="navbar-menu" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;首页</a></li>
+                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"/>&nbsp;首页</a></li>
                 <li class="dropdown">
-                    <a href="#"><span class="glyphicon glyphicon-th"></span>&nbsp;分类</a>
+                    <a href="#"><span class="glyphicon glyphicon-th"/>&nbsp;分类</a>
                     <ul class="dropdown-menu">
                         <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Java基础知识</a></li>
                         <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Spring boot</a></li>
@@ -46,10 +47,11 @@
                         </li>
                     </ul>
                 </li>
-                <li><a href="#"><span class="glyphicon glyphicon-time"></span>&nbsp;归档</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-pencil"></span>&nbsp;随笔</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;关于我</a></li>
-                <li><a href="#">传送门</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-time"/>&nbsp;归档</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-pencil"/>&nbsp;随笔</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-bookmark"/>&nbsp;专题</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"/>&nbsp;关于我</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-eye-open"/>&nbsp;传送门</a></li>
             </ul>
             <a class="write-blog" href="">
                 <span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span>
@@ -79,45 +81,144 @@
 
                 <div class="tab_box whitebg">
                     <div class="tab_buttons">
-                        <ul>
-                            <li class="newscurrent">个人博客</li>
-                            <li>工作日记</li>
-                            <li>心路历程</li>
-                            <li>我的博客</li>
-                            <li>前端技术</li>
+                        <ul th:if="${navIndexList.size() == 5}">
+                            <li class="newscurrent" th:text="${navIndexList.get(0).name}"></li>
+                            <li th:text="${navIndexList.get(1).name}"></li>
+                            <li th:text="${navIndexList.get(2).name}"></li>
+                            <li th:text="${navIndexList.get(3).name}"></li>
+                            <li th:text="${navIndexList.get(4).name}"></li>
+
                         </ul>
                     </div>
                     <div class="newstab">
+
                         <div class="newsitem">
                             <div class="newspic">
-                                <ul>
-                                    <li><a href="/"><img src="images/2.jpg"><span>个人博客，属于我的小世界！</span></a></li>
-                                    <li><a href="/"><img src="images/4.jpg"><span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的</span></a>
-                                    </li>
+                                <ul th:if="${articalList1.size() > 2}">
+                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList1.get(0).tittle}"/></a></li>
+                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList1.get(1).tittle}"/></a></li>
                                 </ul>
                             </div>
-                            <ul class="newslist">
-                                <li><i></i><a href="/">个人博客，属于我的小世界！</a>
-                                    <p>
-                                        个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。</p>
+                            <ul class="newslist" th:if="${articalList1.size() == 5}">
+                                <li><i></i><a href="/" th:text="${articalList1.get(0).tittle}"></a>
+                                    <p th:text="${articalList1.get(0).summary}"/>
                                 </li>
-                                <li><i></i><a href="/">安静地做一个爱设计的美男子</a>
-                                    <p>自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。</p>
+                                <li><i></i><a href="/" th:text="${articalList1.get(1).tittle}"></a>
+                                    <p th:text="${articalList1.get(1).summary}"/>
                                 </li>
-                                <li><i></i><a href="/">我是怎么评价自己的？</a>
-                                    <p>
-                                        为了挨打轻一些，问我哪里来的，我瞎说了一个说那个谁家的，结果，打得更凶。最后事情还原了真相，我妈说，你要说说奶奶家的，都不会打你了。从此以后，我知道撒谎是会付出更惨痛的代价的，我不再撒谎，也不喜欢爱撒谎的人。</p>
+                                <li><i></i><a href="/" th:text="${articalList1.get(2).tittle}"></a>
+                                    <p th:text="${articalList1.get(2).summary}"/>
                                 </li>
-                                <li><i></i><a href="/">个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a>
-                                    <p>不管你是学前端的还是后端的，作为一个程序员，做一个自己的博客，那是必然的。咱们的圈子就这么大，想让更多的人了解你，看看你的技术多牛逼，扔一个博客地址就行了</p>
+                                <li><i></i><a href="/" th:text="${articalList1.get(3).tittle}"></a>
+                                    <p th:text="${articalList1.get(3).summary}"/>
                                 </li>
-                                <li><i></i><a href="/">做个人博客如何用帝国cms美化留言增加头像选择</a>
-                                    <p>
-                                        帝国cms的留言板系统很简单，用户名，邮箱，电话，没有头像显示，如果要增加头像选择，而又不增加表或者字段的情况下，选择改用其中一个字段，比如电话这个，修改一下即可</p>
+                                <li><i></i><a href="/" th:text="${articalList1.get(4).tittle}"></a>
+                                    <p th:text="${articalList1.get(4).summary}"/>
                                 </li>
                             </ul>
                         </div>
                         <div class="newsitem">
+                            <div class="newspic">
+                                <ul th:if="${articalList2.size() > 2}">
+                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList2.get(0).tittle}"/></a></li>
+                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList2.get(1).tittle}"/></a></li>
+                                </ul>
+                            </div>
+                            <ul class="newslist" th:if="${articalList2.size() == 5}">
+                                <li><i></i><a href="/" th:text="${articalList2.get(0).tittle}"></a>
+                                    <p th:text="${articalList2.get(0).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList2.get(1).tittle}"></a>
+                                    <p th:text="${articalList2.get(1).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList2.get(2).tittle}"></a>
+                                    <p th:text="${articalList2.get(2).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList2.get(3).tittle}"></a>
+                                    <p th:text="${articalList2.get(3).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList2.get(4).tittle}"></a>
+                                    <p th:text="${articalList2.get(4).summary}"/>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="newsitem">
+                            <div class="newspic">
+                                <ul th:if="${articalList3.size() > 2}">
+                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList3.get(0).tittle}"/></a></li>
+                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList3.get(1).tittle}"/></a></li>
+                                </ul>
+                            </div>
+                            <ul class="newslist" th:if="${articalList3.size() == 5}">
+                                <li><i></i><a href="/" th:text="${articalList3.get(0).tittle}"></a>
+                                    <p th:text="${articalList3.get(0).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList3.get(1).tittle}"></a>
+                                    <p th:text="${articalList3.get(1).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList3.get(2).tittle}"></a>
+                                    <p th:text="${articalList3.get(2).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList3.get(3).tittle}"></a>
+                                    <p th:text="${articalList3.get(3).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList3.get(4).tittle}"></a>
+                                    <p th:text="${articalList3.get(4).summary}"/>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="newsitem">
+                            <div class="newspic">
+                                <ul th:if="${articalList4.size() > 2}">
+                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList4.get(0).tittle}"/></a></li>
+                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList4.get(1).tittle}"/></a></li>
+                                </ul>
+                            </div>
+                            <ul class="newslist" th:if="${articalList4.size() == 5}">
+                                <li><i></i><a href="/" th:text="${articalList4.get(0).tittle}"></a>
+                                    <p th:text="${articalList4.get(0).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList4.get(1).tittle}"></a>
+                                    <p th:text="${articalList4.get(1).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList4.get(2).tittle}"></a>
+                                    <p th:text="${articalList4.get(2).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList4.get(3).tittle}"></a>
+                                    <p th:text="${articalList4.get(3).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList4.get(4).tittle}"></a>
+                                    <p th:text="${articalList4.get(4).summary}"/>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="newsitem">
+                            <div class="newspic">
+                                <ul th:if="${articalList5.size() > 2}">
+                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList5.get(0).tittle}"/></a></li>
+                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList5.get(1).tittle}"/></a></li>
+                                </ul>
+                            </div>
+                            <ul class="newslist" th:if="${articalList5.size() == 5}">
+                                <li><i></i><a href="/" th:text="${articalList5.get(0).tittle}"></a>
+                                    <p th:text="${articalList5.get(0).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList5.get(1).tittle}"></a>
+                                    <p th:text="${articalList5.get(1).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList5.get(2).tittle}"></a>
+                                    <p th:text="${articalList5.get(2).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList5.get(3).tittle}"></a>
+                                    <p th:text="${articalList5.get(3).summary}"/>
+                                </li>
+                                <li><i></i><a href="/" th:text="${articalList5.get(4).tittle}"></a>
+                                    <p th:text="${articalList5.get(4).summary}"/>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!--<div class="newsitem">
                             <div class="newspic">
                                 <ul>
                                     <li><a href="/"><img src="images/3.jpg"><span>个人博客，属于我的小世界！</span></a></li>
@@ -145,7 +246,8 @@
                                         帝国cms的留言板系统很简单，用户名，邮箱，电话，没有头像显示，如果要增加头像选择，而又不增加表或者字段的情况下，选择改用其中一个字段，比如电话这个，修改一下即可</p>
                                 </li>
                             </ul>
-                        </div>
+                        </div>-->
+<!--
                         <div class="newsitem">
                             <div class="newspic">
                                 <ul>
@@ -233,6 +335,8 @@
                                 </li>
                             </ul>
                         </div>
+
+                        -->
                     </div>
                 </div>
 
@@ -243,10 +347,10 @@
     <div class="col-md-3 block">
         <div class="card">
             <h2>我的名片</h2>
-            <p>网名：<label th:text="${nickname}"/></p>
-            <p>职业：程序员、软件工程师</p>
-            <p>现居：陕西省-西安市</p>
-            <p>Email：lihairuizone@sina.com.com</p>
+            <p>网名：<label th:text="${myinfo.getNickname()}"/></p>
+            <p>职业：<label th:text="${myinfo.getOccupation()}"/></p>
+            <p>现居：<label th:text="${myinfo.getAddress()}"/></p>
+            <p>Email：<label th:text="${myinfo.getEmail()}"/></p>
             <ul class="linkmore">
                 <li><a href="http://www.yangqq.com" target="_blank" class="iconfont icon-zhuye" title="网站地址"></a></li>
                 <li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=HHh9cn95b3F1cHVye1xtbTJ-c3E"
@@ -583,7 +687,7 @@
         <h2 class="htitle">站点信息</h2>
         <ul>
             <li><b>建站时间</b>：2018-10-24</li>
-            <li><b>网站程序</b>：帝国CMS7.5</li>
+            <li><b>网站程序</b>：cceshi</li>
             <li><b>主题模板</b>：<a href="http://www.yangqq.com" target="_blank">《今夕何夕》</a></li>
             <li><b>文章统计</b>：299条</li>
             <li><b>文章评论</b>：490条</li>

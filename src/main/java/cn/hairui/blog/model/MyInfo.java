@@ -1,4 +1,4 @@
-package cn.hairui.blog.model.myinfo;
+package cn.hairui.blog.model;
 
 /**
  * @author lihairui
@@ -6,7 +6,7 @@ package cn.hairui.blog.model.myinfo;
  * @date: 2019/3/3 21:42
  */
 public class MyInfo {
-    public int pk;
+    public int id;
     public String nickname;
     public String webname;
     public String occupation;
@@ -16,12 +16,13 @@ public class MyInfo {
     public String qq;
     public String wechat;
 
-    public int getPk() {
-        return pk;
+
+    public int getId() {
+        return id;
     }
 
-    public void setPk(int pk) {
-        this.pk = pk;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNickname() {
