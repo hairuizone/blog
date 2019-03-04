@@ -5,18 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="favicon.ico"/>
-
     <!--<script src="js/jquery-3.3.1.min.js"></script>-->
     <script src="js/jquery-3.3.1.min.js"></script>
     <!--bootstrap库-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-
     <script src="js/comm.js"></script>
     <!--主要写的css代码-->
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
-
-
 </head>
 <body>
 <nav class="navbar navbar-default navbar-inverse">
@@ -82,264 +78,47 @@
                 <div class="tab_box whitebg">
                     <div class="tab_buttons">
                         <ul th:if="${navIndexList.size() == 5}">
-                            <li class="newscurrent" th:text="${navIndexList.get(0).name}"></li>
-                            <li th:text="${navIndexList.get(1).name}"></li>
-                            <li th:text="${navIndexList.get(2).name}"></li>
-                            <li th:text="${navIndexList.get(3).name}"></li>
-                            <li th:text="${navIndexList.get(4).name}"></li>
+                            <th:block>
 
+                            </th:block>
+                            <!--这里有个小bug newscurrent全部都占据了-->
+                            <li class="newscurrent" th:each="navIndex ,navIndexStat :${navIndexList}"
+                                th:text="${navIndex.name}"/>
                         </ul>
                     </div>
                     <div class="newstab">
 
-                        <div class="newsitem">
+                        <div class="newsitem" th:each="artNavList,artNavListStat :${articalList}">
                             <div class="newspic">
-                                <ul th:if="${articalList1.size() > 2}">
-                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList1.get(0).tittle}"/></a></li>
-                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList1.get(1).tittle}"/></a></li>
-                                </ul>
-                            </div>
-                            <ul class="newslist" th:if="${articalList1.size() == 5}">
-                                <li><i></i><a href="/" th:text="${articalList1.get(0).tittle}"></a>
-                                    <p th:text="${articalList1.get(0).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList1.get(1).tittle}"></a>
-                                    <p th:text="${articalList1.get(1).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList1.get(2).tittle}"></a>
-                                    <p th:text="${articalList1.get(2).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList1.get(3).tittle}"></a>
-                                    <p th:text="${articalList1.get(3).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList1.get(4).tittle}"></a>
-                                    <p th:text="${articalList1.get(4).summary}"/>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="newsitem">
-                            <div class="newspic">
-                                <ul th:if="${articalList2.size() > 2}">
-                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList2.get(0).tittle}"/></a></li>
-                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList2.get(1).tittle}"/></a></li>
-                                </ul>
-                            </div>
-                            <ul class="newslist" th:if="${articalList2.size() == 5}">
-                                <li><i></i><a href="/" th:text="${articalList2.get(0).tittle}"></a>
-                                    <p th:text="${articalList2.get(0).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList2.get(1).tittle}"></a>
-                                    <p th:text="${articalList2.get(1).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList2.get(2).tittle}"></a>
-                                    <p th:text="${articalList2.get(2).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList2.get(3).tittle}"></a>
-                                    <p th:text="${articalList2.get(3).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList2.get(4).tittle}"></a>
-                                    <p th:text="${articalList2.get(4).summary}"/>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="newsitem">
-                            <div class="newspic">
-                                <ul th:if="${articalList3.size() > 2}">
-                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList3.get(0).tittle}"/></a></li>
-                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList3.get(1).tittle}"/></a></li>
-                                </ul>
-                            </div>
-                            <ul class="newslist" th:if="${articalList3.size() == 5}">
-                                <li><i></i><a href="/" th:text="${articalList3.get(0).tittle}"></a>
-                                    <p th:text="${articalList3.get(0).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList3.get(1).tittle}"></a>
-                                    <p th:text="${articalList3.get(1).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList3.get(2).tittle}"></a>
-                                    <p th:text="${articalList3.get(2).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList3.get(3).tittle}"></a>
-                                    <p th:text="${articalList3.get(3).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList3.get(4).tittle}"></a>
-                                    <p th:text="${articalList3.get(4).summary}"/>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="newsitem">
-                            <div class="newspic">
-                                <ul th:if="${articalList4.size() > 2}">
-                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList4.get(0).tittle}"/></a></li>
-                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList4.get(1).tittle}"/></a></li>
-                                </ul>
-                            </div>
-                            <ul class="newslist" th:if="${articalList4.size() == 5}">
-                                <li><i></i><a href="/" th:text="${articalList4.get(0).tittle}"></a>
-                                    <p th:text="${articalList4.get(0).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList4.get(1).tittle}"></a>
-                                    <p th:text="${articalList4.get(1).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList4.get(2).tittle}"></a>
-                                    <p th:text="${articalList4.get(2).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList4.get(3).tittle}"></a>
-                                    <p th:text="${articalList4.get(3).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList4.get(4).tittle}"></a>
-                                    <p th:text="${articalList4.get(4).summary}"/>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="newsitem">
-                            <div class="newspic">
-                                <ul th:if="${articalList5.size() > 2}">
-                                    <li><a href="/"><img src="images/2.jpg"><span th:text="${articalList5.get(0).tittle}"/></a></li>
-                                    <li><a href="/"><img src="images/4.jpg"><span th:text="${articalList5.get(1).tittle}"/></a></li>
-                                </ul>
-                            </div>
-                            <ul class="newslist" th:if="${articalList5.size() == 5}">
-                                <li><i></i><a href="/" th:text="${articalList5.get(0).tittle}"></a>
-                                    <p th:text="${articalList5.get(0).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList5.get(1).tittle}"></a>
-                                    <p th:text="${articalList5.get(1).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList5.get(2).tittle}"></a>
-                                    <p th:text="${articalList5.get(2).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList5.get(3).tittle}"></a>
-                                    <p th:text="${articalList5.get(3).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList5.get(4).tittle}"></a>
-                                    <p th:text="${articalList5.get(4).summary}"/>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!--<div class="newsitem">
-                            <div class="newspic">
-                                <ul>
-                                    <li><a href="/"><img src="images/3.jpg"><span>个人博客，属于我的小世界！</span></a></li>
-                                    <li><a href="/"><img src="images/1.jpg"><span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <ul class="newslist">
-                                <li><i></i><a href="/">安静地做一个爱设计的女子</a>
-                                    <p>自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。</p>
-                                </li>
-                                <li><i></i><a href="/">我是怎么评价自己的？</a>
-                                    <p>
-                                        为了挨打轻一些，问我哪里来的，我瞎说了一个说那个谁家的，结果，打得更凶。最后事情还原了真相，我妈说，你要说说奶奶家的，都不会打你了。从此以后，我知道撒谎是会付出更惨痛的代价的，我不再撒谎，也不喜欢爱撒谎的人。</p>
-                                </li>
-                                <li><i></i><a href="/">个人博客，属于我的小世界！</a>
-                                    <p>
-                                        个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。</p>
-                                </li>
-                                <li><i></i><a href="/">个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a>
-                                    <p>不管你是学前端的还是后端的，作为一个程序员，做一个自己的博客，那是必然的。咱们的圈子就这么大，想让更多的人了解你，看看你的技术多牛逼，扔一个博客地址就行了</p>
-                                </li>
-                                <li><i></i><a href="/">做个人博客如何用帝国cms美化留言增加头像选择</a>
-                                    <p>
-                                        帝国cms的留言板系统很简单，用户名，邮箱，电话，没有头像显示，如果要增加头像选择，而又不增加表或者字段的情况下，选择改用其中一个字段，比如电话这个，修改一下即可</p>
-                                </li>
-                            </ul>
-                        </div>-->
-<!--
-                        <div class="newsitem">
-                            <div class="newspic">
-                                <ul>
-                                    <li><a href="/"><img src="images/2.jpg"><span>个人博客，属于我的小世界！</span></a></li>
-                                    <li><a href="/"><img src="images/3.jpg"><span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <ul class="newslist">
-                                <li><i></i><a href="/">我是怎么评价自己的？</a>
-                                    <p>
-                                        为了挨打轻一些，问我哪里来的，我瞎说了一个说那个谁家的，结果，打得更凶。最后事情还原了真相，我妈说，你要说说奶奶家的，都不会打你了。从此以后，我知道撒谎是会付出更惨痛的代价的，我不再撒谎，也不喜欢爱撒谎的人。</p>
-                                </li>
-                                <li><i></i><a href="/">个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a>
-                                    <p>不管你是学前端的还是后端的，作为一个程序员，做一个自己的博客，那是必然的。咱们的圈子就这么大，想让更多的人了解你，看看你的技术多牛逼，扔一个博客地址就行了</p>
-                                </li>
-                                <li><i></i><a href="/">做个人博客如何用帝国cms美化留言增加头像选择</a>
-                                    <p>
-                                        帝国cms的留言板系统很简单，用户名，邮箱，电话，没有头像显示，如果要增加头像选择，而又不增加表或者字段的情况下，选择改用其中一个字段，比如电话这个，修改一下即可</p>
-                                </li>
-                                <li><i></i><a href="/">个人博客，属于我的小世界！</a>
-                                    <p>
-                                        个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。</p>
-                                </li>
-                                <li><i></i><a href="/">安静地做一个爱设计的女子</a>
-                                    <p>自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="newsitem">
-                            <div class="newspic">
-                                <ul>
-                                    <li><a href="/"><img src="images/3.jpg"><span>个人博客，属于我的小世界！</span></a></li>
-                                    <li><a href="/"><img src="images/4.jpg"><span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的</span></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <ul class="newslist">
-                                <li><i></i><a href="/">安静地做一个爱设计的女子</a>
-                                    <p>自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。</p>
-                                </li>
-                                <li><i></i><a href="/">我是怎么评价自己的？</a>
-                                    <p>
-                                        为了挨打轻一些，问我哪里来的，我瞎说了一个说那个谁家的，结果，打得更凶。最后事情还原了真相，我妈说，你要说说奶奶家的，都不会打你了。从此以后，我知道撒谎是会付出更惨痛的代价的，我不再撒谎，也不喜欢爱撒谎的人。</p>
-                                </li>
-                                <li><i></i><a href="/">个人博客，属于我的小世界！</a>
-                                    <p>
-                                        个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。</p>
-                                </li>
-                                <li><i></i><a href="/">个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a>
-                                    <p>不管你是学前端的还是后端的，作为一个程序员，做一个自己的博客，那是必然的。咱们的圈子就这么大，想让更多的人了解你，看看你的技术多牛逼，扔一个博客地址就行了</p>
-                                </li>
-                                <li><i></i><a href="/">做个人博客如何用帝国cms美化留言增加头像选择</a>
-                                    <p>
-                                        帝国cms的留言板系统很简单，用户名，邮箱，电话，没有头像显示，如果要增加头像选择，而又不增加表或者字段的情况下，选择改用其中一个字段，比如电话这个，修改一下即可</p>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="newsitem">
-                            <div class="newspic">
-                                <ul>
-                                    <li><a href="/"><img src="images/h2.jpg"><span>个人博客，属于我的小世界！</span></a></li>
+                                <ul th:if="${articalList[artNavListStat.index].size() > 2}">
                                     <li><a href="/"><img
-                                            src="images/h1.jpg"><span>个人网站做好了，百度不收录怎么办？来，看看他们怎么做的</span></a></li>
+                                            th:src="${articalList[artNavListStat.index].get(0).imgpath}"><span
+                                            th:text="${articalList[artNavListStat.index].get(0).tittle}"/></a></li>
+                                    <li><a href="/"><img
+                                            th:src="${articalList[artNavListStat.index].get(1).imgpath}"><span
+                                            th:text="${articalList[artNavListStat.index].get(1).tittle}"/></a></li>
                                 </ul>
                             </div>
-                            <ul class="newslist">
-                                <li><i></i><a href="/">我是怎么评价自己的？</a>
-                                    <p>
-                                        为了挨打轻一些，问我哪里来的，我瞎说了一个说那个谁家的，结果，打得更凶。最后事情还原了真相，我妈说，你要说说奶奶家的，都不会打你了。从此以后，我知道撒谎是会付出更惨痛的代价的，我不再撒谎，也不喜欢爱撒谎的人。</p>
+                            <ul class="newslist" th:if="${articalList[artNavListStat.index].size() == 5}">
+                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(0).tittle}"></a>
+                                    <p th:text="${articalList[artNavListStat.index].get(0).summary}"/>
                                 </li>
-                                <li><i></i><a href="/">个人博客，属于我的小世界！</a>
-                                    <p>
-                                        个人博客，用来做什么？我刚开始就把它当做一个我吐槽心情的地方，也就相当于一个网络记事本，写上一些关于自己生活工作中的小情小事，也会放上一些照片，音乐。每天工作回家后就能访问自己的网站，一边听着音乐，一边写写文章。</p>
+                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(1).tittle}"></a>
+                                    <p th:text="${articalList[artNavListStat.index].get(1).summary}"/>
                                 </li>
-                                <li><i></i><a href="/">安静地做一个爱设计的女子</a>
-                                    <p>自从入了这行，很多人跟我说可以做网络教程，我也有考虑，但最终没有实现，因为我觉得在这个教程泛滥的时代，直接做一套免费的原创个人博客模板更为实在。</p>
+                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(2).tittle}"></a>
+                                    <p th:text="${articalList[artNavListStat.index].get(2).summary}"/>
                                 </li>
-                                <li><i></i><a href="/">个人网站做好了，百度不收录怎么办？来，看看他们怎么做的。</a>
-                                    <p>不管你是学前端的还是后端的，作为一个程序员，做一个自己的博客，那是必然的。咱们的圈子就这么大，想让更多的人了解你，看看你的技术多牛逼，扔一个博客地址就行了</p>
+                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(3).tittle}"></a>
+                                    <p th:text="${articalList[artNavListStat.index].get(3).summary}"/>
                                 </li>
-                                <li><i></i><a href="/">做个人博客如何用帝国cms美化留言增加头像选择</a>
-                                    <p>
-                                        帝国cms的留言板系统很简单，用户名，邮箱，电话，没有头像显示，如果要增加头像选择，而又不增加表或者字段的情况下，选择改用其中一个字段，比如电话这个，修改一下即可</p>
+                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(4).tittle}"></a>
+                                    <p th:text="${articalList[artNavListStat.index].get(4).summary}"/>
                                 </li>
                             </ul>
                         </div>
-
-                        -->
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -361,97 +140,13 @@
                         src="images/wx.png"></i></li>
             </ul>
         </div>
-
-
     </div>
-
     <div class="col-md-9">
-        <div class="col-md-6 block">
-            <h2 class="htitle">Spring Boot</h2>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Boot中如何扩展XML请求和响应的支持</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Boot中如何扩展XML请求和响应的支持</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="index-card-footer" style="text-align: right;">
-                <a href="/tags/Spring-Boot/">查看更多</a>
-            </div>
-        </div>
-        <div class="col-md-6 block">
-
-            <h2 class="htitle">微服务架构</h2>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
+        <div class="col-md-6 block" th:each="articalCategories, articalBolck :${articalCategoriesList}">
+            <h2 class="htitle" th:text="${articalCategories.categoryName}"></h2>
+            <div class="content-list" th:each="artical ,articalStat: ${articals[articalBolck.index]}">
+                <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:text="${artical.createDate}"/>
+                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url" th:text="${artical.tittle}"/>
             </div>
             <div class="index-card-footer" style="text-align: right;">
                 <a href="/tags/Spring-Boot/">查看更多</a>
@@ -460,15 +155,10 @@
     </div>
     <div class="col-md-3 block">
         <h2 class="htitle">专题整理</h2>
-        <ul class="nav nav-tabs nav-stacked">
-            <li><a href='#'>Spring Boot基础教程</a></li>
-            <li><a href='#'>Spring Boot 2.0新特性</a></li>
-            <li><a href='#'>Spring Cloud基础教程</a></li>
-            <li><a href='#'>微服务架构专题</a></li>
-            <li><a href='#'>JS正则表达式完整教程</a></li>
+        <ul class="nav nav-tabs nav-stacked" th:each=" articalTopics : ${articalTopicsList}">
+            <li><a href='#' th:text="${articalTopics.topicName}"/></li>
         </ul>
     </div>
-
     <div class="col-md-9">
         <div class="col-md-8 block">
             <h2 class="htitle">开源书籍</h2>
@@ -494,7 +184,6 @@
                     <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
                         Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
                 </div>
-
             </div>
             <div class="col-md-6">
                 <div class="content-list">
@@ -524,7 +213,6 @@
             </div>
         </div>
         <div class="col-md-4 block">
-
             <h2 class="htitle">在线工具</h2>
             <div class="content-list">
                 <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
@@ -584,16 +272,11 @@
                                                                        style="font-size:17px">SpringBoot</a><a
                 href="tags?tag=在路上" style="font-size:17px">在路上</a><a href="tags?tag=原创" style="font-size:20px">原创</a><a
                 href="tags?tag=随笔感悟" style="font-size:15px">随笔感悟</a></div>
-
-
     </div>
-
-
     <div class="col-md-9">
         <div class="col-md-12 block">
             <h2 class="htitle">最新更新</h2>
             <div class="whitebg bloglist">
-
                 <ul>
                     <!--多图模式 置顶设计-->
                     <li>
@@ -676,10 +359,7 @@
                 <div class="pagelist"><a title="Total record">&nbsp;<b>67</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a
                         href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_3.html">3</a>&nbsp;<a
                         href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_3.html">尾页</a></div>
-
-
             </div>
-
         </div>
     </div>
     <div class="col-md-3 block whitebg tongji">
@@ -720,7 +400,5 @@
     <a href="#">
         <div class="top"></div>
     </a></footer>
-
-
 </body>
 </html>

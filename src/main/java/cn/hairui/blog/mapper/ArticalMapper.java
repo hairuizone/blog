@@ -15,4 +15,7 @@ public interface ArticalMapper {
 
     @Select("select * from artical where navId = #{navId} order by createDate desc , id desc")
     public List<Artical> queryArticalListByNavId(Integer navId);
+
+    @Select("select * from artical where CATEGORIES = #{categories} order by createDate desc")
+    public List<Artical> queryArticalListByCategories(Integer categories);
 }

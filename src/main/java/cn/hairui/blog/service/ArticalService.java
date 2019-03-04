@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface ArticalService {
 
-    public List<Artical> queryArticalListByNavId(Integer navId);
+    public List<Artical> queryArticalListByNavId(Integer navId);//通过tab标签索引查找文章
+
+    public List<Artical> queryArticalListByCategories(Integer categories);//通过分类号查询文章
 }

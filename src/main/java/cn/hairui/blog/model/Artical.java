@@ -12,11 +12,12 @@ public class Artical {
     private String originAuthor;//原文作者
     private String originUrl;//原文URL
     private String tittle;//标题
+    private String imgpath;//背景图片路径
     private String content;//内容
     private String tags;//标签
     private Integer navId;//导航编号 用于在导航栏中显示
     private String topicId;//专题编号
-    private String categories;//分类
+    private Integer categories;//分类
     private String type;//类型（原创、转载）
     private String createDate;//创建日期
     private String updateDate;//更新日期
@@ -76,6 +77,14 @@ public class Artical {
         this.tittle = tittle;
     }
 
+    public String getImgpath() {
+        return imgpath;
+    }
+
+    public void setImgpath(String imgpath) {
+        this.imgpath = imgpath;
+    }
+
     public String getContent() {
         return content;
     }
@@ -108,11 +117,11 @@ public class Artical {
         this.topicId = topicId;
     }
 
-    public String getCategories() {
+    public Integer getCategories() {
         return categories;
     }
 
-    public void setCategories(String categories) {
+    public void setCategories(Integer categories) {
         this.categories = categories;
     }
 

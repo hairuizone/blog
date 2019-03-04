@@ -11,5 +11,6 @@ import java.util.List;
 public interface NavIndexService {
 
     public NavIndex findNavIndexById(Integer id);
+
     public List<NavIndex> queryNavIndexList();
 }

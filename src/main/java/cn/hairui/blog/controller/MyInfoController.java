@@ -18,8 +18,8 @@ public class MyInfoController {
     private MyInfoService myInfoService;
 
     @ResponseBody
-    @RequestMapping(value="/getMyInfo",produces = {"application/json;charset=UTF-8"})
-    public MyInfo getMyInfo(){
+    @RequestMapping(value = "/getMyInfo", produces = {"application/json;charset=UTF-8"})
+    public MyInfo getMyInfo() {
         return myInfoService.findMyInfoById(1);
     }
 }

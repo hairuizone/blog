@@ -22,4 +22,9 @@ public class ArticalServiceImpl implements ArticalService {
     public List<Artical> queryArticalListByNavId(Integer navId) {
         return articalMapper.queryArticalListByNavId(navId);
     }
+
+    @Override
+    public List<Artical> queryArticalListByCategories(Integer categories) {
+        return articalMapper.queryArticalListByCategories(categories);
+    }
 }
