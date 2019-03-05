@@ -18,4 +18,8 @@ public interface ArticalService {
     public List<String> queryAllArticalTags();//查询标签集合
 
     public Artical queryArticalFirstByIntop(String intop);//查询置顶第一篇文章
+
+    public List<Artical> queryArticalListHomePage();//查询首页显示的前10篇文章
+
+    public List<Artical> queryArticalListByCond(String type,String keywords);//通过类型和搜索关键字查询文章集合
 }

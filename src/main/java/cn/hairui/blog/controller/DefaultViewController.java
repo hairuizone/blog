@@ -85,10 +85,13 @@ public class DefaultViewController {
         //标签
         List<String> tagsList = articalService.queryAllArticalTags();
         model.addAttribute("tagsList",tagsList);
-        //置顶文章
 
+        //置顶文章
         Artical articalTop = articalService.queryArticalFirstByIntop("Y");//Y-置顶 N or null-不置顶
         model.addAttribute("articalTop",articalTop);
+
+        List<Artical> articalListHomePage = articalService.queryArticalListHomePage();
+        model.addAttribute("articalListHomePage",articalListHomePage);
         return "index";
     }
 
@@ -96,5 +99,16 @@ public class DefaultViewController {
     public String index2Page() {
         return "index2";
     }
+
+    @RequestMapping(value = "/background", method = RequestMethod.GET)
+    public String backgroundPage() {
+        return "background/index";
+    }
+
+    @RequestMapping(value = "/table-list", method = RequestMethod.GET)
+    public String tableListPage() {
+        return "artical-list";
+    }
+
 
 }

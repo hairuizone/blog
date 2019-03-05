@@ -25,4 +25,10 @@ public interface ArticalMapper {
 
     @Select("select * from artical where intop=#{intop} order by createDate desc limit 1")
     public Artical queryArticalFirstByIntop(String intop);
+
+    @Select("select * from artical order by createDate desc,id desc limit 10")
+    public List<Artical> queryArticalListHomePage();
+
+    @Select("select * from artical order by createDate desc,id desc limit 6")
+    public List<Artical> queryArticalListByCond(String type, String keywords);
 }

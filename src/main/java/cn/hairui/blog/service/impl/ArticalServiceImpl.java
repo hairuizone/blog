@@ -53,4 +53,14 @@ public class ArticalServiceImpl implements ArticalService {
     public Artical queryArticalFirstByIntop(String intop) {
         return articalMapper.queryArticalFirstByIntop(intop);
     }
+
+    @Override
+    public List<Artical> queryArticalListHomePage() {
+        return articalMapper.queryArticalListHomePage();
+    }
+
+    @Override
+    public List<Artical> queryArticalListByCond(String type, String keywords) {
+        return articalMapper.queryArticalListByCond(type,keywords);
+    }
 }

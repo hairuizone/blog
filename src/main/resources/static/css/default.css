@@ -1,9 +1,15 @@
 ﻿body{
     background-color: #E9EAED;
 }
+
 .container {
     width: 100%;
     position: relative;
+}
+@media screen and (max-width: 1920px) {
+    .container{
+        width: 80%;
+    }
 }
 
 .navbar-brand{
