@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author laoganbu
@@ -18,4 +19,10 @@ public interface ArticalMapper {
 
     @Select("select * from artical where CATEGORIES = #{categories} order by createDate desc")
     public List<Artical> queryArticalListByCategories(Integer categories);
+
+    @Select("SELECT DISTINCT tags FROM artical WHERE tags IS NOT NULL AND tags != ''")
+    public List<String> queryAllArticalTags();
+
+    @Select("select * from artical where intop=#{intop} order by createDate desc limit 1")
+    public Artical queryArticalFirstByIntop(String intop);
 }

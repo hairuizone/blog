@@ -13,370 +13,362 @@
     <script src="js/comm.js"></script>
     <!--主要写的css代码-->
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <title th:text="${myinfo.webname}"></title>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-inverse">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu"
-                aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#"><span><img src="img/brand.jpg" class="img-circle"
-                                                    style="height: 30px;width: 30px"></span><label
-                th:text="${myinfo.getWebname()}"/></a>
-    </div>
-    <div class="container">
-        <div id="navbar-menu" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><span class="glyphicon glyphicon-home"/>&nbsp;首页</a></li>
-                <li class="dropdown">
-                    <a href="#"><span class="glyphicon glyphicon-th"/>&nbsp;分类</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Java基础知识</a></li>
-                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Spring boot</a></li>
-                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;redis缓存</a></li>
-                        <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Apache反向代理</a>
+<div class="container">
+
+
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="header">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span><img src="img/brand.jpg" class="img-circle"
+                                                            style="height: 30px;width: 30px"></span><label
+                        th:text="${myinfo.getWebname()}"/></a>
+            </div>
+            <div class="container">
+                <div id="navbar-menu" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"/>&nbsp;首页</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span class="glyphicon glyphicon-th"/>&nbsp;分类</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Java基础知识</a>
+                                </li>
+                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Spring boot</a>
+                                </li>
+                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;redis缓存</a>
+                                </li>
+                                <li><a class="" href="#"><span
+                                        class="glyphicon glyphicon-tag"></span>&nbsp;Apache反向代理</a>
+                                </li>
+                            </ul>
                         </li>
+                        <li><a href="#"><span class="glyphicon glyphicon-time"/>&nbsp;归档</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-pencil"/>&nbsp;随笔</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-bookmark"/>&nbsp;专题</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-user"/>&nbsp;关于我</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-eye-open"/>&nbsp;传送门</a></li>
                     </ul>
-                </li>
-                <li><a href="#"><span class="glyphicon glyphicon-time"/>&nbsp;归档</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-pencil"/>&nbsp;随笔</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-bookmark"/>&nbsp;专题</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-user"/>&nbsp;关于我</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-eye-open"/>&nbsp;传送门</a></li>
-            </ul>
-            <a class="write-blog" href="">
-                <span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span>
-            </a>
-            <a class="message-center" href="">
-                <span><img class="message-icon" src="http://localhost:8848/myblog/img/message-icon.png">消息中心</span>
-            </a>
-            <a href="#">
-                <button class="btn btn-sm">登录</button>
-            </a>
-            <a href="#">
-                <button class="btn btn-sm">注册</button>
-            </a>
+                    <!--<a class="write-blog" href="">
+                        <span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span>
+                    </a>
+                    <a class="message-center" href="">
+                        <span><img class="message-icon"
+                                   src="http://localhost:8848/myblog/img/message-icon.png">消息中心</span>
+                    </a>
+                    <a href="#">
+                        <button class="btn btn-sm">登录</button>
+                    </a>
+                    <a href="#">
+                        <button class="btn btn-sm">注册</button>
+                    </a>-->
+
+                </div>
+            </div>
 
         </div>
-    </div>
-</nav>
-<!--<div class="container">-->
-<div class="container" style="width: 80%">
-    <!--<h1>Twitter bootstrap tutorial</h1>-->
+    </nav>
 
     <div id="content" class="row-fluid">
 
-        <div class="col-md-9 ">
-            <div class="col-md-12 block">
+        <div class="col-md-9">
+            <div class="col-md-12">
 
+                <div class="block">
 
-                <div class="tab_box whitebg">
-                    <div class="tab_buttons">
-                        <ul th:if="${navIndexList.size() == 5}">
-                            <th:block>
+                    <div class="tab_box whitebg">
+                        <div class="tab_buttons">
+                            <ul th:if="${navIndexList.size() == 5}">
+                                <th:block>
 
-                            </th:block>
-                            <!--这里有个小bug newscurrent全部都占据了-->
-                            <li class="newscurrent" th:each="navIndex ,navIndexStat :${navIndexList}"
-                                th:text="${navIndex.name}"/>
-                        </ul>
-                    </div>
-                    <div class="newstab">
+                                </th:block>
+                                <!--这里有个小bug newscurrent全部都占据了-->
+                                <li class="newscurrent" th:each="navIndex ,navIndexStat :${navIndexList}"
+                                    th:text="${navIndex.name}"/>
+                            </ul>
+                        </div>
+                        <div class="newstab">
 
-                        <div class="newsitem" th:each="artNavList,artNavListStat :${articalList}">
-                            <div class="newspic">
-                                <ul th:if="${articalList[artNavListStat.index].size() > 2}">
-                                    <li><a href="/"><img
-                                            th:src="${articalList[artNavListStat.index].get(0).imgpath}"><span
-                                            th:text="${articalList[artNavListStat.index].get(0).tittle}"/></a></li>
-                                    <li><a href="/"><img
-                                            th:src="${articalList[artNavListStat.index].get(1).imgpath}"><span
-                                            th:text="${articalList[artNavListStat.index].get(1).tittle}"/></a></li>
+                            <div class="newsitem" th:each="artNavList,artNavListStat :${articalList}">
+                                <div class="newspic">
+                                    <ul th:if="${articalList[artNavListStat.index].size() > 2}">
+                                        <li><a href="/"><img
+                                                th:src="${articalList[artNavListStat.index].get(0).imgpath}"><span
+                                                th:text="${articalList[artNavListStat.index].get(0).tittle}"/></a></li>
+                                        <li><a href="/"><img
+                                                th:src="${articalList[artNavListStat.index].get(1).imgpath}"><span
+                                                th:text="${articalList[artNavListStat.index].get(1).tittle}"/></a></li>
+                                    </ul>
+                                </div>
+                                <ul class="newslist" th:if="${articalList[artNavListStat.index].size() == 5}">
+                                    <li><i></i><a href="/"
+                                                  th:text="${articalList[artNavListStat.index].get(0).tittle}"></a>
+                                        <p th:text="${articalList[artNavListStat.index].get(0).summary}"/>
+                                    </li>
+                                    <li><i></i><a href="/"
+                                                  th:text="${articalList[artNavListStat.index].get(1).tittle}"></a>
+                                        <p th:text="${articalList[artNavListStat.index].get(1).summary}"/>
+                                    </li>
+                                    <li><i></i><a href="/"
+                                                  th:text="${articalList[artNavListStat.index].get(2).tittle}"></a>
+                                        <p th:text="${articalList[artNavListStat.index].get(2).summary}"/>
+                                    </li>
+                                    <li><i></i><a href="/"
+                                                  th:text="${articalList[artNavListStat.index].get(3).tittle}"></a>
+                                        <p th:text="${articalList[artNavListStat.index].get(3).summary}"/>
+                                    </li>
+                                    <li><i></i><a href="/"
+                                                  th:text="${articalList[artNavListStat.index].get(4).tittle}"></a>
+                                        <p th:text="${articalList[artNavListStat.index].get(4).summary}"/>
+                                    </li>
                                 </ul>
                             </div>
-                            <ul class="newslist" th:if="${articalList[artNavListStat.index].size() == 5}">
-                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(0).tittle}"></a>
-                                    <p th:text="${articalList[artNavListStat.index].get(0).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(1).tittle}"></a>
-                                    <p th:text="${articalList[artNavListStat.index].get(1).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(2).tittle}"></a>
-                                    <p th:text="${articalList[artNavListStat.index].get(2).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(3).tittle}"></a>
-                                    <p th:text="${articalList[artNavListStat.index].get(3).summary}"/>
-                                </li>
-                                <li><i></i><a href="/" th:text="${articalList[artNavListStat.index].get(4).tittle}"></a>
-                                    <p th:text="${articalList[artNavListStat.index].get(4).summary}"/>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
-    <div class="col-md-3 block">
-        <div class="card">
-            <h2>我的名片</h2>
-            <p>网名：<label th:text="${myinfo.getNickname()}"/></p>
-            <p>职业：<label th:text="${myinfo.getOccupation()}"/></p>
-            <p>现居：<label th:text="${myinfo.getAddress()}"/></p>
-            <p>Email：<label th:text="${myinfo.getEmail()}"/></p>
-            <ul class="linkmore">
-                <li><a href="http://www.yangqq.com" target="_blank" class="iconfont icon-zhuye" title="网站地址"></a></li>
-                <li><a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=HHh9cn95b3F1cHVye1xtbTJ-c3E"
-                       target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
-                <li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=476847113&amp;site=qq&amp;menu=yes" target="_blank"
-                       class="iconfont icon---" title="QQ联系我"></a></li>
-                <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin" title="关注我的微信"></a><i><img
-                        src="images/wx.png"></i></li>
-            </ul>
-        </div>
-    </div>
-    <div class="col-md-9">
-        <div class="col-md-6 block" th:each="articalCategories, articalBolck :${articalCategoriesList}">
-            <h2 class="htitle" th:text="${articalCategories.categoryName}"></h2>
-            <div class="content-list" th:each="artical ,articalStat: ${articals[articalBolck.index]}">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:text="${artical.createDate}"/>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url" th:text="${artical.tittle}"/>
-            </div>
-            <div class="index-card-footer" style="text-align: right;">
-                <a href="/tags/Spring-Boot/">查看更多</a>
+        <div class="col-md-3">
+            <div class="block">
+                <div class="card">
+                    <h2>我的名片</h2>
+                    <p>网名：<label th:text="${myinfo.getNickname()}"/></p>
+                    <p>职业：<label th:text="${myinfo.getOccupation()}"/></p>
+                    <p>现居：<label th:text="${myinfo.getAddress()}"/></p>
+                    <p>Email：<label th:text="${myinfo.getEmail()}"/></p>
+                    <ul class="linkmore">
+                        <li><a href="http://www.yangqq.com" target="_blank" class="iconfont icon-zhuye"
+                               title="网站地址"></a>
+                        </li>
+                        <li>
+                            <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=HHh9cn95b3F1cHVye1xtbTJ-c3E"
+                               target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
+                        <li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=476847113&amp;site=qq&amp;menu=yes"
+                               target="_blank"
+                               class="iconfont icon---" title="QQ联系我"></a></li>
+                        <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin"
+                                           title="关注我的微信"></a><i><img
+                                src="images/wx.png"></i></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3 block">
-        <h2 class="htitle">专题整理</h2>
-        <ul class="nav nav-tabs nav-stacked" th:each=" articalTopics : ${articalTopicsList}">
-            <li><a href='#' th:text="${articalTopics.topicName}"/></li>
-        </ul>
-    </div>
-    <div class="col-md-9">
-        <div class="col-md-8 block">
-            <h2 class="htitle">开源书籍</h2>
-            <div class="col-md-6">
-                <div class="content-list">
 
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="content-list">
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="content-list">
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="content-list">
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="content-list">
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="content-list">
 
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="content-list">
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="content-list">
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="content-list">
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="content-list">
-                    <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud
-                        Alibaba与Spring Boot、Spring Cloud之间不得不说的版本关系</a>
-                </div>
-                <div class="index-card-footer" style="text-align: right;">
-                    <a href="/tags/Spring-Boot/">查看更多</a>
+        <div class="col-md-9">
+            <div class="col-md-6 " th:each="articalCategories, articalBolck :${articalCategoriesList}">
+                <div class="block">
+                    <h2 class="htitle" th:text="${articalCategories.categoryName}"></h2>
+                    <div class="content-list" th:each="artical ,articalStat: ${articals[articalBolck.index]}">
+                        <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:text="${artical.createDate}"/>
+                        <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url"
+                           th:text="${artical.tittle}"/>
+                    </div>
+                    <div class="index-card-footer" style="text-align: right;">
+                        <a href="/tags/Spring-Boot/">查看更多</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 block">
-            <h2 class="htitle">在线工具</h2>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="content-list">
-                <span style="font-size: 12px;color:#aaa;margin-right: 5px;">19/03/02</span>
-                <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url">Spring Cloud Alibaba与Spring
-                    Boot、Spring Cloud之间不得不说的版本关系</a>
-            </div>
-            <div class="index-card-footer" style="text-align: right;">
-                <a href="/tags/Spring-Boot/">查看更多</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3 block">
-        <h2 class="htitle">标签</h2>
-        <div class="widget-tag-cloud"><a href="tags?tag=春招" style="font-size:15px">春招</a><a href="tags?tag=面经"
-                                                                                            style="font-size:17px">面经</a><a
-                href="tags?tag=ConcurrentHashMap" style="font-size:12px">ConcurrentHashMap</a><a href="tags?tag=IDEA"
-                                                                                                 style="font-size:12px">IDEA</a><a
-                href="tags?tag=年度总结" style="font-size:12px">年度总结</a><a href="tags?tag=设计模式"
-                                                                       style="font-size:17px">设计模式</a><a
-                href="tags?tag=HashMap" style="font-size:12px">HashMap</a><a href="tags?tag=源码" style="font-size:18px">源码</a><a
-                href="tags?tag=面试" style="font-size:12px">面试</a><a href="tags?tag=JVM" style="font-size:15px">JVM</a><a
-                href="tags?tag=排序" style="font-size:17px">排序</a><a href="tags?tag=MySql"
-                                                                   style="font-size:15px">MySql</a><a href="tags?tag=集合"
-                                                                                                      style="font-size:12px">集合</a><a
-                href="tags?tag=数据结构" style="font-size:15px">数据结构</a><a href="tags?tag=注解"
-                                                                       style="font-size:12px">注解</a><a
-                href="tags?tag=生活跪记" style="font-size:12px">生活跪记</a><a href="tags?tag=搞笑"
-                                                                       style="font-size:15px">搞笑</a><a
-                href="tags?tag=反射" style="font-size:12px">反射</a><a href="tags?tag=正则表达式"
-                                                                   style="font-size:15px">正则表达式</a><a href="tags?tag=民谣"
-                                                                                                      style="font-size:15px">民谣</a><a
-                href="tags?tag=转载" style="font-size:15px">转载</a><a href="tags?tag=Java"
-                                                                   style="font-size:18px">Java</a><a
-                href="tags?tag=Linux" style="font-size:15px">Linux</a><a href="tags?tag=Shell" style="font-size:12px">Shell</a><a
-                href="tags?tag=服务器压测" style="font-size:12px">服务器压测</a><a href="tags?tag=JMeter" style="font-size:15px">JMeter</a><a
-                href="tags?tag=个人博客" style="font-size:17px">个人博客</a><a href="tags?tag=SpringBoot"
-                                                                       style="font-size:17px">SpringBoot</a><a
-                href="tags?tag=在路上" style="font-size:17px">在路上</a><a href="tags?tag=原创" style="font-size:20px">原创</a><a
-                href="tags?tag=随笔感悟" style="font-size:15px">随笔感悟</a></div>
-    </div>
-    <div class="col-md-9">
-        <div class="col-md-12 block">
-            <h2 class="htitle">最新更新</h2>
-            <div class="whitebg bloglist">
-                <ul>
-                    <!--多图模式 置顶设计-->
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank"><b>【顶】</b>别让这些闹心的套路，毁了你的网页设计!</a></h3>
-                        <span class="bplist"><a href="/"> <img src="images/b02.jpg" alt=""></a> <a href="/"><img
-                                src="images/b03.jpg" alt=""></a> <a href="/"><img src="images/b04.jpg" alt=""> </a><a
-                                href="/"><img src="images/b05.jpg" alt=""> </a></span>
-                        <p class="blogtext">如图，要实现上图效果，我采用如下方法：1、首先在数据库模型，增加字段，分别是图片2，图片3。2、增加标签模板，用if，else if
-                            来判断，输出。思路已打开，样式调用就可以多样化啦！... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">原创模板</a>】</span></p>
-                    </li>
-                    <!--单图-->
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
-                        <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/" title=""></a></span>
-                        <p class="blogtext">
-                            这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">原创模板</a>】</span></p>
-                        <a href="/" class="viewmore">阅读更多</a></li>
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank">宝宝个人博客模板-亲子博客模板-宝宝个人网站模板</a></h3>
-                        <span class="blogpic imgscale"><i><a href="/">最新模板</a></i><a href="/" title=""></a></span>
-                        <p class="blogtext">
-                            这是一个记录宝宝成长点滴的个人博客，用作于宝宝博客，亲子博客，都是适用的。颜色为蓝色调，头部有飘动的卡通云，采用css3动画效果，布局简单，代码精简，还有相册功能，发图片，视频，时间轴可记录重要时刻，也可记录宝宝的生长发育状况，也可以统计宝宝博客网站的所有文章... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">最新模板</a>】</span></p>
-                        <a href="/" class="viewmore">阅读更多</a></li>
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank">如何快速建立自己的个人博客网站</a></h3>
-                        <span class="blogpic imgscale"><i><a href="/">快速建站</a></i><a href="/" title=""></a></span>
-                        <p class="blogtext">
-                            各大博客门户网站，相继关闭，做一个独立的个人博客网站，那是将来的趋势。越来越多的个人站长倾向于独立建站，有个属于自己的博客网站，那如何快速建立自己的个人博客网站呢，接下来，我就简单给大家介绍一下：以阿里云为例... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">快速建站</a>】</span></p>
-                        <a href="/" class="viewmore">阅读更多</a></li>
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></h3>
-                        <span class="blogpic imgscale"><i><a href="/">设计制作</a></i><a href="/" title=""></a></span>
-                        <p class="blogtext">
-                            就拿我自己来说吧，有时候会很矛盾，设计好的作品，不把它分享出来，会觉得待在自己电脑里面实在是没有意义。干脆就发布出去吧。我也害怕收到大家不好的评论，有些评论，可能说者无意，但是对于每一个用心的站长来说，都会受很深的影响，愤怒，恼羞。... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">设计制作</a>】</span></p>
-                        <a href="/" class="viewmore">阅读更多</a></li>
-                    <!--纯文字-->
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank">别让这些闹心的套路，毁了你的网页设计!</a></h3>
-                        <p class="blogtext">如图，要实现上图效果，我采用如下方法：1、首先在数据库模型，增加字段，分别是图片2，图片3。2、增加标签模板，用if，else if
-                            来判断，输出。思路已打开，样式调用就可以多样化啦！... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">原创模板</a>】</span></p>
-                        <a href="/" class="viewmore">阅读更多</a></li>
-                    <!--单图-->
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
-                        <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/" title=""></a></span>
-                        <p class="blogtext">
-                            这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">原创模板</a>】</span></p>
-                        <a href="/" class="viewmore">阅读更多</a></li>
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank">如何快速建立自己的个人博客网站</a></h3>
-                        <span class="blogpic imgscale"><i><a href="/">快速建站</a></i><a href="/" title=""></a></span>
-                        <p class="blogtext">
-                            各大博客门户网站，相继关闭，做一个独立的个人博客网站，那是将来的趋势。越来越多的个人站长倾向于独立建站，有个属于自己的博客网站，那如何快速建立自己的个人博客网站呢，接下来，我就简单给大家介绍一下：以阿里云为例... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">快速建站</a>】</span></p>
-                        <a href="/" class="viewmore">阅读更多</a></li>
-                    <li>
-                        <h3 class="blogtitle"><a href="/" target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
-                        <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/" title=""></a></span>
-                        <p class="blogtext">
-                            这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
-                        <p class="bloginfo"><i class="avatar"><img src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
-                                href="/">原创模板</a>】</span></p>
-                        <a href="/" class="viewmore">阅读更多</a></li>
+        <div class="col-md-3">
+            <div class="block">
+                <h2 class="htitle">专题整理</h2>
+                <ul class="nav nav-tabs nav-stacked" th:each=" articalTopics : ${articalTopicsList}">
+                    <li><a href='#' th:text="${articalTopics.topicName}"/></li>
                 </ul>
-                <div class="pagelist"><a title="Total record">&nbsp;<b>67</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a
-                        href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_3.html">3</a>&nbsp;<a
-                        href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_3.html">尾页</a></div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3 block whitebg tongji">
+        <div class="col-md-9">
+            <div class="col-md-8">
+                <div class="block">
+                    <h2 class="htitle">开源书籍</h2>
+                    <div class="col-md-6">
+                        <div class="content-list" th:each="books ,booksStat:${booksList}">
+                            <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url"
+                               th:if="${booksStat.even}" th:text="${books.bookName}"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="content-list" th:each="books ,booksStat:${booksList}">
+                            <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url"
+                               th:if="${booksStat.odd}" th:text="${books.bookName}"></a>
+                        </div>
 
-        <h2 class="htitle">站点信息</h2>
-        <ul>
-            <li><b>建站时间</b>：2018-10-24</li>
-            <li><b>网站程序</b>：cceshi</li>
-            <li><b>主题模板</b>：<a href="http://www.yangqq.com" target="_blank">《今夕何夕》</a></li>
-            <li><b>文章统计</b>：299条</li>
-            <li><b>文章评论</b>：490条</li>
-            <li><b>统计数据</b>：<a href="/">百度统计</a></li>
-            <li><b>微信公众号</b>：扫描二维码，关注我们</li>
-            <img src="images/wxgzh.jpg" class="tongji_gzh">
-        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="block">
+                    <h2 class="htitle">在线工具</h2>
+                    <div class="content-list" th:each="onlineTools :${onlineToolsList}">
+                        <span style="font-size: 12px;color:#aaa;margin-right: 5px;"
+                              th:text="${onlineTools.addDate}"></span>
+                        <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url"
+                           th:text="${onlineTools.toolName}"/>
+                    </div>
+
+                    <div class="index-card-footer" style="text-align: right;">
+                        <a href="/tags/Spring-Boot/">查看更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="block">
+                <h2 class="htitle">标签</h2>
+                <div>
+                    <a href="tags?tag=" style="font-size:17px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==0"/>
+                    <a href="tags?tag=" style="font-size:15px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==1"/>
+                    <a href="tags?tag=" style="font-size:12px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==2"/>
+                    <a href="tags?tag=" style="font-size:18px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==3"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-12 ">
+                <div class="block">
+                    <h2 class="htitle">最新更新</h2>
+                    <div class="whitebg bloglist">
+                        <ul>
+                            <!--多图模式 置顶设计-->
+                            <li>
+                                <h3 class="blogtitle"><b>【顶】</b><a href="/" target="_blank" th:text="${articalTop.tittle}"></a></h3>
+                                <span class="bplist"><a href="/"> <img src="images/b02.jpg" alt=""></a> <a href="/"><img
+                                        src="images/b03.jpg" alt=""></a> <a href="/"><img src="images/b04.jpg" alt=""> </a><a
+                                        href="/"><img src="images/b05.jpg" alt=""> </a></span>
+                                <p class="blogtext" th:text="${articalTop.summary}"></p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span th:text="${articalTop.author}"></span><span th:text="${articalTop.createDate}"></span><span>【<a
+                                        href="/" th:text="${articalTop.tags}"></a>】</span></p>
+                            </li>
+                            <!--单图-->
+                            <li>
+                                <h3 class="blogtitle"><a href="/"
+                                                         target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
+                                <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/"
+                                                                                             title=""></a></span>
+                                <p class="blogtext">
+                                    这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
+                                        href="/">原创模板</a>】</span></p>
+                                <a href="/" class="viewmore">阅读更多</a></li>
+                            <li>
+                                <h3 class="blogtitle"><a href="/" target="_blank">宝宝个人博客模板-亲子博客模板-宝宝个人网站模板</a></h3>
+                                <span class="blogpic imgscale"><i><a href="/">最新模板</a></i><a href="/"
+                                                                                             title=""></a></span>
+                                <p class="blogtext">
+                                    这是一个记录宝宝成长点滴的个人博客，用作于宝宝博客，亲子博客，都是适用的。颜色为蓝色调，头部有飘动的卡通云，采用css3动画效果，布局简单，代码精简，还有相册功能，发图片，视频，时间轴可记录重要时刻，也可记录宝宝的生长发育状况，也可以统计宝宝博客网站的所有文章... </p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
+                                        href="/">最新模板</a>】</span></p>
+                                <a href="/" class="viewmore">阅读更多</a></li>
+                            <li>
+                                <h3 class="blogtitle"><a href="/" target="_blank">如何快速建立自己的个人博客网站</a></h3>
+                                <span class="blogpic imgscale"><i><a href="/">快速建站</a></i><a href="/"
+                                                                                             title=""></a></span>
+                                <p class="blogtext">
+                                    各大博客门户网站，相继关闭，做一个独立的个人博客网站，那是将来的趋势。越来越多的个人站长倾向于独立建站，有个属于自己的博客网站，那如何快速建立自己的个人博客网站呢，接下来，我就简单给大家介绍一下：以阿里云为例... </p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
+                                        href="/">快速建站</a>】</span></p>
+                                <a href="/" class="viewmore">阅读更多</a></li>
+                            <li>
+                                <h3 class="blogtitle"><a href="/" target="_blank">作为一个设计师,如果遭到质疑你是否能恪守自己的原则?</a></h3>
+                                <span class="blogpic imgscale"><i><a href="/">设计制作</a></i><a href="/"
+                                                                                             title=""></a></span>
+                                <p class="blogtext">
+                                    就拿我自己来说吧，有时候会很矛盾，设计好的作品，不把它分享出来，会觉得待在自己电脑里面实在是没有意义。干脆就发布出去吧。我也害怕收到大家不好的评论，有些评论，可能说者无意，但是对于每一个用心的站长来说，都会受很深的影响，愤怒，恼羞。... </p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
+                                        href="/">设计制作</a>】</span></p>
+                                <a href="/" class="viewmore">阅读更多</a></li>
+                            <!--纯文字-->
+                            <li>
+                                <h3 class="blogtitle"><a href="/" target="_blank">别让这些闹心的套路，毁了你的网页设计!</a></h3>
+                                <p class="blogtext">如图，要实现上图效果，我采用如下方法：1、首先在数据库模型，增加字段，分别是图片2，图片3。2、增加标签模板，用if，else if
+                                    来判断，输出。思路已打开，样式调用就可以多样化啦！... </p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
+                                        href="/">原创模板</a>】</span></p>
+                                <a href="/" class="viewmore">阅读更多</a></li>
+                            <!--单图-->
+                            <li>
+                                <h3 class="blogtitle"><a href="/"
+                                                         target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
+                                <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/"
+                                                                                             title=""></a></span>
+                                <p class="blogtext">
+                                    这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
+                                        href="/">原创模板</a>】</span></p>
+                                <a href="/" class="viewmore">阅读更多</a></li>
+                            <li>
+                                <h3 class="blogtitle"><a href="/" target="_blank">如何快速建立自己的个人博客网站</a></h3>
+                                <span class="blogpic imgscale"><i><a href="/">快速建站</a></i><a href="/"
+                                                                                             title=""></a></span>
+                                <p class="blogtext">
+                                    各大博客门户网站，相继关闭，做一个独立的个人博客网站，那是将来的趋势。越来越多的个人站长倾向于独立建站，有个属于自己的博客网站，那如何快速建立自己的个人博客网站呢，接下来，我就简单给大家介绍一下：以阿里云为例... </p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
+                                        href="/">快速建站</a>】</span></p>
+                                <a href="/" class="viewmore">阅读更多</a></li>
+                            <li>
+                                <h3 class="blogtitle"><a href="/"
+                                                         target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
+                                <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/"
+                                                                                             title=""></a></span>
+                                <p class="blogtext">
+                                    这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
+                                <p class="bloginfo"><i class="avatar"><img
+                                        src="images/avatar.jpg"></i><span>杨青青</span><span>2018-10-28</span><span>【<a
+                                        href="/">原创模板</a>】</span></p>
+                                <a href="/" class="viewmore">阅读更多</a></li>
+                        </ul>
+                        <div class="pagelist"><a title="Total record">&nbsp;<b>67</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a
+                                href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_3.html">3</a>&nbsp;<a
+                                href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_3.html">尾页</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 tongji">
+            <div class="block">
+                <h2 class="htitle">站点信息</h2>
+                <ul>
+                    <li><b>建站时间</b>：2018-10-24</li>
+                    <li><b>网站程序</b>：cceshi</li>
+                    <li><b>主题模板</b>：<a href="http://www.yangqq.com" target="_blank">《今夕何夕》</a></li>
+                    <li><b>文章统计</b>：299条</li>
+                    <li><b>文章评论</b>：490条</li>
+                    <li><b>统计数据</b>：<a href="/">百度统计</a></li>
+                    <li><b>微信公众号</b>：扫描二维码，关注我们</li>
+                    <img src="images/wxgzh.jpg" class="tongji_gzh">
+                </ul>
+            </div>
+        </div>
+
+
     </div>
 </div>
+
+<!--<div class="container">-->
+<!--<div class="container">-->
+<!--<h1>Twitter bootstrap tutorial</h1>-->
+
+
+<!--</div>-->
 <footer>
     <div class="container">
         <div class="wxbox">

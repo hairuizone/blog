@@ -6,7 +6,9 @@ import cn.hairui.blog.service.ArticalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author laoganbu
@@ -26,5 +28,29 @@ public class ArticalServiceImpl implements ArticalService {
     @Override
     public List<Artical> queryArticalListByCategories(Integer categories) {
         return articalMapper.queryArticalListByCategories(categories);
+    }
+
+    @Override
+    public List<String> queryAllArticalTags() {
+
+        List<String> result = new LinkedList<>();
+        List<String> tags = articalMapper.queryAllArticalTags();
+        for (String tag : tags
+        ) {
+            String[] args = tag.split("/");
+            for (String arg : args
+            ) {
+
+                if (!result.contains(arg.replaceAll("#", ""))) {
+                    result.add(arg.replaceAll("#", ""));
+                }
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Artical queryArticalFirstByIntop(String intop) {
+        return articalMapper.queryArticalFirstByIntop(intop);
     }
 }

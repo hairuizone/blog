@@ -28,6 +28,10 @@ public class DefaultViewController {
     private ArticalCategoriesService articalCategoriesService;
     @Autowired
     private ArticalTopicsService articalTopicsService;
+    @Autowired
+    private BooksService booksService;
+    @Autowired
+    private OnlineToolsService onlineToolsService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String indexPage(Model model) {
@@ -50,17 +54,7 @@ public class DefaultViewController {
         }
         model.addAttribute("articalList", articalList);
 
-       /*
-        List<Artical> articalList1 = articalService.queryArticalListByNavId(1);
-        List<Artical> articalList2 = articalService.queryArticalListByNavId(2);
-        List<Artical> articalList3 = articalService.queryArticalListByNavId(3);
-        List<Artical> articalList4 = articalService.queryArticalListByNavId(4);
-        List<Artical> articalList5 = articalService.queryArticalListByNavId(5);
-        model.addAttribute("articalList1", articalList1);
-        model.addAttribute("articalList2", articalList2);
-        model.addAttribute("articalList3", articalList3);
-        model.addAttribute("articalList4", articalList4);
-        model.addAttribute("articalList5", articalList5);*/
+
 
         //查询展示的分类
         List<ArticalCategories> articalCategoriesList = articalCategoriesService.qeuryArticalCategoriesByIsShow("Y");//Y-展示 N-不展示
@@ -79,6 +73,22 @@ public class DefaultViewController {
 
         model.addAttribute("articalTopicsList", articalTopicsList);
 
+        //开源书籍
+        List<Books> booksList = booksService.queryBooksList();
+
+        model.addAttribute("booksList",booksList);
+
+        //在线工具
+        List<OnlineTools> onlineToolsList = onlineToolsService.queryOnlineToolsList();
+        model.addAttribute("onlineToolsList",onlineToolsList);
+
+        //标签
+        List<String> tagsList = articalService.queryAllArticalTags();
+        model.addAttribute("tagsList",tagsList);
+        //置顶文章
+
+        Artical articalTop = articalService.queryArticalFirstByIntop("Y");//Y-置顶 N or null-不置顶
+        model.addAttribute("articalTop",articalTop);
         return "index";
     }
 
