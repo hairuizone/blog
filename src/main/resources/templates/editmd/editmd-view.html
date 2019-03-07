@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>editmd</title>
+    <link rel="icon" href="favicon.ico"/>
+    <!--<script src="js/jquery-3.3.1.min.js"></script>-->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!--bootstrap库-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/comm.js"></script>
+    <!--主要写的css代码-->
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+
+
+    <link href="editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="editormd/editormd.min.js"></script>
+
+
+    <link rel="stylesheet" href="plugins/editormd/css/editormd.preview.css"/>
+
+    <script src="editormd/lib/marked.min.js"></script>
+    <script src="editormd/lib/prettify.min.js"></script>
+
+    <script src="editormd/lib/raphael.min.js"></script>
+    <script src="editormd/lib/underscore.min.js"></script>
+    <script src="editormd/lib/sequence-diagram.min.js"></script>
+    <script src="editormd/lib/flowchart.min.js"></script>
+    <script src="editormd/lib/jquery.flowchart.min.js"></script>
+
+    <!--<script src="editormd/editormd.js"></script>-->
+
+
+    <script type="text/javascript">
+        $(function () {
+            var testEditormdView;
+            testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+            });
+        });
+    </script>
+</head>
+<body>
+<form th:action="editmd-data" method="post">
+    <br/>
+    <div id="test-editormd-view">
+        <textarea id="append-test" th:text="${text}"></textarea>
+    </div>
+
+</form>
+</body>
+</html>
