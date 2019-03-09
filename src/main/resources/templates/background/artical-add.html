@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="background/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="background/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <script src="background/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="background/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="background/assets/css/amazeui.datatables.min.css"/>
+    <link rel="stylesheet" href="background/assets/css/app.css">
+    <script src="background/assets/js/jquery.min.js"></script>
+
+    <script src="background/assets/js/amazeui.min.js"></script>
+    <script src="background/assets/js/amazeui.dialog.min.js"></script>
+    <script src="background/assets/js/amazeui.datatables.min.js"></script>
+    <script src="background/assets/js/dataTables.responsive.min.js"></script>
+    <script src="background/assets/js/app.js"></script>
+
+    <link href="editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="editormd/editormd.min.js"></script>
+    <script type="text/javascript">
+        var testEditor;
+        testEditor = $(function () {
+            editormd("content", {
+                width: "100%",
+                height: 640,
+                //markdown : md,//不注释不显示
+                codeFold: true,
+                syncScrolling: "single",
+                path: "editormd/lib/", //你的path路径（原资源文件中lib包在我们项目中所放的位置）
+                imageUpload: true,//开启图片上传功能
+                /*
+                theme: "dark",//工具栏主题
+                previewTheme: "dark",//预览主题
+                editorTheme: "pastel-on-dark",//编辑主题
+                */
+                emoji: true,//emoji表情，默认关闭
+                taskList: true,
+                tocm: true,         // Using [TOCM]
+                tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+                flowChart: true,             // 开启流程图支持，默认关闭
+                sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+                dialogLockScreen: false,//设置弹出层对话框不锁屏，全局通用，默认为true
+                dialogShowMask: false,//设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+                dialogDraggable: false,//设置弹出层对话框不可拖动，全局通用，默认为true
+                dialogMaskOpacity: 0.4, //设置透明遮罩层的透明度，全局通用，默认值为0.1
+                dialogMaskBgColor: "#000",//设置透明遮罩层的背景颜色，全局通用，默认为#fff
+
+                //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
+                saveHTMLToTextarea: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp"],
+                imageUploadURL: "/smart-api/upload/editormdPic/",/*上传图片成功后可以做一些自己的处理*/
+            });
+
+        });
+
+
+    </script>
+</head>
+
+<body data-type="widgets">
+<script src="background/assets/js/theme.js"></script>
+<div class="am-g tpl-g">
+    <!-- 头部 -->
+    <header>
+        <!-- logo -->
+        <div class="am-fl tpl-header-logo">
+            <a href="javascript:;"><img src="background/assets/img/logo.png" alt=""></a>
+        </div>
+        <!-- 右侧内容 -->
+        <div class="tpl-header-fluid">
+            <!-- 侧边切换 -->
+            <div class="am-fl tpl-header-switch-button am-icon-list">
+                    <span>
+
+                </span>
+            </div>
+            <!-- 搜索 -->
+            <div class="am-fl tpl-header-search">
+                <form class="tpl-header-search-form" action="javascript:;">
+                    <button class="tpl-header-search-btn am-icon-search"></button>
+                    <input class="tpl-header-search-box" type="text" placeholder="搜索内容...">
+                </form>
+            </div>
+            <!-- 其它功能-->
+            <div class="am-fr tpl-header-navbar">
+                <ul>
+                    <!-- 欢迎语 -->
+                    <li class="am-text-sm tpl-header-navbar-welcome">
+                        <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                    </li>
+
+                    <!-- 新邮件 -->
+                    <li class="am-dropdown tpl-dropdown" data-am-dropdown>
+                        <a href="javascript:;" class="am-dropdown-toggle tpl-dropdown-toggle" data-am-dropdown-toggle>
+                            <i class="am-icon-envelope"></i>
+                            <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
+                        </a>
+                        <!-- 弹出列表 -->
+                        <ul class="am-dropdown-content tpl-dropdown-content">
+                            <li class="tpl-dropdown-menu-messages">
+                                <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                    <div class="menu-messages-ico">
+                                        <img src="background/assets/img/user04.png" alt="">
+                                    </div>
+                                    <div class="menu-messages-time">
+                                        3小时前
+                                    </div>
+                                    <div class="menu-messages-content">
+                                        <div class="menu-messages-content-title">
+                                            <i class="am-icon-circle-o am-text-success"></i>
+                                            <span>夕风色</span>
+                                        </div>
+                                        <div class="am-text-truncate"> Amaze UI 的诞生，依托于 GitHub 及其他技术社区上一些优秀的资源；Amaze UI
+                                            的成长，则离不开用户的支持。
+                                        </div>
+                                        <div class="menu-messages-content-time">2016-09-21 下午 16:40</div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="tpl-dropdown-menu-messages">
+                                <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                    <div class="menu-messages-ico">
+                                        <img src="background/assets/img/user02.png" alt="">
+                                    </div>
+                                    <div class="menu-messages-time">
+                                        5天前
+                                    </div>
+                                    <div class="menu-messages-content">
+                                        <div class="menu-messages-content-title">
+                                            <i class="am-icon-circle-o am-text-warning"></i>
+                                            <span>禁言小张</span>
+                                        </div>
+                                        <div class="am-text-truncate"> 为了能最准确的传达所描述的问题， 建议你在反馈时附上演示，方便我们理解。</div>
+                                        <div class="menu-messages-content-time">2016-09-16 上午 09:23</div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="tpl-dropdown-menu-messages">
+                                <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
+                                    <i class="am-icon-circle-o"></i> 进入列表…
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- 新提示 -->
+                    <li class="am-dropdown" data-am-dropdown>
+                        <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
+                            <i class="am-icon-bell"></i>
+                            <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
+                        </a>
+
+                        <!-- 弹出列表 -->
+                        <ul class="am-dropdown-content tpl-dropdown-content">
+                            <li class="tpl-dropdown-menu-notifications">
+                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                    <div class="tpl-dropdown-menu-notifications-title">
+                                        <i class="am-icon-line-chart"></i>
+                                        <span> 有6笔新的销售订单</span>
+                                    </div>
+                                    <div class="tpl-dropdown-menu-notifications-time">
+                                        12分钟前
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="tpl-dropdown-menu-notifications">
+                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                    <div class="tpl-dropdown-menu-notifications-title">
+                                        <i class="am-icon-star"></i>
+                                        <span> 有3个来自人事部的消息</span>
+                                    </div>
+                                    <div class="tpl-dropdown-menu-notifications-time">
+                                        30分钟前
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="tpl-dropdown-menu-notifications">
+                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                    <div class="tpl-dropdown-menu-notifications-title">
+                                        <i class="am-icon-folder-o"></i>
+                                        <span> 上午开会记录存档</span>
+                                    </div>
+                                    <div class="tpl-dropdown-menu-notifications-time">
+                                        1天前
+                                    </div>
+                                </a>
+                            </li>
+
+
+                            <li class="tpl-dropdown-menu-notifications">
+                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
+                                    <i class="am-icon-bell"></i> 进入列表…
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- 退出 -->
+                    <li class="am-text-sm">
+                        <a href="javascript:;">
+                            <span class="am-icon-sign-out"></span> 退出
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </header>
+    <!-- 风格切换 -->
+    <div class="tpl-skiner">
+        <div class="tpl-skiner-toggle am-icon-cog">
+        </div>
+        <div class="tpl-skiner-content">
+            <div class="tpl-skiner-content-title">
+                选择主题
+            </div>
+            <div class="tpl-skiner-content-bar">
+                <span class="skiner-color skiner-white" data-color="theme-white"></span>
+                <span class="skiner-color skiner-black" data-color="theme-black"></span>
+            </div>
+        </div>
+    </div>
+    <!-- 侧边导航栏 -->
+    <div class="left-sidebar">
+        <!-- 用户信息 -->
+        <div class="tpl-sidebar-user-panel">
+            <div class="tpl-user-panel-slide-toggleable">
+                <div class="tpl-user-panel-profile-picture">
+                    <img src="background/assets/img/user04.png" alt="">
+                </div>
+                <span class="user-panel-logged-in-text">
+              <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
+              禁言小张
+          </span>
+                <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
+            </div>
+        </div>
+
+        <!-- 菜单 -->
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
+            <li class="sidebar-nav-link">
+                <a href="index.html">
+                    <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="tables.html">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="calendar.html">
+                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="form.html">
+                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
+
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="chart.html">
+                    <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
+
+                </a>
+            </li>
+
+            <li class="sidebar-nav-heading">Page<span class="sidebar-nav-heading-info"> 常用页面</span></li>
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title active">
+                    <i class="am-icon-table sidebar-nav-link-logo"></i> 数据列表
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico sidebar-nav-sub-ico-rotate"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub" style="display: block;">
+                    <li class="sidebar-nav-link">
+                        <a href="artical-list" class="sub-active">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表
+                        </a>
+                    </li>
+
+                    <li class="sidebar-nav-link">
+                        <a href="table-list-img.html">
+                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="sign-up.html">
+                    <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
+                    <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="login.html">
+                    <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="404.html">
+                    <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
+                </a>
+            </li>
+
+        </ul>
+    </div>
+
+
+    <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">添加文章</div>
+
+                        </div>
+                        <div class="widget-body am-fr">
+                            <form id="artical-from" class="am-form tpl-form-border-form tpl-form-border-br"
+                                  th:action="artical-adddata"
+                                  method="post">
+                                <!--<div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">文章编号 <span class="tpl-form-line-small-title">ID</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="tpl-form-input" name="id">
+                                    </div>
+                                </div>-->
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">标题 <span
+                                            class="tpl-form-line-small-title">Title</span></label>
+                                    <div class="am-u-sm-9">
+
+
+                                        <input type="text" class="tpl-form-input"
+                                               name="tittle" placeholder="请输入标题文字">
+                                        <small>请填写标题文字10-30字左右。</small>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">作者<span
+                                            class="tpl-form-line-small-title">Author</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" placeholder="请输入作者姓名" value="老干部" readonly name="author">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">文章类型</label>
+                                    <div class="am-u-sm-9">
+                                        <label class="am-radio am-success">
+                                            <input type="radio" name="type" class="radio" value="YC" data-am-ucheck
+                                                   checked required>
+                                            原创
+                                        </label>
+                                        <label class="am-radio">
+                                            <input type="radio" name="type" class="radio" value="ZZ" data-am-ucheck> 转载
+                                        </label>
+                                        <!--<label class="am-radio am-danger">
+                                            <input type="radio" name="radio" class="radio" value="XG" data-am-ucheck> 修改
+                                        </label>-->
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group originAuthor">
+                                    <label class="am-u-sm-3 am-form-label">原文作者<span
+                                            class="tpl-form-line-small-title">Origin Author</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" placeholder="请输入原文作者姓名" id="originAuthor"
+                                               name="originAuthor">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group originUrl">
+                                    <label class="am-u-sm-3 am-form-label">原文链接<span
+                                            class="tpl-form-line-small-title">Origin Link</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" placeholder="请输入原文链接" id="originUrl" name="originUrl">
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">发布时间 <span
+                                            class="tpl-form-line-small-title">Time</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间"
+                                               readonly id="createDate" th:value="${OPENDAY}" name="createDate">
+
+                                        <!--data-am-datepicker=""-->
+                                        <small>发布时间为必填</small>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">首页分类 <span
+                                            class="tpl-form-line-small-title"> Homepage Type</span></label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="navId">
+
+                                            <option th:each="navIndex:${navList}" th:value="${navIndex.id}"
+                                                    th:text="${navIndex.name}"></option>
+
+                                        </select>
+                                        <small style="color: red">（必选）</small>
+                                    </div>
+
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">分类 <span
+                                            class="tpl-form-line-small-title">Category</span></label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;"
+                                                name="categories">
+
+                                            <option th:each="category:${acList}" th:value="${category.id}"
+                                                    th:text="${category.categoryName}"></option>
+
+                                        </select>
+                                        <small style="color: red">（必选）</small>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">专题 <span
+                                            class="tpl-form-line-small-title">Topic</span></label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;"
+                                                name="topicId">
+
+                                            <option selected="selected">请选择</option>
+                                            <option th:each="topic:${topicList}" th:value="${topic.id}"
+                                                    th:text="${topic.topicName}"></option>
+
+                                        </select>
+                                        <small style="color: red">（专题非必选）</small>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">标签<span
+                                            class="tpl-form-line-small-title">TAGS</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input type="text" placeholder="标签用#包裹，标签之间用/分隔开 例如：#java#/#虚拟机#/#趣事#"
+                                               name="tags">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">封面图 <span
+                                            class="tpl-form-line-small-title">Images</span></label>
+                                    <div class="am-u-sm-9">
+                                        <div class="am-form-group am-form-file">
+                                            <div class="tpl-form-file-img">
+                                                <img src="assets/img/a5.png" alt="">
+                                            </div>
+                                            <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                                <i class="am-icon-cloud-upload"></i> 添加封面图片
+                                            </button>
+                                            <input id="doc-form-file" type="file" multiple="" name="imgpath">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">摘要<span
+                                            class="tpl-form-line-small-title">Summary</span></label>
+                                    <div class="am-u-sm-9">
+                                        <textarea class="" rows="10" id="user-intro" placeholder="请填写文章摘要"
+                                                  name="summary"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">文章内容</label>
+                                    <div class="am-u-sm-9">
+
+
+                                        <div class="editormd" id="content">
+                                            <textarea class="editormd-markdown-textarea" name="content"
+                                                      id="editormd"></textarea>
+                                            <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+                                            <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
+                                            <textarea class="editormd-html-textarea" name="editorhtml"
+                                                      id="editorhtml"></textarea></div>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <button type="button"
+                                                class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">
+                                            提交
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            </form>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script src="background/assets/js/amazeui.min.js"></script>
+<script src="background/assets/js/amazeui.datatables.min.js"></script>
+<script src="background/assets/js/dataTables.responsive.min.js"></script>
+<script src="background/assets/js/app.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // 初始化内容
+
+
+        var val = $('input[name="type"]:checked').val();
+        if (val == "YC") {
+            $('#originAuthor').val(null);
+            $("#originAuthor").attr({"readonly": "readonly"});
+            $('.originAuthor').hide();
+
+            $('#originUrl').val(null);
+            $("#originUrl").attr({"readonly": "readonly"});
+            $('.originUrl').hide();
+        }
+    });
+
+
+    $('.radio').click(function () {
+        var val = $('input[name="type"]:checked').val();
+        if (val == "YC") {
+
+            $('#originAuthor').val(null);
+            $("#originAuthor").attr({"readonly": "readonly"});
+            $('.originAuthor').hide();
+
+            $('#originUrl').val(null);
+            $("#originUrl").attr({"readonly": "readonly"});
+            $('.originUrl').hide();
+
+        }
+        if (val == "ZZ") {
+            $("#originAuthor").removeAttr("readonly");
+            $('.originAuthor').show();
+
+            $("#originUrl").removeAttr("readonly");
+            $('.originUrl').show();
+
+        }
+    });
+
+    $('.submit-btn').click(function () {
+
+        var tittle = $("input[name='tittle']").val();
+        if (tittle == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '标题为必填',
+                onConfirm: function () {
+
+                }
+            });
+            return;
+        }
+
+        var type = $('input[name="type"]:checked').val();
+        if (type == "ZZ") {
+            var articalAuthor = $('#originAuthor').val();
+            if (articalAuthor == "") {
+                AMUI.dialog.alert({
+                    title: '提示信息',
+                    content: '转载文章必须填写原作者',
+                    onConfirm: function () {
+                    }
+                });
+                return;
+            }
+            var articalUrl = $('#originUrl').val();
+            if (articalUrl == "") {
+                AMUI.dialog.alert({
+                    title: '提示信息',
+                    content: '转载文章必须填写原文链接',
+                    onConfirm: function () {
+
+                    }
+                });
+                return;
+            }
+
+        }
+        var summary = $("textarea[name='summary']").val();
+        if (summary == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '摘要为必填',
+                onConfirm: function () {
+
+                }
+            });
+            return;
+        }
+
+
+        return;
+        document.getElementById("artical-from").submit();
+    });
+</script>
+</body>
+
+</html>

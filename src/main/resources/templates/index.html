@@ -87,19 +87,16 @@
 
                     <div class="tab_box whitebg">
                         <div class="tab_buttons">
-                            <ul th:if="${navIndexList.size() == 5}">
-                                <th:block>
-
-                                </th:block>
-                                <!--这里有个小bug newscurrent全部都占据了-->
-                                <li class="newscurrent" th:each="navIndex ,navIndexStat :${navIndexList}"
-                                    th:text="${navIndex.name}"/>
+                            <ul >
+                                <li class="newscurrent" th:each="navIndex ,navIndexStat :${navIndexList}" th:if="${navIndexStat.index==0}" th:text="${navIndex.name}"/>
+                                <li class="news" th:each="navIndex ,navIndexStat :${navIndexList}" th:unless="${navIndexStat.index==0}" th:text="${navIndex.name}"/>
                             </ul>
                         </div>
                         <div class="newstab">
 
                             <div class="newsitem" th:each="artNavList,artNavListStat :${articalList}">
                                 <div class="newspic">
+                                    <!--背景图  大于2展示-->
                                     <ul th:if="${articalList[artNavListStat.index].size() > 2}">
                                         <li><a href="/"><img
                                                 th:src="${articalList[artNavListStat.index].get(0).imgpath}"><span
@@ -109,6 +106,7 @@
                                                 th:text="${articalList[artNavListStat.index].get(1).tittle}"/></a></li>
                                     </ul>
                                 </div>
+                                <!--与后台要形成对应 只展示前五条-->
                                 <ul class="newslist" th:if="${articalList[artNavListStat.index].size() == 5}">
                                     <li><i></i><a href="/"
                                                   th:text="${articalList[artNavListStat.index].get(0).tittle}"></a>
@@ -241,7 +239,7 @@
                     <div class="whitebg bloglist">
                         <ul>
                             <!--多图模式 置顶设计-->
-                            <li>
+                            <li th:if="${articalTop}">
                                 <h3 class="blogtitle"><b>【顶】</b><a href="/" target="_blank" th:text="${articalTop.tittle}"></a></h3>
                                 <span class="bplist"><a href="/"> <img src="images/b02.jpg" alt=""></a> <a href="/"><img
                                         src="images/b03.jpg" alt=""></a> <a href="/"><img src="images/b04.jpg" alt=""> </a><a
@@ -277,14 +275,14 @@
             <div class="block">
                 <h2 class="htitle">站点信息</h2>
                 <ul>
-                    <li><b>建站时间</b>：2018-10-24</li>
+                    <li><b>建站时间</b>：2019-01-24</li>
                     <li><b>网站程序</b>：cceshi</li>
-                    <li><b>主题模板</b>：<a href="http://www.yangqq.com" target="_blank">《今夕何夕》</a></li>
+                    <li><b>主题模板</b>：<a href="http://www.yangqq.com" target="_blank">《测试》</a></li>
                     <li><b>文章统计</b>：299条</li>
                     <li><b>文章评论</b>：490条</li>
                     <li><b>统计数据</b>：<a href="/">百度统计</a></li>
                     <li><b>微信公众号</b>：扫描二维码，关注我们</li>
-                    <img src="images/wxgzh.jpg" class="tongji_gzh">
+                    <!--<img src="images/wxgzh.jpg" class="tongji_gzh">-->
                 </ul>
             </div>
         </div>

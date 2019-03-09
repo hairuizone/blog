@@ -46,14 +46,15 @@ public class DefaultViewController {
 
         //查询tab中的详细信息
 
+        //这里首页指定显示5条
         List<List<Artical>> articalList = new ArrayList<List<Artical>>();
         for (NavIndex nav : navIndexList) {
-            List<Artical> listArt = articalService.queryArticalListByNavId(nav.getId());
+            /*List<Artical> listArt = articalService.queryArticalListByNavId(nav.getId());*/
+            List<Artical> listArt = articalService.queryArticalListByNavId(nav.getId(),5);
 
             articalList.add(listArt);
         }
         model.addAttribute("articalList", articalList);
-
 
 
         //查询展示的分类
@@ -63,7 +64,11 @@ public class DefaultViewController {
         //分类中的内容 - 4块
         List<List<Artical>> articals = new ArrayList<List<Artical>>();
         for (ArticalCategories art : articalCategoriesList) {
-            List<Artical> listArt = articalService.queryArticalListByCategories(art.getId());
+            /*List<Artical> listArt = articalService.queryArticalListByCategories(art.getId());*/
+            //指定首页分类块中每块显示10条记录
+            List<Artical> listArt = articalService.queryArticalListByCategories(art.getId(),8);
+
+
             articals.add(listArt);
         }
         model.addAttribute("articals", articals);
@@ -76,22 +81,23 @@ public class DefaultViewController {
         //开源书籍
         List<Books> booksList = booksService.queryBooksList();
 
-        model.addAttribute("booksList",booksList);
+        model.addAttribute("booksList", booksList);
 
         //在线工具
         List<OnlineTools> onlineToolsList = onlineToolsService.queryOnlineToolsList();
-        model.addAttribute("onlineToolsList",onlineToolsList);
+        model.addAttribute("onlineToolsList", onlineToolsList);
 
         //标签
         List<String> tagsList = articalService.queryAllArticalTags();
-        model.addAttribute("tagsList",tagsList);
+        model.addAttribute("tagsList", tagsList);
 
         //置顶文章
-        Artical articalTop = articalService.queryArticalFirstByIntop("Y");//Y-置顶 N or null-不置顶
-        model.addAttribute("articalTop",articalTop);
+        Artical articalTop = new Artical();
+        articalTop = articalService.queryArticalFirstByIntop("Y");//Y-置顶 N or null-不置顶
+        model.addAttribute("articalTop", articalTop);
 
         List<Artical> articalListHomePage = articalService.queryArticalListHomePage();
-        model.addAttribute("articalListHomePage",articalListHomePage);
+        model.addAttribute("articalListHomePage", articalListHomePage);
         return "index";
     }
 
@@ -104,11 +110,4 @@ public class DefaultViewController {
     public String backgroundPage() {
         return "background/index";
     }
-
-    @RequestMapping(value = "/table-list", method = RequestMethod.GET)
-    public String tableListPage() {
-        return "artical-list";
-    }
-
-
 }

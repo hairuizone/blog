@@ -12,4 +12,6 @@ import java.util.List;
 public interface ArticalCategoriesService {
 
     public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow);
+
+    public List<ArticalCategories> qeuryArticalCategoriesList();//查询所有分类
 }

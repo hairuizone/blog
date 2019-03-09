@@ -2,10 +2,12 @@ package cn.hairui.blog.service.impl;
 
 import cn.hairui.blog.mapper.ArticalMapper;
 import cn.hairui.blog.model.Artical;
+import cn.hairui.blog.repository.ArticalRepository;
 import cn.hairui.blog.service.ArticalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sound.midi.Soundbank;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -18,49 +20,65 @@ import java.util.Map;
 public class ArticalServiceImpl implements ArticalService {
 
     @Autowired
-    private ArticalMapper articalMapper;
+    private ArticalRepository articalRepository;
 
     @Override
     public List<Artical> queryArticalListByNavId(Integer navId) {
-        return articalMapper.queryArticalListByNavId(navId);
+        return articalRepository.queryArticalListByNavId(navId);
+    }
+
+    @Override
+    public List<Artical> queryArticalListByNavId(Integer navId, int count) {
+        return articalRepository.queryArticalListByNavId(navId,count);
     }
 
     @Override
     public List<Artical> queryArticalListByCategories(Integer categories) {
-        return articalMapper.queryArticalListByCategories(categories);
+        return articalRepository.queryArticalListByCategories(categories);
+    }
+
+    @Override
+    public List<Artical> queryArticalListByCategories(Integer categories, int count) {
+        return articalRepository.queryArticalListByCategories(categories,count);
     }
 
     @Override
     public List<String> queryAllArticalTags() {
-
-        List<String> result = new LinkedList<>();
-        List<String> tags = articalMapper.queryAllArticalTags();
-        for (String tag : tags
-        ) {
-            String[] args = tag.split("/");
-            for (String arg : args
-            ) {
-
-                if (!result.contains(arg.replaceAll("#", ""))) {
-                    result.add(arg.replaceAll("#", ""));
-                }
-            }
-        }
-        return result;
+        return articalRepository.queryAllArticalTags();
     }
 
     @Override
     public Artical queryArticalFirstByIntop(String intop) {
-        return articalMapper.queryArticalFirstByIntop(intop);
+        return articalRepository.queryArticalFirstByIntop(intop);
     }
 
     @Override
     public List<Artical> queryArticalListHomePage() {
-        return articalMapper.queryArticalListHomePage();
+        return articalRepository.queryArticalListHomePage();
     }
 
     @Override
     public List<Artical> queryArticalListByCond(String type, String keywords) {
-        return articalMapper.queryArticalListByCond(type,keywords);
+        return articalRepository.queryArticalListByCond(type, keywords);
+    }
+
+    @Override
+    public Artical queryArticalDetailById(Integer id) {
+        return articalRepository.queryArticalDetailById(id);
+    }
+
+    @Override
+    public Integer updateArtical(Artical artical) {
+        return articalRepository.updateArtical(artical);
+    }
+
+    @Override
+    public Integer deleteArticalById(String id) {
+        return articalRepository.deleteArticalById(id);
+    }
+
+    @Override
+    public Integer addArtical(Artical artical) {
+        return articalRepository.addArtical(artical);
     }
 }

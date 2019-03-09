@@ -7,7 +7,6 @@ package cn.hairui.blog.model;
 public class Artical {
 
     private Integer id;//自增主键编号
-    private Integer articalId;//文章编号
     private String author;//作者
     private String originAuthor;//原文作者
     private String originUrl;//原文URL
@@ -35,14 +34,6 @@ public class Artical {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getArticalId() {
-        return articalId;
-    }
-
-    public void setArticalId(Integer articalId) {
-        this.articalId = articalId;
     }
 
     public String getAuthor() {
@@ -203,5 +194,33 @@ public class Artical {
 
     public void setIntop(String intop) {
         this.intop = intop;
+    }
+
+    @Override
+    public String toString() {
+        return "Artical{" +
+                "id=" + id +
+
+                ", author='" + author + '\'' +
+                ", originAuthor='" + originAuthor + '\'' +
+                ", originUrl='" + originUrl + '\'' +
+                ", tittle='" + tittle + '\'' +
+                ", imgpath='" + imgpath + '\'' +
+                ", content='" + content + '\'' +
+                ", tags='" + tags + '\'' +
+                ", navId=" + navId +
+                ", topicId='" + topicId + '\'' +
+                ", categories=" + categories +
+                ", type='" + type + '\'' +
+                ", createDate='" + createDate + '\'' +
+                ", updateDate='" + updateDate + '\'' +
+                ", articalUrl='" + articalUrl + '\'' +
+                ", summary='" + summary + '\'' +
+                ", lastArticalId=" + lastArticalId +
+                ", nextArticalId=" + nextArticalId +
+                ", likeNums=" + likeNums +
+                ", dissNums=" + dissNums +
+                ", intop='" + intop + '\'' +
+                '}';
     }
 }

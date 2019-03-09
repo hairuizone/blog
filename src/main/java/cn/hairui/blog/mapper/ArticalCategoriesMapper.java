@@ -16,4 +16,7 @@ public interface ArticalCategoriesMapper {
 
     @Select("select * from artical_categories where is_show=#{isShow} order by show_order asc")
     public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow);
+
+    @Select("select * from artical_categories order by id asc")
+    public List<ArticalCategories> queryArticalCategoriesList();
 }
