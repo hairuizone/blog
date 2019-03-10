@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface ArticalTopicsService {
 
-    public List<ArticalTopics> qeuryArticalTopicsList();
+    public List<ArticalTopics> qeuryArticalTopicsList();//获取所有专题
 }

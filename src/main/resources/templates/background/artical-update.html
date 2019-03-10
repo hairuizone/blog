@@ -60,10 +60,7 @@
                 imageFormats: ["jpg", "jpeg", "gif", "png", "bmp"],
                 imageUploadURL: "/smart-api/upload/editormdPic/",/*上传图片成功后可以做一些自己的处理*/
             });
-
         });
-
-
     </script>
 </head>
 
@@ -333,11 +330,12 @@
                             <form id="artical-from" class="am-form tpl-form-border-form tpl-form-border-br"
                                   th:action="artical-updatedata"
                                   method="post">
-                                <div class="am-form-group">
+                                <div class="am-form-group" hidden="hidden">
                                     <label class="am-u-sm-3 am-form-label">文章编号 <span class="tpl-form-line-small-title">ID</span></label>
                                     <div class="am-u-sm-9">
                                         <!--<input th:value="${artical.id}" type="hidden" readonly class="tpl-form-input" name="id">-->
-                                        <input th:value="${artical.id}" type="text" readonly class="tpl-form-input" name="id">
+                                        <input th:value="${artical.id}" type="text" readonly class="tpl-form-input"
+                                               name="id">
                                     </div>
                                 </div>
 
@@ -358,7 +356,7 @@
                                             class="tpl-form-line-small-title">Author</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" placeholder="请输入作者姓名" th:value="${artical.author}"
-                                               name="author">
+                                               name="author" readonly>
                                     </div>
                                 </div>
 
@@ -366,42 +364,34 @@
                                     <label class="am-u-sm-3 am-form-label">文章类型</label>
                                     <div class="am-u-sm-9">
                                         <label class="am-radio am-success">
-                                            <input type="radio" name="type" value="yc"  data-am-ucheck checked required> 原创
+                                            <input type="radio" name="type" id="radio_yc" class="radio" value="YC" data-am-ucheck
+                                                   checked required>
+                                            原创
                                         </label>
                                         <label class="am-radio">
-                                            <input type="radio" name="type" value="zz" data-am-ucheck> 转载
+                                            <input type="radio" name="type" id="radio_zz" class="radio" value="ZZ" data-am-ucheck> 转载
                                         </label>
-                                        <label class="am-radio am-danger">
-                                            <input type="radio" name="type" value="xg" data-am-ucheck> 修改
-                                        </label>
-
-                                        <!--<div class="tpl-switch">
-                                            <input type="checkbox" class="ios-switch bigswitch tpl-switch-btn"
-                                                   checked="" id="yuanchuang-flag">
-                                            <div class="tpl-switch-btn-view">
-                                                <div>
-                                                </div>
-                                            </div>
-                                        </div>-->
-
+                                        <!--<label class="am-radio am-danger">
+                                            <input type="radio" name="radio" class="radio" value="XG" data-am-ucheck> 修改
+                                        </label>-->
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
+                                <div class="am-form-group originAuthor">
                                     <label class="am-u-sm-3 am-form-label">原文作者<span
                                             class="tpl-form-line-small-title">Origin Author</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" placeholder="请输入原文作者姓名" th:value="${artical.originAuthor}"
-                                               name="originAuthor">
+                                               name="originAuthor" id="originAuthor">
                                     </div>
                                 </div>
 
-                                <div class="am-form-group">
+                                <div class="am-form-group originUrl">
                                     <label class="am-u-sm-3 am-form-label">原文链接<span
                                             class="tpl-form-line-small-title">Origin Link</span></label>
                                     <div class="am-u-sm-9">
                                         <input type="text" placeholder="请输入原文链接" th:value="${artical.originUrl}"
-                                               name="originUrl">
+                                               name="originUrl" id="originUrl">
                                     </div>
                                 </div>
 
@@ -418,14 +408,48 @@
                                 </div>
 
                                 <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">首页分类 <span
+                                            class="tpl-form-line-small-title"> Homepage Type</span></label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="navId"
+                                                id="navId" th:value="${artical.navId}">
+                                            <option>请选择</option>
+                                            <option th:each="navIndex:${navList}" th:value="${navIndex.id}"
+                                                    th:text="${navIndex.name}"></option>
+
+                                        </select>
+                                        <small style="color: red">（必选）</small>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">分类 <span
                                             class="tpl-form-line-small-title">Category</span></label>
                                     <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="categories" >
-
-                                            <option th:each="category:${acList}" th:value="${category.id}" th:text="${category.categoryName}"></option>
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;"
+                                                name="categories">
+                                            <option>请选择</option>
+                                            <option th:each="category:${acList}" th:value="${category.id}"
+                                                    th:text="${category.categoryName}"></option>
 
                                         </select>
+                                        <small style="color: red">（必选）</small>
+
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">专题 <span
+                                            class="tpl-form-line-small-title">Topic</span></label>
+                                    <div class="am-u-sm-9">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;"
+                                                name="topicId">
+
+                                            <option selected="selected">请选择</option>
+                                            <option th:each="topic:${topicList}" th:value="${topic.id}"
+                                                    th:text="${topic.topicName}"></option>
+
+                                        </select>
+                                        <small style="color: red">（专题非必选）</small>
 
                                     </div>
                                 </div>
@@ -434,7 +458,8 @@
                                     <label class="am-u-sm-3 am-form-label">标签<span
                                             class="tpl-form-line-small-title">TAGS</span></label>
                                     <div class="am-u-sm-9">
-                                        <input type="text" th:value="${artical.tags}" placeholder="标签用#包裹，标签之间用/分隔开 例如：#java#/#虚拟机#/#趣事#" name="tags">
+                                        <input type="text" th:value="${artical.tags}"
+                                               placeholder="标签用#包裹，标签之间用/分隔开 例如：#java#/#虚拟机#/#趣事#" name="tags">
                                     </div>
                                 </div>
 
@@ -508,7 +533,62 @@
 <script src="background/assets/js/amazeui.datatables.min.js"></script>
 <script src="background/assets/js/dataTables.responsive.min.js"></script>
 <script src="background/assets/js/app.js"></script>
-<script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(function () {
+        var type = [[${artical.type}]];
+        if(type == "YC"){
+            $("#radio_yc").attr("checked","checked");
+
+            $('#originAuthor').val(null);
+            $("#originAuthor").attr({"readonly": "readonly"});
+            $('.originAuthor').hide();
+
+            $('#originUrl').val(null);
+            $("#originUrl").attr({"readonly": "readonly"});
+            $('.originUrl').hide();
+        }
+        if(type == "ZZ"){
+            $("#radio_zz").attr("checked","checked");
+            $("#originAuthor").removeAttr("readonly");
+            $('.originAuthor').show();
+
+            $("#originUrl").removeAttr("readonly");
+            $('.originUrl').show();
+        }
+
+    });
+
+    /*]]>*/
+</script>
+
+
+
+<script language="JavaScript">
+
+
+
+    $('.radio').click(function () {
+        var val = $('input[name="type"]:checked').val();
+        if (val == "YC") {
+            $('#originAuthor').val(null);
+            $("#originAuthor").attr({"readonly": "readonly"});
+            $('.originAuthor').hide();
+
+            $('#originUrl').val(null);
+            $("#originUrl").attr({"readonly": "readonly"});
+            $('.originUrl').hide();
+        }
+        if (val == "ZZ") {
+            $("#originAuthor").removeAttr("readonly");
+            $('.originAuthor').show();
+
+            $("#originUrl").removeAttr("readonly");
+            $('.originUrl').show();
+        }
+    });
 
 
     $('.submit-btn').click(function () {

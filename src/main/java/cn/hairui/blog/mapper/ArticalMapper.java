@@ -17,7 +17,7 @@ public interface ArticalMapper {
     public List<Artical> queryArticalListByNavId(Integer navId);
 
     @Select("select * from artical where navId = #{navId} order by createDate desc , id desc limit #{count}")
-    public List<Artical> queryArticalListByNavIdCount(Integer navId,int count);
+    public List<Artical> queryArticalListByNavIdCount(Integer navId, int count);
 
 
     @Select("select * from artical where CATEGORIES = #{categories} order by createDate desc")
@@ -41,27 +41,62 @@ public interface ArticalMapper {
     @Select("select * from artical where id=#{id}")
     public Artical queryArticalDetailById(Integer id);
 
-    @Update("update artical set " +
-            "author=#{author}," +
-           /* "originAuthor=${originAuthor}," +
-            "originUrl=#{originUrl}," +*/
-            "tittle=#{tittle}," +
-            "content=#{content}," +
-            "tags=#{tags}," +
-            "type=#{type}," +
-            "summary=#{summary}," +
-            "categories=#{categories}," +
-            "createDate=#{createDate}" +
-            " where id=#{id}")
-    public Integer updateArtical(Artical artical);
-
-
     @Delete("delete from artical where id=#{id}")
     public Integer deleteArticalById(String id);
 
-    @Insert("insert into artical(author,originAuthor,originUrl,tittle,content,imgpath,tags,navid,topicid,CATEGORIES,type,createDate,summary) values" +
-            " (#{author},#{originAuthor},#{originUrl},#{tittle},#{content},#{imgpath},#{tags},#{navId},#{topicId},#{categories},#{type},#{createDate},#{summary})")
+    @Insert("INSERT INTO ARTICAL(" +
+            "AUTHOR," +
+            "ORIGINAUTHOR," +
+            "ORIGINURL," +
+            "TITTLE," +
+            "IMGPATH," +
+            "CONTENT," +
+            "TAGS," +
+            "NAVID," +
+            "TOPICID," +
+            "CATEGORIES," +
+            "TYPE," +
+            "CREATEDATE," +
+            "UPDATEDATE," +
+            "ARTICALURL," +
+            "SUMMARY," +
+            "LIKENUMS," +
+            "DISSNUMS" +
+            "       ) VALUES(" +
+            "#{author}," +
+            "#{originAuthor}," +
+            "#{originUrl}," +
+            "#{tittle}," +
+            "#{imgpath}," +
+            "#{content}," +
+            "#{tags}," +
+            "#{navId}," +
+            "#{topicId}," +
+            "#{categories}," +
+            "#{type}," +
+            "#{createDate}," +
+            "#{updateDate}," +
+            "#{articalUrl}," +
+            "#{summary}," +
+            "#{likeNums}," +
+            "#{dissNums}" +
+            ")")
     public Integer addArtical(Artical artical);
+
+    @Update("update artical set " +
+            "tittle=#{tittle}," +
+            "type=#{type}," +
+            "originAuthor=#{originAuthor}," +
+            "originUrl=#{originUrl}," +
+            "updateDate=#{updateDate}," +
+            "navId=#{navId}," +
+            "topicId=#{topicId}," +
+            "categories=#{categories}," +
+            "content=#{content}," +
+            "tags=#{tags}," +
+            "summary=#{summary} " +
+            " where id=#{id}")
+    public Integer updateArtical(Artical artical);
 
 
 }

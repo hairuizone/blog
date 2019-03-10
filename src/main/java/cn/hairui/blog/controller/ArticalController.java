@@ -70,6 +70,7 @@ public class ArticalController {
         model.addAttribute("OPENDAY",openday);
 
         List<ArticalTopics> topicList = articalTopicsService.qeuryArticalTopicsList();
+        model.addAttribute("topicList", topicList);
         return "background/artical-add";
     }
 
@@ -83,9 +84,13 @@ public class ArticalController {
         String imgPath = "images/"+i+".jpg";
         System.out.println(imgPath);
         artical.setImgpath(imgPath);
+        //初始化新增设置
+        artical.setLikeNums(0);
+        artical.setDissNums(0);
+        artical.setUpdateDate(artical.getCreateDate());
 
         Integer num = articalService.addArtical(artical);
-        System.out.println(num);
+
         return "redirect:/artical-list";
     }
     @RequestMapping(value = "/artical-update", method = RequestMethod.GET)
@@ -97,6 +102,12 @@ public class ArticalController {
         List<ArticalCategories> acList = articalCategoriesService.qeuryArticalCategoriesList();
         model.addAttribute("acList", acList);
 
+        List<NavIndex> navList = navIndexService.queryNavIndexList();
+        model.addAttribute("navList", navList);
+
+        List<ArticalTopics> topicList = articalTopicsService.qeuryArticalTopicsList();
+        model.addAttribute("topicList", topicList);
+
         Artical artical = articalService.queryArticalDetailById(id);
         model.addAttribute("artical", artical);
 
@@ -105,6 +116,21 @@ public class ArticalController {
 
     @RequestMapping(value = "/artical-updatedata", method = RequestMethod.POST)
     public String updateArticalData(@ModelAttribute Artical artical, Model model) {
+        /*
+
+        "tittle=#{tittle}," +
+            "type=#{type}," +
+            "originAuthor=${originAuthor}," +
+            "originUrl=#{originUrl}," +
+            "updateDate=#{updateDate}" +
+            "navId=#{navId}," +
+            "topicId=#{topicId}," +
+            "categories=#{categories}," +
+            "content=#{content}," +
+            "tags=#{tags}," +
+            "summary=#{summary} " +
+
+        */
         Integer num = articalService.updateArtical(artical);
         return "redirect:/artical-list";
     }

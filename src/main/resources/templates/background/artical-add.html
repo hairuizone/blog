@@ -411,15 +411,15 @@
                                     <label class="am-u-sm-3 am-form-label">首页分类 <span
                                             class="tpl-form-line-small-title"> Homepage Type</span></label>
                                     <div class="am-u-sm-9">
-                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="navId">
-
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="navId"
+                                                id="navId">
+                                            <option selected="selected">请选择</option>
                                             <option th:each="navIndex:${navList}" th:value="${navIndex.id}"
                                                     th:text="${navIndex.name}"></option>
 
                                         </select>
                                         <small style="color: red">（必选）</small>
                                     </div>
-
                                 </div>
 
                                 <div class="am-form-group">
@@ -427,8 +427,8 @@
                                             class="tpl-form-line-small-title">Category</span></label>
                                     <div class="am-u-sm-9">
                                         <select data-am-selected="{searchBox: 1}" style="display: none;"
-                                                name="categories">
-
+                                                name="categories" id="categories">
+                                            <option selected="selected">请选择</option>
                                             <option th:each="category:${acList}" th:value="${category.id}"
                                                     th:text="${category.categoryName}"></option>
 
@@ -480,7 +480,6 @@
 
                                     </div>
                                 </div>
-
                                 <div class="am-form-group">
                                     <label for="user-intro" class="am-u-sm-3 am-form-label">摘要<span
                                             class="tpl-form-line-small-title">Summary</span></label>
@@ -489,13 +488,9 @@
                                                   name="summary"></textarea>
                                     </div>
                                 </div>
-
-
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">文章内容</label>
                                     <div class="am-u-sm-9">
-
-
                                         <div class="editormd" id="content">
                                             <textarea class="editormd-markdown-textarea" name="content"
                                                       id="editormd"></textarea>
@@ -503,10 +498,8 @@
                                             <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
                                             <textarea class="editormd-html-textarea" name="editorhtml"
                                                       id="editorhtml"></textarea></div>
-
                                     </div>
                                 </div>
-
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
                                         <button type="button"
@@ -515,11 +508,7 @@
                                         </button>
                                     </div>
                                 </div>
-
-
                             </form>
-
-
                         </div>
                     </div>
                 </div>
@@ -529,7 +518,6 @@
 </div>
 </div>
 
-
 <script src="background/assets/js/amazeui.min.js"></script>
 <script src="background/assets/js/amazeui.datatables.min.js"></script>
 <script src="background/assets/js/dataTables.responsive.min.js"></script>
@@ -537,8 +525,6 @@
 <script type="text/javascript">
     $(function () {
         // 初始化内容
-
-
         var val = $('input[name="type"]:checked').val();
         if (val == "YC") {
             $('#originAuthor').val(null);
@@ -555,7 +541,6 @@
     $('.radio').click(function () {
         var val = $('input[name="type"]:checked').val();
         if (val == "YC") {
-
             $('#originAuthor').val(null);
             $("#originAuthor").attr({"readonly": "readonly"});
             $('.originAuthor').hide();
@@ -563,7 +548,6 @@
             $('#originUrl').val(null);
             $("#originUrl").attr({"readonly": "readonly"});
             $('.originUrl').hide();
-
         }
         if (val == "ZZ") {
             $("#originAuthor").removeAttr("readonly");
@@ -571,7 +555,6 @@
 
             $("#originUrl").removeAttr("readonly");
             $('.originUrl').show();
-
         }
     });
 
@@ -583,7 +566,6 @@
                 title: '提示信息',
                 content: '标题为必填',
                 onConfirm: function () {
-
                 }
             });
             return;
@@ -607,27 +589,44 @@
                     title: '提示信息',
                     content: '转载文章必须填写原文链接',
                     onConfirm: function () {
-
                     }
                 });
                 return;
             }
-
         }
+
+        var navId = $('#navId').val();
+        if (navId == "请选择") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '首页分类必选',
+                onConfirm: function () {
+                }
+            });
+            return;
+        }
+
+        var categories = $('#categories').val();
+        if (categories == "请选择") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '文章分类必选',
+                onConfirm: function () {
+                }
+            });
+            return;
+        }
+
         var summary = $("textarea[name='summary']").val();
         if (summary == "") {
             AMUI.dialog.alert({
                 title: '提示信息',
                 content: '摘要为必填',
                 onConfirm: function () {
-
                 }
             });
             return;
         }
-
-
-        return;
         document.getElementById("artical-from").submit();
     });
 </script>
