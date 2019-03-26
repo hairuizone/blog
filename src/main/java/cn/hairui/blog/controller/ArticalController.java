@@ -37,6 +37,7 @@ import java.util.*;
  * @date: 2019/3/5 22:42
  */
 @Controller
+@RequestMapping(value = "/bg")
 public class ArticalController {
 
     @Autowired
@@ -53,6 +54,10 @@ public class ArticalController {
 
         List<Artical> articalList = articalService.queryArticalListByCond("1", null);
         model.addAttribute("articalList", articalList);
+
+        List<ArticalCategories> categoriesList = articalCategoriesService.qeuryArticalCategoriesList();
+        model.addAttribute("categoriesList", categoriesList);
+
         return "background/artical-list";
     }
 
@@ -91,9 +96,9 @@ public class ArticalController {
 
         Integer num = articalService.addArtical(artical);
 
-        return "redirect:/artical-list";
+        return "redirect:artical-list";
     }
-    @RequestMapping(value = "/artical-update", method = RequestMethod.GET)
+    @RequestMapping(value = "artical-update", method = RequestMethod.GET)
     public String updateArtical(Integer id, Model model) {
 
         if (id == null) {
@@ -114,7 +119,7 @@ public class ArticalController {
         return "background/artical-update";
     }
 
-    @RequestMapping(value = "/artical-updatedata", method = RequestMethod.POST)
+    @RequestMapping(value = "artical-updatedata", method = RequestMethod.POST)
     public String updateArticalData(@ModelAttribute Artical artical, Model model) {
         /*
 
@@ -132,10 +137,10 @@ public class ArticalController {
 
         */
         Integer num = articalService.updateArtical(artical);
-        return "redirect:/artical-list";
+        return "redirect:artical-list";
     }
 
-    @RequestMapping(value = "/artical-delete", method = RequestMethod.POST)
+    @RequestMapping(value = "artical-delete", method = RequestMethod.POST)
     @ResponseBody
     public Map deleteArtical(String id, HttpServletRequest httpServletRequest) {
         Map map = new HashMap();

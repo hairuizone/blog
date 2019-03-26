@@ -10,33 +10,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="icon" type="image/png" href="background/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="background/assets/i/app-icon72x72@2x.png">
+    <link rel="icon" type="image/png" href="../background/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="../background/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
-    <script src="background/assets/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="background/assets/css/amazeui.min.css"/>
-    <link rel="stylesheet" href="background/assets/css/amazeui.datatables.min.css"/>
-    <link rel="stylesheet" href="background/assets/css/app.css">
-    <script src="background/assets/js/jquery.min.js"></script>
+    <script src="../background/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="../background/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../background/assets/css/amazeui.datatables.min.css"/>
+    <link rel="stylesheet" href="../background/assets/css/app.css">
+    <script src="../background/assets/js/jquery.min.js"></script>
 
-    <script src="background/assets/js/amazeui.min.js"></script>
-    <script src="background/assets/js/amazeui.dialog.min.js"></script>
-    <script src="background/assets/js/amazeui.datatables.min.js"></script>
-    <script src="background/assets/js/dataTables.responsive.min.js"></script>
-    <script src="background/assets/js/app.js"></script>
+    <script src="../background/assets/js/amazeui.min.js"></script>
+    <script src="../background/assets/js/amazeui.dialog.min.js"></script>
+    <script src="../background/assets/js/amazeui.datatables.min.js"></script>
+    <script src="../background/assets/js/dataTables.responsive.min.js"></script>
+    <script src="../background/assets/js/app.js"></script>
 
-    <link href="editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="editormd/editormd.min.js"></script>
+    <link href="../editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../editormd/editormd.min.js"></script>
     <script type="text/javascript">
-        var testEditor;
-        testEditor = $(function () {
+        var editor;
+        editor = $(function () {
             editormd("content", {
                 width: "100%",
                 height: 640,
                 //markdown : md,//不注释不显示
                 codeFold: true,
                 syncScrolling: "single",
-                path: "editormd/lib/", //你的path路径（原资源文件中lib包在我们项目中所放的位置）
+                path: "../editormd/lib/", //你的path路径（原资源文件中lib包在我们项目中所放的位置）
                 imageUpload: true,//开启图片上传功能
                 /*
                 theme: "dark",//工具栏主题
@@ -58,7 +58,7 @@
                 //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
                 saveHTMLToTextarea: true,
                 imageFormats: ["jpg", "jpeg", "gif", "png", "bmp"],
-                imageUploadURL: "/smart-api/upload/editormdPic/",/*上传图片成功后可以做一些自己的处理*/
+                imageUploadURL: "..//smart-api/upload/editormdPic/",/*上传图片成功后可以做一些自己的处理*/
             });
 
         });
@@ -68,13 +68,15 @@
 </head>
 
 <body data-type="widgets">
-<script src="background/assets/js/theme.js"></script>
+<script src="../background/assets/js/theme.js"></script>
 <div class="am-g tpl-g">
+
+    <!--公共部分-start-->
     <!-- 头部 -->
-    <header>
+    <header th:fragment="header">
         <!-- logo -->
         <div class="am-fl tpl-header-logo">
-            <a href="javascript:;"><img src="background/assets/img/logo.png" alt=""></a>
+            <a href="javascript:;"><img src="../img/logo.png" alt=""></a>
         </div>
         <!-- 右侧内容 -->
         <div class="tpl-header-fluid">
@@ -96,7 +98,7 @@
                 <ul>
                     <!-- 欢迎语 -->
                     <li class="am-text-sm tpl-header-navbar-welcome">
-                        <a href="javascript:;">欢迎你, <span>Amaze UI</span> </a>
+                        <a href="javascript:;">欢迎你, <span>老干部</span> </a>
                     </li>
 
                     <!-- 新邮件 -->
@@ -106,11 +108,11 @@
                             <span class="am-badge am-badge-success am-round item-feed-badge">4</span>
                         </a>
                         <!-- 弹出列表 -->
-                        <ul class="am-dropdown-content tpl-dropdown-content">
+                        <!--<ul class="am-dropdown-content tpl-dropdown-content">
                             <li class="tpl-dropdown-menu-messages">
                                 <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-ico">
-                                        <img src="background/assets/img/user04.png" alt="">
+                                        <img src="../background/assets/img/user04.png" alt="">
                                     </div>
                                     <div class="menu-messages-time">
                                         3小时前
@@ -131,7 +133,7 @@
                             <li class="tpl-dropdown-menu-messages">
                                 <a href="javascript:;" class="tpl-dropdown-menu-messages-item am-cf">
                                     <div class="menu-messages-ico">
-                                        <img src="background/assets/img/user02.png" alt="">
+                                        <img src="../background/assets/img/user02.png" alt="">
                                     </div>
                                     <div class="menu-messages-time">
                                         5天前
@@ -151,59 +153,7 @@
                                     <i class="am-icon-circle-o"></i> 进入列表…
                                 </a>
                             </li>
-                        </ul>
-                    </li>
-
-                    <!-- 新提示 -->
-                    <li class="am-dropdown" data-am-dropdown>
-                        <a href="javascript:;" class="am-dropdown-toggle" data-am-dropdown-toggle>
-                            <i class="am-icon-bell"></i>
-                            <span class="am-badge am-badge-warning am-round item-feed-badge">5</span>
-                        </a>
-
-                        <!-- 弹出列表 -->
-                        <ul class="am-dropdown-content tpl-dropdown-content">
-                            <li class="tpl-dropdown-menu-notifications">
-                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                    <div class="tpl-dropdown-menu-notifications-title">
-                                        <i class="am-icon-line-chart"></i>
-                                        <span> 有6笔新的销售订单</span>
-                                    </div>
-                                    <div class="tpl-dropdown-menu-notifications-time">
-                                        12分钟前
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="tpl-dropdown-menu-notifications">
-                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                    <div class="tpl-dropdown-menu-notifications-title">
-                                        <i class="am-icon-star"></i>
-                                        <span> 有3个来自人事部的消息</span>
-                                    </div>
-                                    <div class="tpl-dropdown-menu-notifications-time">
-                                        30分钟前
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="tpl-dropdown-menu-notifications">
-                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                    <div class="tpl-dropdown-menu-notifications-title">
-                                        <i class="am-icon-folder-o"></i>
-                                        <span> 上午开会记录存档</span>
-                                    </div>
-                                    <div class="tpl-dropdown-menu-notifications-time">
-                                        1天前
-                                    </div>
-                                </a>
-                            </li>
-
-
-                            <li class="tpl-dropdown-menu-notifications">
-                                <a href="javascript:;" class="tpl-dropdown-menu-notifications-item am-cf">
-                                    <i class="am-icon-bell"></i> 进入列表…
-                                </a>
-                            </li>
-                        </ul>
+                        </ul>-->
                     </li>
 
                     <!-- 退出 -->
@@ -218,7 +168,7 @@
 
     </header>
     <!-- 风格切换 -->
-    <div class="tpl-skiner">
+    <div class="tpl-skiner" th:fragment="style">
         <div class="tpl-skiner-toggle am-icon-cog">
         </div>
         <div class="tpl-skiner-content">
@@ -237,11 +187,11 @@
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable">
                 <div class="tpl-user-panel-profile-picture">
-                    <img src="background/assets/img/user04.png" alt="">
+                    <img src="../background/assets/img/user01.png" alt="">
                 </div>
                 <span class="user-panel-logged-in-text">
               <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              禁言小张
+              老干部
           </span>
                 <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
             </div>
@@ -249,74 +199,49 @@
 
         <!-- 菜单 -->
         <ul class="sidebar-nav">
-            <li class="sidebar-nav-heading">Components <span class="sidebar-nav-heading-info"> 附加组件</span></li>
+
+            <li class="sidebar-nav-heading">系统管理</span></li>
             <li class="sidebar-nav-link">
-                <a href="index.html">
+                <a href="homepage">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="tables.html">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 表格
+                <a href="user-list">
+                    <i class="am-icon-key sidebar-nav-link-logo"></i> 用户管理
+                </a>
+            </li>
+            <li class="sidebar-nav-link ">
+                <a href="artical-list" class="active">
+                    <i class="am-icon-table sidebar-nav-link-logo "></i> 文章管理
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="calendar.html">
-                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 日历
+                <a href="categories-list">
+                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 分类管理
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="form.html">
-                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 表单
+                <a href="topic-list">
+                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 专题管理
 
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="chart.html">
-                    <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 图表
+                <a href="books-list">
+                    <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 推荐书籍管理
 
                 </a>
             </li>
+            <li class="sidebar-nav-link">
+                <a href="tools-list">
+                    <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 在线工具管理
 
-            <li class="sidebar-nav-heading">Page<span class="sidebar-nav-heading-info"> 常用页面</span></li>
-            <li class="sidebar-nav-link">
-                <a href="javascript:;" class="sidebar-nav-sub-title active">
-                    <i class="am-icon-table sidebar-nav-link-logo"></i> 数据列表
-                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico sidebar-nav-sub-ico-rotate"></span>
-                </a>
-                <ul class="sidebar-nav sidebar-nav-sub" style="display: block;">
-                    <li class="sidebar-nav-link">
-                        <a href="artical-list" class="sub-active">
-                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 文字列表
-                        </a>
-                    </li>
-
-                    <li class="sidebar-nav-link">
-                        <a href="table-list-img.html">
-                            <span class="am-icon-angle-right sidebar-nav-link-logo"></span> 图文列表
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-nav-link">
-                <a href="sign-up.html">
-                    <i class="am-icon-clone sidebar-nav-link-logo"></i> 注册
-                    <span class="am-badge am-badge-secondary sidebar-nav-link-logo-ico am-round am-fr am-margin-right-sm">6</span>
                 </a>
             </li>
-            <li class="sidebar-nav-link">
-                <a href="login.html">
-                    <i class="am-icon-key sidebar-nav-link-logo"></i> 登录
-                </a>
-            </li>
-            <li class="sidebar-nav-link">
-                <a href="404.html">
-                    <i class="am-icon-tv sidebar-nav-link-logo"></i> 404错误
-                </a>
-            </li>
-
         </ul>
     </div>
+    <!--公共部分-end-->
 
 
     <!-- 内容区域 -->
@@ -518,10 +443,10 @@
 </div>
 </div>
 
-<script src="background/assets/js/amazeui.min.js"></script>
-<script src="background/assets/js/amazeui.datatables.min.js"></script>
-<script src="background/assets/js/dataTables.responsive.min.js"></script>
-<script src="background/assets/js/app.js"></script>
+<script src="../background/assets/js/amazeui.min.js"></script>
+<script src="../background/assets/js/amazeui.datatables.min.js"></script>
+<script src="../background/assets/js/dataTables.responsive.min.js"></script>
+<script src="../background/assets/js/app.js"></script>
 <script type="text/javascript">
     $(function () {
         // 初始化内容
