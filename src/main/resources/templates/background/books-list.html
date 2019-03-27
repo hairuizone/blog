@@ -167,7 +167,7 @@
                 </a>
             </li>
             <li class="sidebar-nav-link ">
-                <a href="artical-list" class="active">
+                <a href="artical-list">
                     <i class="am-icon-table sidebar-nav-link-logo "></i> 文章管理
                 </a>
             </li>
@@ -176,14 +176,14 @@
                     <i class="am-icon-calendar sidebar-nav-link-logo"></i> 分类管理
                 </a>
             </li>
-            <li class="sidebar-nav-link">
-                <a href="topic-list">
+            <li class="sidebar-nav-link" >
+                <a href="topic-list" >
                     <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 专题管理
 
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="books-list">
+                <a href="books-list" class="active">
                     <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 推荐书籍管理
 
                 </a>
@@ -205,7 +205,7 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title  am-cf">文章列表</div>
+                            <div class="widget-title  am-cf">书籍列表</div>
 
 
                         </div>
@@ -216,64 +216,32 @@
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
                                             <button type="button"
-                                                    class="am-btn am-btn-default am-btn-success addArticalBtn"><span
+                                                    class="am-btn am-btn-default am-btn-success addArticalCategoriesBtn"><span
                                                     class="am-icon-plus"></span> 新增
                                             </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
-                                <div class="am-form-group tpl-table-list-select">
-                                    <select data-am-selected="{btnSize: 'sm'}" id="categories">
-                                        <option value="">所有类别</option>
-
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
-                                <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                    <input type="text" class="am-form-field ">
-                                    <span class="am-input-group-btn">
-                                        <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>
-                                    </span>
-                                </div>
-                            </div>
 
                             <div class="am-u-sm-12">
                                 <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black am-table-hover " id="example-r">
                                     <thead>
-                                        <tr>
-                                            <th>编号</th>
-                                            <th>文章标题</th>
-                                            <th>作者</th>
-                                            <th>分类</th>
-                                            <th>时间</th>
-                                            <th>操作</th>
-                                        </tr>
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>专题名称</th>
+                                        <th>作者</th>
+                                        <th>发布日期</th>
+                                        <th>操作</th>
+                                    </tr>
                                     </thead>
 
                                     <tbody>
-                                        <tr class="gradeX"></tr>
+                                    <tr class="gradeX"></tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="am-u-lg-12 am-cf">
 
-                                <div class="am-fr">
-                                    <ul class="am-pagination tpl-pagination">
-                                        <li class="am-disabled"><a href="#">«</a></li>
-
-                                        <li class="am-active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-
-                                        <li><a href="#">»</a></li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -286,177 +254,35 @@
 
 <script>
 
-    $('.addArticalBtn').click(function () {
-        var url = 'artical-add'
+    $('.addArticalCategoriesBtn').click(function () {
+        var url = 'books-add'
         window.location.href = url;
     });
 
     function updateRow(id) {
-        var url = 'artical-update?id=' + id;
+        var url = 'books-update?id=' + id;
         window.location.href = url;
-
-
     }
 
-    function deleteRow(id) {
-       /* AMUI.dialog.confirm({
-            title: '错误提示',
-            content: '正文内容',
-
-            onConfirm: function () {
-                console.log('onConfirm')
-            }
-        });*/
-
-        var r = confirm("删除后将不可恢复，是否确定继续？");
-        if (r == true) {
-            $.ajax({
-                type: "post",
-                url: "artical-delete",
-                data: {
-                    id: id
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if (data.flag == "success") {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除成功',
-                            onConfirm: function () {
-                                console.log('close');
-                                window.location.href = "artical-list";
-                            }
-                        });
-
-                    } else {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除失败，请重试',
-                            onConfirm: function () {
-                                console.log('close');
-                                window.location.href = "artical-list";
-                            }
-                        });
-                    }
-                },
-                error: function () {
-                    AMUI.dialog.alert({
-                        title: '提示信息',
-                        content: '删除成功',
-                        onConfirm: function () {
-                            console.log('close');
-                            window.location.href = "artical-list";
-                        }
-                    });
-                }
-            });
-        } else {
-            return;
-        }
-        // AMUI.dialog.confirm的确定有bug 故不使用
-        /*AMUI.dialog.confirm({
-            title: '是否确定删除',
-            content:'删除后将不可恢复，是否继续？',
-            onConfirm: function() {
-                $.ajax({
-                    type: "post",
-                    url: "artical-delete",
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.flag == "success") {
-                            AMUI.dialog.alert({
-                                title: '提示信息',
-                                content: '删除成功',
-                                onConfirm: function () {
-                                    console.log('close');
-                                    window.location.href = "artical-list";
-                                }
-                            });
-
-                        } else {
-                            AMUI.dialog.alert({
-                                title: '提示信息',
-                                content: '删除失败，请重试',
-                                onConfirm: function () {
-                                    console.log('close');
-                                    window.location.href = "artical-list";
-                                }
-                            });
-                        }
-                    },
-                    error: function () {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除成功',
-                            onConfirm: function () {
-                                console.log('close');
-                                window.location.href = "artical-list";
-                            }
-                        });
-                    }
-                });
-            },
-            onCancel: function() {
-                return;
-            }
-        });*/
-
-
-    }
 </script>
 
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var articalList = [[${articalList}]];
-    var size = articalList.length;
+    var booksList = [[${booksList}]];
+    var size = booksList.length;
     for (var i = 1; i <= size; i++) {
         var x = document.getElementById('example-r').insertRow(i)
         var id = x.insertCell(0)
-        var tittle = x.insertCell(1)
+        var bookName = x.insertCell(1)
         var author = x.insertCell(2)
-        var categories = x.insertCell(3)
-        var createDate = x.insertCell(4)
-        var div = x.insertCell(5)
-        id.innerHTML = articalList[i - 1].id;
-        tittle.innerHTML = articalList[i - 1].tittle;
-        author.innerHTML = articalList[i - 1].author;
-        /*categories.innerHTML = articalList[i - 1].categories;*/
-        //这里的翻译比较丑陋 需要优化
-        var cateidx = articalList[i - 1].categories;
-        if (cateidx == '1') {
-            categories.innerHTML = 'JAVA基础知识';
-        } else if (cateidx == '2') {
-            categories.innerHTML = 'SpringBoot';
-        } else if (cateidx == '3') {
-            categories.innerHTML = '微服务架构';
-        } else if (cateidx == '4') {
-            categories.innerHTML = '大数据';
-        } else if (cateidx == '5') {
-            categories.innerHTML = '操作系统';
-        } else if (cateidx == '6') {
-            categories.innerHTML = '博文鉴赏';
-        } else {
-            categories.innerHTML = articalList[i - 1].categories;
-        }
-
-
-        createDate.innerHTML = articalList[i - 1].createDate;
-        div.innerHTML = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);onclick=updateRow(' + articalList[i - 1].id + ');" class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);onclick=deleteRow(' + articalList[i - 1].id + ')" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
+        var publishDate = x.insertCell(3)
+        var div = x.insertCell(4)
+        id.innerHTML = booksList[i - 1].id;
+        bookName.innerHTML = booksList[i - 1].bookName;
+        author.innerHTML = booksList[i - 1].author;
+        publishDate.innerHTML = booksList[i - 1].publishDate;
+        div.innerHTML = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);onclick=updateRow(' + booksList[i - 1].id + ');" class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);onclick=deleteRow(' + booksList[i - 1].id + ')" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
     }
-
-    var categoriesList = [[${categoriesList}]];
-    var size2 = categoriesList.length;
-    var opt=document.getElementById("categories");
-
-    for (var i = 1; i <= size2; i++) {
-        opt.options.add(new Option(categoriesList[i].categoryName,categoriesList[i].id));
-    }
-
-
-
     /*]]>*/
 </script>
 

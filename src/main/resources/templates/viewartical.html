@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="favicon.ico"/>
+    <!--<script src="js/jquery-3.3.1.min.js"></script>-->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!--bootstrap库-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/comm.js"></script>
+    <!--主要写的css代码-->
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+
+
+    <link rel="stylesheet" href="background/assets/css/amazeui.min.css"/>
+
+    <link rel="stylesheet" href="background/assets/css/app.css">
+
+
+    <link href="editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="editormd/editormd.min.js"></script>
+
+
+    <link rel="stylesheet" href="plugins/editormd/css/editormd.preview.css"/>
+
+    <script src="editormd/lib/marked.min.js"></script>
+    <script src="editormd/lib/prettify.min.js"></script>
+
+    <script src="editormd/lib/raphael.min.js"></script>
+    <script src="editormd/lib/underscore.min.js"></script>
+    <script src="editormd/lib/sequence-diagram.min.js"></script>
+    <script src="editormd/lib/flowchart.min.js"></script>
+    <script src="editormd/lib/jquery.flowchart.min.js"></script>
+
+
+    <title th:text="${myinfo.webname}"></title>
+</head>
+<script type="text/javascript">
+    $(function () {
+        var testEditormdView;
+        testEditormdView = editormd.markdownToHTML("test-editormd-view", {
+            htmlDecode: "style,script,iframe",  // you can filter tags decode
+            emoji: true,
+            taskList: true,
+            tex: true,  // 默认不解析
+            flowChart: true,  // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
+        });
+    });
+</script>
+<body style="background-color: #ffffff;">
+<div class="container">
+
+
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="header">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><span><img src="img/brand.jpg" class="img-circle"
+                                                            style="height: 30px;width: 30px"></span><label
+                        th:text="${myinfo.getWebname()}"/></a>
+            </div>
+            <div class="container">
+                <div id="navbar-menu" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"/>&nbsp;首页</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span class="glyphicon glyphicon-th"/>&nbsp;分类</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Java基础知识</a>
+                                </li>
+                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Spring boot</a>
+                                </li>
+                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;redis缓存</a>
+                                </li>
+                                <li><a class="" href="#"><span
+                                        class="glyphicon glyphicon-tag"></span>&nbsp;Apache反向代理</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#"><span class="glyphicon glyphicon-time"/>&nbsp;归档</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-pencil"/>&nbsp;随笔</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-bookmark"/>&nbsp;专题</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-user"/>&nbsp;关于我</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-eye-open"/>&nbsp;传送门</a></li>
+                    </ul>
+                    <!--<a class="write-blog" href="">
+                        <span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span>
+                    </a>
+                    <a class="message-center" href="">
+                        <span><img class="message-icon"
+                                   src="http://localhost:8848/myblog/img/message-icon.png">消息中心</span>
+                    </a>
+                    <a href="#">
+                        <button class="btn btn-sm">登录</button>
+                    </a>
+                    <a href="#">
+                        <button class="btn btn-sm">注册</button>
+                    </a>-->
+
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <div id="content" class="row-fluid">
+        <!--文章标题-->
+        <div align="center" style="margin-top: 20px;margin-bottom: 20px;">
+            <span style="font-family: 'Segoe UI'; font-size: 25px;font-weight: bolder;"
+                  th:text="${artical.tittle}"></span>
+        </div>
+        <br/>
+
+        <!--文章信息-->
+        <div align="center">
+
+            <span class="am-btn-success am-radius am-disabled"
+                  style="font-family: Segoe UI;margin-right: 5px;font-size: 12px;" th:text="${articalTypeCn}"></span>
+
+            <span class="am-icon-calendar" style="font-family: Segoe UI;margin-right: 5px;font-size: 14px;"
+                  th:text="${artical.createDate}"></span>
+
+
+            <span class="am-icon-user" style="font-family: Segoe UI;margin-right: 5px;font-size: 14px;"
+                  th:text="${artical.author}"></span>
+
+            <span class="am-icon-bookmark" style="font-family: Segoe UI;margin-right: 5px;font-size: 14px;"
+                  th:text="${categoriesCn}"></span>
+
+        </div>
+        <!--我的名言-->
+        <div align="center" style="margin-top: 20px;margin-bottom: 20px;">
+            <blockquote style="background-color: #AED9D3;border-color:#D8B2CE;width: 60%">
+                <p align="left" th:text="${solidot}"></p>
+                <p align="right" th:text="'——'+${solidotor}"></p>
+            </blockquote>
+
+        </div>
+
+
+        <!--文章内容-->
+        <div id="test-editormd-view">
+            <textarea id="append-test" th:text="${artical.content}"></textarea>
+        </div>
+
+        <!--结束-->
+
+        <div align="center">
+            <i class="am-icon-btn am-success am-icon-lg">完</i>
+        </div>
+
+        <!--微信-->
+
+        <div align="center" style="margin-top: 30px;">
+
+            <p>
+                <img class="am-circle" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80" width="180" height="180"/>
+            </p>
+            欢迎关注我的微信公众号:老干部的咖啡屋
+        </div>
+
+        <div align="center" style="margin-top: 20px;margin-bottom: 20px;">
+        <blockquote style="background-color:#E3E3E3;border-color:#FF0000;">
+            <p align="left" th:text="'本文作者：'+${artical.author}"></p>
+            <p align="left" th:text="'原文链接：http://localhost:8848/myblog/artical-view?type=index&id='+${artical.id}"></p>
+            <p align="left" th:text="'版权声明：原创文章转载请注明出处！'"></p>
+        </blockquote>
+
+    </div>
+
+    </div>
+</div>
+
+<!--</div>-->
+<footer>
+    <div class="container" align="center">
+
+        <div class="endnav">
+            <p><b>站点声明：</b></p>
+            <p>1、本站个人博客模板，均为本人设计，个人可以使用，但是未经许可不得用于任何商业目的。</p>
+            <p>2、所有文章未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：<a
+                    href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=HHh9cn95b3F1cHVye1xtbTJ-c3E"
+                    target="_blank">dacesmiling@qq.com</a></p>
+            <p>Copyright © <a href="http://www.yangqq.com" target="_blank">www.yangqq.com</a> All Rights Reserved.
+                备案号：<a href="http://www.miitbeian.gov.cn/" target="_blank">陕ICP备11002373号-1</a></p>
+        </div>
+    </div>
+    <a href="#">
+        <div class="top"></div>
+    </a></footer>
+</body>
+</html>

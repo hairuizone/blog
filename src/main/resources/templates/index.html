@@ -98,10 +98,10 @@
                                 <div class="newspic">
                                     <!--背景图  大于2展示-->
                                     <ul th:if="${articalList[artNavListStat.index].size() > 2}">
-                                        <li><a href="/"><img
+                                        <li><a th:href="'artical-view?type=index&id='+${articalList[artNavListStat.index].get(0).id}"><img
                                                 th:src="${articalList[artNavListStat.index].get(0).imgpath}"><span
                                                 th:text="${articalList[artNavListStat.index].get(0).tittle}"/></a></li>
-                                        <li><a href="/"><img
+                                        <li><a th:href="'artical-view?type=index&id='+${articalList[artNavListStat.index].get(1).id}"><img
                                                 th:src="${articalList[artNavListStat.index].get(1).imgpath}"><span
                                                 th:text="${articalList[artNavListStat.index].get(1).tittle}"/></a></li>
                                     </ul>

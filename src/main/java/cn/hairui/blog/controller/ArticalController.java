@@ -1,13 +1,7 @@
 package cn.hairui.blog.controller;
 
-import cn.hairui.blog.model.Artical;
-import cn.hairui.blog.model.ArticalCategories;
-import cn.hairui.blog.model.ArticalTopics;
-import cn.hairui.blog.model.NavIndex;
-import cn.hairui.blog.service.ArticalCategoriesService;
-import cn.hairui.blog.service.ArticalService;
-import cn.hairui.blog.service.ArticalTopicsService;
-import cn.hairui.blog.service.NavIndexService;
+import cn.hairui.blog.model.*;
+import cn.hairui.blog.service.*;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -37,7 +31,7 @@ import java.util.*;
  * @date: 2019/3/5 22:42
  */
 @Controller
-@RequestMapping(value = "/bg")
+
 public class ArticalController {
 
     @Autowired
@@ -48,8 +42,10 @@ public class ArticalController {
     private NavIndexService navIndexService;
     @Autowired
     private ArticalTopicsService articalTopicsService;
+    @Autowired
+    private MyInfoService myInfoService;
 
-    @RequestMapping(value = "/artical-list", method = RequestMethod.GET)
+    @RequestMapping(value = "/bg/artical-list", method = RequestMethod.GET)
     public String listArtical(Model model) {
 
         List<Artical> articalList = articalService.queryArticalListByCond("1", null);
@@ -61,7 +57,7 @@ public class ArticalController {
         return "background/artical-list";
     }
 
-    @RequestMapping(value = "/artical-add",method = RequestMethod.GET)
+    @RequestMapping(value = "/bg/artical-add",method = RequestMethod.GET)
     public  String addArtical(Model model){
         List<ArticalCategories> acList = articalCategoriesService.qeuryArticalCategoriesList();
         model.addAttribute("acList", acList);
@@ -79,7 +75,7 @@ public class ArticalController {
         return "background/artical-add";
     }
 
-    @RequestMapping(value = "/artical-adddata" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/bg/artical-adddata" ,method = RequestMethod.POST)
     public String addArticalDAta(@ModelAttribute Artical artical){
 
         //随机设置封面图
@@ -98,7 +94,7 @@ public class ArticalController {
 
         return "redirect:artical-list";
     }
-    @RequestMapping(value = "artical-update", method = RequestMethod.GET)
+    @RequestMapping(value = "/bg/artical-update", method = RequestMethod.GET)
     public String updateArtical(Integer id, Model model) {
 
         if (id == null) {
@@ -119,7 +115,7 @@ public class ArticalController {
         return "background/artical-update";
     }
 
-    @RequestMapping(value = "artical-updatedata", method = RequestMethod.POST)
+    @RequestMapping(value = "/bg/artical-updatedata", method = RequestMethod.POST)
     public String updateArticalData(@ModelAttribute Artical artical, Model model) {
         /*
 
@@ -140,7 +136,7 @@ public class ArticalController {
         return "redirect:artical-list";
     }
 
-    @RequestMapping(value = "artical-delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/bg/artical-delete", method = RequestMethod.POST)
     @ResponseBody
     public Map deleteArtical(String id, HttpServletRequest httpServletRequest) {
         Map map = new HashMap();
@@ -151,5 +147,34 @@ public class ArticalController {
             map.put("flag", "failed");
         }
         return map;
+    }
+
+    @RequestMapping(value = "artical-view")
+    public String viewArtical(String type,int id,Model model){
+        System.out.println(type);
+        System.out.println(id);
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
+
+        Artical artical = articalService.queryArticalDetailById(id);
+        String articalType = artical.getType();
+        if("YC".equals(articalType)){
+            model.addAttribute("articalTypeCn","原创");
+        }else {
+            model.addAttribute("articalTypeCn","转载");
+        }
+        int categories = artical.getCategories();
+        if(categories == 6){
+            model.addAttribute("categoriesCn","博文欣赏");
+        }
+        //名言
+        String solidot = "我一直在坚定不移的在做我认为正确的事情，走我认为正确的道路，并且我还会继续！";
+        String solidotor = "老干部";
+        model.addAttribute("solidot",solidot);
+        model.addAttribute("solidotor",solidotor);
+
+
+        model.addAttribute("artical",artical);
+        return "viewartical";
     }
 }
