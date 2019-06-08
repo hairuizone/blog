@@ -15,10 +15,19 @@
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
     <title th:text="${myinfo.webname}"></title>
 </head>
+<script type="text/javascript">
+    function homepage(){
+    	window.location.href="/myblog";
+    }
+    function articalDetail(id){
+    	window.location.href="artical-view?id="+id;
+    }
+    function visitWebsite(url){
+    	window.open = url;
+    }
+</script>
 <body>
 <div class="container">
-
-
     <nav class="navbar navbar-default navbar-inverse">
         <div class="header">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -30,16 +39,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><span><img src="img/brand.jpg" class="img-circle"
-                                                            style="height: 30px;width: 30px"></span><label
-                        th:text="${myinfo.getWebname()}"/></a>
+                <a class="navbar-brand"  href="javascript:void(0)" onclick="javascript:homepage()">
+                	<span>
+                		<img src="img/brand.jpg" class="img-circle"  style="height: 30px;width: 30px">
+                	</span>
+                	<label th:text="${myinfo.getWebname()}" onclick="javascript:homepage()"></label>
+                </a>
             </div>
             <div class="container">
                 <div id="navbar-menu" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"/>&nbsp;首页</a></li>
+                        <li class="active">
+                        	<a href="#">
+                        		<span class="glyphicon glyphicon-home">&nbsp;首页</span>
+                        	</a>
+                        </li>
                         <li class="dropdown">
-                            <a href="#"><span class="glyphicon glyphicon-th"/>&nbsp;分类</a>
+                            <a href="#">
+                            	<span class="glyphicon glyphicon-th">&nbsp;分类</span>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Java基础知识</a>
                                 </li>
@@ -47,16 +65,15 @@
                                 </li>
                                 <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;redis缓存</a>
                                 </li>
-                                <li><a class="" href="#"><span
-                                        class="glyphicon glyphicon-tag"></span>&nbsp;Apache反向代理</a>
+                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Apache反向代理</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="#"><span class="glyphicon glyphicon-time"/>&nbsp;归档</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-pencil"/>&nbsp;随笔</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-bookmark"/>&nbsp;专题</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-user"/>&nbsp;关于我</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-eye-open"/>&nbsp;传送门</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-pencil">&nbsp;随笔</span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
                     </ul>
                     <!--<a class="write-blog" href="">
                         <span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span>
@@ -74,17 +91,12 @@
 
                 </div>
             </div>
-
         </div>
     </nav>
-
     <div id="content" class="row-fluid">
-
         <div class="col-md-9">
             <div class="col-md-12">
-
                 <div class="block">
-
                     <div class="tab_box whitebg">
                         <div class="tab_buttons">
                             <ul >
@@ -93,39 +105,33 @@
                             </ul>
                         </div>
                         <div class="newstab">
-
                             <div class="newsitem" th:each="artNavList,artNavListStat :${articalList}">
                                 <div class="newspic">
                                     <!--背景图  大于2展示-->
                                     <ul th:if="${articalList[artNavListStat.index].size() > 2}">
                                         <li><a th:href="'artical-view?type=index&id='+${articalList[artNavListStat.index].get(0).id}"><img
-                                                th:src="${articalList[artNavListStat.index].get(0).imgpath}"><span
-                                                th:text="${articalList[artNavListStat.index].get(0).tittle}"/></a></li>
+                                                th:src="${articalList[artNavListStat.index].get(0).imgpath}">
+                                                <span th:text="${articalList[artNavListStat.index].get(0).tittle}"></span></a></li>
                                         <li><a th:href="'artical-view?type=index&id='+${articalList[artNavListStat.index].get(1).id}"><img
-                                                th:src="${articalList[artNavListStat.index].get(1).imgpath}"><span
-                                                th:text="${articalList[artNavListStat.index].get(1).tittle}"/></a></li>
+                                                th:src="${articalList[artNavListStat.index].get(1).imgpath}">
+                                                <span  th:text="${articalList[artNavListStat.index].get(1).tittle}"></span></a></li>
                                     </ul>
                                 </div>
                                 <!--与后台要形成对应 只展示前五条-->
                                 <ul class="newslist" th:if="${articalList[artNavListStat.index].size() == 5}">
-                                    <li><i></i><a href="/"
-                                                  th:text="${articalList[artNavListStat.index].get(0).tittle}"></a>
+                                    <li  th:onclick="'javascript:articalDetail('+${articalList[artNavListStat.index].get(0).id}+')'"><i></i><a href="javascript:void(0);" th:text="${articalList[artNavListStat.index].get(0).tittle}"></a>
                                         <p th:text="${articalList[artNavListStat.index].get(0).summary}"/>
                                     </li>
-                                    <li><i></i><a href="/"
-                                                  th:text="${articalList[artNavListStat.index].get(1).tittle}"></a>
+                                    <li th:onclick="'javascript:articalDetail('+${articalList[artNavListStat.index].get(1).id}+')'"><i></i><a href ="javascript:void(0);" th:text="${articalList[artNavListStat.index].get(1).tittle}"></a>
                                         <p th:text="${articalList[artNavListStat.index].get(1).summary}"/>
                                     </li>
-                                    <li><i></i><a href="/"
-                                                  th:text="${articalList[artNavListStat.index].get(2).tittle}"></a>
+                                    <li th:onclick="'javascript:articalDetail('+${articalList[artNavListStat.index].get(2).id}+')'"><i></i><a href ="javascript:void(0);" th:text="${articalList[artNavListStat.index].get(2).tittle}"></a>
                                         <p th:text="${articalList[artNavListStat.index].get(2).summary}"/>
                                     </li>
-                                    <li><i></i><a href="/"
-                                                  th:text="${articalList[artNavListStat.index].get(3).tittle}"></a>
+                                    <li th:onclick="'javascript:articalDetail('+${articalList[artNavListStat.index].get(3).id}+')'"><i></i><a href ="javascript:void(0);" th:text="${articalList[artNavListStat.index].get(3).tittle}"></a>
                                         <p th:text="${articalList[artNavListStat.index].get(3).summary}"/>
                                     </li>
-                                    <li><i></i><a href="/"
-                                                  th:text="${articalList[artNavListStat.index].get(4).tittle}"></a>
+                                    <li th:onclick="'javascript:articalDetail('+${articalList[artNavListStat.index].get(4).id}+')'"><i></i><a href ="javascript:void(0);" th:text="${articalList[artNavListStat.index].get(4).tittle}"></a>
                                         <p th:text="${articalList[artNavListStat.index].get(4).summary}"/>
                                     </li>
                                 </ul>
@@ -140,40 +146,33 @@
             <div class="block">
                 <div class="card">
                     <h2>我的名片</h2>
-                    <p>网名：<label th:text="${myinfo.getNickname()}"/></p>
-                    <p>职业：<label th:text="${myinfo.getOccupation()}"/></p>
-                    <p>现居：<label th:text="${myinfo.getAddress()}"/></p>
-                    <p>Email：<label th:text="${myinfo.getEmail()}"/></p>
+                    <p>网名：<label th:text="${myinfo.getNickname()}"></label></p>
+                    <p>职业：<label th:text="${myinfo.getOccupation()}"></label></p>
+                    <p>现居：<label th:text="${myinfo.getAddress()}"></label></p>
+                    <p>Email：<label th:text="${myinfo.getEmail()}"></label></p>
                     <ul class="linkmore">
-                        <li><a href="http://www.yangqq.com" target="_blank" class="iconfont icon-zhuye"
+                        <li><a href="/" target="_blank" class="iconfont icon-zhuye"
                                title="网站地址"></a>
                         </li>
                         <li>
-                            <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=HHh9cn95b3F1cHVye1xtbTJ-c3E"
-                               target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
-                        <li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=476847113&amp;site=qq&amp;menu=yes"
-                               target="_blank"
-                               class="iconfont icon---" title="QQ联系我"></a></li>
-                        <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin"
-                                           title="关注我的微信"></a><i><img
-                                src="images/wx.png"></i></li>
+                            <a href="/"  target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
+                        <li><a href="/"  target="_blank" class="iconfont icon---" title="QQ联系我"></a></li>
+                        <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin" title="关注我的微信"></a><i><img src="images/wx.png"></i></li>
                     </ul>
                 </div>
             </div>
         </div>
-
 
         <div class="col-md-9">
             <div class="col-md-6 " th:each="articalCategories, articalBolck :${articalCategoriesList}">
                 <div class="block">
                     <h2 class="htitle" th:text="${articalCategories.categoryName}"></h2>
                     <div class="content-list" th:each="artical ,articalStat: ${articals[articalBolck.index]}">
-                        <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:text="${artical.createDate}"/>
-                        <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url"
-                           th:text="${artical.tittle}"/>
+                        <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:text="${artical.createDate}"></span>
+                        <a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${artical.id}+')'" th:text="${artical.tittle}"></a>
                     </div>
                     <div class="index-card-footer" style="text-align: right;">
-                        <a href="/tags/Spring-Boot/">查看更多</a>
+                        <a href="/">查看更多</a>
                     </div>
                 </div>
             </div>
@@ -182,7 +181,7 @@
             <div class="block">
                 <h2 class="htitle">专题整理</h2>
                 <ul class="nav nav-tabs nav-stacked" th:each=" articalTopics : ${articalTopicsList}">
-                    <li><a href='#' th:text="${articalTopics.topicName}"/></li>
+                    <li><a href='#' th:text="${articalTopics.topicName}"></a></li>
                 </ul>
             </div>
         </div>
@@ -192,16 +191,16 @@
                     <h2 class="htitle">开源书籍</h2>
                     <div class="col-md-6">
                         <div class="content-list" th:each="books ,booksStat:${booksList}">
-                            <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url"
-                               th:if="${booksStat.even}" th:text="${books.bookName}"></a>
+                            <a href="/" target="_blank"  th:if="${booksStat.even}" th:text="${books.bookName}"></a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="content-list" th:each="books ,booksStat:${booksList}">
-                            <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url"
-                               th:if="${booksStat.odd}" th:text="${books.bookName}"></a>
+                            <a href="/" target="_blank"   th:if="${booksStat.odd}" th:text="${books.bookName}"></a>
                         </div>
-
+						<div class="index-card-footer" style="text-align: right;">
+                        	<a href="/tags/Spring-Boot/">查看更多</a>
+                    	</div>
                     </div>
                 </div>
             </div>
@@ -209,10 +208,8 @@
                 <div class="block">
                     <h2 class="htitle">在线工具</h2>
                     <div class="content-list" th:each="onlineTools :${onlineToolsList}">
-                        <span style="font-size: 12px;color:#aaa;margin-right: 5px;"
-                              th:text="${onlineTools.addDate}"></span>
-                        <a href="/spring-cloud-alibaba-version/" target="_blank" itemprop="url"
-                           th:text="${onlineTools.toolName}"/>
+                        <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:text="${onlineTools.addDate}"></span>
+                        <a th:href="${onlineTools.url}" target="_blank" th:text="${onlineTools.toolName}"></a>
                     </div>
 
                     <div class="index-card-footer" style="text-align: right;">
@@ -221,14 +218,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3" style="margin-top: -370px;">
             <div class="block">
                 <h2 class="htitle">标签</h2>
                 <div>
-                    <a href="tags?tag=" style="font-size:17px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==0"/>
-                    <a href="tags?tag=" style="font-size:15px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==1"/>
-                    <a href="tags?tag=" style="font-size:12px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==2"/>
-                    <a href="tags?tag=" style="font-size:18px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==3"/>
+                    <a href="/" style="font-size:17px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==0"></a>
+                    <a href="/" style="font-size:15px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==1"></a>
+                    <a href="/" style="font-size:12px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==2"></a>
+                    <a href="/" style="font-size:18px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==3"></a>
                 </div>
             </div>
         </div>
@@ -240,25 +237,33 @@
                         <ul>
                             <!--多图模式 置顶设计-->
                             <li th:if="${articalTop}">
-                                <h3 class="blogtitle"><b>【顶】</b><a href="/" target="_blank" th:text="${articalTop.tittle}"></a></h3>
-                                <span class="bplist"><a href="/"> <img src="images/b02.jpg" alt=""></a> <a href="/"><img
-                                        src="images/b03.jpg" alt=""></a> <a href="/"><img src="images/b04.jpg" alt=""> </a><a
-                                        href="/"><img src="images/b05.jpg" alt=""> </a></span>
+                                <h3 class="blogtitle"><b>【顶】</b><a href="javascript:void(0);"  th:onclick="'javascript:articalDetail('+${articalTop.id}+')'" th:text="${articalTop.tittle}"></a></h3>
+                                <span class="bplist">
+                                	<a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${articalTop.id}+')'" > <img src="images/b02.jpg" alt=""></a>
+                                	<a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${articalTop.id}+')'" ><img  src="images/b03.jpg" alt=""></a> 
+                                	<a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${articalTop.id}+')'" ><img src="images/b04.jpg" alt=""> </a>
+                                	<a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${articalTop.id}+')'" ><img src="images/b05.jpg" alt=""> </a>
+                                </span>
                                 <p class="blogtext" th:text="${articalTop.summary}"></p>
-                                <p class="bloginfo"><i class="avatar"><img
-                                        src="images/avatar.jpg"></i><span th:text="${articalTop.author}"></span><span th:text="${articalTop.createDate}"></span><span>【<a
-                                        href="/" th:text="${articalTop.tags}"></a>】</span></p>
+                                <p class="bloginfo" th:switch="${articalTop.getType()}" >
+                                	<i class="avatar"><img src="images/avatar.jpg"></i>
+                                	<span th:text="${articalTop.author}"></span>
+                                	<span th:text="${articalTop.createDate}"></span>
+                                	<span><a href="/"  th:case="'yc'" >【原创】</a></span>
+                                	<span><a href="/"  th:case="'zz'" >【转载】</a></span>
+                                	</p>
                             </li>
+                            
                             <!--单图-->
                             <li th:each="articalHomepage :${articalListHomePage}">
-                                <h3 class="blogtitle"><a href="/" target="_blank" th:text="${articalHomepage.tittle}"/></h3>
-
+                                <h3 class="blogtitle"><a href="javascript:void(0);"  th:onclick="'javascript:articalDetail('+${articalHomepage.id}+')'"  th:text="${articalHomepage.tittle}"></a></h3>
                                 <p class="blogtext" th:text="${articalHomepage.summary}"/>
-                                <p class="bloginfo">
+                                <p class="bloginfo" th:switch="${articalHomepage.getType()}">
                                     <i class="avatar"><img src="images/avatar.jpg"></i>
-                                    <span th:text="${articalHomepage.author}"/>
-                                    <span th:text="${articalHomepage.createDate}"/>
-                                    <span th:text="'【'+${articalHomepage.tags}+'】'"/>
+                                    <span th:text="${articalHomepage.author}"></span>
+                                    <span th:text="${articalHomepage.createDate}"></span>
+                                    <span><a href="/"  th:case="'yc'" >【原创】</a></span>
+                                	<span><a href="/"  th:case="'zz'" >【转载】</a></span>
                                 </p>
                                 <a href="/" class="viewmore">阅读更多</a>
                             </li>
@@ -271,7 +276,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 tongji">
+        <div class="col-md-3 tongji" style="margin-top: -320px;">
             <div class="block">
                 <h2 class="htitle">站点信息</h2>
                 <ul>
@@ -286,39 +291,26 @@
                 </ul>
             </div>
         </div>
-
-
     </div>
 </div>
-
-<!--<div class="container">-->
-<!--<div class="container">-->
-<!--<h1>Twitter bootstrap tutorial</h1>-->
-
-
-<!--</div>-->
 <footer>
-    <div class="container">
-        <div class="wxbox">
-            <ul>
-                <!--
-                <li><img src="images/wxgzh.jpg"><span>微信公众号</span></li>
-                <li><img src="images/wx.png"><span>我的微信</span></li>
-                -->
-            </ul>
+	<div class="container" align="center">
+		<div class="wxbox">
+	         <ul>
+	             <li><span>微信公众号&nbsp;</span><img src="images/wxgzh.jpg"></li>
+	             <li><span>我的微信&nbsp;</span><img src="images/wx.png"></li>
+	         </ul>
         </div>
         <div class="endnav">
             <p><b>站点声明：</b></p>
             <p>1、本站个人博客模板，均为本人设计，个人可以使用，但是未经许可不得用于任何商业目的。</p>
-            <p>2、所有文章未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：<a
-                    href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=HHh9cn95b3F1cHVye1xtbTJ-c3E"
-                    target="_blank">dacesmiling@qq.com</a></p>
-            <p>Copyright © <a href="http://www.yangqq.com" target="_blank">www.yangqq.com</a> All Rights Reserved.
-                备案号：<a href="http://www.miitbeian.gov.cn/" target="_blank">陕ICP备11002373号-1</a></p>
+            <p>2、所有文章未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：
+            	<a href="/" target="_blank">lihairuizone@sina.com</a>
+            </p>
+            <p>Copyright © <a href="/" target="_blank">www.lihairuizone.com</a> All Rights Reserved. 备案号：<a href="/" target="_blank">陕ICP备11002373号-1</a></p>
         </div>
     </div>
-    <a href="#">
-        <div class="top"></div>
-    </a></footer>
+    <a href="#" class="top"></a>
+</footer>
 </body>
 </html>

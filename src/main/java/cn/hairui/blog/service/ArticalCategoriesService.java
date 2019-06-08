@@ -11,7 +11,19 @@ import java.util.List;
  */
 public interface ArticalCategoriesService {
 
-    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow);
+	/**
+	 * 
+	 * @Description 获取指定条数的是否要展示的信息
+	 * @param isShow 是否展示
+	 * @param maxSize 数量
+	 * @return
+	 */
+    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow, int maxSize);
 
-    public List<ArticalCategories> qeuryArticalCategoriesList();//查询所有分类
+    /**
+     * 
+     * @Description 查询所有分类
+     * @return
+     */
+    public List<ArticalCategories> qeuryArticalCategoriesList();
 }

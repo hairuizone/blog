@@ -21,4 +21,8 @@ public class BooksServiceImpl implements BooksService {
     public List<Books> queryBooksList() {
         return booksMapper.queryBooksList();
     }
+	@Override
+	public List<Books> queryBooksListLimited(int maxSize) {
+		return booksMapper.queryBooksListLimited(maxSize);
+	}
 }

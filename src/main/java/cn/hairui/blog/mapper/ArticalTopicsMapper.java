@@ -16,4 +16,6 @@ public interface ArticalTopicsMapper {
 
     @Select("select * from Artical_Topics")
     public List<ArticalTopics> queryArticalTopicsList();
+    @Select("select * from Artical_Topics limit 0,#{maxSize}")
+    public List<ArticalTopics> queryArticalTopicsListLimited(int maxSize);
 }

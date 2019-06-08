@@ -155,7 +155,7 @@
         <!-- 菜单 -->
         <ul class="sidebar-nav">
 
-            <li class="sidebar-nav-heading">系统管理</span></li>
+            <li class="sidebar-nav-heading"><span>系统管理</span></li>
             <li class="sidebar-nav-link">
                 <a href="homepage">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
@@ -241,7 +241,7 @@
                             </div>
 
                             <div class="am-u-sm-12">
-                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black am-table-hover " id="example-r">
+                                <table  class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                     <thead>
                                         <tr>
                                             <th>编号</th>
@@ -281,8 +281,6 @@
         </div>
     </div>
 </div>
-</div>
-
 
 <script>
 
@@ -293,7 +291,7 @@
 
     function updateRow(id) {
         var url = 'artical-update?id=' + id;
-        window.location.href = url;
+        window.open(url);
 
 
     }

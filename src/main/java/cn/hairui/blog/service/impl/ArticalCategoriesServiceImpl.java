@@ -1,13 +1,13 @@
 package cn.hairui.blog.service.impl;
 
-import cn.hairui.blog.mapper.ArticalCategoriesMapper;
-import cn.hairui.blog.model.ArticalCategories;
-import cn.hairui.blog.repository.ArticalCategoriesRepository;
-import cn.hairui.blog.service.ArticalCategoriesService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import cn.hairui.blog.model.ArticalCategories;
+import cn.hairui.blog.repository.ArticalCategoriesRepository;
+import cn.hairui.blog.service.ArticalCategoriesService;
 
 /**
  * @author lihairui
@@ -21,8 +21,8 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     private ArticalCategoriesRepository articalCategoriesRepository;
 
     @Override
-    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow) {
-        return articalCategoriesRepository.queryArticalCategoriesByIsShow(isShow);
+    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow,int maxSize) {
+        return articalCategoriesRepository.queryArticalCategoriesByIsShow(isShow,maxSize);
     }
 
     @Override

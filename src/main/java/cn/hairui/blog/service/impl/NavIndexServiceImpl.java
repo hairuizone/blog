@@ -27,5 +27,10 @@ public class NavIndexServiceImpl implements NavIndexService {
     public List<NavIndex> queryNavIndexList() {
         return navIndexMapper.queryNavIndexList();
     }
+    
+    @Override
+    public List<NavIndex> queryNavIndexListLimited(int maxSize) {
+        return navIndexMapper.queryNavIndexListLimited(maxSize);
+    }
 
 }

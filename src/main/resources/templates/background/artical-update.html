@@ -28,6 +28,10 @@
     <link href="../editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../editormd/editormd.min.js"></script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[name='tittle']").focus();
+        });
+
         var editor;
         editor = $(function () {
             editormd("content", {
@@ -269,7 +273,7 @@
                                     <div class="am-u-sm-9">
 
 
-                                        <input th:value="${artical.tittle}" type="text" class="tpl-form-input"
+                                        <input id="tittle" th:value="${artical.tittle}" type="text" class="tpl-form-input"
                                                name="tittle" placeholder="请输入标题文字">
                                         <small>请填写标题文字10-30字左右。</small>
                                     </div>
@@ -295,9 +299,7 @@
                                         <label class="am-radio">
                                             <input type="radio" name="type" id="radio_zz" class="radio" value="ZZ" data-am-ucheck> 转载
                                         </label>
-                                        <!--<label class="am-radio am-danger">
-                                            <input type="radio" name="radio" class="radio" value="XG" data-am-ucheck> 修改
-                                        </label>-->
+
                                     </div>
                                 </div>
 
@@ -424,8 +426,7 @@
                                   th:text="${artical.content}"></textarea>
                                             <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
                                             <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
-                                            <textarea class="editormd-html-textarea" name="editorhtml"
-                                                      id="editorhtml"></textarea></div>
+                                            <textarea class="editormd-html-textarea"></textarea></div>
 
                                     </div>
                                 </div>
@@ -449,7 +450,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 

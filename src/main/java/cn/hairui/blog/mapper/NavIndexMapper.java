@@ -17,4 +17,7 @@ public interface NavIndexMapper {
 
     @Select("select * from nav_index")
     public List<NavIndex> queryNavIndexList();
+
+    @Select("select * from nav_index limit 0,#{maxSize}")
+    public List<NavIndex> queryNavIndexListLimited(int maxSize);
 }

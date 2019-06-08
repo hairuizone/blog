@@ -85,4 +85,24 @@ public class ArticalRepository {
     public Integer addArtical(Artical artical) {
         return articalMapper.addArtical(artical);
     }
+
+    public List<String> queryArticalTagsLimited(int maxSize) {
+        List<String> result = new LinkedList<>();
+        List<String> tags = articalMapper.queryAllArticalTags();
+        for (String tag : tags
+        ) {
+            String[] args = tag.split("/");
+            for (String arg : args
+            ) {
+
+                if (!result.contains(arg.replaceAll("#", ""))) {
+                    result.add(arg.replaceAll("#", ""));
+                }
+            }
+        }
+        if(result.size() > maxSize) {
+            result = result.subList(0, maxSize);
+        }
+        return result;
+    }
 }

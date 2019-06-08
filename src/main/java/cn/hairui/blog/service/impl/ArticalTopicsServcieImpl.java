@@ -1,13 +1,13 @@
 package cn.hairui.blog.service.impl;
 
-import cn.hairui.blog.mapper.ArticalTopicsMapper;
-import cn.hairui.blog.model.ArticalTopics;
-import cn.hairui.blog.repository.ArticalTopicsRepository;
-import cn.hairui.blog.service.ArticalTopicsService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import cn.hairui.blog.model.ArticalTopics;
+import cn.hairui.blog.repository.ArticalTopicsRepository;
+import cn.hairui.blog.service.ArticalTopicsService;
 
 /**
  * @author lihairui
@@ -17,12 +17,17 @@ import java.util.List;
 @Service
 public class ArticalTopicsServcieImpl implements ArticalTopicsService {
 
-    @Autowired
-    private ArticalTopicsRepository articalTopicsRepository;
+	@Autowired
+	private ArticalTopicsRepository articalTopicsRepository;
 
-    @Override
-    public List<ArticalTopics> qeuryArticalTopicsList() {
+	@Override
+	public List<ArticalTopics> qeuryArticalTopicsList() {
 
-        return articalTopicsRepository.queryArticalTopicsList();
-    }
+		return articalTopicsRepository.queryArticalTopicsList();
+	}
+
+	@Override
+	public List<ArticalTopics> qeuryArticalTopicsListLimited(int maxSize) {
+		return articalTopicsRepository.queryArticalTopicsListLimited(maxSize);
+	}
 }

@@ -11,5 +11,18 @@ import java.util.List;
  */
 public interface ArticalTopicsService {
 
-    public List<ArticalTopics> qeuryArticalTopicsList();//获取所有专题
+	/**
+	 * 
+	 * @Description 获取所有专题
+	 * @return
+	 */
+    public List<ArticalTopics> qeuryArticalTopicsList();
+
+    /**
+     * 
+     * @Description 获取指定数量的专题
+     * @param maxSize 数量
+     * @return
+     */
+	public List<ArticalTopics> qeuryArticalTopicsListLimited(int maxSize);
 }

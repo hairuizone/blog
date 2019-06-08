@@ -10,5 +10,18 @@ import java.util.List;
  */
 public interface BooksService {
 
+	/**
+	 * 
+	 * @Description 获取所有书籍
+	 * @return
+	 */
     public List<Books> queryBooksList();
+
+    /**
+     * 
+     * @Description 获取指定数量书籍
+     * @param maxSize 数量
+     * @return
+     */
+	public List<Books> queryBooksListLimited(int maxSize);
 }

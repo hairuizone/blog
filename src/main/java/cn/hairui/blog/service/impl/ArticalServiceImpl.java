@@ -1,16 +1,13 @@
 package cn.hairui.blog.service.impl;
 
-import cn.hairui.blog.mapper.ArticalMapper;
-import cn.hairui.blog.model.Artical;
-import cn.hairui.blog.repository.ArticalRepository;
-import cn.hairui.blog.service.ArticalService;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.sound.midi.Soundbank;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import cn.hairui.blog.model.Artical;
+import cn.hairui.blog.repository.ArticalRepository;
+import cn.hairui.blog.service.ArticalService;
 
 /**
  * @author laoganbu
@@ -81,4 +78,9 @@ public class ArticalServiceImpl implements ArticalService {
     public Integer addArtical(Artical artical) {
         return articalRepository.addArtical(artical);
     }
+
+	@Override
+	public List<String> queryAllArticalTagsLimited(int maxSize) {
+		return articalRepository.queryArticalTagsLimited(maxSize);
+	}
 }

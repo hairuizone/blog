@@ -21,4 +21,8 @@ public class ArticalTopicsRepository {
     public List<ArticalTopics> queryArticalTopicsList() {
         return articalTopicsMapper.queryArticalTopicsList();
     }
+
+    public List<ArticalTopics> queryArticalTopicsListLimited(int maxSize) {
+        return articalTopicsMapper.queryArticalTopicsListLimited(maxSize);
+    }
 }

@@ -15,7 +15,16 @@ public class MyInfo {
     public String website;
     public String qq;
     public String wechat;
+    public String webroot;
 
+
+    public String getWebroot() {
+        return webroot;
+    }
+
+    public void setWebroot(String webroot) {
+        this.webroot = webroot;
+    }
 
     public int getId() {
         return id;
