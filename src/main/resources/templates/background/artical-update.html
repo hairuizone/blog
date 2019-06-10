@@ -339,9 +339,6 @@
                                     <div class="am-u-sm-9">
                                         <select data-am-selected="{searchBox: 1}" style="display: none;" name="navId"
                                                 id="navId" th:value="${artical.navId}">
-                                            <option>请选择</option>
-                                            <option th:each="navIndex:${navList}" th:value="${navIndex.id}"
-                                                    th:text="${navIndex.name}"></option>
 
                                         </select>
                                         <small style="color: red">（必选）</small>
@@ -354,10 +351,6 @@
                                     <div class="am-u-sm-9">
                                         <select data-am-selected="{searchBox: 1}" style="display: none;"
                                                 name="categories" id="categories">
-                                            <option>请选择</option>
-                                            <option th:each="category:${acList}" th:value="${category.id}"
-                                                    th:text="${category.categoryName}"></option>
-
                                         </select>
                                         <small style="color: red">（必选）</small>
 
@@ -369,10 +362,7 @@
                                     <div class="am-u-sm-9">
                                         <select data-am-selected="{searchBox: 1}" style="display: none;"
                                                 name="topicId" id="topicId">
-
                                             <option selected="selected">请选择</option>
-                                            <option th:each="topic:${topicList}" th:value="${topic.id}"
-                                                    th:text="${topic.topicName}"></option>
 
                                         </select>
                                         <small style="color: red">（专题非必选）</small>
@@ -484,6 +474,49 @@
         }
 
 
+        //首页分类
+        var size = [[${navList.size()}]];
+        var nlist = [[${navList}]];
+        for (i = 0; i < size; i++) {
+            var id = nlist[i].id;
+            var name = nlist[i].name;
+            var text = "<option value="+id+">"+name+"</option>";
+            $("#navId").append(text);
+        }
+
+        var chosenId = [[${artical.navId}]];
+       // $('#navId').attr('value',chosenId);
+        $("#navId").val(chosenId);
+
+
+        //分类
+        var size = [[${acList.size()}]];
+        var nlist = [[${acList}]];
+        for (i = 0; i < size; i++) {
+            var id = nlist[i].id;
+            var name = nlist[i].categoryName;
+            var text = "<option value="+id+">"+name+"</option>";
+            $("#categories").append(text);
+        }
+
+        var chosenId = [[${artical.categories}]];
+        // $('#navId').attr('value',chosenId);
+        $("#categories").val(chosenId);
+
+
+        //专题
+        var size = [[${topicList.size()}]];
+        var nlist = [[${topicList}]];
+        for (i = 0; i < size; i++) {
+            var id = nlist[i].id;
+            var name = nlist[i].topicName;
+            var text = "<option value="+id+">"+name+"</option>";
+            $("#topicId").append(text);
+        }
+
+        var chosenId = [[${artical.topicId}]];
+        // $('#navId').attr('value',chosenId);
+        $("#topicId").val(chosenId);
 
 
     });
@@ -575,7 +608,7 @@
         }
 
         var navId = $('#navId').val();
-        if (navId == "请选择") {
+        if (navId == "") {
             AMUI.dialog.alert({
                 title: '提示信息',
                 content: '首页分类必选',
@@ -586,7 +619,7 @@
         }
 
         var categories = $('#categories').val();
-        if (categories == "请选择") {
+        if (categories == "") {
             AMUI.dialog.alert({
                 title: '提示信息',
                 content: '文章分类必选',

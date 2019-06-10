@@ -140,8 +140,13 @@ a:hover {
 }
 .content-list  a {
     color: grey;
-    font-size: 15px;
+    font-size: 13px;
     width: 80%;
+}
+.content-list  a:hover {
+    color: #d43f3a;
+    font-weight: bold;
+    text-underline: none;
 }
 /*tab_buttons*/
 .tab_buttons { margin-bottom: 10px; width: 100%; overflow: hidden; border-bottom: #e4e3e3 1px solid;/* position: relative; */ }
