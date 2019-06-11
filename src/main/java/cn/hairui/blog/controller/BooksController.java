@@ -15,13 +15,13 @@ import java.util.List;
  * @date: 2019/3/27 21:39
  */
 @Controller
-@RequestMapping(value = "/bg")
+
 public class BooksController {
 
     @Autowired
     private BooksService booksService;
 
-    @RequestMapping(value = "books-list")
+    @RequestMapping(value = "/manage/books-list")
     public String listBooks(Model model){
         List<Books> booksList = booksService.queryBooksList();
         model.addAttribute("booksList",booksList);

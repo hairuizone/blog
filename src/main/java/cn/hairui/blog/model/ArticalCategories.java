@@ -11,6 +11,15 @@ public class ArticalCategories {
     private String isShow;//是否展示
     private Integer showOrder;//展示顺序
     private Integer articalCount;//文章数量
+    private String introduction;
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
 
     public Integer getId() {
         return id;
@@ -50,5 +59,16 @@ public class ArticalCategories {
 
     public void setArticalCount(Integer articalCount) {
         this.articalCount = articalCount;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticalCategories{" +
+                "id=" + id +
+                ", categoryName='" + categoryName + '\'' +
+                ", isShow='" + isShow + '\'' +
+                ", showOrder=" + showOrder +
+                ", articalCount=" + articalCount +
+                '}';
     }
 }

@@ -15,13 +15,12 @@ import java.util.List;
  * @date: 2019/3/27 21:23
  */
 @Controller
-@RequestMapping(value = "/bg")
 public class ArticalTopicsController {
 
     @Autowired
     private ArticalTopicsService articalTopicsService;
 
-    @RequestMapping(value = "topic-list")
+    @RequestMapping(value = "/manage/topic-list")
     public String listArticalTopics(Model model) {
         List<ArticalTopics> articalTopicsList = articalTopicsService.qeuryArticalTopicsList();
         model.addAttribute("topicList", articalTopicsList);

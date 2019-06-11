@@ -49,7 +49,9 @@ public class ArticalController {
     @Autowired
     private MyInfoService myInfoService;
 
-    @RequestMapping(value = "/bg/artical-list", method = RequestMethod.GET)
+    /*********后台控制********/
+
+    @RequestMapping(value = "/manage/artical-list", method = RequestMethod.GET)
     public String listArtical(Model model) {
 
         List<Artical> articalList = articalService.queryArticalListByCond("1", null);
@@ -61,7 +63,7 @@ public class ArticalController {
         return "background/artical-list";
     }
 
-    @RequestMapping(value = "/bg/artical-add",method = RequestMethod.GET)
+    @RequestMapping(value = "/manage/artical-add",method = RequestMethod.GET)
     public  String addArtical(Model model){
         List<ArticalCategories> acList = articalCategoriesService.qeuryArticalCategoriesList();
         model.addAttribute("acList", acList);
@@ -79,7 +81,7 @@ public class ArticalController {
         return "background/artical-add";
     }
 
-    @RequestMapping(value = "/bg/artical-adddata" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/manage/artical-adddata" ,method = RequestMethod.POST)
     public String addArticalDAta(@ModelAttribute Artical artical){
 
         //随机设置封面图
@@ -98,7 +100,7 @@ public class ArticalController {
 
         return "redirect:artical-list";
     }
-    @RequestMapping(value = "/bg/artical-update", method = RequestMethod.GET)
+    @RequestMapping(value = "/manage/artical-update", method = RequestMethod.GET)
     public String updateArtical(Integer id, Model model) {
 
         if (id == null) {
@@ -119,7 +121,7 @@ public class ArticalController {
         return "background/artical-update";
     }
 
-    @RequestMapping(value = "/bg/artical-updatedata", method = RequestMethod.POST)
+    @RequestMapping(value = "/manage/artical-updatedata", method = RequestMethod.POST)
     public String updateArticalData(@ModelAttribute Artical artical, Model model) {
         /*
 
@@ -140,7 +142,7 @@ public class ArticalController {
         return "redirect:artical-list";
     }
 
-    @RequestMapping(value = "/bg/artical-delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/manage/artical-delete", method = RequestMethod.POST)
     @ResponseBody
     public Map deleteArtical(String id, HttpServletRequest httpServletRequest) {
         Map map = new HashMap();
@@ -153,6 +155,15 @@ public class ArticalController {
         return map;
     }
 
+
+
+
+
+
+
+
+
+    /**************前台控制**************/
     @RequestMapping(value = "artical-view")
     public String viewArtical(String type,int id,Model model){
         System.out.println(type);

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="icon" href="../img/favicon.png"/>
+    <link rel="icon" href="/img/favicon.png">
     <link rel="apple-touch-icon-precomposed" href="../background/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
     <script src="../background/assets/js/echarts.min.js"></script>
@@ -155,7 +155,7 @@
         <!-- 菜单 -->
         <ul class="sidebar-nav">
 
-            <li class="sidebar-nav-heading"><span>系统管理</span></li>
+            <li class="sidebar-nav-heading">系统管理</span></li>
             <li class="sidebar-nav-link">
                 <a href="homepage">
                     <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
@@ -167,12 +167,12 @@
                 </a>
             </li>
             <li class="sidebar-nav-link ">
-                <a href="artical-list" class="active">
+                <a href="artical-list">
                     <i class="am-icon-table sidebar-nav-link-logo "></i> 文章管理
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="categories-list">
+                <a href="categories-list" class="active">
                     <i class="am-icon-calendar sidebar-nav-link-logo"></i> 分类管理
                 </a>
             </li>
@@ -199,264 +199,181 @@
     <!--公共部分-end-->
 
     <!-- 内容区域 -->
+
+
+
+
     <div class="tpl-content-wrapper">
+
+
+
         <div class="row-content am-cf">
+
+
             <div class="row">
+
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title  am-cf">文章列表</div>
-
+                            <div class="widget-title am-fl">添加分类</div>
 
                         </div>
-                        <div class="widget-body  am-fr">
+                        <div class="widget-body am-fr">
 
-                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                            <form class="am-form tpl-form-border-form tpl-form-border-br" id="categories-form" type="post"  >
                                 <div class="am-form-group">
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <button type="button"
-                                                    class="am-btn am-btn-default am-btn-success addArticalBtn"><span
-                                                    class="am-icon-plus"></span> 新增
-                                            </button>
-                                        </div>
+                                    <label class="am-u-sm-3 am-form-label">分类名称 <span class="tpl-form-line-small-title">Type Name</span></label>
+                                    <div class="am-u-sm-6">
+                                        <input type="text" class="tpl-form-input" name="categoryName" placeholder="请输入分类名称文字10-20字左右" >
+                                    </div>
+                                    <div class="am-u-sm-3">
+                                        <small style="color: red">（必填）</small>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
-                                <div class="am-form-group tpl-table-list-select">
-                                    <select data-am-selected="{btnSize: 'sm'}" id="categories">
-                                        <option value="">所有类别</option>
 
-                                    </select>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">是否首页展示 <span class="tpl-form-line-small-title">Is Show In Homepage</span></label>
+                                    <div class="am-u-sm-6">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="isShow" onchange="setShowOrder();" >
+                                            <option value="Y" >是</option>
+                                            <option value="N" selected>否</option>
+                                        </select>
+                                    </div>
+                                    <div class="am-u-sm-3">
+                                        <small style="color: red">（必选）</small>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
-                                <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                    <input type="text" class="am-form-field ">
-                                    <span class="am-input-group-btn">
-                                        <button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>
-                                    </span>
+
+
+
+                                <div class="am-form-group" id="zsfsbox" hidden>
+                                    <label class="am-u-sm-3 am-form-label">展示方式 <span class="tpl-form-line-small-title">Show Order</span></label>
+                                    <div class="am-u-sm-6">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="showOrder" onchange="setShowOrder();" >
+                                            <option value="1" selected>置顶展示</option>
+                                            <option value="0" >追加展示</option>
+                                        </select>
+                                    </div>
+                                    <div class="am-u-sm-3">
+                                        <small style="color: red">（必选）</small>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="am-u-sm-12">
-                                <table  class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
-                                    <thead>
-                                        <tr>
-                                            <th>编号</th>
-                                            <th>文章标题</th>
-                                            <th>作者</th>
-                                            <th>分类</th>
-                                            <th>时间</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
 
-                                    <tbody>
-                                        <tr class="gradeX"></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="am-u-lg-12 am-cf">
 
-                                <div class="am-fr">
-                                    <ul class="am-pagination tpl-pagination">
-                                        <li class="am-disabled"><a href="#">«</a></li>
 
-                                        <li class="am-active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
 
-                                        <li><a href="#">»</a></li>
-                                    </ul>
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">分类介绍 <span class="tpl-form-line-small-title">Type Introduce</span></label>
+                                    <div class="am-u-sm-9">
+                                        <textarea class="" name="introduction" rows="10" id="user-intro" placeholder="请对分类进行简单描述"></textarea>
+                                    </div>
                                 </div>
-                            </div>
+
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">提交</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>
+</div>
+
 
 <script>
 
-    $('.addArticalBtn').click(function () {
-        var url = 'artical-add'
-        window.location.href = url;
-    });
+    function setShowOrder(){
+        var isShow = $("select[name='isShow']").val();
+        if(isShow == "Y"){
+            $('#zsfsbox').show();
+        }else{
+            $('#zsfsbox').hide();
 
-    function updateRow(id) {
-        var url = 'artical-update?id=' + id;
-        window.open(url);
-
-
+        }
     }
 
-    function deleteRow(id) {
-       /* AMUI.dialog.confirm({
-            title: '错误提示',
-            content: '正文内容',
+    $('.submit-btn').click(function () {
 
-            onConfirm: function () {
-                console.log('onConfirm')
-            }
-        });*/
-
-        var r = confirm("删除后将不可恢复，是否确定继续？");
-        if (r == true) {
-            $.ajax({
-                type: "post",
-                url: "artical-delete",
-                data: {
-                    id: id
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if (data.flag == "success") {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除成功',
-                            onConfirm: function () {
-                                console.log('close');
-                                window.location.href = "artical-list";
-                            }
-                        });
-
-                    } else {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除失败，请重试',
-                            onConfirm: function () {
-                                console.log('close');
-                                window.location.href = "artical-list";
-                            }
-                        });
-                    }
-                },
-                error: function () {
-                    AMUI.dialog.alert({
-                        title: '提示信息',
-                        content: '删除成功',
-                        onConfirm: function () {
-                            console.log('close');
-                            window.location.href = "artical-list";
-                        }
-                    });
+        var categoryName = $("input[name='categoryName']").val();
+        if (categoryName == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '分类名称为必填',
+                onConfirm: function () {
                 }
             });
-        } else {
             return;
         }
-        // AMUI.dialog.confirm的确定有bug 故不使用
-        /*AMUI.dialog.confirm({
-            title: '是否确定删除',
-            content:'删除后将不可恢复，是否继续？',
-            onConfirm: function() {
-                $.ajax({
-                    type: "post",
-                    url: "artical-delete",
-                    data: {
-                        id: id
-                    },
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.flag == "success") {
-                            AMUI.dialog.alert({
-                                title: '提示信息',
-                                content: '删除成功',
-                                onConfirm: function () {
-                                    console.log('close');
-                                    window.location.href = "artical-list";
-                                }
-                            });
 
-                        } else {
-                            AMUI.dialog.alert({
-                                title: '提示信息',
-                                content: '删除失败，请重试',
-                                onConfirm: function () {
-                                    console.log('close');
-                                    window.location.href = "artical-list";
-                                }
-                            });
+
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "categories-adddata" ,//url
+            data: $('#categories-form').serialize(),
+            success: function (result) {
+                var flag = result.flag;
+                if (flag == "success") {
+                    AMUI.dialog.alert({
+                        title: '提示信息',
+                        content: '创建分类成功',
+                        onConfirm: function () {
+                            window.location = "categories-list";
                         }
-                    },
-                    error: function () {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除成功',
-                            onConfirm: function () {
-                                console.log('close');
-                                window.location.href = "artical-list";
-                            }
-                        });
+                    });
+                }else{
+                    var message = result.message;
+                    AMUI.dialog.alert({
+                        title: '错误提示',
+                        content: '创建分类失败，错误原因：'+message,
+                        onConfirm: function () {
+                        }
+                    });
+                    return;
+                }
+            },
+            error : function() {
+                AMUI.dialog.alert({
+                    title: '错误提示',
+                    content: '创建分类失败',
+                    onConfirm: function () {
                     }
                 });
-            },
-            onCancel: function() {
                 return;
             }
-        });*/
+        });
 
 
-    }
+
+        //document.getElementById("categories-form").submit();
+    });
+
 </script>
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    var articalList = [[${articalList}]];
-    var size = articalList.length;
-    for (var i = 1; i <= size; i++) {
-        var x = document.getElementById('example-r').insertRow(i)
-        var id = x.insertCell(0)
-        var tittle = x.insertCell(1)
-        var author = x.insertCell(2)
-        var categories = x.insertCell(3)
-        var createDate = x.insertCell(4)
-        var div = x.insertCell(5)
-        id.innerHTML = articalList[i - 1].id;
-        tittle.innerHTML = articalList[i - 1].tittle;
-        author.innerHTML = articalList[i - 1].author;
-        /*categories.innerHTML = articalList[i - 1].categories;*/
-        //这里的翻译比较丑陋 需要优化
-        var cateidx = articalList[i - 1].categories;
-        if (cateidx == '1') {
-            categories.innerHTML = 'JAVA基础知识';
-        } else if (cateidx == '2') {
-            categories.innerHTML = 'SpringBoot';
-        } else if (cateidx == '3') {
-            categories.innerHTML = '微服务架构';
-        } else if (cateidx == '4') {
-            categories.innerHTML = '大数据';
-        } else if (cateidx == '5') {
-            categories.innerHTML = '操作系统';
-        } else if (cateidx == '6') {
-            categories.innerHTML = '博文鉴赏';
-        } else {
-            categories.innerHTML = articalList[i - 1].categories;
-        }
-
-
-        createDate.innerHTML = articalList[i - 1].createDate;
-        div.innerHTML = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);onclick=updateRow(' + articalList[i - 1].id + ');" class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);onclick=deleteRow(' + articalList[i - 1].id + ')" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
-    }
-
-   /* var categoriesList = [[${categoriesList}]];
-    var size2 = categoriesList.length;
-    var opt=document.getElementById("categories");
-
-    for (var i = 1; i <= size2; i++) {
-        opt.options.add(new Option(categoriesList[i].categoryName,categoriesList[i].id));
-    }*/
-
-
-
-    /*]]>*/
-</script>
 
 <script src="../background/assets/js/amazeui.min.js"></script>
 <script src="../background/assets/js/amazeui.dialog.min.js"></script>

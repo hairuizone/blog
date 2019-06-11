@@ -29,4 +29,19 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     public List<ArticalCategories> qeuryArticalCategoriesList() {
         return articalCategoriesRepository.queryArticalCategoriesList();
     }
+
+    @Override
+    public int addArticalCategories(ArticalCategories articalCategories) {
+        return articalCategoriesRepository.addArticalCategories(articalCategories);
+    }
+
+    @Override
+    public int qeuryArticalCategoriesByName(String categoryName) {
+        return articalCategoriesRepository.qeuryArticalCategoriesByName(categoryName);
+    }
+
+    @Override
+    public int queryArticalCategoriesMaxShowOrder() {
+        return articalCategoriesRepository.queryArticalCategoriesMaxShowOrder();
+    }
 }

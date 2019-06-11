@@ -26,4 +26,23 @@ public class ArticalCategoriesRepository {
     public List<ArticalCategories> queryArticalCategoriesList() {
         return articalCategoriesMapper.queryArticalCategoriesList();
     }
+
+    public int addArticalCategories(ArticalCategories articalCategories) {
+        int id = 0;
+        try {
+            id = articalCategoriesMapper.addArticalCategories(articalCategories);
+            return id;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return id;
+    }
+
+    public int qeuryArticalCategoriesByName(String categoryName) {
+        return articalCategoriesMapper.qeuryArticalCategoriesByName(categoryName);
+    }
+
+    public int queryArticalCategoriesMaxShowOrder() {
+        return articalCategoriesMapper.queryArticalCategoriesMaxShowOrder();
+    }
 }

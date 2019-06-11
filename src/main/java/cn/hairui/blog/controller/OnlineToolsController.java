@@ -15,13 +15,12 @@ import java.util.List;
  * @date: 2019/3/27 21:48
  */
 @Controller
-@RequestMapping(value = "/bg")
 public class OnlineToolsController {
 
     @Autowired
     private OnlineToolsService onlineToolsService;
 
-    @RequestMapping(value = "tools-list")
+    @RequestMapping(value = "/manage/tools-list")
     public String listOnlineTools(Model model){
         List<OnlineTools> onlineToolsList = onlineToolsService.queryOnlineToolsList();
         model.addAttribute("toolsList",onlineToolsList);

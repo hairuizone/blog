@@ -26,4 +26,24 @@ public interface ArticalCategoriesService {
      * @return
      */
     public List<ArticalCategories> qeuryArticalCategoriesList();
+
+	/**
+	 *
+	 * @param articalCategories
+	 * @return 插入分类编号
+	 */
+	public int addArticalCategories(ArticalCategories articalCategories);
+
+	/**
+	 * 通过分类名称查询该分类是否已经存在
+	 * @param categoryName
+	 * @return 返回分类名称对应的分类数量
+	 */
+	public int qeuryArticalCategoriesByName(String categoryName);
+
+	/**
+	 * 获取当前最大排序编号
+	 * @return
+	 */
+	public int queryArticalCategoriesMaxShowOrder();
 }
