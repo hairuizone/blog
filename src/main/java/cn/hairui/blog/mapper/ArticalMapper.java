@@ -103,4 +103,9 @@ public interface ArticalMapper {
     public Integer updateArtical(Artical artical);
 
 
+    @Select("select count(1) from artical where CATEGORIES=#{id}")
+    public int queryArticalsCountByArticalCategorie(Integer id);
+
+    @Update("update artical set CATEGORIES=null where CATEGORIES=#{id}")
+    public int cleanArticalTopics(int id);
 }

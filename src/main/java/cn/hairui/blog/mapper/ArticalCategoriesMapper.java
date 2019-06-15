@@ -1,10 +1,7 @@
 package cn.hairui.blog.mapper;
 
 import cn.hairui.blog.model.ArticalCategories;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -31,4 +28,13 @@ public interface ArticalCategoriesMapper {
 
     @Select("select max(SHOW_ORDER) from artical_categories")
     public int queryArticalCategoriesMaxShowOrder();
+
+    @Select("select * from artical_categories where id=#{id}")
+    public ArticalCategories queryArticalCategoriesDetailById(Integer id);
+
+    @Update("update artical_categories set CATEGORY_NAME=#{categoryName},IS_SHOW=#{isShow},SHOW_ORDER=#{showOrder},INTRODUCTION=#{introduction} where id=#{id}")
+    public int updateArticalCategories(ArticalCategories articalCategories);
+
+    @Delete("delete from artical_categories where id=#{id}")
+    public int deleteArticalCategoriesData(int id);
 }

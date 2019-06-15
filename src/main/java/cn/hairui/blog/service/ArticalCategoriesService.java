@@ -46,4 +46,20 @@ public interface ArticalCategoriesService {
 	 * @return
 	 */
 	public int queryArticalCategoriesMaxShowOrder();
+
+	/**
+	 * 根据编号查询分类信息
+	 * @param id
+	 * @return
+	 */
+    public ArticalCategories queryArticalCategoriesDetailById(Integer id);
+
+	public int updateArticalCategories(ArticalCategories articalCategories);
+
+	/**
+	 * 根据分类编号删除分类信息
+	 * @param id
+	 * @return
+	 */
+    public int deleteArticalCategoriesData(int id);
 }

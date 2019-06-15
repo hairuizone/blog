@@ -25,4 +25,24 @@ public class ArticalTopicsRepository {
     public List<ArticalTopics> queryArticalTopicsListLimited(int maxSize) {
         return articalTopicsMapper.queryArticalTopicsListLimited(maxSize);
     }
+
+    public int qeuryArticalTopicsByName(String topicName) {
+        return articalTopicsMapper.qeuryArticalTopicsByName(topicName);
+    }
+
+    public int addArticalTopics(ArticalTopics articalTopics) {
+        return articalTopicsMapper.addArticalTopics(articalTopics);
+    }
+
+    public ArticalTopics queryArticalTopicsDetailById(int id) {
+        return articalTopicsMapper.queryArticalTopicsDetailById(id);
+    }
+
+    public int updateArticalTopicsData(ArticalTopics articalTopics) {
+        return articalTopicsMapper.updateArticalTopicsData(articalTopics);
+    }
+
+    public int deleteArticalTopics(int id) {
+        return articalTopicsMapper.deleteArticalTopics(id);
+    }
 }

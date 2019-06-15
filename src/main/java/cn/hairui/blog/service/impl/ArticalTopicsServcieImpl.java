@@ -30,4 +30,29 @@ public class ArticalTopicsServcieImpl implements ArticalTopicsService {
 	public List<ArticalTopics> qeuryArticalTopicsListLimited(int maxSize) {
 		return articalTopicsRepository.queryArticalTopicsListLimited(maxSize);
 	}
+
+	@Override
+	public int qeuryArticalTopicsByName(String topicName) {
+		return articalTopicsRepository.qeuryArticalTopicsByName(topicName);
+	}
+
+	@Override
+	public int addArticalTopics(ArticalTopics articalTopics) {
+		return articalTopicsRepository.addArticalTopics(articalTopics);
+	}
+
+	@Override
+	public ArticalTopics queryArticalTopicsDetailById(int id) {
+		return articalTopicsRepository.queryArticalTopicsDetailById(id);
+	}
+
+	@Override
+	public int updateArticalTopicsData(ArticalTopics articalTopics) {
+		return articalTopicsRepository.updateArticalTopicsData(articalTopics);
+	}
+
+	@Override
+	public int deleteArticalTopics(int id) {
+		return articalTopicsRepository.deleteArticalTopics(id);
+	}
 }

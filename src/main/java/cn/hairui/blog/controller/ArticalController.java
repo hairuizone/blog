@@ -10,8 +10,10 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.alibaba.druid.support.json.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -146,12 +148,17 @@ public class ArticalController {
     @ResponseBody
     public Map deleteArtical(String id, HttpServletRequest httpServletRequest) {
         Map map = new HashMap();
-        Integer num = articalService.deleteArticalById(id);
-        if(num == 1){
-            map.put("flag", "success");
-        }else{
-            map.put("flag", "failed");
+        try {
+            int num = articalService.deleteArticalById(id);
+            if(num == 1){
+                map.put("flag", "success");
+            }else{
+                map.put("flag", "failed");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
         return map;
     }
 
@@ -162,12 +169,30 @@ public class ArticalController {
 
 
 
+    @RequestMapping(value = "/manage/articals_query_categorie",method = RequestMethod.POST)
+    @ResponseBody
+    @Transactional
+    public String queryArticalsCountByArticalCategorie(int id, HttpServletRequest httpServletRequest){
+        Map map = new HashMap();
+        int count = articalService.queryArticalsCountByArticalCategorie(id);
+
+        if(count == 0){
+            map.put("flag","success");
+        }else{
+            map.put("flag","failed");
+            map.put("message","该分类下存在文章，不允许删除");
+        }
+
+        return JSONUtils.toJSONString(map);
+    }
+
+
+
+
 
     /**************前台控制**************/
     @RequestMapping(value = "artical-view")
     public String viewArtical(String type,int id,Model model){
-        System.out.println(type);
-        System.out.println(id);
         MyInfo myInfo = myInfoService.findMyInfoById(1);
         model.addAttribute("myinfo", myInfo);
 

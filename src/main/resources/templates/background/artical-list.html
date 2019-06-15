@@ -340,9 +340,8 @@
                 error: function () {
                     AMUI.dialog.alert({
                         title: '提示信息',
-                        content: '删除成功',
+                        content: '删除失败',
                         onConfirm: function () {
-                            console.log('close');
                             window.location.href = "artical-list";
                         }
                     });
@@ -442,7 +441,9 @@
 
 
         createDate.innerHTML = articalList[i - 1].createDate;
-        div.innerHTML = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);onclick=updateRow(' + articalList[i - 1].id + ');" class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);onclick=deleteRow(' + articalList[i - 1].id + ')" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
+        var idNo = articalList[i - 1].id;
+        var textHtml = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);" onclick=updateRow(' + idNo + '); class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>'
+        div.innerHTML = textHtml;
     }
 
    /* var categoriesList = [[${categoriesList}]];

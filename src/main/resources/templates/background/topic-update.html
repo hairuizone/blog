@@ -199,136 +199,132 @@
     <!--公共部分-end-->
 
     <!-- 内容区域 -->
+
     <div class="tpl-content-wrapper">
+
+
+
         <div class="row-content am-cf">
+
+
             <div class="row">
+
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title  am-cf">专题列表</div>
-
+                            <div class="widget-title am-fl">修改专题</div>
 
                         </div>
-                        <div class="widget-body  am-fr">
+                        <div class="widget-body am-fr">
 
-                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                            <form class="am-form tpl-form-border-form tpl-form-border-br" id="topic-form" type="post"  >
                                 <div class="am-form-group">
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <button type="button"
-                                                    class="am-btn am-btn-default am-btn-success addArticalCategoriesBtn"><span
-                                                    class="am-icon-plus"></span> 新增
-                                            </button>
-                                        </div>
+                                    <label class="am-u-sm-3 am-form-label">专题编号 <span class="tpl-form-line-small-title">Topic Id</span></label>
+                                    <div class="am-u-sm-3">
+                                        <input type="text" class="tpl-form-input" name="id" th:value="${articalTopics.id}" readonly >
+                                    </div>
+                                    <div class="am-u-sm-6">
                                     </div>
                                 </div>
-                            </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">专题名称 <span class="tpl-form-line-small-title">Topic Name</span></label>
+                                    <div class="am-u-sm-3">
+                                        <input type="text" class="tpl-form-input" name="topicName" th:value="${articalTopics.topicName}" placeholder="请输入分类名称文字10-30字左右" >
+                                    </div>
+                                    <div class="am-u-sm-6">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                </div>
 
-                            <div class="am-u-sm-12">
-                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black am-table-hover " id="example-r">
-                                    <thead>
-                                    <tr>
-                                        <th>编号</th>
-                                        <th>专题名称</th>
-                                        <th>文章数量</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">专题介绍 <span class="tpl-form-line-small-title">Type Introduce</span></label>
+                                    <div class="am-u-sm-6">
+                                        <textarea class="" name="introduction" rows="10" id="user-intro" th:text="${articalTopics.introduction}" placeholder="请对专题进行简单介绍"></textarea>
+                                    </div>
+                                    <div class="am-u-sm-3">
+                                    </div>
+                                </div>
 
-                                    <tbody>
-                                    <tr class="gradeX"></tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">提交</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
+
+
+
+
+
+
 </div>
 </div>
 
 
 <script language="JavaScript">
 
-    $('.addArticalCategoriesBtn').click(function () {
-        var url = 'topic-add'
-        window.location.href = url;
-    });
+    $('.submit-btn').click(function () {
 
-    function updateRow(id) {
-        var url = 'topic-update?id=' + id;
-        window.location.href = url;
-    }
-
-    function deleteRow(id) {
-
-        var r = confirm("删除专题后专题下的文章不会被删除，是否确定继续？");
-        if (r == true) {
-            $.ajax({
-                type: "post",
-                url: "topic-delete",
-                data: {
-                    id: id
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if (data.flag == "success") {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除成功',
-                            onConfirm: function () {
-                                window.location.href = "topic-list";
-                            }
-                        });
-
-                    } else {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除失败，请重试',
-                            onConfirm: function () {
-                                window.location.href = "topic-list";
-                            }
-                        });
-                    }
-                },
-                error: function () {
-                    AMUI.dialog.alert({
-                        title: '提示信息',
-                        content: '删除失败',
-                        onConfirm: function () {
-                            window.location.href = "topic-list";
-                        }
-                    });
+        var topicName = $("input[name='topicName']").val();
+        if (topicName == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '专题名称为必填',
+                onConfirm: function () {
                 }
             });
-        } else {
             return;
         }
-    }
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "topic-updatedata" ,//url
+            data: $('#topic-form').serialize(),
+            success: function (result) {
+                var flag = result.flag;
+                if (flag == "success") {
+                    AMUI.dialog.alert({
+                        title: '提示信息',
+                        content: '修改专题成功',
+                        onConfirm: function () {
+                            window.location = "topic-list";
+                        }
+                    });
+                }else{
+                    var message = result.message;
+                    AMUI.dialog.alert({
+                        title: '错误提示',
+                        content: '修改专题失败，错误原因：'+message,
+                        onConfirm: function () {
+                        }
+                    });
+                    return;
+                }
+            },
+            error : function() {
+                AMUI.dialog.alert({
+                    title: '错误提示',
+                    content: '修改专题失败',
+                    onConfirm: function () {
+                    }
+                });
+                return;
+            }
+        });
 
-</script>
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    var topicList = [[${topicList}]];
-    var size = topicList.length;
-    for (var i = 1; i <= size; i++) {
-        var x = document.getElementById('example-r').insertRow(i)
-        var id = x.insertCell(0)
-        var topName = x.insertCell(1)
-        var topCount = x.insertCell(2)
-        var div = x.insertCell(3)
-        id.innerHTML = topicList[i - 1].id;
-        topName.innerHTML = topicList[i - 1].topicName;
-        topCount.innerHTML = topicList[i - 1].articalCount;
-        var idNo = topicList[i - 1].id;
-        var textHtml = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);" onclick=updateRow(' + idNo + '); class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>'
-        div.innerHTML = textHtml;
-    }
-    /*]]>*/
+    });
+
+
 </script>
 
 <script src="../background/assets/js/amazeui.min.js"></script>

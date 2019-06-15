@@ -25,4 +25,39 @@ public interface ArticalTopicsService {
      * @return
      */
 	public List<ArticalTopics> qeuryArticalTopicsListLimited(int maxSize);
+
+	/**
+	 * 通过名称查询已经存在的专题名称数量
+	 * @param topicName
+	 * @return
+	 */
+    public int qeuryArticalTopicsByName(String topicName);
+
+	/**
+	 * 新增专题
+	 * @param articalTopics
+	 * @return 专题编号
+	 */
+	public int addArticalTopics(ArticalTopics articalTopics);
+
+	/**
+	 * 通过专题编号查找专题信息
+	 * @param id
+	 * @return 专题信息
+	 */
+	public ArticalTopics queryArticalTopicsDetailById(int id);
+
+	/**
+	 * 修改专题名称
+	 * @param articalTopics
+	 * @return
+	 */
+	public int updateArticalTopicsData(ArticalTopics articalTopics);
+
+	/**
+	 * 通过专题编号删除专题
+	 * @param id
+	 * @return
+	 */
+	public int deleteArticalTopics(int id);
 }

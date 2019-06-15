@@ -262,6 +262,90 @@
         var url = 'categories-update?id=' + id;
         window.location.href = url;
     }
+    function deleteRow(id) {
+
+        $.ajax({
+            type: "post",
+            url: "articals_query_categorie",
+            data: {
+                id: id
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.flag == "success") {
+                    deleteCategory(id);
+                } else {
+                    var message = data.message;
+                    AMUI.dialog.alert({
+                        title: '提示信息',
+                        content: '删除失败，错误原因：' + message,
+                        onConfirm: function () {
+                            window.location.href = "categories-list";
+                        }
+                    });
+                }
+            },
+            error: function () {
+                AMUI.dialog.alert({
+                    title: '提示信息',
+                    content: '删除失败',
+                    onConfirm: function () {
+                        window.location.href = "categories-list";
+                    }
+                });
+            }
+        });
+
+
+
+    }
+
+    function deleteCategory(id){
+        var r = confirm("删除后将不可恢复，是否确定继续？");
+        if (r == true) {
+            $.ajax({
+                type: "post",
+                url: "categories-delete",
+                data: {
+                    id: id
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.flag == "success") {
+                        AMUI.dialog.alert({
+                            title: '提示信息',
+                            content: '删除成功',
+                            onConfirm: function () {
+                                console.log('close');
+                                window.location.href = "categories-list";
+                            }
+                        });
+
+                    } else {
+                        AMUI.dialog.alert({
+                            title: '提示信息',
+                            content: '删除失败，请重试',
+                            onConfirm: function () {
+                                console.log('close');
+                                window.location.href = "categories-list";
+                            }
+                        });
+                    }
+                },
+                error: function () {
+                    AMUI.dialog.alert({
+                        title: '提示信息',
+                        content: '删除失败',
+                        onConfirm: function () {
+                            window.location.href = "categories-list";
+                        }
+                    });
+                }
+            });
+        } else {
+            return;
+        }
+    }
 
 </script>
 
@@ -278,7 +362,9 @@
         id.innerHTML = articalCategoriesList[i - 1].id;
         cateName.innerHTML = articalCategoriesList[i - 1].categoryName;
         cateCount.innerHTML = articalCategoriesList[i - 1].articalCount;
-        div.innerHTML = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);onclick=updateRow(' + articalCategoriesList[i - 1].id + ');" class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);onclick=deleteRow(' + articalCategoriesList[i - 1].id + ')" class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
+        var idNo = articalCategoriesList[i - 1].id;
+        var textHtml = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);"'+' onclick=updateRow('+idNo+') class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
+        div.innerHTML = textHtml;
     }
     /*]]>*/
 </script>

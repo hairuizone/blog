@@ -79,7 +79,17 @@ public class ArticalServiceImpl implements ArticalService {
         return articalRepository.addArtical(artical);
     }
 
-	@Override
+    @Override
+    public int queryArticalsCountByArticalCategorie(Integer id) {
+        return articalRepository.queryArticalsCountByArticalCategorie(id);
+    }
+
+    @Override
+    public int cleanArticalTopics(int id) {
+        return articalRepository.cleanArticalTopics(id);
+    }
+
+    @Override
 	public List<String> queryAllArticalTagsLimited(int maxSize) {
 		return articalRepository.queryArticalTagsLimited(maxSize);
 	}

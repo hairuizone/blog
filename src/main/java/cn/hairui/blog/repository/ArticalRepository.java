@@ -105,4 +105,12 @@ public class ArticalRepository {
         }
         return result;
     }
+
+    public int queryArticalsCountByArticalCategorie(Integer id) {
+        return articalMapper.queryArticalsCountByArticalCategorie(id);
+    }
+
+    public int cleanArticalTopics(int id) {
+        return articalMapper.cleanArticalTopics(id);
+    }
 }

@@ -43,5 +43,18 @@ public interface ArticalService {
     public Integer deleteArticalById(String id);//根据编号删除文章
 
     public Integer addArtical(Artical artical);//新增文章
-	
+
+    /**
+     * 通过分类编号查询文章数量
+     * @param id
+     * @return
+     */
+    public int queryArticalsCountByArticalCategorie(Integer id);
+
+    /**
+     * 将传递的专题编号清空
+     * @param id
+     * @return
+     */
+    public int cleanArticalTopics(int id);
 }

@@ -45,4 +45,16 @@ public class ArticalCategoriesRepository {
     public int queryArticalCategoriesMaxShowOrder() {
         return articalCategoriesMapper.queryArticalCategoriesMaxShowOrder();
     }
+
+    public ArticalCategories queryArticalCategoriesDetailById(Integer id) {
+        return articalCategoriesMapper.queryArticalCategoriesDetailById(id);
+    }
+
+    public int updateArticalCategories(ArticalCategories articalCategories) {
+        return articalCategoriesMapper.updateArticalCategories(articalCategories);
+    }
+
+    public int deleteArticalCategoriesData(int id) {
+       return articalCategoriesMapper.deleteArticalCategoriesData(id);
+    }
 }

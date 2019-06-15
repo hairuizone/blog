@@ -44,4 +44,19 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     public int queryArticalCategoriesMaxShowOrder() {
         return articalCategoriesRepository.queryArticalCategoriesMaxShowOrder();
     }
+
+    @Override
+    public ArticalCategories queryArticalCategoriesDetailById(Integer id) {
+        return articalCategoriesRepository.queryArticalCategoriesDetailById(id);
+    }
+
+    @Override
+    public int updateArticalCategories(ArticalCategories articalCategories) {
+        return articalCategoriesRepository.updateArticalCategories(articalCategories);
+    }
+
+    @Override
+    public int deleteArticalCategoriesData(int id) {
+        return articalCategoriesRepository.deleteArticalCategoriesData(id);
+    }
 }
