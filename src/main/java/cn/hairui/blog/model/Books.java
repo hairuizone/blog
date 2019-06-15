@@ -6,7 +6,6 @@ package cn.hairui.blog.model;
  */
 public class Books {
     private Integer id;//序号
-    private Integer bookId;//书籍编号
     private String bookName;//书籍名称
     private String author;//作者
     private String publishDate;//发布日期
@@ -20,14 +19,6 @@ public class Books {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
     }
 
     public String getBookName() {

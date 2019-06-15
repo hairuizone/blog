@@ -35,4 +35,15 @@ public class BooksServiceImpl implements BooksService {
     public int addBooks(Books books) {
         return booksMapper.addBooks(books);
     }
+
+    @Override
+    public int deleteBooks(int id) {
+        return booksMapper.deleteBooks(id);
+    }
+
+    @Override
+    public Books queryBooksDetialById(int id) {
+        return booksMapper.queryBooksDetialById(id);
+    }
+
 }

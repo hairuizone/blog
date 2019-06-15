@@ -26,4 +26,9 @@ public class OnlineToolsController {
         model.addAttribute("toolsList",onlineToolsList);
         return "background/tools-list";
     }
+    @RequestMapping(value = "/manage/tools-add")
+    public String addOnlineTools(){
+        return "background/tools-add";
+    }
+
 }

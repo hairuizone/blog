@@ -371,16 +371,16 @@
                 if (flag == "success") {
                     AMUI.dialog.alert({
                         title: '提示信息',
-                        content: '创建分类成功',
+                        content: '添加书籍成功',
                         onConfirm: function () {
-                            window.location = "categories-list";
+                            window.location = "books-list";
                         }
                     });
                 }else{
                     var message = result.message;
                     AMUI.dialog.alert({
                         title: '错误提示',
-                        content: '创建分类失败，错误原因：'+message,
+                        content: '添加书籍失败，错误原因：'+message,
                         onConfirm: function () {
                         }
                     });
@@ -390,7 +390,7 @@
             error : function() {
                 AMUI.dialog.alert({
                     title: '错误提示',
-                    content: '创建分类失败',
+                    content: '添加书籍失败',
                     onConfirm: function () {
                     }
                 });

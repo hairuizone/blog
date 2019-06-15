@@ -38,4 +38,20 @@ public interface BooksService {
 	 * @return
 	 */
 	public int addBooks(Books books);
+
+	/**
+	 * 删除指定书籍
+	 * @param id
+	 * @return
+	 */
+    public int deleteBooks(int id);
+
+	/**
+	 * 通过书籍编号获取书籍信息
+	 * @param id
+	 * @return
+	 */
+	public Books queryBooksDetialById(int id);
+
+
 }

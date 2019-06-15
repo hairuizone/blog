@@ -1,10 +1,7 @@
 package cn.hairui.blog.mapper;
 
 import cn.hairui.blog.model.Books;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -23,7 +20,13 @@ public interface BooksMapper {
     public int queryBooksDetialByBookName(String bookName);
 
 
-    @Insert("insert into books(BOOK_NAME,AUTHOR,PUBLISH_DATE,LOCAL_PATH) value(#{bookName},#{author},#{publishDate},#{localPath})")
+    @Insert("insert into books(BOOK_NAME,AUTHOR,PUBLISH_DATE,LOCAL_PATH,ADD_DATE) value(#{bookName},#{author},#{publishDate},#{localPath},#{addDate})")
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
     public int addBooks(Books books);
+
+    @Delete("delete from books where id=#{id}")
+    public int deleteBooks(int id);
+
+    @Select("select * from books where id=#{id}")
+    public Books queryBooksDetialById(int id);
 }

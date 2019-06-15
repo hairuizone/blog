@@ -3,14 +3,13 @@ package cn.hairui.blog.controller;
 import cn.hairui.blog.model.ArticalTopics;
 import cn.hairui.blog.model.Books;
 import cn.hairui.blog.service.BooksService;
+import cn.hairui.blog.util.FileUtil;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -19,6 +18,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -49,7 +50,7 @@ public class BooksController {
 
     @RequestMapping(value = "/manage/books-adddata")
     @ResponseBody
-    public String upLoadFile(HttpServletRequest request,String bookName,String Author,String publishDate) throws IOException {
+    public String addBooks(HttpServletRequest request,String bookName,String Author,String publishDate) throws IOException {
         Map map = new HashMap();
         String path = "";
         int num = booksService.queryBooksDetialByBookName(bookName);
@@ -81,17 +82,51 @@ public class BooksController {
             books.setAuthor(Author);
             books.setPublishDate(publishDate);
             books.setLocalPath(path);
+
+            Date date = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String openday = df.format(date);
+            books.setAddDate(openday);
             try {
                 int n = booksService.addBooks(books);
+                if(n == 1){
+                    map.put("flag","success");
+                }else{
+                    map.put("flag","failed");
+                    map.put("message","保存到数据库出现异常");
+                }
             }catch (Exception e){
                 e.printStackTrace();
                 map.put("flag","failed");
+                map.put("message",e.toString());
             }
-            map.put("flag","success");
         }
-
-
         return JSONUtils.toJSONString(map);
 
+    }
+
+
+    @RequestMapping(value = "/manage/books-delete",method = RequestMethod.POST)
+    @ResponseBody
+    @Transactional
+    public String deleteBooks(int id){
+        Map map = new HashMap();
+        try {
+            Books books = booksService.queryBooksDetialById(id);
+            if(books !=null){
+                String path = books.getLocalPath();
+                //删除指定路径下的文件
+                if(path != null){
+                    FileUtil.deleteSingleFile(path);
+                }
+            }
+            int num = booksService.deleteBooks(id);
+            map.put("flag","success");
+        }catch (Exception e){
+            e.printStackTrace();
+            map.put("flag","failed");
+        }
+
+        return JSONUtils.toJSONString(map);
     }
 }

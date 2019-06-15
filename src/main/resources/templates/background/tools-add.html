@@ -183,13 +183,13 @@
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="books-list" class="active">
+                <a href="books-list">
                     <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 推荐书籍管理
 
                 </a>
             </li>
             <li class="sidebar-nav-link">
-                <a href="tools-list">
+                <a href="tools-list" class="active">
                     <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 在线工具管理
 
                 </a>
@@ -199,133 +199,20 @@
     <!--公共部分-end-->
 
     <!-- 内容区域 -->
-    <div class="tpl-content-wrapper">
-        <div class="row-content am-cf">
-            <div class="row">
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                    <div class="widget am-cf">
-                        <div class="widget-head am-cf">
-                            <div class="widget-title  am-cf">书籍列表</div>
 
 
-                        </div>
-                        <div class="widget-body  am-fr">
 
-                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
-                                <div class="am-form-group">
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <button type="button"
-                                                    class="am-btn am-btn-default am-btn-success addBooksBtn"><span
-                                                    class="am-icon-plus"></span> 新增
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="am-u-sm-12">
-                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black am-table-hover " id="example-r">
-                                    <thead>
-                                    <tr>
-                                        <th>编号</th>
-                                        <th>专题名称</th>
-                                        <th>作者</th>
-                                        <th>发布日期</th>
-                                        <th>操作</th>
-                                    </tr>
-                                    </thead>
 
-                                    <tbody>
-                                    <tr class="gradeX"></tr>
-                                    </tbody>
-                                </table>
-                            </div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </div>
 
 
 <script language="JavaScript">
 
-    $('.addBooksBtn').click(function () {
-        var url = 'books-add'
-        window.location.href = url;
-    });
-
-    function deleteRow(id) {
-        var r = confirm("删除后将不可恢复，是否确定继续？");
-        if (r == true) {
-            $.ajax({
-                type: "post",
-                url: "books-delete",
-                data: {
-                    id: id
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if (data.flag == "success") {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除成功',
-                            onConfirm: function () {
-                                window.location.href = "books-list";
-                            }
-                        });
-
-                    } else {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除失败，请重试',
-                            onConfirm: function () {
-                            }
-                        });
-                    }
-                },
-                error: function () {
-                    AMUI.dialog.alert({
-                        title: '提示信息',
-                        content: '删除失败',
-                        onConfirm: function () {
-                        }
-                    });
-                }
-            });
-        } else {
-            return;
-        }
-    }
-
-
 </script>
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    var booksList = [[${booksList}]];
-    var size = booksList.length;
-    for (var i = 1; i <= size; i++) {
-        var x = document.getElementById('example-r').insertRow(i)
-        var id = x.insertCell(0)
-        var bookName = x.insertCell(1)
-        var author = x.insertCell(2)
-        var publishDate = x.insertCell(3)
-        var div = x.insertCell(4)
-        id.innerHTML = booksList[i - 1].id;
-        bookName.innerHTML = booksList[i - 1].bookName;
-        author.innerHTML = booksList[i - 1].author;
-        publishDate.innerHTML = booksList[i - 1].publishDate;
-        var idNo = booksList[i - 1].id;
-        var textHtml = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
-        div.innerHTML = textHtml;
-    }
-    /*]]>*/
-</script>
 
 <script src="../background/assets/js/amazeui.min.js"></script>
 <script src="../background/assets/js/amazeui.dialog.min.js"></script>
