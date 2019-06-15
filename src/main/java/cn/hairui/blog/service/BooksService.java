@@ -24,4 +24,18 @@ public interface BooksService {
      * @return
      */
 	public List<Books> queryBooksListLimited(int maxSize);
+
+	/**
+	 * 通过书籍名称查询书籍是否已经存在
+	 * @param bookName
+	 * @return 查询结果数量
+	 */
+    public int queryBooksDetialByBookName(String bookName);
+
+	/**
+	 * 添加书籍
+	 * @param books
+	 * @return
+	 */
+	public int addBooks(Books books);
 }

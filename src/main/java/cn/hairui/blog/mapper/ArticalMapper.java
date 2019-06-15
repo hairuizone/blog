@@ -106,6 +106,6 @@ public interface ArticalMapper {
     @Select("select count(1) from artical where CATEGORIES=#{id}")
     public int queryArticalsCountByArticalCategorie(Integer id);
 
-    @Update("update artical set CATEGORIES=null where CATEGORIES=#{id}")
+    @Update("update artical set TOPICID=null where TOPICID=#{id}")
     public int cleanArticalTopics(int id);
 }

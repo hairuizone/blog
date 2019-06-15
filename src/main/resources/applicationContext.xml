@@ -6,6 +6,13 @@
 
     <!--扫描注解-->
     <context:component-scan base-package="cn.hairui.blog"/>
+
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="104857600" />
+        <property name="maxInMemorySize" value="4096" />
+    </bean>
+
 <!--
     <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
     &lt;!&ndash;配置druid数据源&ndash;&gt;
