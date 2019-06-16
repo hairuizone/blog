@@ -200,7 +200,69 @@
 
     <!-- 内容区域 -->
 
+    <div class="tpl-content-wrapper">
 
+
+
+        <div class="row-content am-cf">
+
+
+            <div class="row">
+
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title am-fl">添加在线工具</div>
+
+                        </div>
+                        <div class="widget-body am-fr">
+
+                            <form class="am-form tpl-form-border-form tpl-form-border-br" id="tools-form" type="post"  >
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">工具名称 <span class="tpl-form-line-small-title">Tool Name</span></label>
+                                    <div class="am-u-sm-3">
+                                        <input type="text" class="tpl-form-input" name="toolName" placeholder="请输入工具名称文字10-20字左右" >
+                                    </div>
+                                    <div class="am-u-sm-6">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">工具访问URL <span class="tpl-form-line-small-title">URL</span></label>
+                                    <div class="am-u-sm-3">
+                                        <input type="text" class="tpl-form-input" name="url" placeholder="请输入在线URL地址" >
+                                    </div>
+                                    <div class="am-u-sm-6">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">
+                                    <label for="user-intro" class="am-u-sm-3 am-form-label">工具介绍 <span class="tpl-form-line-small-title">Tool Introduce</span></label>
+                                    <div class="am-u-sm-6">
+                                        <textarea class="" name="introduce" rows="10" id="user-intro" placeholder="请对工具进行简单描述"></textarea>
+                                    </div>
+                                    <div class="am-u-sm-3">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <div class="am-u-sm-9 am-u-sm-push-3">
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
 
 
 
@@ -210,6 +272,69 @@
 
 
 <script language="JavaScript">
+
+    $('.submit-btn').click(function () {
+
+        var toolName = $("input[name='toolName']").val();
+        if (toolName == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '工具名称为必填',
+                onConfirm: function () {
+                }
+            });
+            return;
+        }
+        var url = $("input[name='url']").val();
+        if (url == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '工具访问URL必填',
+                onConfirm: function () {
+                }
+            });
+            return;
+        }
+
+
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "tools-adddata" ,//url
+            data: $('#tools-form').serialize(),
+            success: function (result) {
+                var flag = result.flag;
+                if (flag == "success") {
+                    AMUI.dialog.alert({
+                        title: '提示信息',
+                        content: '添加工具成功',
+                        onConfirm: function () {
+                            window.location = "tools-list";
+                        }
+                    });
+                }else{
+                    var message = result.message;
+                    AMUI.dialog.alert({
+                        title: '错误提示',
+                        content: '添加工具失败，错误原因：'+message,
+                        onConfirm: function () {
+                        }
+                    });
+                    return;
+                }
+            },
+            error : function() {
+                AMUI.dialog.alert({
+                    title: '错误提示',
+                    content: '添加工具失败',
+                    onConfirm: function () {
+                    }
+                });
+                return;
+            }
+        });
+    });
 
 </script>
 

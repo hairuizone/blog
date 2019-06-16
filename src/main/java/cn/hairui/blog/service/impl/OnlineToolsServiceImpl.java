@@ -22,4 +22,29 @@ public class OnlineToolsServiceImpl implements OnlineToolsService {
     public List<OnlineTools> queryOnlineToolsList() {
         return onlineToolsMapper.queryOnlineToolsList();
     }
+
+    @Override
+    public int qeuryOnlineToolsByName(String toolName) {
+        return onlineToolsMapper.queryOnlineToolsByName(toolName);
+    }
+
+    @Override
+    public int addOnlineTools(OnlineTools onlineTools) {
+        return onlineToolsMapper.addOnlineTools(onlineTools);
+    }
+
+    @Override
+    public OnlineTools queryOnlineToolsById(int id) {
+        return onlineToolsMapper.queryOnlineToolsById(id);
+    }
+
+    @Override
+    public int updateOnlineTools(OnlineTools onlineTools) {
+        return onlineToolsMapper.updateOnlineTools(onlineTools);
+    }
+
+    @Override
+    public int deleteOnlineToolsById(String id) {
+        return onlineToolsMapper.deleteOnlineToolsById(id);
+    }
 }

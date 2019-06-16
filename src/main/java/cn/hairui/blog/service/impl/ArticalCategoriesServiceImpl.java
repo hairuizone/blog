@@ -41,7 +41,7 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     }
 
     @Override
-    public int queryArticalCategoriesMaxShowOrder() {
+    public Integer queryArticalCategoriesMaxShowOrder() {
         return articalCategoriesRepository.queryArticalCategoriesMaxShowOrder();
     }
 

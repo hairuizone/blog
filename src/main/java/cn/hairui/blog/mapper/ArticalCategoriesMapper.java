@@ -27,7 +27,7 @@ public interface ArticalCategoriesMapper {
     public int qeuryArticalCategoriesByName(String categoryName);
 
     @Select("select max(SHOW_ORDER) from artical_categories")
-    public int queryArticalCategoriesMaxShowOrder();
+    public Integer queryArticalCategoriesMaxShowOrder();
 
     @Select("select * from artical_categories where id=#{id}")
     public ArticalCategories queryArticalCategoriesDetailById(Integer id);

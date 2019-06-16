@@ -42,7 +42,7 @@ public class ArticalCategoriesRepository {
         return articalCategoriesMapper.qeuryArticalCategoriesByName(categoryName);
     }
 
-    public int queryArticalCategoriesMaxShowOrder() {
+    public Integer queryArticalCategoriesMaxShowOrder() {
         return articalCategoriesMapper.queryArticalCategoriesMaxShowOrder();
     }
 

@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DefaultViewController {
 
 
-
-
     @RequestMapping(value = "/background", method = RequestMethod.GET)
     public String backgroundPage() {
         return "background/index";
+    }
+
+    @RequestMapping(value = "/manage/homepage", method = RequestMethod.GET)
+    public String backgroundHomePage() {
+        return "background/index";
+
     }
 }

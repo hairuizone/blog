@@ -6,7 +6,6 @@ package cn.hairui.blog.model;
  */
 public class OnlineTools {
     private Integer id;//序号
-    private Integer toolId;//工具编号
     private String toolName;//工具名称
     private String url;//网址
     private String introduce;//介绍
@@ -18,14 +17,6 @@ public class OnlineTools {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getToolId() {
-        return toolId;
-    }
-
-    public void setToolId(Integer toolId) {
-        this.toolId = toolId;
     }
 
     public String getToolName() {

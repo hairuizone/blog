@@ -45,7 +45,7 @@ public interface ArticalCategoriesService {
 	 * 获取当前最大排序编号
 	 * @return
 	 */
-	public int queryArticalCategoriesMaxShowOrder();
+	public Integer queryArticalCategoriesMaxShowOrder();
 
 	/**
 	 * 根据编号查询分类信息

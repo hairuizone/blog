@@ -1,6 +1,5 @@
 package cn.hairui.blog.controller;
 
-import cn.hairui.blog.model.Artical;
 import cn.hairui.blog.model.ArticalCategories;
 import cn.hairui.blog.service.ArticalCategoriesService;
 import com.alibaba.druid.support.json.JSONUtils;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
@@ -58,8 +56,10 @@ public class ArticalCategoriesController {
             if("Y".equals(isShow)){
                 //首页展示 获取当前最大展示序号
                 System.out.println(articalCategories.getShowOrder());
-                int maxSerno = articalCategoriesService.queryArticalCategoriesMaxShowOrder();
-
+                Integer maxSerno = articalCategoriesService.queryArticalCategoriesMaxShowOrder();
+                if(maxSerno == null){
+                    maxSerno = 0 ;
+                }
                 if(articalCategories.getShowOrder() == 1){
                     //置顶展示 需要将当前的排序编号全部后移+1
 
