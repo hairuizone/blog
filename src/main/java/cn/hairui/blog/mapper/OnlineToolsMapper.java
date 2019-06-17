@@ -30,4 +30,7 @@ public interface OnlineToolsMapper {
 
     @Delete("delete from online_tools where id=#{id}")
     public int deleteOnlineToolsById(String id);
+
+    @Select("select * from online_tools order by id desc  limit 0,#{maxSize}")
+    public List<OnlineTools> queryOnlineToolsListLimited(int maxSize);
 }

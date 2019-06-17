@@ -62,4 +62,15 @@ public interface ArticalCategoriesService {
 	 * @return
 	 */
     public int deleteArticalCategoriesData(int id);
+
+	/**
+	 * 获取当前数据库中最大编号文章
+	 * @return
+	 */
+	public Integer queryMaxArticalCategoriesId();
+
+	/**
+	 * 将所有的分类的展示顺序向后挪动一位
+	 */
+	public void moveArticalCategoriesOrderNextOne();
 }

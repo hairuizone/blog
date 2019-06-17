@@ -57,4 +57,12 @@ public class ArticalCategoriesRepository {
     public int deleteArticalCategoriesData(int id) {
        return articalCategoriesMapper.deleteArticalCategoriesData(id);
     }
+
+    public Integer queryMaxArticalCategoriesId() {
+        return articalCategoriesMapper.queryMaxArticalCategoriesId();
+    }
+
+    public void moveArticalCategoriesOrderNextOne() {
+        articalCategoriesMapper.moveArticalCategoriesOrderNextOne();
+    }
 }

@@ -117,4 +117,8 @@ public class ArticalRepository {
     public Integer updateArticalMarkdown(Artical artical) {
         return articalMapper.updateArticalMarkdown(artical);
     }
+
+    public Integer getMaxArticalId() {
+        return articalMapper.getMaxArticalId();
+    }
 }

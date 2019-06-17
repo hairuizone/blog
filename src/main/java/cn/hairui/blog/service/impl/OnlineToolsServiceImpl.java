@@ -47,4 +47,9 @@ public class OnlineToolsServiceImpl implements OnlineToolsService {
     public int deleteOnlineToolsById(String id) {
         return onlineToolsMapper.deleteOnlineToolsById(id);
     }
+
+    @Override
+    public List<OnlineTools> queryOnlineToolsListLimited(int maxSize) {
+        return onlineToolsMapper.queryOnlineToolsListLimited(maxSize);
+    }
 }

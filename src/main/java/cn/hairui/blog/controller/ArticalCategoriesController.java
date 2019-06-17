@@ -52,6 +52,12 @@ public class ArticalCategoriesController {
             map.put("message","分类名称重复");
         }else{
 
+            Integer max = articalCategoriesService.queryMaxArticalCategoriesId();
+            if(max == null){
+                max = 0;
+            }
+            int nextId = max + 1;
+            articalCategories.setId(nextId);
             String isShow = articalCategories.getIsShow();
             if("Y".equals(isShow)){
                 //首页展示 获取当前最大展示序号
@@ -62,6 +68,8 @@ public class ArticalCategoriesController {
                 }
                 if(articalCategories.getShowOrder() == 1){
                     //置顶展示 需要将当前的排序编号全部后移+1
+                    articalCategoriesService.moveArticalCategoriesOrderNextOne();
+                    articalCategories.setShowOrder(1);//将置顶展示的顺序设置为1
 
                 }else if(articalCategories.getShowOrder() == 0){
                     //追加展示 设置当前分类编号为maxSerno+1

@@ -59,4 +59,10 @@ public interface ArticalService {
     public int cleanArticalTopics(int id);
 
     public Integer updateArticalMarkdown(Artical artical);
+
+    /**
+     * 获取当前数据库中最大编号文章
+     * @return
+     */
+    public Integer getMaxArticalId();
 }

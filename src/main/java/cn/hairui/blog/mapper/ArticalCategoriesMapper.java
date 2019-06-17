@@ -19,8 +19,8 @@ public interface ArticalCategoriesMapper {
     @Select("select * from artical_categories order by id asc")
     public List<ArticalCategories> queryArticalCategoriesList();
 
-    @Insert("insert into artical_categories(CATEGORY_NAME,IS_SHOW,SHOW_ORDER,ARTICAL_COUNT,INTRODUCTION) value(#{categoryName},#{isShow},#{showOrder},#{articalCount},#{introduction})")
-    @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
+    @Insert("insert into artical_categories(id,CATEGORY_NAME,IS_SHOW,SHOW_ORDER,ARTICAL_COUNT,INTRODUCTION) value(#{id},#{categoryName},#{isShow},#{showOrder},#{articalCount},#{introduction})")
+    //@Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
     public int addArticalCategories(ArticalCategories articalCategories);
 
     @Select("select count(*) from artical_categories where CATEGORY_NAME=#{categoryName}")
@@ -37,4 +37,10 @@ public interface ArticalCategoriesMapper {
 
     @Delete("delete from artical_categories where id=#{id}")
     public int deleteArticalCategoriesData(int id);
+
+    @Select("select max(id) from artical_categories")
+    public Integer queryMaxArticalCategoriesId();
+
+    @Update("update artical_categories set SHOW_ORDER = SHOW_ORDER+1 where SHOW_ORDER is not null and SHOW_ORDER!=''")
+    public void moveArticalCategoriesOrderNextOne();
 }

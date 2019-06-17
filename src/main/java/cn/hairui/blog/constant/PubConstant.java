@@ -57,4 +57,5 @@ public class PubConstant {
      * 首页展示标签最大数量
      */
     public static final int MAX_SHOW_ARTICALTAGS = 50;
+    public static final int MAX_SHOW_TOOLS = 6;
 }

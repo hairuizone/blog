@@ -59,4 +59,14 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     public int deleteArticalCategoriesData(int id) {
         return articalCategoriesRepository.deleteArticalCategoriesData(id);
     }
+
+    @Override
+    public Integer queryMaxArticalCategoriesId() {
+        return articalCategoriesRepository.queryMaxArticalCategoriesId();
+    }
+
+    @Override
+    public void moveArticalCategoriesOrderNextOne() {
+        articalCategoriesRepository.moveArticalCategoriesOrderNextOne();
+    }
 }

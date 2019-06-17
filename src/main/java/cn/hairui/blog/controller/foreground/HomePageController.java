@@ -99,7 +99,7 @@ public class HomePageController {
         model.addAttribute("booksList", booksList);
 
         //在线工具
-        List<OnlineTools> onlineToolsList = onlineToolsService.queryOnlineToolsList();
+        List<OnlineTools> onlineToolsList = onlineToolsService.queryOnlineToolsListLimited(PubConstant.MAX_SHOW_TOOLS);
         model.addAttribute("onlineToolsList", onlineToolsList);
 
         //查询统计标签 最多显示指定条数

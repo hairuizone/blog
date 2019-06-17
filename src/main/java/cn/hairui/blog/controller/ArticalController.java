@@ -84,11 +84,9 @@ public class ArticalController {
     }
 
     @RequestMapping(value = "/manage/artical-adddata" ,method = RequestMethod.POST)
-    public String addArticalDAta(@ModelAttribute Artical artical){
+    public String addArticalDAta(@ModelAttribute Artical artical,Model model){
 
         //随机设置封面图
-
-
         int i = new Random().nextInt(8)+1;//1-9随机图片
         String imgPath = "images/"+i+".jpg";
         System.out.println(imgPath);
@@ -98,9 +96,19 @@ public class ArticalController {
         artical.setDissNums(0);
         artical.setUpdateDate(artical.getCreateDate());
 
-        Integer num = articalService.addArtical(artical);
+        //获取最大值
+        Integer max  = articalService.getMaxArticalId();
+        if(max == null){
+            max = 0;
+        }
+        int nextId =max + 1;
+        artical.setId(nextId);
 
-        return "redirect:artical-list";
+        Integer num = articalService.addArtical(artical);
+        System.out.println(nextId);
+        model.addAttribute("artical",artical);
+        return "background/artical-markdown";
+
     }
     @RequestMapping(value = "/manage/artical-update", method = RequestMethod.GET)
     public String updateArtical(Integer id, Model model) {

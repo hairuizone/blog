@@ -95,6 +95,11 @@ public class ArticalServiceImpl implements ArticalService {
     }
 
     @Override
+    public Integer getMaxArticalId() {
+        return articalRepository.getMaxArticalId();
+    }
+
+    @Override
 	public List<String> queryAllArticalTagsLimited(int maxSize) {
 		return articalRepository.queryArticalTagsLimited(maxSize);
 	}

@@ -2,11 +2,7 @@ package cn.hairui.blog.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import cn.hairui.blog.model.Artical;
 
@@ -49,6 +45,7 @@ public interface ArticalMapper {
     public Integer deleteArticalById(String id);
 
     @Insert("INSERT INTO ARTICAL(" +
+            "ID," +
             "AUTHOR," +
             "ORIGINAUTHOR," +
             "ORIGINURL," +
@@ -67,6 +64,7 @@ public interface ArticalMapper {
             "LIKENUMS," +
             "DISSNUMS" +
             "       ) VALUES(" +
+            "#{id}," +
             "#{author}," +
             "#{originAuthor}," +
             "#{originUrl}," +
@@ -111,4 +109,7 @@ public interface ArticalMapper {
 
     @Update("update artical set content=#{content} where id=#{id}")
     public Integer updateArticalMarkdown(Artical artical);
+
+    @Select("select max(id) from artical")
+    public Integer getMaxArticalId();
 }

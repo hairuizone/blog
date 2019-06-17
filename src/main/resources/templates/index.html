@@ -191,15 +191,17 @@
                     <h2 class="htitle">开源书籍</h2>
                     <div class="col-md-6">
                         <div class="content-list" th:each="books ,booksStat:${booksList}">
+                            <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:if="${booksStat.even}" th:text="${books.publishDate}" ></span>
                             <a href="/" target="_blank"  th:if="${booksStat.even}" th:text="${books.bookName}"></a>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="content-list" th:each="books ,booksStat:${booksList}">
+                        <div class="content-list" style="margin-top: -1px;" th:each="books ,booksStat:${booksList}">
+                            <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:if="${booksStat.odd}" th:text="${books.publishDate}" ></span>
                             <a href="/" target="_blank"   th:if="${booksStat.odd}" th:text="${books.bookName}"></a>
                         </div>
 						<div class="index-card-footer" style="text-align: right;">
-                        	<a href="/tags/Spring-Boot/">查看更多</a>
+                        	<a href="/">查看更多</a>
                     	</div>
                     </div>
                 </div>
@@ -213,7 +215,7 @@
                     </div>
 
                     <div class="index-card-footer" style="text-align: right;">
-                        <a href="/tags/Spring-Boot/">查看更多</a>
+                        <a href="/">查看更多</a>
                     </div>
                 </div>
             </div>

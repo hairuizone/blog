@@ -46,4 +46,11 @@ public interface OnlineToolsService {
      * @return
      */
     public int deleteOnlineToolsById(String id);
+
+    /**
+     * 读取指定数量的工具
+     * @param maxShowTools
+     * @return
+     */
+    public List<OnlineTools> queryOnlineToolsListLimited(int maxShowTools);
 }
