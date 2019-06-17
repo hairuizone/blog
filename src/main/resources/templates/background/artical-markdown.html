@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="icon" type="image/png" href="../background/assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="../background/assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <script src="../background/assets/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="../background/assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="../background/assets/css/amazeui.datatables.min.css"/>
+    <link rel="stylesheet" href="../background/assets/css/app.css">
+    <script src="../background/assets/js/jquery.min.js"></script>
+
+    <script src="../background/assets/js/amazeui.min.js"></script>
+    <script src="../background/assets/js/amazeui.dialog.min.js"></script>
+    <script src="../background/assets/js/amazeui.datatables.min.js"></script>
+    <script src="../background/assets/js/dataTables.responsive.min.js"></script>
+    <script src="../background/assets/js/app.js"></script>
+
+    <link href="../editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../editormd/editormd.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("input[name='tittle']").focus();
+        });
+
+        var editor;
+        editor = $(function () {
+            editormd("content", {
+                width: "100%",
+                height: 640,
+                //markdown : md,//不注释不显示
+                codeFold: true,
+                syncScrolling: "single",
+                path: "../editormd/lib/", //你的path路径（原资源文件中lib包在我们项目中所放的位置）
+                imageUpload: true,//开启图片上传功能
+                /*
+                theme: "dark",//工具栏主题
+                previewTheme: "dark",//预览主题
+                editorTheme: "pastel-on-dark",//编辑主题
+                */
+                emoji: true,//emoji表情，默认关闭
+                taskList: true,
+                tocm: true,         // Using [TOCM]
+                tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+                flowChart: true,             // 开启流程图支持，默认关闭
+                sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+                dialogLockScreen: false,//设置弹出层对话框不锁屏，全局通用，默认为true
+                dialogShowMask: false,//设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+                dialogDraggable: false,//设置弹出层对话框不可拖动，全局通用，默认为true
+                dialogMaskOpacity: 0.4, //设置透明遮罩层的透明度，全局通用，默认值为0.1
+                dialogMaskBgColor: "#000",//设置透明遮罩层的背景颜色，全局通用，默认为#fff
+
+                //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
+                saveHTMLToTextarea: true,
+                imageFormats: ["jpg", "jpeg", "gif", "png", "bmp"],
+                imageUploadURL: "uploadimg",/*上传图片成功后可以做一些自己的处理*/
+            });
+        });
+    </script>
+</head>
+
+<body data-type="widgets">
+<script src="../background/assets/js/theme.js"></script>
+<div class="am-g tpl-g">
+
+    <form id="artical-from" class="am-form tpl-form-border-form tpl-form-border-br"
+          th:action="artical-updatemarkdowndata"
+          method="post">
+
+        <input th:value="${artical.id}" type="text" readonly class="tpl-form-input" name="id">
+        <div class="editormd" id="content">
+            <textarea class="editormd-markdown-textarea" name="content" id="editormd" th:text="${artical.content}"></textarea>
+            <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+            <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
+            <textarea class="editormd-html-textarea"></textarea></div>
+
+        <div class="am-form-group">
+            <div align="center">
+                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">
+                    提交
+                </button>
+                <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">
+                    取消
+                </button>
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>
+
+
+<script src="../background/assets/js/amazeui.min.js"></script>
+<script src="../background/assets/js/amazeui.datatables.min.js"></script>
+<script src="../background/assets/js/dataTables.responsive.min.js"></script>
+<script src="../background/assets/js/app.js"></script>
+<script language="JavaScript">
+
+    $('.submit-btn').click(function () {
+
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "artical-updatemarkdowndata" ,//url
+            data: $('#artical-from').serialize(),
+            success: function (result) {
+                var flag = result.flag;
+                if (flag == "success") {
+                    AMUI.dialog.alert({
+                        title: '提示信息',
+                        content: '创建分类成功',
+                        onConfirm: function () {
+                            window.location = "artical-list";
+                        }
+                    });
+                }else{
+
+                    AMUI.dialog.alert({
+                        title: '错误提示',
+                        content: '创建分类失败，错误原因：',
+                        onConfirm: function () {
+                        }
+                    });
+                    return;
+                }
+            },
+            error : function() {
+                AMUI.dialog.alert({
+                    title: '错误提示',
+                    content: '创建分类失败',
+                    onConfirm: function () {
+                    }
+                });
+                return;
+            }
+        });
+        //document.getElementById("artical-from").submit();
+    });
+
+
+
+
+
+</script>
+</body>
+
+</html>

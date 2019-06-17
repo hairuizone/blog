@@ -119,29 +119,26 @@ public class ArticalController {
 
         Artical artical = articalService.queryArticalDetailById(id);
         model.addAttribute("artical", artical);
+        System.out.println("update"+artical.getContent());
 
         return "background/artical-update";
     }
 
     @RequestMapping(value = "/manage/artical-updatedata", method = RequestMethod.POST)
     public String updateArticalData(@ModelAttribute Artical artical, Model model) {
-        /*
 
-        "tittle=#{tittle}," +
-            "type=#{type}," +
-            "originAuthor=${originAuthor}," +
-            "originUrl=#{originUrl}," +
-            "updateDate=#{updateDate}" +
-            "navId=#{navId}," +
-            "topicId=#{topicId}," +
-            "categories=#{categories}," +
-            "content=#{content}," +
-            "tags=#{tags}," +
-            "summary=#{summary} " +
-
-        */
-        Integer num = articalService.updateArtical(artical);
-        return "redirect:artical-list";
+        System.out.println("updatedata"+artical.getContent());
+        articalService.updateArtical(artical);
+        model.addAttribute("artical",artical);
+        return "background/artical-markdown";
+    }
+    @RequestMapping(value = "/manage/artical-updatemarkdowndata", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateArticalMarkDownData(@ModelAttribute Artical artical, Model model) {
+        Map map = new HashMap();
+        articalService.updateArticalMarkdown(artical);
+        map.put("flag","success");
+        return JSONUtils.toJSONString(map);
     }
 
     @RequestMapping(value = "/manage/artical-delete", method = RequestMethod.POST)

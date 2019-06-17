@@ -90,6 +90,11 @@ public class ArticalServiceImpl implements ArticalService {
     }
 
     @Override
+    public Integer updateArticalMarkdown(Artical artical) {
+        return articalRepository.updateArticalMarkdown(artical);
+    }
+
+    @Override
 	public List<String> queryAllArticalTagsLimited(int maxSize) {
 		return articalRepository.queryArticalTagsLimited(maxSize);
 	}

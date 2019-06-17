@@ -108,4 +108,7 @@ public interface ArticalMapper {
 
     @Update("update artical set TOPICID=null where TOPICID=#{id}")
     public int cleanArticalTopics(int id);
+
+    @Update("update artical set content=#{content} where id=#{id}")
+    public Integer updateArticalMarkdown(Artical artical);
 }

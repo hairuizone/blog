@@ -57,4 +57,6 @@ public interface ArticalService {
      * @return
      */
     public int cleanArticalTopics(int id);
+
+    public Integer updateArticalMarkdown(Artical artical);
 }

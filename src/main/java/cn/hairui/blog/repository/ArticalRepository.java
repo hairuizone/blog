@@ -113,4 +113,8 @@ public class ArticalRepository {
     public int cleanArticalTopics(int id) {
         return articalMapper.cleanArticalTopics(id);
     }
+
+    public Integer updateArticalMarkdown(Artical artical) {
+        return articalMapper.updateArticalMarkdown(artical);
+    }
 }
