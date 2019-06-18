@@ -121,4 +121,8 @@ public class ArticalRepository {
     public Integer getMaxArticalId() {
         return articalMapper.getMaxArticalId();
     }
+
+    public String queryArticalCategoriesNameById(Integer categoriesId) {
+        return articalMapper.queryArticalCategoriesNameById(categoriesId);
+    }
 }

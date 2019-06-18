@@ -112,4 +112,7 @@ public interface ArticalMapper {
 
     @Select("select max(id) from artical")
     public Integer getMaxArticalId();
+
+    @Select("select CATEGORY_NAME from artical_categories where id=#{categoriesId}")
+    public String queryArticalCategoriesNameById(Integer categoriesId);
 }

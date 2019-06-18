@@ -65,4 +65,11 @@ public interface ArticalService {
      * @return
      */
     public Integer getMaxArticalId();
+
+    /**
+     * 通过分类编号查询分类名称
+     * @param categoriesId
+     * @return
+     */
+    public String queryArticalCategoriesNameById(Integer categoriesId);
 }
