@@ -47,7 +47,7 @@ public class PubConstant {
      * 首页展示专题最大数量
      */
 
-    public static final int MAX_SHOW_ARTICAL_TOPICS = 6;
+    public static final int MAX_SHOW_ARTICAL_TOPICS = 10;
 
     /**
      * 首页展示书籍最大数量
