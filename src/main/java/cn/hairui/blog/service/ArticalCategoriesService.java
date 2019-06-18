@@ -15,10 +15,11 @@ public interface ArticalCategoriesService {
 	 * 
 	 * @Description 获取指定条数的是否要展示的信息
 	 * @param isShow 是否展示
-	 * @param maxSize 数量
+	 * @param beginIdx
+	 * @param endIdx
 	 * @return
 	 */
-    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow, int maxSize);
+    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow, int beginIdx,int endIdx);
 
     /**
      * 

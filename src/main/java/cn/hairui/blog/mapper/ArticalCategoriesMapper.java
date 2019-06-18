@@ -13,8 +13,8 @@ import java.util.List;
 @Mapper
 public interface ArticalCategoriesMapper {
 
-    @Select("select * from artical_categories where is_show=#{isShow} order by show_order asc  limit 0,#{maxSize}")
-    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow,int maxSize);
+    @Select("select * from artical_categories where is_show=#{isShow} order by show_order asc  limit #{beginIdx},#{endIdx}")
+    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow,int beginIdx,int endIdx);
 
     @Select("select * from artical_categories order by id asc")
     public List<ArticalCategories> queryArticalCategoriesList();

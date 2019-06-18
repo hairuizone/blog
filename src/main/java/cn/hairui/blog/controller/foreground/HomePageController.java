@@ -77,17 +77,28 @@ public class HomePageController {
         model.addAttribute("articalList", articalList);
 
 
-        //查询展示的分类，只展示指定数量的内容
-        List<ArticalCategories> articalCategoriesList = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y,PubConstant.MAX_SHOW_ARTICALCATEGORIES);
+        //查询展示的分类，只展示指定数量的内容，分开展示两栏
+        List<ArticalCategories> articalCategoriesList = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y,0,PubConstant.MAX_SHOW_ARTICALCATEGORIES);
         model.addAttribute("articalCategoriesList", articalCategoriesList);
+
+        List<ArticalCategories> articalCategoriesList2 = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y,PubConstant.MAX_SHOW_ARTICALCATEGORIES,PubConstant.MAX_SHOW_ARTICALCATEGORIES_2);
+        model.addAttribute("articalCategoriesList2", articalCategoriesList2);
+
 
         //分类中的内容
         List<List<Artical>> articals = new ArrayList<List<Artical>>();
+
         for (ArticalCategories art : articalCategoriesList) {
             //指定首页分类块中每块显示指定条记录
             List<Artical> listArt = articalService.queryArticalListByCategories(art.getId(),PubConstant.MAX_SHOW_ARTICAL_IN_CATEGORIES);
             articals.add(listArt);
         }
+        for (ArticalCategories art : articalCategoriesList2) {
+            //指定首页分类块中每块显示指定条记录
+            List<Artical> listArt = articalService.queryArticalListByCategories(art.getId(),PubConstant.MAX_SHOW_ARTICAL_IN_CATEGORIES);
+            articals.add(listArt);
+        }
+
         model.addAttribute("articals", articals);
 
         //读取指定数量专题

@@ -34,10 +34,14 @@ public class PubConstant {
     public static final String YES_NO_Y = "Y";
 
     /**
-     * 首页展示分类最大数量
+     * 第一栏展示分类数量
      */
-    public static final int MAX_SHOW_ARTICALCATEGORIES = 4;
+    public static final int MAX_SHOW_ARTICALCATEGORIES = 2;
 
+    /**
+     * 第二栏展示分类数量
+     */
+    public static final int MAX_SHOW_ARTICALCATEGORIES_2 = 4;
     /**
      * 分类中展示做多内容条数
      */
@@ -46,16 +50,18 @@ public class PubConstant {
     /**
      * 首页展示专题最大数量
      */
-
-    public static final int MAX_SHOW_ARTICAL_TOPICS = 10;
+    public static final int MAX_SHOW_ARTICAL_TOPICS = 5;
 
     /**
      * 首页展示书籍最大数量
      */
-    public static final int MAX_SHOW_BOOK = 10;
+    public static final int MAX_SHOW_BOOK = 12;
     /**
      * 首页展示标签最大数量
      */
     public static final int MAX_SHOW_ARTICALTAGS = 50;
-    public static final int MAX_SHOW_TOOLS = 6;
+    /**
+     * 首页展示在线工具数量
+     */
+    public static final int MAX_SHOW_TOOLS = 7;
 }

@@ -15,6 +15,16 @@
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
     <title th:text="${myinfo.webname}"></title>
 </head>
+<style type="text/css">
+
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+        position: relative;
+        min-height: 1px;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+</style>
 <script type="text/javascript">
     function homepage(){
     	window.location.href="/myblog";
@@ -183,8 +193,43 @@
                 <ul class="nav nav-tabs nav-stacked" th:each=" articalTopics : ${articalTopicsList}">
                     <li><a href='#' th:text="${articalTopics.topicName}"></a></li>
                 </ul>
+                <div class="" style="text-align: right;font-size: 0.85em;">
+                    <a href="/">查看更多</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-9">
+            <div class="col-md-6 " th:each="articalCategories, articalBolck :${articalCategoriesList2}">
+                <div class="block">
+                    <h2 class="htitle" th:text="${articalCategories.categoryName}"></h2>
+                    <div class="content-list" th:each="artical ,articalStat: ${articals[articalBolck.index]}">
+                        <span style="font-size: 12px;color:#aaa;margin-right: 5px;" th:text="${artical.createDate}"></span>
+                        <a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${artical.id}+')'" th:text="${artical.tittle}"></a>
+                    </div>
+                    <div class="index-card-footer" style="text-align: right;">
+                        <a href="/">查看更多</a>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="col-md-3">
+            <div class="block">
+                <h2 class="htitle">标签</h2>
+                <div>
+                    <a href="/" style="font-size:17px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==0"></a>
+                    <a href="/" style="font-size:15px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==1"></a>
+                    <a href="/" style="font-size:12px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==2"></a>
+                    <a href="/" style="font-size:18px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==3"></a>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <div class="col-md-9">
             <div class="col-md-8">
                 <div class="block">
@@ -220,18 +265,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 tongji">
             <div class="block">
-                <h2 class="htitle">标签</h2>
-                <div>
-                    <a href="/" style="font-size:17px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==0"></a>
-                    <a href="/" style="font-size:15px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==1"></a>
-                    <a href="/" style="font-size:12px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==2"></a>
-                    <a href="/" style="font-size:18px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==3"></a>
-                </div>
+                <h2 class="htitle">站点信息</h2>
+                <ul>
+                    <li><b>建站时间</b>：2019-01-24</li>
+                    <li><b>网站程序</b>：cceshi</li>
+                    <li><b>主题模板</b>：<a href="http://www.yangqq.com" target="_blank">《测试》</a></li>
+                    <li><b>文章统计</b>：299条</li>
+                    <li><b>文章评论</b>：490条</li>
+                    <li><b>统计数据</b>：<a href="/">百度统计</a></li>
+                    <li><b>微信公众号</b>：扫描二维码，关注我们</li>
+                    <!--<img src="images/wxgzh.jpg" class="tongji_gzh">-->
+                </ul>
             </div>
         </div>
-        <div class="col-md-9">
+
+
             <div class="col-md-12 ">
                 <div class="block">
                     <h2 class="htitle">最新更新</h2>
@@ -277,22 +327,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3 tongji">
-            <div class="block">
-                <h2 class="htitle">站点信息</h2>
-                <ul>
-                    <li><b>建站时间</b>：2019-01-24</li>
-                    <li><b>网站程序</b>：cceshi</li>
-                    <li><b>主题模板</b>：<a href="http://www.yangqq.com" target="_blank">《测试》</a></li>
-                    <li><b>文章统计</b>：299条</li>
-                    <li><b>文章评论</b>：490条</li>
-                    <li><b>统计数据</b>：<a href="/">百度统计</a></li>
-                    <li><b>微信公众号</b>：扫描二维码，关注我们</li>
-                    <!--<img src="images/wxgzh.jpg" class="tongji_gzh">-->
-                </ul>
-            </div>
-        </div>
+
     </div>
 </div>
 <footer>
