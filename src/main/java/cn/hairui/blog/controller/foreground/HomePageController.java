@@ -127,4 +127,10 @@ public class HomePageController {
         return "index";
 
     }
+
+    @RequestMapping(value = "categories")
+    public String showCategories(int id){
+        System.out.println(id);
+        return "categories";
+    }
 }

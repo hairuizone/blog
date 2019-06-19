@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:http="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>程序猿张先森 | 分类</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="keywords" content="博客,个人,学习,IT,生活,张海洋,程序猿,springboot,java,后端，分类">
+    <meta name="description" content="张海洋，正宗97后，爱编程。喜欢旅行、摄影、爱生活。专注于Spring,SpringBoot等后端技术探索，以及MySql,Oracle数据库开发和SSM,SSH等后端流行框架学习。">
+
+    <link href="background/assets/css/amazeui.min.css" rel="stylesheet"><!--
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/tags.css">
+    <link rel="stylesheet" href="css/comment.css">
+    <link rel="stylesheet" href="css/categories.css">
+    <link rel="stylesheet" href="css/plugs_paging.css">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://cdn.bootcss.com/amazeui/2.7.2/js/amazeui.min.js"></script>-->
+</head>
+<style type="text/css">
+
+    .timeline-row .node {
+        color: #fff;
+        width: 14px;
+        height: 14px;
+        font-size: 14px;
+        margin: 0 0 0 -17px;
+        padding: 6px 8px 10px;
+        display: inline-block;
+        background-color: #38b7ea;
+        border-radius: 50%;
+    }
+    .title {
+        font-size: 18px;
+        margin-left: 10px;
+        line-height: 30px;
+        display: inline-block;
+        margin-top: 0;
+        font-weight: 500;
+    }
+    .timeline-row-major {
+        margin: 20px 0;
+    }
+    .timeline-row-major .node {
+        width: 12px;
+        color: #fff;
+        height: 12px;
+        border-radius: 50%;
+        margin: 11px 0 0 -8px;
+        display: inline-block;
+        background-color: #38b7ea;
+        float: left;
+    }
+    .timeline-row-major .content {
+        margin-left: 30px;
+        box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    }
+    .contentTitle {
+        color: #565a5f;
+        font-size: 17px;
+    }
+    .am-comment-bd {
+        color: #898d92;
+        display: inline-block;
+        background-color: rgba(244,246,247,0.2);
+        width: 100%;
+        padding: 10px 5px 5px 15px;
+    }
+    @media screen and (min-width: 768px) {
+        .site-inner {
+            margin: 70px 90px 0;
+        }
+    }
+    @media screen and (min-width: 768px){
+        .categories-comment {
+            margin: 30px 0 0 10px;
+            display: inline-block;
+        }
+    }
+
+    .category {
+        margin-top: 6px;
+        padding: 3px;
+    }
+    .categories-comment a {
+        padding-bottom: 2px;
+        color: #616161;
+        border-bottom: 1px solid #999;
+    }
+    .categoryNum {
+        color: #b0b0b0;
+    }
+</style>
+<body>
+<div id="main">
+    <div class="am-container">
+        <div class="am-g">
+            <div class="site-inner">
+                <div class="am-u-sm-12 am-u-md-3">
+                    <div class="categories"><div class="categories-title"><h3 style="font-size: 20px">Categories</h3></div><div class="categories-comment am-animation-slide-top"><div class="category"><span><a class="categoryName">我的故事</a><span class="categoryNum">(12)</span></span></div><div class="category"><span><a class="categoryName">SpringBoot</a><span class="categoryNum">(1)</span></span></div><div class="category"><span><a class="categoryName">服务器压力检测</a><span class="categoryNum">(2)</span></span></div><div class="category"><span><a class="categoryName">Linux</a><span class="categoryNum">(6)</span></span></div><div class="category"><span><a class="categoryName">Java</a><span class="categoryNum">(7)</span></span></div><div class="category"><span><a class="categoryName">数据结构</a><span class="categoryNum">(10)</span></span></div><div class="category"><span><a class="categoryName">有趣的程序猿</a><span class="categoryNum">(3)</span></span></div><div class="category"><span><a class="categoryName">JVM</a><span class="categoryNum">(2)</span></span></div><div class="category"><span><a class="categoryName">面试</a><span class="categoryNum">(7)</span></span></div><div class="category"><span><a class="categoryName">设计模式</a><span class="categoryNum">(5)</span></span></div><div class="category"><span><a class="categoryName">MySQL</a><span class="categoryNum">(1)</span></span></div></div></div>
+                </div>
+
+                <div class="am-u-sm-12 am-u-md-9">
+                    <div class="categoryTimeline"><div class="timeline timeline-wrap"><div class="timeline-row"><span class="node" style="-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;"><i class="am-icon-folder"></i></span><h1 class="title  am-animation-slide-top"># 全部分类</h1></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1553946904">HashMap为什么是线程不安全的？</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2019-03-30">2019-03-30</a></i><i class="am-icon-folder"> <a href="/categories?category=面试">面试</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=HashMap">HashMap</a>,<a href="/tags?tag=集合">集合</a>,<a href="/tags?tag=原创">原创</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1553404535">2019春招-字节跳动面试</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2019-03-24">2019-03-24</a></i><i class="am-icon-folder"> <a href="/categories?category=面试">面试</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=面经">面经</a>,<a href="/tags?tag=春招">春招</a>,<a href="/tags?tag=面试">面试</a>,<a href="/tags?tag=原创">原创</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1552638530">LinkedHashMap源码解读</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2019-03-15">2019-03-15</a></i><i class="am-icon-folder"> <a href="/categories?category=Java">Java</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=源码">源码</a>,<a href="/tags?tag=集合">集合</a>,<a href="/tags?tag=原创">原创</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1551507175">2019春招-腾讯面试</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2019-03-02">2019-03-02</a></i><i class="am-icon-folder"> <a href="/categories?category=面试">面试</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=面经">面经</a>,<a href="/tags?tag=春招">春招</a>,<a href="/tags?tag=面试">面试</a>,<a href="/tags?tag=原创">原创</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1551083929">2019春招-吉比特面试</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2019-02-25">2019-02-25</a></i><i class="am-icon-folder"> <a href="/categories?category=面试">面试</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=面经">面经</a>,<a href="/tags?tag=春招">春招</a>,<a href="/tags?tag=面试">面试</a>,<a href="/tags?tag=原创">原创</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1550912119">从源码初步了解ConcurrentHashMap</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2019-02-23">2019-02-23</a></i><i class="am-icon-folder"> <a href="/categories?category=面试">面试</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=源码">源码</a>,<a href="/tags?tag=面试">面试</a>,<a href="/tags?tag=ConcurrentHashMap">ConcurrentHashMap</a>,<a href="/tags?tag=原创">原创</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1547355593">数据库索引到底是什么鬼？</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2019-01-13">2019-01-13</a></i><i class="am-icon-folder"> <a href="/categories?category=MySQL">MySQL</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=MySql">MySql</a>,<a href="/tags?tag=原创">原创</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1546916623">Intellij IDEA 快捷键整理</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2019-01-08">2019-01-08</a></i><i class="am-icon-folder"> <a href="/categories?category=Java">Java</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=IDEA">IDEA</a>,<a href="/tags?tag=转载">转载</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1546244101">逝去的2018年，年度总结</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2018-12-31">2018-12-31</a></i><i class="am-icon-folder"> <a href="/categories?category=我的故事">我的故事</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=年度总结">年度总结</a>,<a href="/tags?tag=原创">原创</a></i></div></div></div><div class="timeline-row-major"><span class="node am-animation-slide-top am-animation-delay-1"></span><div class="content am-comment-main am-animation-slide-top am-animation-delay-1"><header class="am-comment-hd" style="background: #fff"><div class="contentTitle am-comment-meta"><a href="/article/1546232705">嫁人就嫁程序猿：不说话则已，开口就是段子手</a></div></header><div class="am-comment-bd"><i class="am-icon-calendar"> <a href="/archives?archive=2018-12-31">2018-12-31</a></i><i class="am-icon-folder"> <a href="/categories?category=有趣的程序猿">有趣的程序猿</a></i><i class="am-comment-bd-tags am-icon-tag"><a href="/tags?tag=搞笑">搞笑</a>,<a href="/tags?tag=转载">转载</a></i></div></div></div></div><div class="my-row" id="page-father"><div id="pagination"><ul class="page am-pagination  am-pagination-centered"><li class="am-active"><a href="#">1</a></li><li><a>2</a></li><li><a>3</a></li><li><a>4</a></li>. . .<li><a>6</a></li><li><a id="nextPage">下一页 »</a></li></ul></div></div></div>
+                    <div class="comment" style="margin: 100px auto 50px">
+                        <div class="comment-top">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

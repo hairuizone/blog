@@ -35,6 +35,9 @@
     function visitWebsite(url){
     	window.open = url;
     }
+    function showCategories(id){
+        window.location.href = "categories?id="+id;
+    }
 </script>
 <body>
 <div class="container">
@@ -49,11 +52,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"  href="javascript:void(0)" onclick="javascript:homepage()">
+                <a class="navbar-brand"  href="javascript:void(0)" onclick="homepage()">
                 	<span>
                 		<img src="img/brand.jpg" class="img-circle"  style="height: 30px;width: 30px">
                 	</span>
-                	<label th:text="${myinfo.getWebname()}" onclick="javascript:homepage()"></label>
+                	<label th:text="${myinfo.getWebname()}" onclick="homepage()"></label>
                 </a>
             </div>
             <div class="container">
@@ -80,8 +83,8 @@
                             </ul>
                         </li>
                         <li><a href="#"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-pencil">&nbsp;随笔</span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
+                        <!--<li><a href="#"><span class="glyphicon glyphicon-pencil">&nbsp;随笔</span></a></li>
+                        --><li><a href="#"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
                     </ul>
@@ -182,7 +185,7 @@
                         <a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${artical.id}+')'" th:text="${artical.tittle}"></a>
                     </div>
                     <div class="index-card-footer" style="text-align: right;">
-                        <a href="/">查看更多</a>
+                        <a href="javascript:void(0);" th:onclick="'javascript:showCategories('+${articalCategories.id}+')'" >查看更多</a>
                     </div>
                 </div>
             </div>
@@ -218,17 +221,14 @@
         <div class="col-md-3">
             <div class="block">
                 <h2 class="htitle">标签</h2>
-                <div>
-                    <a href="/" style="font-size:17px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==0"></a>
-                    <a href="/" style="font-size:15px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==1"></a>
-                    <a href="/" style="font-size:12px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==2"></a>
-                    <a href="/" style="font-size:18px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" th:if="${tagsStat.index}%4==3"></a>
-                </div>
+                <aside>
+                    <div class="tag_clouds">
+                        <a href="#" style="font-size:17px;margin-right: 2px;" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" ></a>
+                    </div>
+                </aside>
+
             </div>
         </div>
-
-
-
 
         <div class="col-md-9">
             <div class="col-md-8">
