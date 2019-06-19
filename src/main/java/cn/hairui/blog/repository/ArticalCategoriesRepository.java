@@ -65,4 +65,8 @@ public class ArticalCategoriesRepository {
     public void moveArticalCategoriesOrderNextOne() {
         articalCategoriesMapper.moveArticalCategoriesOrderNextOne();
     }
+
+    public List<ArticalCategories> queryAllArticalCategories() {
+        return articalCategoriesMapper.queryAllArticalCategories();
+    }
 }

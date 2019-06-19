@@ -1,6 +1,7 @@
 package cn.hairui.blog.service;
 
 import cn.hairui.blog.model.ArticalCategories;
+import net.sf.json.JSONObject;
 
 import java.util.List;
 
@@ -74,4 +75,10 @@ public interface ArticalCategoriesService {
 	 * 将所有的分类的展示顺序向后挪动一位
 	 */
 	public void moveArticalCategoriesOrderNextOne();
+
+	/**
+	 * 获取所有分类集合
+	 * @return
+	 */
+    public List<ArticalCategories> queryAllArticalCategories();
 }

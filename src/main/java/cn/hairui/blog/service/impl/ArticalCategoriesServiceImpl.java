@@ -69,4 +69,9 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     public void moveArticalCategoriesOrderNextOne() {
         articalCategoriesRepository.moveArticalCategoriesOrderNextOne();
     }
+
+    @Override
+    public List<ArticalCategories> queryAllArticalCategories() {
+        return articalCategoriesRepository.queryAllArticalCategories();
+    }
 }

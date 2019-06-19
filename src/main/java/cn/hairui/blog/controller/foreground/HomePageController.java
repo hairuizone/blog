@@ -1,8 +1,12 @@
 package cn.hairui.blog.controller.foreground;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,16 +30,16 @@ import cn.hairui.blog.service.NavIndexService;
 import cn.hairui.blog.service.OnlineToolsService;
 
 /**
+ * <p>
+ * <h2>主页控制器</h2>
+ * <ol>请添加详细描述
+ * </ol>
+ * </p>
  *
- *<p>
- *<h2>主页控制器</h2>
- *<ol>请添加详细描述
- *</ol>
- *</p>
- *@author lihairui
- *@Date 2019年6月7日 下午12:41:01
- *@version 1.0
- *@since jdk 1.8
+ * @author lihairui
+ * @version 1.0
+ * @Date 2019年6月7日 下午12:41:01
+ * @since jdk 1.8
  */
 @Controller
 public class HomePageController {
@@ -71,17 +75,17 @@ public class HomePageController {
         //这里首页tab页签中只显示指定条数内容
         List<List<Artical>> articalList = new ArrayList<List<Artical>>();
         for (NavIndex nav : navIndexList) {
-            List<Artical> listArt = articalService.queryArticalListByNavId(nav.getId(),PubConstant.TAB_CONTENT_SHOW_MAX);
+            List<Artical> listArt = articalService.queryArticalListByNavId(nav.getId(), PubConstant.TAB_CONTENT_SHOW_MAX);
             articalList.add(listArt);
         }
         model.addAttribute("articalList", articalList);
 
 
         //查询展示的分类，只展示指定数量的内容，分开展示两栏
-        List<ArticalCategories> articalCategoriesList = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y,0,PubConstant.MAX_SHOW_ARTICALCATEGORIES);
+        List<ArticalCategories> articalCategoriesList = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y, 0, PubConstant.MAX_SHOW_ARTICALCATEGORIES);
         model.addAttribute("articalCategoriesList", articalCategoriesList);
 
-        List<ArticalCategories> articalCategoriesList2 = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y,PubConstant.MAX_SHOW_ARTICALCATEGORIES,PubConstant.MAX_SHOW_ARTICALCATEGORIES_2);
+        List<ArticalCategories> articalCategoriesList2 = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y, PubConstant.MAX_SHOW_ARTICALCATEGORIES, PubConstant.MAX_SHOW_ARTICALCATEGORIES_2);
         model.addAttribute("articalCategoriesList2", articalCategoriesList2);
 
 
@@ -90,12 +94,12 @@ public class HomePageController {
 
         for (ArticalCategories art : articalCategoriesList) {
             //指定首页分类块中每块显示指定条记录
-            List<Artical> listArt = articalService.queryArticalListByCategories(art.getId(),PubConstant.MAX_SHOW_ARTICAL_IN_CATEGORIES);
+            List<Artical> listArt = articalService.queryArticalListByCategories(art.getId(), PubConstant.MAX_SHOW_ARTICAL_IN_CATEGORIES);
             articals.add(listArt);
         }
         for (ArticalCategories art : articalCategoriesList2) {
             //指定首页分类块中每块显示指定条记录
-            List<Artical> listArt = articalService.queryArticalListByCategories(art.getId(),PubConstant.MAX_SHOW_ARTICAL_IN_CATEGORIES);
+            List<Artical> listArt = articalService.queryArticalListByCategories(art.getId(), PubConstant.MAX_SHOW_ARTICAL_IN_CATEGORIES);
             articals.add(listArt);
         }
 
@@ -129,8 +133,25 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "categories")
-    public String showCategories(int id){
-        System.out.println(id);
+    public String showCategories(int id,Model model) {
+        //JSONObject categoriesData = articalCategoriesService.queryAllArticalCategories();
+        JSONObject categoryJson;
+        JSONArray categoryJsonArray = new JSONArray();
+        JSONObject returnJson = new JSONObject();
+        List<ArticalCategories> categoriesList = articalCategoriesService.queryAllArticalCategories();
+        Iterator iterator = categoriesList.iterator();
+        while(iterator.hasNext()){
+            ArticalCategories articalCategories = (ArticalCategories) iterator.next();
+            System.out.println(articalCategories.getCategoryName());
+            System.out.println(articalCategories.getArticalCount());
+            categoryJson = new JSONObject();
+            categoryJson.put("categoryName",articalCategories.getCategoryName());
+            categoryJson.put("categoryNum",articalCategories.getArticalCount());
+            categoryJsonArray.add(categoryJson);
+
+        }
+        returnJson.put("categoryInfos",categoryJsonArray);
+        model.addAttribute("categoryInfos",returnJson);
         return "categories";
     }
 }

@@ -43,4 +43,7 @@ public interface ArticalCategoriesMapper {
 
     @Update("update artical_categories set SHOW_ORDER = SHOW_ORDER+1 where SHOW_ORDER is not null and SHOW_ORDER!=''")
     public void moveArticalCategoriesOrderNextOne();
+
+    @Select("select * from artical_categories")
+    public List<ArticalCategories> queryAllArticalCategories();
 }
