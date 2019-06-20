@@ -2,6 +2,7 @@ package cn.hairui.blog.service.impl;
 
 import java.util.List;
 
+import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,6 +103,11 @@ public class ArticalServiceImpl implements ArticalService {
     @Override
     public String queryArticalCategoriesNameById(Integer categoriesId) {
         return articalRepository.queryArticalCategoriesNameById(categoriesId);
+    }
+
+    @Override
+    public List<Artical> getAll() {
+        return articalRepository.getAll();
     }
 
     @Override

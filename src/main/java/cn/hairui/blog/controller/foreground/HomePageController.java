@@ -1,33 +1,18 @@
 package cn.hairui.blog.controller.foreground;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
+import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.*;
+import cn.hairui.blog.service.*;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import org.apache.commons.beanutils.BeanMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cn.hairui.blog.constant.PubConstant;
-import cn.hairui.blog.model.Artical;
-import cn.hairui.blog.model.ArticalCategories;
-import cn.hairui.blog.model.ArticalTopics;
-import cn.hairui.blog.model.Books;
-import cn.hairui.blog.model.MyInfo;
-import cn.hairui.blog.model.NavIndex;
-import cn.hairui.blog.model.OnlineTools;
-import cn.hairui.blog.service.ArticalCategoriesService;
-import cn.hairui.blog.service.ArticalService;
-import cn.hairui.blog.service.ArticalTopicsService;
-import cn.hairui.blog.service.BooksService;
-import cn.hairui.blog.service.MyInfoService;
-import cn.hairui.blog.service.NavIndexService;
-import cn.hairui.blog.service.OnlineToolsService;
+import java.util.*;
 
 /**
  * <p>
@@ -134,24 +119,48 @@ public class HomePageController {
 
     @RequestMapping(value = "categories")
     public String showCategories(int id,Model model) {
-        //JSONObject categoriesData = articalCategoriesService.queryAllArticalCategories();
-        JSONObject categoryJson;
-        JSONArray categoryJsonArray = new JSONArray();
-        JSONObject returnJson = new JSONObject();
+        //分类信息
         List<ArticalCategories> categoriesList = articalCategoriesService.queryAllArticalCategories();
-        Iterator iterator = categoriesList.iterator();
-        while(iterator.hasNext()){
-            ArticalCategories articalCategories = (ArticalCategories) iterator.next();
-            System.out.println(articalCategories.getCategoryName());
-            System.out.println(articalCategories.getArticalCount());
-            categoryJson = new JSONObject();
-            categoryJson.put("categoryName",articalCategories.getCategoryName());
-            categoryJson.put("categoryNum",articalCategories.getArticalCount());
-            categoryJsonArray.add(categoryJson);
-
+        Iterator categoriesIterator = categoriesList.iterator();
+        List<Map> categoryInfosList = new ArrayList<>();
+        while(categoriesIterator.hasNext()){
+            Map map = new HashMap();
+            ArticalCategories articalCategories = (ArticalCategories) categoriesIterator.next();
+            map.put("categoryName",articalCategories.getCategoryName());
+            map.put("categoryNum",articalCategories.getArticalCount());
+            if(articalCategories.getId() == id){
+                map.put("current","Y");
+            }else{
+                map.put("current","N");
+            }
+            categoryInfosList.add(map);
         }
-        returnJson.put("categoryInfos",categoryJsonArray);
-        model.addAttribute("categoryInfos",returnJson);
+        model.addAttribute("categoryInfos",categoryInfosList);
+
+
+        //分页信息 文章信息
+        PageHelper.startPage(1, 10);
+        List<Artical> articals=articalService.getAll();
+        PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);
+
+        List<Map> articalList = new ArrayList<Map>();
+        //将对象转换为map 并在map中添加新的属性
+        Iterator articalIterator = articals.iterator();
+        while(articalIterator.hasNext()){
+            Map map = new HashMap();
+            Artical artical = (Artical) articalIterator.next();
+            map.put("id",artical.getId());
+            map.put("tittle",artical.getTittle());
+            map.put("categories",artical.getCategories());
+            map.put("createDate",artical.getCreateDate());
+            int categoriesId = artical.getCategories();
+            String categoriesName = articalCategoriesService.queryArticalCategoriesDetailById(categoriesId).getCategoryName();
+            map.put("categoriesName",categoriesName);
+            articalList.add(map);
+        }
+        model.addAttribute("articals",articalList);
+        model.addAttribute("pageInfo",pageInfo);
+
         return "categories";
     }
 }

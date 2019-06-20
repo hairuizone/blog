@@ -88,6 +88,7 @@
                         <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
                     </ul>
+                    <div align="right">
                     <a class="write-blog" href="">
                         <span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span>
                     </a>
@@ -101,7 +102,7 @@
                     <a href="#">
                         <button class="btn btn-sm">注册</button>
                     </a>
-
+                    </div>
                 </div>
             </div>
         </div>
@@ -212,7 +213,7 @@
                         <a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${artical.id}+')'" th:text="${artical.tittle}"></a>
                     </div>
                     <div class="index-card-footer" style="text-align: right;">
-                        <a href="/">查看更多</a>
+                        <a href="javascript:void(0);" th:onclick="'javascript:showCategories('+${articalCategories.id}+')'">查看更多</a>
                     </div>
                 </div>
             </div>

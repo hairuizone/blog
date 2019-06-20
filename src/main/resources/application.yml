@@ -10,3 +10,10 @@ mybatis:
   configuration:
     #配置mybatis支持驼峰命名 例如：表中user_name 映射类userName
     map-underscore-to-camel-case: true
+
+# 分页配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

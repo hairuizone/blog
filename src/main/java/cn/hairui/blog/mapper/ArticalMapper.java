@@ -1,10 +1,9 @@
 package cn.hairui.blog.mapper;
 
-import java.util.List;
-
+import cn.hairui.blog.model.Artical;
 import org.apache.ibatis.annotations.*;
 
-import cn.hairui.blog.model.Artical;
+import java.util.List;
 
 /**
  * @author laoganbu
@@ -115,4 +114,7 @@ public interface ArticalMapper {
 
     @Select("select CATEGORY_NAME from artical_categories where id=#{categoriesId}")
     public String queryArticalCategoriesNameById(Integer categoriesId);
+
+    @Select("select * from artical")
+    public List<Artical> getAll();
 }

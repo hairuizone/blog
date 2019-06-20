@@ -19,21 +19,21 @@ public class ArticalRepository {
     @Autowired
     private ArticalMapper articalMapper;
 
-
     public List<Artical> queryArticalListByNavId(Integer navId) {
         return articalMapper.queryArticalListByNavId(navId);
     }
 
-    public List<Artical> queryArticalListByNavId(Integer navId,int count) {
-        return articalMapper.queryArticalListByNavIdCount(navId,count);
+    public List<Artical> queryArticalListByNavId(Integer navId, int count) {
+        return articalMapper.queryArticalListByNavIdCount(navId, count);
     }
 
 
     public List<Artical> queryArticalListByCategories(Integer categories) {
         return articalMapper.queryArticalListByCategories(categories);
     }
-    public List<Artical> queryArticalListByCategories(Integer categories,int count) {
-        return articalMapper.queryArticalListByCategoriesCount(categories,count);
+
+    public List<Artical> queryArticalListByCategories(Integer categories, int count) {
+        return articalMapper.queryArticalListByCategoriesCount(categories, count);
     }
 
 
@@ -100,7 +100,7 @@ public class ArticalRepository {
                 }
             }
         }
-        if(result.size() > maxSize) {
+        if (result.size() > maxSize) {
             result = result.subList(0, maxSize);
         }
         return result;
@@ -124,5 +124,9 @@ public class ArticalRepository {
 
     public String queryArticalCategoriesNameById(Integer categoriesId) {
         return articalMapper.queryArticalCategoriesNameById(categoriesId);
+    }
+
+    public List<Artical> getAll() {
+        return articalMapper.getAll();
     }
 }

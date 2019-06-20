@@ -3,6 +3,7 @@ package cn.hairui.blog.service;
 import java.util.List;
 
 import cn.hairui.blog.model.Artical;
+import com.github.pagehelper.Page;
 
 /**
  * @author laoganbu
@@ -72,4 +73,10 @@ public interface ArticalService {
      * @return
      */
     public String queryArticalCategoriesNameById(Integer categoriesId);
+
+    /**
+     *
+     * @return
+     */
+    public List<Artical> getAll();
 }
