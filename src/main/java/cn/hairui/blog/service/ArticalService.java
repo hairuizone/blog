@@ -75,8 +75,15 @@ public interface ArticalService {
     public String queryArticalCategoriesNameById(Integer categoriesId);
 
     /**
-     *
+     * 查询所有文章
      * @return
      */
     public List<Artical> getAll();
+
+    /**
+     * 查詢分类编号下面的所有的文章
+     * @param categoriesId
+     * @return
+     */
+    public List<Artical> getAllByCategoriesId(int categoriesId);
 }

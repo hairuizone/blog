@@ -117,4 +117,7 @@ public interface ArticalMapper {
 
     @Select("select * from artical")
     public List<Artical> getAll();
+
+    @Select("select* from artical where CATEGORIES=#{categoriesId}")
+    public List<Artical> getAllByCategoriesId(int categoriesId);
 }

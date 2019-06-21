@@ -111,6 +111,11 @@ public class ArticalServiceImpl implements ArticalService {
     }
 
     @Override
+    public List<Artical> getAllByCategoriesId(int categoriesId) {
+        return articalRepository.getAllByCategoriesId(categoriesId);
+    }
+
+    @Override
 	public List<String> queryAllArticalTagsLimited(int maxSize) {
 		return articalRepository.queryArticalTagsLimited(maxSize);
 	}

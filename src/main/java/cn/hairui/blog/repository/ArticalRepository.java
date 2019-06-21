@@ -129,4 +129,8 @@ public class ArticalRepository {
     public List<Artical> getAll() {
         return articalMapper.getAll();
     }
+
+    public List<Artical> getAllByCategoriesId(int categoriesId) {
+        return articalMapper.getAllByCategoriesId(categoriesId);
+    }
 }

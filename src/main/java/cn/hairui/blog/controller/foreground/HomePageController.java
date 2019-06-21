@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -118,7 +119,20 @@ public class HomePageController {
     }
 
     @RequestMapping(value = "categories")
-    public String showCategories(int id,Model model) {
+    public String showCategories(HttpServletRequest request, Model model) {
+
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+
+        int categoriesId=0;
+        String idStr = request.getParameter("id");
+        if(idStr != null){
+            categoriesId = Integer.parseInt(idStr);
+            ArticalCategories articalCategories = articalCategoriesService.queryArticalCategoriesDetailById(categoriesId);
+            model.addAttribute("articalCategoryName","# "+articalCategories.getCategoryName());
+        }else{
+            model.addAttribute("articalCategoryName","# 全部分类");
+        }
         //分类信息
         List<ArticalCategories> categoriesList = articalCategoriesService.queryAllArticalCategories();
         Iterator categoriesIterator = categoriesList.iterator();
@@ -128,7 +142,7 @@ public class HomePageController {
             ArticalCategories articalCategories = (ArticalCategories) categoriesIterator.next();
             map.put("categoryName",articalCategories.getCategoryName());
             map.put("categoryNum",articalCategories.getArticalCount());
-            if(articalCategories.getId() == id){
+            if(articalCategories.getId() == categoriesId){
                 map.put("current","Y");
             }else{
                 map.put("current","N");
@@ -140,7 +154,14 @@ public class HomePageController {
 
         //分页信息 文章信息
         PageHelper.startPage(1, 10);
-        List<Artical> articals=articalService.getAll();
+        List<Artical> articals = new ArrayList<>();
+        if(categoriesId == 0){
+            //查詢所有
+            articals=articalService.getAll();
+        }else{
+            articals=articalService.getAllByCategoriesId(categoriesId);
+        }
+        //List<Artical> articals=articalService.getAll();
         PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);
 
         List<Map> articalList = new ArrayList<Map>();
@@ -153,8 +174,8 @@ public class HomePageController {
             map.put("tittle",artical.getTittle());
             map.put("categories",artical.getCategories());
             map.put("createDate",artical.getCreateDate());
-            int categoriesId = artical.getCategories();
-            String categoriesName = articalCategoriesService.queryArticalCategoriesDetailById(categoriesId).getCategoryName();
+            int caId = artical.getCategories();
+            String categoriesName = articalCategoriesService.queryArticalCategoriesDetailById(caId).getCategoryName();
             map.put("categoriesName",categoriesName);
             articalList.add(map);
         }
