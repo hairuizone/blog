@@ -1,0 +1,118 @@
+.timeline-row .node {
+    color: #fff;
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    margin: 0 0 0 -17px;
+    padding: 6px 8px 10px;
+    display: inline-block;
+    background-color: #38b7ea;
+    border-radius: 50%;
+}
+
+.title {
+    font-size: 20px;
+    margin-left: 10px;
+    line-height: 30px;
+    display: inline-block;
+    margin-top: 0;
+    font-weight: bolder;
+}
+
+.timeline-wrap {
+    border-left: 3px solid #eceff2;
+    margin-bottom: 50px;
+}
+
+.list-group {
+    padding-left: 0;
+    margin-bottom: 5px;
+}
+
+.timeline-row-major .node {
+    width: 12px;
+    color: #fff;
+    height: 12px;
+    border-radius: 50%;
+    margin: 11px 0 0 -8px;
+    display: inline-block;
+    background-color: #38b7ea;
+    float: left;
+}
+
+.timeline-row-major .content {
+    margin-left: 30px;
+    /*box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);*/
+}
+
+.contentTitle {
+    color: #565a5f;
+    font-size: 16px;
+}
+
+
+@media screen and (min-width: 768px) {
+    .site-inner {
+        margin: 20px 90px 0;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .categories-comment {
+        margin: 30px 0 0 10px;
+        display: inline-block;
+    }
+}
+
+.category {
+    margin-top: 6px;
+    padding: 3px;
+}
+
+.categories-comment {
+    margin: 30px 0 0 10px;
+    display: inline-block;
+}
+
+.categories-comment a {
+    cursor: pointer;
+    padding-bottom: 2px;
+    color: #616161;
+    border-bottom: 1px solid #999;
+}
+
+.categories-comment a:hover {
+    text-decoration: none;
+    cursor: pointer;
+    color: #38b7ea;
+}
+
+.categoryName {
+    font-size: 16px;
+}
+
+.categoryName2 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.categoryNum {
+    color: #b0b0b0;
+}
+
+.categoryNum2 {
+    color: #b0b0b0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.am-comment-bd i {
+    margin-right: 8px;
+    line-height: 2em;
+    font-size: 13px;
+}
+
+.page li a {
+    cursor: pointer;
+    color: #999;
+}

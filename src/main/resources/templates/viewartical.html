@@ -12,7 +12,7 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/comm.js"></script>
     <!--主要写的css代码-->
-    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+
     <link rel="stylesheet" href="background/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="background/assets/css/app.css">
     <link href="editormd/css/editormd.min.css" rel="stylesheet" type="text/css"/>
@@ -25,7 +25,7 @@
     <script src="editormd/lib/sequence-diagram.min.js"></script>
     <script src="editormd/lib/flowchart.min.js"></script>
     <script src="editormd/lib/jquery.flowchart.min.js"></script>
-
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
     <title th:text="${myinfo.webname}"></title>
 </head>
 <script type="text/javascript">
@@ -62,52 +62,40 @@
                 	<span>
                 		<img src="img/brand.jpg" class="img-circle"  style="height: 30px;width: 30px">
                 	</span>
-                	<label th:text="${myinfo.getWebname()}" onclick="homepage()"></label>
+                    <label th:text="${myinfo.getWebname()}" onclick="homepage()"></label>
                 </a>
             </div>
             <div class="container">
                 <div id="navbar-menu" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                        	<a href="#">
-                        		<span class="glyphicon glyphicon-home">&nbsp;首页</span>
-                        	</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#">
-                            	<span class="glyphicon glyphicon-th">&nbsp;分类</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Java基础知识</a>
-                                </li>
-                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Spring boot</a>
-                                </li>
-                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;redis缓存</a>
-                                </li>
-                                <li><a class="" href="#"><span class="glyphicon glyphicon-tag"></span>&nbsp;Apache反向代理</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="homepage()"><span class="glyphicon glyphicon-home">&nbsp;首页</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showCategories();"><span class="glyphicon glyphicon-th">&nbsp;分类</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showArchive();"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showTopic();"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showAboutme();"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showTransfer();"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
                     </ul>
-                    <a class="write-blog" href="">
-                        <span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span>
-                    </a>
-                    <a class="message-center" href="">
-                        <span><img class="message-icon" src="http://localhost:8848/myblog/img/message-icon.png">消息中心</span>
-                    </a>
-                    <a href="#">
-                        <button class="btn btn-sm">登录</button>
-                    </a>
-                    <a href="#">
-                        <button class="btn btn-sm">注册</button>
-                    </a>
+
+                    <li class="navinfo"><a class="write-blog" href=""><span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span></a></li>
+                    <li class="navinfo"><a class="message-center" href=""><span><img class="message-icon" src="http://localhost:8848/myblog/img/message-icon.png">消息中心</span></a></li>
+
+                    <li class="navinfo" >
+                        <span>
+                            <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">
+                                <img class="img-circle" style="height: 30px;width: 30px;margin: 0 10px;" src="img/brand.jpg" />
+                                </a>
+                                <label >晚上好，老干部</label>
+                        </span>
+
+                    </li>
+
+                    <li class="navinfo"><a href="#"><button class="btn btn-sm">登录</button></a></li>
+                    <li class="navinfo" style="display: none" ><a href="#"><button class="btn btn-sm">注册</button></a></li>
+
                 </div>
             </div>
         </div>
+
     </nav>
 
     <div id="content" class="row-fluid">
@@ -126,7 +114,7 @@
         </div>
         <!--我的名言-->
         <div align="center" style="margin-top: 20px;margin-bottom: 20px;">
-            <blockquote style="background-color: #AED9D3;border-color:#D8B2CE;width: 70%;font-size: 16px;">
+            <blockquote style="background-color: #AED9D3;border-color:#D8B2CE;width: 70%;font-size: 15px;">
                 <p align="left" th:text="${solidot}"></p>
                 <p align="right" th:text="'——'+${solidotor}"></p>
             </blockquote>

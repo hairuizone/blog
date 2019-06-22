@@ -115,9 +115,9 @@ public interface ArticalMapper {
     @Select("select CATEGORY_NAME from artical_categories where id=#{categoriesId}")
     public String queryArticalCategoriesNameById(Integer categoriesId);
 
-    @Select("select * from artical")
+    @Select("select * from artical order by id desc")
     public List<Artical> getAll();
 
-    @Select("select* from artical where CATEGORIES=#{categoriesId}")
+    @Select("select* from artical where CATEGORIES=#{categoriesId} order by id desc")
     public List<Artical> getAllByCategoriesId(int categoriesId);
 }

@@ -63,5 +63,5 @@ public class PubConstant {
     /**
      * 首页展示在线工具数量
      */
-    public static final int MAX_SHOW_TOOLS = 7;
+    public static final int MAX_SHOW_TOOLS = 6;
 }

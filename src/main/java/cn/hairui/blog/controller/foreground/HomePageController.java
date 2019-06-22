@@ -112,8 +112,23 @@ public class HomePageController {
         articalTop = articalService.queryArticalFirstByIntop(PubConstant.YES_NO_Y);
         model.addAttribute("articalTop", articalTop);
 
-        List<Artical> articalListHomePage = articalService.queryArticalListHomePage();
+
+
+
+
+
+        PageHelper.startPage(1, 10);
+        List<Artical> articalListHomePage = articalService.getAll();
+        PageInfo<Artical> pageInfo = new PageInfo<Artical>(articalListHomePage);
+
+
+
+
+
+
+        /*List<Artical> articalListHomePage = articalService.queryArticalListHomePage();*/
         model.addAttribute("articalListHomePage", articalListHomePage);
+        model.addAttribute("pageInfo",pageInfo);
         return "index";
 
     }
@@ -126,10 +141,18 @@ public class HomePageController {
 
         int categoriesId=0;
         String idStr = request.getParameter("id");
-        if(idStr != null){
-            categoriesId = Integer.parseInt(idStr);
-            ArticalCategories articalCategories = articalCategoriesService.queryArticalCategoriesDetailById(categoriesId);
-            model.addAttribute("articalCategoryName","# "+articalCategories.getCategoryName());
+        if(idStr != null && !"null".equals(idStr)){
+            try {
+                categoriesId = Integer.parseInt(idStr);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            if(categoriesId != 0){
+                ArticalCategories articalCategories = articalCategoriesService.queryArticalCategoriesDetailById(categoriesId);
+                model.addAttribute("articalCategoryName","# "+articalCategories.getCategoryName());
+            }else{
+                model.addAttribute("articalCategoryName","# 全部分类");
+            }
         }else{
             model.addAttribute("articalCategoryName","# 全部分类");
         }
@@ -142,6 +165,7 @@ public class HomePageController {
             ArticalCategories articalCategories = (ArticalCategories) categoriesIterator.next();
             map.put("categoryName",articalCategories.getCategoryName());
             map.put("categoryNum",articalCategories.getArticalCount());
+            map.put("categoryId",articalCategories.getId());
             if(articalCategories.getId() == categoriesId){
                 map.put("current","Y");
             }else{
@@ -153,7 +177,17 @@ public class HomePageController {
 
 
         //分页信息 文章信息
-        PageHelper.startPage(1, 10);
+        Integer pageNum = null;
+        String pageNumStr = request.getParameter("pageIndex");
+        if(pageNumStr != null){
+            pageNum = Integer.parseInt(pageNumStr);
+        }
+         
+        System.out.println(pageNum);
+        if(pageNum == null){
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, 10);
         List<Artical> articals = new ArrayList<>();
         if(categoriesId == 0){
             //查詢所有
