@@ -62,16 +62,22 @@ a:hover {
     color: #D23039;
 }
 .write-blog {
-    margin-left: 10px;
+    margin-left: 5px;
     margin-right: 5px;
     font-size: 12px;
+}
+.music {
+    margin-left: 5px;
+    margin-top: 2px;
+    margin-right: 0px;
+    color: gray;
 }
 
 .write-icon {
     margin: 0px 3px 3px 0px;
 }
 .message-center {
-    margin-left: 10px;
+    margin-left: 5px;
     margin-right: 5px;
     font-size: 12px;
 }

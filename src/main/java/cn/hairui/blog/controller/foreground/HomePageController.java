@@ -111,22 +111,9 @@ public class HomePageController {
         Artical articalTop = new Artical();
         articalTop = articalService.queryArticalFirstByIntop(PubConstant.YES_NO_Y);
         model.addAttribute("articalTop", articalTop);
-
-
-
-
-
-
         PageHelper.startPage(1, 10);
         List<Artical> articalListHomePage = articalService.getAll();
         PageInfo<Artical> pageInfo = new PageInfo<Artical>(articalListHomePage);
-
-
-
-
-
-
-        /*List<Artical> articalListHomePage = articalService.queryArticalListHomePage();*/
         model.addAttribute("articalListHomePage", articalListHomePage);
         model.addAttribute("pageInfo",pageInfo);
         return "index";
@@ -217,5 +204,15 @@ public class HomePageController {
         model.addAttribute("pageInfo",pageInfo);
 
         return "categories";
+    }
+
+    @RequestMapping(value = "videoplayer")
+    public String videoplayer() {
+        return "videoplayer";
+    }
+
+    @RequestMapping(value = "test")
+    public String test() {
+        return "test";
     }
 }
