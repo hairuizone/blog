@@ -10,9 +10,10 @@ import java.io.File;
 public class FileUtil {
     /**
      * 删除单个文件
+     *
      * @param path 文件全路径
      */
-    public static void deleteSingleFile(String path){
+    public static void deleteSingleFile(String path) {
         File file = new File(path);
         if (file.exists()) {
             file.delete();

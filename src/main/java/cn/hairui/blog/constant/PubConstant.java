@@ -1,15 +1,16 @@
 package cn.hairui.blog.constant;
+
 /**
+ * <p>
+ * <h2>常量信息定义类</h2>
+ * <ol>请添加详细描述
+ * </ol>
+ * </p>
  *
- *<p>
- *<h2>常量信息定义类</h2>
- *<ol>请添加详细描述
- *</ol>
- *</p>
- *@author lihairui
- *@Date 2019年6月7日 下午12:48:55
- *@version 1.0
- *@since jdk 1.8
+ * @author lihairui
+ * @version 1.0
+ * @Date 2019年6月7日 下午12:48:55
+ * @since jdk 1.8
  */
 public class PubConstant {
 
@@ -64,4 +65,15 @@ public class PubConstant {
      * 首页展示在线工具数量
      */
     public static final int MAX_SHOW_TOOLS = 6;
+
+    /**
+     * 后台页面目录
+     */
+    public static final String BACKGROUND_DIR_NAME = "background/";
+
+    public static final String flag = "flag";
+    public static final String failed = "failed";
+    public static final String success = "success";
+    public static final String message = "message";
+
 }

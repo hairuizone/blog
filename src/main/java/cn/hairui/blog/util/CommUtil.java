@@ -13,10 +13,9 @@ public class CommUtil {
 
     /**
      * 将对象装换为map
-
      */
     public static Map<?, ?> objectToMap(Object obj) {
-        if(obj == null) {
+        if (obj == null) {
             return null;
         }
         return new org.apache.commons.beanutils.BeanMap(obj);

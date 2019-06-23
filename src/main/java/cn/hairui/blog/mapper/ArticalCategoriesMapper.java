@@ -14,7 +14,7 @@ import java.util.List;
 public interface ArticalCategoriesMapper {
 
     @Select("select * from artical_categories where is_show=#{isShow} order by show_order asc  limit #{beginIdx},#{endIdx}")
-    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow,int beginIdx,int endIdx);
+    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow, int beginIdx, int endIdx);
 
     @Select("select * from artical_categories order by id asc")
     public List<ArticalCategories> queryArticalCategoriesList();
@@ -44,6 +44,4 @@ public interface ArticalCategoriesMapper {
     @Update("update artical_categories set SHOW_ORDER = SHOW_ORDER+1 where SHOW_ORDER is not null and SHOW_ORDER!=''")
     public void moveArticalCategoriesOrderNextOne();
 
-    @Select("select * from artical_categories")
-    public List<ArticalCategories> queryAllArticalCategories();
 }

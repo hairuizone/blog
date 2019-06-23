@@ -39,9 +39,13 @@
     function showTopic(id){
         alert(id);
     }
+    function showBooks(){
+        var url = "books";
+        window.location.href = url;
+    }
 
     function bookDetail(id){
-        var url = "books?id="+id;
+        var url = "books-view?id="+id;
         window.open(url);
     }
     function showAboutme(){
@@ -51,8 +55,8 @@
         alert("欢迎来到未知星球");
     }
 
-    function videoplayer(){
-        var url = "videoplayer";
+    function musicplayer(){
+        var url = "musicplayer";
         window.open(url);
     }
     $(function(){
@@ -129,7 +133,7 @@
 
                     <li class="navinfo"><a class="write-blog" href=""><span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span></a></li>
                     <li class="navinfo"><a class="message-center" href=""><span><img class="message-icon" src="http://localhost:8848/myblog/img/message-icon.png">消息</span></a></li>
-                    <li class="navinfo"><a class="music" onclick="javascript:videoplayer();"><span class="glyphicon glyphicon-music"></span></a></li>
+                    <li class="navinfo"><a class="music" onclick="javascript:musicplayer();"><span class="glyphicon glyphicon-music"></span></a></li>
                     <li class="navinfo" >
                         <span>
                             <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">
@@ -288,7 +292,7 @@
 
                     </div>
                     <div class="index-card-footer">
-                        <a href="javascript:void(0);" onclick="javascript:alert('todo');">查看更多</a>
+                        <a href="javascript:void(0);" onclick="javascript:showBooks();">查看更多</a>
                     </div>
                 </div>
             </div>

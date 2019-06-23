@@ -1,12 +1,11 @@
 package cn.hairui.blog.repository;
 
-import java.util.List;
-
+import cn.hairui.blog.mapper.ArticalCategoriesMapper;
+import cn.hairui.blog.model.ArticalCategories;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import cn.hairui.blog.mapper.ArticalCategoriesMapper;
-import cn.hairui.blog.model.ArticalCategories;
+import java.util.List;
 
 /**
  * @author lihairui
@@ -19,8 +18,8 @@ public class ArticalCategoriesRepository {
     @Autowired
     private ArticalCategoriesMapper articalCategoriesMapper;
 
-    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow,int beginIdx,int endIdx) {
-        return articalCategoriesMapper.queryArticalCategoriesByIsShow(isShow,beginIdx,endIdx);
+    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow, int beginIdx, int endIdx) {
+        return articalCategoriesMapper.queryArticalCategoriesByIsShow(isShow, beginIdx, endIdx);
     }
 
     public List<ArticalCategories> queryArticalCategoriesList() {
@@ -32,7 +31,7 @@ public class ArticalCategoriesRepository {
         try {
             id = articalCategoriesMapper.addArticalCategories(articalCategories);
             return id;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return id;
@@ -55,7 +54,7 @@ public class ArticalCategoriesRepository {
     }
 
     public int deleteArticalCategoriesData(int id) {
-       return articalCategoriesMapper.deleteArticalCategoriesData(id);
+        return articalCategoriesMapper.deleteArticalCategoriesData(id);
     }
 
     public Integer queryMaxArticalCategoriesId() {
@@ -66,7 +65,4 @@ public class ArticalCategoriesRepository {
         articalCategoriesMapper.moveArticalCategoriesOrderNextOne();
     }
 
-    public List<ArticalCategories> queryAllArticalCategories() {
-        return articalCategoriesMapper.queryAllArticalCategories();
-    }
 }

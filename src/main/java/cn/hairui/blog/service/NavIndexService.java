@@ -13,5 +13,6 @@ public interface NavIndexService {
     public NavIndex findNavIndexById(Integer id);
 
     public List<NavIndex> queryNavIndexList();
+
     public List<NavIndex> queryNavIndexListLimited(int maxSize);
 }

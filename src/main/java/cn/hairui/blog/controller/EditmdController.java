@@ -49,7 +49,6 @@ public class EditmdController {
                 "<tr><td bgcolor=yellow>背景色-yellow</td></tr>" +
                 "<tr><td bgcolor=blue>背景色-blue</td></tr></table>";
 
-
         //更新到数据库
         Editmd editmd = new Editmd();
         editmd.setId(1);

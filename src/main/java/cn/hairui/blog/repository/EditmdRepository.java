@@ -16,7 +16,7 @@ public class EditmdRepository {
     @Autowired
     private EditmdMapper editmdMapper;
 
-    public Editmd queryEditmdById(int id){
+    public Editmd queryEditmdById(int id) {
         return editmdMapper.queryEditmdById(id);
     }
 

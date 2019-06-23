@@ -15,6 +15,7 @@ public interface ArticalTopicsMapper {
 
     @Select("select * from Artical_Topics")
     public List<ArticalTopics> queryArticalTopicsList();
+
     @Select("select * from Artical_Topics limit 0,#{maxSize}")
     public List<ArticalTopics> queryArticalTopicsListLimited(int maxSize);
 
@@ -22,7 +23,7 @@ public interface ArticalTopicsMapper {
     public int qeuryArticalTopicsByName(String topicName);
 
     @Insert("insert into Artical_Topics(TOPIC_NAME,ARTICAL_COUNT,introduction) value(#{topicName},#{articalCount},#{introduction})")
-    @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
     public int addArticalTopics(ArticalTopics articalTopics);
 
     @Select("select * from artical_topics where id=#{id}")

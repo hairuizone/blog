@@ -67,7 +67,7 @@ body{
 .content-list  a:hover {color: #d43f3a;font-weight: bold;text-underline: none;}
 /*tab_buttons*/
 .tab_buttons { margin-bottom: 10px; width: 100%; overflow: hidden; border-bottom: #e4e3e3 1px solid;/* position: relative; */ }
-.tab_buttons li { display: block; font-size: 16px; line-height: 40px; float: left; width: 100px; text-align: center;position: relative; cursor:pointer }
+.tab_buttons li { display: block; font-size: 16px; line-height: 40px; float: left; width: 100px; text-align: center;position: relative; cursor:pointer;font-weight: bold; }
 .newscurrent:after { content: ""; background: #000; width: 100px; height: 2px; position: absolute; bottom: 0; left: 0; }
 .newsitem { display: none; }
 .newsitem:nth-child(1) { display: block; }

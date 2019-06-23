@@ -1,90 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="img/favicon.png"/>
-    <title>老干部的咖啡屋-🎵</title>
-    <!--默认样式  可无视-->
-    <link rel="stylesheet" href="css/reset.css">
-    <!--核心js-->
-    <script src="js/vsPlayAudio.min.js"></script>
-    <!--代码高亮  可无视-->
-    <link rel="stylesheet" href="css/androidstudio.min.css">
-    <script src="js/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <!--bootstrap库-->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <style>
-
-        .btn_show{
-            display:inline-block;width: 60px;
-        }
-        .btn_hidden{
-            display:none;width: 60px;
-        }
-
-    </style>
-
+    <title>老干部的咖啡屋-🎬</title>
+    <!--可无视-->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/resetvideo.css">
+    <!--布局样式，意义不大-->
+    <link rel="stylesheet" href="css/demo.css">
+    <!--核心样式-->
+    <link rel="stylesheet" href="css/ckin.css">
 </head>
-<body style="width: 500px;margin: 15px auto 0;color: #c9cacc;background-color: #1d1f21;">
+<body>
+<section class="demo-section demo-section--light" id="demo">
+    <div class="container">
+        <h2 class="title heading">Custom HTML5 Video Player with Ckins...</h2>
+        <video poster="files/images/ckin.jpg" src="files/video/ckin.mp4" data-ckin="default" data-overlay="1"
+               data-title="The curious case of Chameleon..."></video>
 
-<div style="text-align: center;font-size: 36px;font-weight: 700;margin: 50px 0 0 0;">
-    <span>欢迎来到老干部的私人音乐馆</span>
-</div>
-<div style="text-align: center;font-size: 18px;margin: 50px 0 0 0;">
-    <p style="line-height: 45px;">享受音乐 享受生活</p>
-</div>
-<div class="clear" style="margin: 50px auto 50px;width: 200px;height: 200px;border-radius: 100px;background: #fff;">
-    <div id="vsPlayAudio" style="width: 200px;height: 200px;"></div>
-</div>
-<div style="text-align: center;margin: 50px 0 0 0;">
-    <ul>
-        <li id="btn_play" class="btn_hidden" hidden><span class="glyphicon glyphicon-play" style="color: #fff; font-size: 30px;" onclick="player.play()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="播放"></span></li>
-        <li id="btn_stop" class="btn_show"><span class="glyphicon glyphicon-pause" style="color: #fff; font-size: 30px;" onClick="player.pause()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="暂停"></span></li>
-        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-forward" style="color: #fff; font-size: 30px;" onClick="player.next()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="下一首"> </span></li>
-        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-list" style="color: #fff; font-size: 30px;" onclick="" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="切换歌单"> </span></li>
-        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-off" style="color: #fff; font-size: 30px;" onclick="javascript:window.close();" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="退出"> </span></li>
+    </div>
+</section>
 
-    </ul>
-</div>
+<script src="js/ckin.js"></script>
 
-<script>
-
-    $("#btn_play").click(function() {
-        document.getElementById("btn_play").classList.remove("btn_show")
-        document.getElementById("btn_play").classList.add("btn_hidden")
-
-        document.getElementById("btn_stop").classList.remove("btn_hidden")
-        document.getElementById("btn_stop").classList.add("btn_show")
-    });
-
-    $("#btn_stop").click(function() {
-        document.getElementById("btn_stop").classList.remove("btn_show")
-        document.getElementById("btn_stop").classList.add("btn_hidden")
-
-        document.getElementById("btn_play").classList.remove("btn_hidden")
-        document.getElementById("btn_play").classList.add("btn_show")
-    });
-
-    var player = new vsPlayAudio({
-        music: {
-            //必需项,音乐配置
-            type: 'cloud',
-            //必需项,网易云方式指定填'cloud'
-            source: 2007653931
-            //必需项,网易云音乐歌单id
-            //登录网易云网页版,在网页地址中拿到
-            // ... playlist?id=317921676
-        },
-        autoPlay: true,//自动播放
-        random: false//随机播放
-    });
-    //初始化显示歌曲列表  如果不需要初始化展示则注释即可实现
-    document.getElementById("vsPlayAudio-control").classList.add("vsPlayAudio-control-show");
-</script>
 </body>
 </html>

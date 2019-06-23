@@ -19,7 +19,7 @@ public interface OnlineToolsMapper {
     public int queryOnlineToolsByName(String toolName);
 
     @Insert("insert into online_tools(tool_name,url,introduce,add_date) value (#{toolName},#{url},#{introduce},#{addDate})")
-    @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     public int addOnlineTools(OnlineTools onlineTools);
 
     @Select("select * from online_tools where id=#{id}")

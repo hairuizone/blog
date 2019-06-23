@@ -1,31 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="img/favicon.png"/>
-    <title>老干部的咖啡屋-📖</title>
-    <script type="text/javascript" src='js/pdfobject.min.js'></script>
-    <style type="text/css">
-        html,body,#pdf_viewer{
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <title>老干部的咖啡屋-🎬</title>
+    <!--可无视-->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="css/resetvideo.css">
+    <!--布局样式，意义不大-->
+    <link rel="stylesheet" href="css/demo.css">
+    <!--核心样式-->
+    <link rel="stylesheet" href="css/ckin.css">
 </head>
 <body>
-<div id="pdf_viewer"></div>
+<section class="demo-section demo-section--light" id="demo">
+    <div class="container">
+        <h2 class="title heading">Custom HTML5 Video Player with Ckins...</h2>
+        <video poster="files/images/ckin.jpg" src="files/video/ckin.mp4" data-ckin="default" data-overlay="1"
+               data-title="The curious case of Chameleon..."></video>
+
+    </div>
+</section>
+
+<script src="js/ckin.js"></script>
+
 </body>
-<script type="text/javascript">
-    if(PDFObject.supportsPDFs){
-        // PDF嵌入到网页
-        PDFObject.embed("files/pdf/myblog.pdf", "#pdf_viewer" );
-    } else {
-        /*location.href = "/canvas";*/
-        location.href = "/canvas";
-    }
-</script>
 </html>

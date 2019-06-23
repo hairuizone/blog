@@ -126,8 +126,8 @@ public class ArticalRepository {
         return articalMapper.queryArticalCategoriesNameById(categoriesId);
     }
 
-    public List<Artical> getAll() {
-        return articalMapper.getAll();
+    public List<Artical> queryArticalList() {
+        return articalMapper.queryArticalList();
     }
 
     public List<Artical> getAllByCategoriesId(int categoriesId) {

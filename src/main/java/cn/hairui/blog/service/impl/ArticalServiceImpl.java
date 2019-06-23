@@ -106,8 +106,8 @@ public class ArticalServiceImpl implements ArticalService {
     }
 
     @Override
-    public List<Artical> getAll() {
-        return articalRepository.getAll();
+    public List<Artical> queryArticalList() {
+        return articalRepository.queryArticalList();
     }
 
     @Override

@@ -12,21 +12,23 @@ import java.util.List;
 @Mapper
 public interface BooksMapper {
 
-    @Select("select * from books")
-    public List<Books> queryBooksList();//查询所有书籍信息
-    @Select("select * from books limit 0,#{maxSize}")
+    @Select("SELECT * FROM BOOKS ORDER BY ID DESC")
+    public List<Books> queryBooksList();
+
+    @Select("SELECT * FROM BOOKS LIMIT 0,#{maxSize}")
     public List<Books> queryBooksListLimited(int maxSize);
-    @Select("select count(1) from books where BOOK_NAME=#{bookName}")
+
+    @Select("SELECT COUNT(1) FROM BOOKS WHERE BOOK_NAME=#{bookName}")
     public int queryBooksDetialByBookName(String bookName);
 
-
-    @Insert("insert into books(BOOK_NAME,AUTHOR,PUBLISH_DATE,LOCAL_PATH,ADD_DATE) value(#{bookName},#{author},#{publishDate},#{localPath},#{addDate})")
-    @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
+    @Insert("INSERT INTO BOOKS(BOOK_NAME,AUTHOR,PUBLISH_DATE,LOCAL_PATH,ADD_DATE) value(#{bookName},#{author},#{publishDate},#{localPath},#{addDate})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
     public int addBooks(Books books);
 
-    @Delete("delete from books where id=#{id}")
+    @Delete("DELETE FROM BOOKS WHERE ID=#{id}")
     public int deleteBooks(int id);
 
-    @Select("select * from books where id=#{id}")
+    @Select("SELECT * FROM BOOKS WHERE ID=#{id}")
     public Books queryBooksDetialById(int id);
+
 }

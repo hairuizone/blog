@@ -10,48 +10,49 @@ import java.util.List;
  */
 public interface BooksService {
 
-	/**
-	 * 
-	 * @Description 获取所有书籍
-	 * @return
-	 */
+    /**
+     * @return
+     * @Description 获取所有书籍
+     */
     public List<Books> queryBooksList();
 
     /**
-     * 
-     * @Description 获取指定数量书籍
      * @param maxSize 数量
      * @return
+     * @Description 获取指定数量书籍
      */
-	public List<Books> queryBooksListLimited(int maxSize);
+    public List<Books> queryBooksListLimited(int maxSize);
 
-	/**
-	 * 通过书籍名称查询书籍是否已经存在
-	 * @param bookName
-	 * @return 查询结果数量
-	 */
+    /**
+     * 通过书籍名称查询书籍是否已经存在
+     *
+     * @param bookName
+     * @return 查询结果数量
+     */
     public int queryBooksDetialByBookName(String bookName);
 
-	/**
-	 * 添加书籍
-	 * @param books
-	 * @return
-	 */
-	public int addBooks(Books books);
+    /**
+     * 添加书籍
+     *
+     * @param books
+     * @return
+     */
+    public int addBooks(Books books);
 
-	/**
-	 * 删除指定书籍
-	 * @param id
-	 * @return
-	 */
+    /**
+     * 删除指定书籍
+     *
+     * @param id
+     * @return
+     */
     public int deleteBooks(int id);
 
-	/**
-	 * 通过书籍编号获取书籍信息
-	 * @param id
-	 * @return
-	 */
-	public Books queryBooksDetialById(int id);
-
+    /**
+     * 通过书籍编号获取书籍信息
+     *
+     * @param id
+     * @return
+     */
+    public Books queryBooksDetialById(int id);
 
 }

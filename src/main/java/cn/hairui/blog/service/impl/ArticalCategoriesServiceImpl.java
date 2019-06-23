@@ -24,12 +24,6 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow,int beginIdx,int endIdx) {
         return articalCategoriesRepository.queryArticalCategoriesByIsShow(isShow,beginIdx,endIdx);
     }
-
-    @Override
-    public List<ArticalCategories> qeuryArticalCategoriesList() {
-        return articalCategoriesRepository.queryArticalCategoriesList();
-    }
-
     @Override
     public int addArticalCategories(ArticalCategories articalCategories) {
         return articalCategoriesRepository.addArticalCategories(articalCategories);
@@ -71,7 +65,7 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     }
 
     @Override
-    public List<ArticalCategories> queryAllArticalCategories() {
-        return articalCategoriesRepository.queryAllArticalCategories();
+    public List<ArticalCategories> queryArticalCategoriesList() {
+        return articalCategoriesRepository.queryArticalCategoriesList();
     }
 }

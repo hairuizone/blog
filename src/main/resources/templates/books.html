@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png"/>
+    <title th:text="${myinfo.webname}"></title>
+
+    <link href="background/assets/css/amazeui.min.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!--bootstrap库-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <link href="css/categories.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+    function homepage(){
+        window.location.href="/myblog";
+    }
+
+    function articalDetail(id) {
+        window.location.href = "artical-view?id=" + id;
+    }
+    function categoriesShow(id){
+        window.location.href = "categories?id=" +id;
+    }
+    function visitWebsite(url){
+        window.open = url;
+    }
+    function showCategories(id){
+        window.location.href = "categories?id="+id;
+    }
+    function showArchive(date){
+        alert(date);
+    }
+    function showTopic(id){
+        alert(id);
+    }
+    function showAboutme(){
+        alert("我就是帅气的小哥哥");
+    }
+    function showTransfer(){
+        alert("欢迎来到未知星球");
+    }
+    function musicplayer(){
+        var url = "musicplayer";
+        window.open(url);
+    }
+    $(function(){
+        $("[data-toggle='popover']").popover({
+            trigger:'manual',
+            placement : 'bottom', //placement of the popover. also can use top, bottom, left or right
+            //title : '<div style="text-align:center; color:black; text-decoration:none; font-size:14px;">我的信息</div>', //this is the top title bar of the popover. add some basic css
+            html: 'true', //needed to show html of course
+            content : content(), //this is the content of the html box. add the image here or anything you want really.
+            animation: false
+        }).on("mouseenter", function () {
+            var _this = this;
+            $(this).popover("show");
+            $(this).siblings(".popover").on("mouseleave", function () {
+                $(_this).popover('hide');
+            });
+        }).on("mouseleave", function () {
+            var _this = this;
+            setTimeout(function () {
+                if (!$(".popover:hover").length) {
+                    $(_this).popover("hide")
+                }
+            }, 100);
+        });
+    });
+    function content() {
+        var data = $("<div>" +
+            "<div style='margin-top: 3px;margin-bottom: 3px;'>" +
+            "<i class='glyphicon glyphicon-user' style='color: darkgray;font-style: italic'><a href='' target=''>&nbsp;我的关注</a></i>" +
+            "</div> " +
+            "<div style='margin-top: 3px;margin-bottom: 3px;'>" +
+            "<i class='glyphicon glyphicon-star' style='color: darkgray;font-style: italic'><a href='' target=''>&nbsp;我的收藏</a></i>" +
+            "</div>" +
+            "<div style='margin-top: 3px;margin-bottom: 3px;'>" +
+            "<i class='glyphicon glyphicon-home' style='color: darkgray;font-style: italic'><a href='' target=''>&nbsp;个人中心</a></i>" +
+            "</div>" +
+            "<div style='margin-top: 3px;margin-bottom: 3px;'>" +
+            "<i class='glyphicon glyphicon-log-out' style='color: darkgray;font-style: italic'><a href='' target=''>&nbsp;退出</a></i>" +
+            "</div>" +
+            "</div>");
+        return data;
+    }
+</script>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="header">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="javascript:void(0)" onclick="homepage()">
+                	<span>
+                		<img src="img/brand.jpg" class="img-circle"  style="height: 30px;width: 30px">
+                	</span>
+                    <label th:text="${myinfo.getWebname()}" onclick="homepage()"></label>
+                </a>
+            </div>
+            <div class="container">
+                <div id="navbar-menu" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="javascript:void(0);" onclick="homepage()"><span class="glyphicon glyphicon-home">&nbsp;首页</span></a></li>
+                        <li class="active"><a href="javascript:void(0);" onclick="showCategories();"><span class="glyphicon glyphicon-th">&nbsp;分类</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showArchive();"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showTopic();"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showAboutme();"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showTransfer();"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
+                    </ul>
+
+                    <li class="navinfo"><a class="write-blog" href=""><span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span></a></li>
+                    <li class="navinfo"><a class="message-center" href=""><span><img class="message-icon" src="http://localhost:8848/myblog/img/message-icon.png">消息</span></a></li>
+                    <li class="navinfo"><a class="music" onclick="javascript:musicplayer();"><span class="glyphicon glyphicon-music"></span></a></li>
+                    <li class="navinfo" >
+                        <span>
+                            <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">
+                                <img class="img-circle" style="height: 30px;width: 30px;margin: 0 10px;" src="img/brand.jpg" />
+                            </a>
+                            <label >晚上好，老干部</label>
+                        </span>
+                    </li>
+                    <li class="navinfo" style="display: none"><a href="javascript:void(0);"><button class="btn btn-sm">登录</button></a></li>
+                    <li class="navinfo" style="display: none"><a href="#"><button class="btn btn-sm">注册</button></a></li>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+    <div id="main">
+        <div class="am-container">
+            <div class="am-g">
+                <div class="site-inner">
+                    <div class="am-u-sm-12 am-u-md-3">
+
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-9">
+                        <div class="categoryTimeline">
+                            <div class="timeline timeline-wrap">
+                                <div class="timeline-row"><span class="node"
+                                                                style="-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;"><i
+                                        class="am-icon-folder"></i></span>
+                                    <h1 class="title  am-animation-slide-top"># 全部书籍</h1></div>
+                                <div class="timeline-row-major" th:each="book:${books}"><span
+                                        class="node am-animation-slide-top am-animation-delay-1"></span>
+                                    <div class="content am-animation-slide-top am-animation-delay-1">
+
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <a href="javascript:void(0);" class="contentTitle"
+                                                   th:onclick="'javascript:articalDetail('+${book['id']}+')'"
+                                                   th:text="${book['bookName']}"></a>
+                                                <div class="" style="margin-top: 5px;color: #A2A2A2;">
+                                                    <i class="am-icon-calendar">
+                                                        <a href="javascript:void(0);" class=""
+                                                           style="font-size: 12px;margin-right: 5px;"
+                                                           th:text="${book['addDate']}"></a>
+                                                    </i>
+                                                    <i class="am-icon-user">
+                                                        <a a href="javascript:void(0);" style="font-size: 12px;"
+                                                           th:text="${book['author']}"></a>
+                                                    </i>
+
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="my-row" id="page-father">
+                                <div id="pagination">
+                                    <ul class="page am-pagination  am-pagination-centered">
+
+
+                                        <li th:if="${pageInfo.hasPreviousPage}"><a
+                                                th:href="@{'books?pageIndex='+${pageInfo.prePage}}"
+                                                aria-label="Previous"> <i class="fa fa-angle-left"></i>&nbsp;上一页
+                                        </a></li>
+
+                                        <th:block th:each="nav : ${pageInfo.navigatepageNums}">
+                                            <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
+                                                    th:href="@{'books?pageIndex='+${nav}}"
+                                                    th:text="${nav}"></a></li>
+                                        </th:block>
+
+                                        <th:block th:if="${pageInfo.hasNextPage}">
+                                            <li><a
+                                                    th:href="@{'books?pageIndex='+${pageInfo.nextPage}}"
+                                                    aria-label="Next"> 下一页&nbsp;<i class="fa fa-angle-right"></i>
+                                            </a></li>
+                                        </th:block>
+
+                                        <li><span th:text="'共'+${pageInfo.pages}+'页'"></span></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

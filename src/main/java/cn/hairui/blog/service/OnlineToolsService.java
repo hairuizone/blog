@@ -14,6 +14,7 @@ public interface OnlineToolsService {
 
     /**
      * 通过名称查询工具数量
+     *
      * @param toolName
      * @return 数量
      */
@@ -21,6 +22,7 @@ public interface OnlineToolsService {
 
     /**
      * 添加工具
+     *
      * @param onlineTools
      * @return
      */
@@ -28,6 +30,7 @@ public interface OnlineToolsService {
 
     /**
      * 通过编号查询在线工具信息
+     *
      * @param id
      * @return 在线工具详细信息
      */
@@ -35,6 +38,7 @@ public interface OnlineToolsService {
 
     /**
      * 更新工具信息
+     *
      * @param onlineTools
      * @return
      */
@@ -42,6 +46,7 @@ public interface OnlineToolsService {
 
     /**
      * 通过编号删除工具
+     *
      * @param id
      * @return
      */
@@ -49,6 +54,7 @@ public interface OnlineToolsService {
 
     /**
      * 读取指定数量的工具
+     *
      * @param maxShowTools
      * @return
      */
