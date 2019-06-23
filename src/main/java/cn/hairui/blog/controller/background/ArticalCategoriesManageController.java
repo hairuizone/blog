@@ -1,4 +1,4 @@
-package cn.hairui.blog.controller;
+package cn.hairui.blog.controller.background;
 
 import cn.hairui.blog.model.ArticalCategories;
 import cn.hairui.blog.service.ArticalCategoriesService;
@@ -23,24 +23,25 @@ import java.util.Map;
  * @date: 2019/3/27 20:22
  */
 @Controller
-public class ArticalCategoriesController {/*
+@RequestMapping ( "/manage" )
+public class ArticalCategoriesManageController {
 
     @Autowired
     private ArticalCategoriesService articalCategoriesService;
 
-    @RequestMapping(value = "/manage/categories-list")
+    @RequestMapping(value = "/categories-list")
     public String listArticalCategories(Model model){
         List<ArticalCategories> articalCategoriesList =  articalCategoriesService.qeuryArticalCategoriesList();
         model.addAttribute("articalCategoriesList",articalCategoriesList);
         return "background/categories-list";
     }
 
-    @RequestMapping(value = "/manage/categories-add")
+    @RequestMapping(value = "/categories-add")
     public String addArticalCategories(){
         return "background/categories-add";
     }
 
-    @RequestMapping(value = "/manage/categories-adddata",method = RequestMethod.POST)
+    @RequestMapping(value = "/categories-adddata",method = RequestMethod.POST)
     @ResponseBody
     @Transactional
     public String addArticalCategoriesData(@ModelAttribute ArticalCategories articalCategories){
@@ -90,14 +91,14 @@ public class ArticalCategoriesController {/*
         return JSONUtils.toJSONString(map);
     }
 
-    @RequestMapping(value = "/manage/categories-update")
+    @RequestMapping(value = "/categories-update")
     public String updateArticalCategories(Integer id,Model model){
         ArticalCategories articalCategories = articalCategoriesService.queryArticalCategoriesDetailById(id);
         model.addAttribute("articalCategories", articalCategories);
         return "background/categories-update";
     }
 
-    @RequestMapping(value = "/manage/categories-updatedata",method = RequestMethod.POST)
+    @RequestMapping(value = "/categories-updatedata",method = RequestMethod.POST)
     @ResponseBody
     @Transactional
     public String updateArticalCategoriesData(@ModelAttribute ArticalCategories articalCategories){
@@ -130,7 +131,7 @@ public class ArticalCategoriesController {/*
 
 
 
-    @RequestMapping(value = "/manage/categories-delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/categories-delete",method = RequestMethod.POST)
     @ResponseBody
     @Transactional
     public String deleteArticalCategoriesData(int id, HttpServletRequest httpServletRequest){
@@ -144,5 +145,5 @@ public class ArticalCategoriesController {/*
         return JSONUtils.toJSONString(map);
     }
 
-*/
+
 }

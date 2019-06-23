@@ -39,6 +39,11 @@
     function showTopic(id){
         alert(id);
     }
+
+    function bookDetail(id){
+        var url = "books?id="+id;
+        window.open(url);
+    }
     function showAboutme(){
         alert("我就是帅气的小哥哥");
     }
@@ -272,18 +277,18 @@
                     <div class="col-md-6">
                         <div class="content-list" th:each="books ,booksStat:${booksList}">
                             <span class="spandate" th:if="${booksStat.even}" th:text="${books.publishDate}" ></span>
-                            <a href="/" target="_blank"  th:if="${booksStat.even}" th:text="${books.bookName}"></a>
+                            <a href="javascript:void(0);" th:onclick="'javascript:bookDetail('+${books.id}+')'" th:if="${booksStat.even}" th:text="${books.bookName}"></a>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="content-list" th:each="books ,booksStat:${booksList}">
                             <span class="spandate" th:if="${booksStat.odd}" th:text="${books.publishDate}" ></span>
-                            <a href="/" target="_blank"   th:if="${booksStat.odd}" th:text="${books.bookName}"></a>
+                            <a href="javascript:void(0);" th:onclick="'javascript:bookDetail('+${books.id}+')'"  th:if="${booksStat.odd}" th:text="${books.bookName}"></a>
                         </div>
 
                     </div>
                     <div class="index-card-footer">
-                        <a href="/">查看更多</a>
+                        <a href="javascript:void(0);" onclick="javascript:alert('todo');">查看更多</a>
                     </div>
                 </div>
             </div>
@@ -295,7 +300,7 @@
                         <a th:href="${onlineTools.url}" target="_blank" th:text="${onlineTools.toolName}"></a>
                     </div>
                     <div class="index-card-footer">
-                        <a href="/">查看更多</a>
+                        <a href="javascript:void(0);" onclick="javascript:alert('todo');">查看更多</a>
                     </div>
                 </div>
             </div>

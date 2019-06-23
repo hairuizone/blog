@@ -8,10 +8,8 @@
     <title>老干部的咖啡屋-🎵</title>
     <!--默认样式  可无视-->
     <link rel="stylesheet" href="css/reset.css">
-
     <!--核心js-->
     <script src="js/vsPlayAudio.min.js"></script>
-
     <!--代码高亮  可无视-->
     <link rel="stylesheet" href="css/androidstudio.min.css">
     <script src="js/highlight.min.js"></script><script>hljs.initHighlightingOnLoad();</script>
@@ -19,8 +17,15 @@
     <!--bootstrap库-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+
     <style>
 
+        .btn_show{
+            display:inline-block;width: 60px;
+        }
+        .btn_hidden{
+            display:none;width: 60px;
+        }
 
     </style>
 
@@ -38,14 +43,33 @@
 </div>
 <div style="text-align: center;margin: 50px 0 0 0;">
     <ul>
-        <li style="display:inline-block;width: 40px;"><span class="glyphicon glyphicon-play" style="color: #fff; font-size: 30px;" onclick="player.play()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'"></span></li>
-        <li style="display:inline-block;width: 40px;"><span class="glyphicon glyphicon-pause" style="color: #fff; font-size: 30px;" onClick="player.pause()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'"></span></li>
-        <li style="display:inline-block;width: 40px;"><span class="glyphicon glyphicon-forward" style="color: #fff; font-size: 30px;" onClick="player.next()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'"> </span></li>
-        <li style="display:inline-block;width: 40px;"><span class="glyphicon glyphicon-off" style="color: #fff; font-size: 30px;" onclick="javascript:window.close();" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'"> </span></li>
+        <li id="btn_play" class="btn_hidden" hidden><span class="glyphicon glyphicon-play" style="color: #fff; font-size: 30px;" onclick="player.play()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="播放"></span></li>
+        <li id="btn_stop" class="btn_show"><span class="glyphicon glyphicon-pause" style="color: #fff; font-size: 30px;" onClick="player.pause()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="暂停"></span></li>
+        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-forward" style="color: #fff; font-size: 30px;" onClick="player.next()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="下一首"> </span></li>
+        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-list" style="color: #fff; font-size: 30px;" onclick="" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="切换歌单"> </span></li>
+        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-off" style="color: #fff; font-size: 30px;" onclick="javascript:window.close();" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="退出"> </span></li>
+
     </ul>
 </div>
 
 <script>
+
+    $("#btn_play").click(function() {
+        document.getElementById("btn_play").classList.remove("btn_show")
+        document.getElementById("btn_play").classList.add("btn_hidden")
+
+        document.getElementById("btn_stop").classList.remove("btn_hidden")
+        document.getElementById("btn_stop").classList.add("btn_show")
+    });
+
+    $("#btn_stop").click(function() {
+        document.getElementById("btn_stop").classList.remove("btn_show")
+        document.getElementById("btn_stop").classList.add("btn_hidden")
+
+        document.getElementById("btn_play").classList.remove("btn_hidden")
+        document.getElementById("btn_play").classList.add("btn_show")
+    });
+
     var player = new vsPlayAudio({
         music: {
             //必需项,音乐配置
@@ -59,7 +83,6 @@
         autoPlay: true,//自动播放
         random: false//随机播放
     });
-
     //初始化显示歌曲列表  如果不需要初始化展示则注释即可实现
     document.getElementById("vsPlayAudio-control").classList.add("vsPlayAudio-control-show");
 </script>

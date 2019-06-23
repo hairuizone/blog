@@ -211,6 +211,29 @@ public class HomePageController {
         return "videoplayer";
     }
 
+    @RequestMapping(value = "books")
+    public String bookDetails(String id){
+        if(id != null && !"null".equals(id)){
+            try {
+                int idNo = Integer.parseInt(id);
+                Books book  = booksService.queryBooksDetialById(idNo);
+                System.out.println(book.getLocalPath());
+                String bookType = "pdf";
+                if("pdf".equals(bookType)){
+                    return "pdfviewer";
+                }else{
+                    return "chmviewer";
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+                return "404";
+            }
+
+        }else{
+            return "404";
+        }
+    }
+
     @RequestMapping(value = "test")
     public String test() {
         return "test";
