@@ -155,7 +155,7 @@ public interface ArticalService {
      * @param categoriesId
      * @return
      */
-    public List<Artical> getAllByCategoriesId(int categoriesId);
+    public List<Artical> queryArticalsByCategoriesId(int categoriesId);
 
     /**
      * 归档形式统计所有文章
@@ -163,4 +163,11 @@ public interface ArticalService {
      * @return
      */
     public List<Map> queryArticalArchivesList();
+
+    /**
+     * 通过年月查询文章信息
+     * @param dateStr
+     * @return
+     */
+    public List<Artical> queryArticalsByCreateDateYm(String dateStr);
 }

@@ -45,7 +45,7 @@ public class ArticalCategoriesController {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
-        int categoriesId = 0;
+        Integer categoriesId = 0;
         String idStr = request.getParameter("id");
         if (idStr != null && !"null".equals(idStr)) {
             try {
@@ -63,7 +63,27 @@ public class ArticalCategoriesController {
             model.addAttribute("articalCategoryName", "# 全部分类");
         }
         //分类信息
-        List<ArticalCategories> categoriesList = articalCategoriesService.queryArticalCategoriesList();
+
+        List<Map> categoriesList = articalCategoriesService.queryArticalCategoriesStatisticList();
+        Iterator categoriesIterator = categoriesList.iterator();
+        List<Map> categoryInfosList = new ArrayList<>();
+        while (categoriesIterator.hasNext()) {
+            Map map = new HashMap();
+            Map articalCategories = (Map) categoriesIterator.next();
+            map.put("categoryName", articalCategories.get("categoryName"));
+            map.put("categoryNum", articalCategories.get("categoryNum"));
+            map.put("categoryId", articalCategories.get("categoryId"));
+            if (articalCategories.get("categoryId") == categoriesId) {
+                map.put("current", "Y");
+            } else {
+                map.put("current", "N");
+            }
+            categoryInfosList.add(map);
+        }
+        model.addAttribute("categoryInfos", categoryInfosList);
+
+
+        /*List<ArticalCategories> categoriesList = articalCategoriesService.queryArticalCategoriesList();
         Iterator categoriesIterator = categoriesList.iterator();
         List<Map> categoryInfosList = new ArrayList<>();
         while (categoriesIterator.hasNext()) {
@@ -79,7 +99,8 @@ public class ArticalCategoriesController {
             }
             categoryInfosList.add(map);
         }
-        model.addAttribute("categoryInfos", categoryInfosList);
+        model.addAttribute("categoryInfos", categoryInfosList);*/
+
 
         //分页信息 文章信息
         Integer pageNum = null;
@@ -94,11 +115,11 @@ public class ArticalCategoriesController {
         }
         PageHelper.startPage(pageNum, 10);
         List<Artical> articals = new ArrayList<>();
-        if (categoriesId == 0) {
+        if (categoriesId == 0 || categoriesId == null) {
             //查詢所有
             articals = articalService.queryArticalList();
         } else {
-            articals = articalService.getAllByCategoriesId(categoriesId);
+            articals = articalService.queryArticalsByCategoriesId(categoriesId);
         }
         //List<Artical> articals=articalService.getAll();
         PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);

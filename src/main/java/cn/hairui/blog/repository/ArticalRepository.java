@@ -131,11 +131,15 @@ public class ArticalRepository {
         return articalMapper.queryArticalList();
     }
 
-    public List<Artical> getAllByCategoriesId(int categoriesId) {
-        return articalMapper.getAllByCategoriesId(categoriesId);
+    public List<Artical> queryArticalsByCategoriesId(int categoriesId) {
+        return articalMapper.queryArticalsByCategoriesId(categoriesId);
     }
 
     public List<Map> queryArticalArchivesList() {
         return articalMapper.queryArticalArchivesList();
+    }
+
+    public List<Artical> queryArticalsByCreateDateYm(String dateStr) {
+        return articalMapper.queryArticalsByCreateDateYm(dateStr);
     }
 }

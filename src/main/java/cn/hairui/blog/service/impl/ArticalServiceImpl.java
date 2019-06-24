@@ -112,13 +112,18 @@ public class ArticalServiceImpl implements ArticalService {
     }
 
     @Override
-    public List<Artical> getAllByCategoriesId(int categoriesId) {
-        return articalRepository.getAllByCategoriesId(categoriesId);
+    public List<Artical> queryArticalsByCategoriesId(int categoriesId) {
+        return articalRepository.queryArticalsByCategoriesId(categoriesId);
     }
 
     @Override
     public List<Map> queryArticalArchivesList() {
         return articalRepository.queryArticalArchivesList();
+    }
+
+    @Override
+    public List<Artical> queryArticalsByCreateDateYm(String dateStr) {
+        return articalRepository.queryArticalsByCreateDateYm(dateStr);
     }
 
     @Override

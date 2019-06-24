@@ -1,6 +1,7 @@
 package cn.hairui.blog.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +63,11 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     @Override
     public void moveArticalCategoriesOrderNextOne() {
         articalCategoriesRepository.moveArticalCategoriesOrderNextOne();
+    }
+
+    @Override
+    public List<Map> queryArticalCategoriesStatisticList() {
+        return articalCategoriesRepository.queryArticalCategoriesStatisticList();
     }
 
     @Override

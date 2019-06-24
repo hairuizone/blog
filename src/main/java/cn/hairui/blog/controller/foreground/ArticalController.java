@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import cn.hairui.blog.constant.PubConstant;
 import com.alibaba.druid.support.json.JSONUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +43,8 @@ public class ArticalController {
     private ArticalService articalService;
     @Autowired
     private MyInfoService myInfoService;
+    @Autowired
+    private ArticalCategoriesService articalCategoriesService;
 
 
     @RequestMapping(value = "artical-view")
@@ -80,7 +84,7 @@ public class ArticalController {
 
         List<Map> archivesList = new ArrayList<>();
         String dateStr = request.getParameter("date");
-        System.out.println(dateStr);
+
         if (dateStr == null || "null".equals(dateStr)) {
             archivesList = articalService.queryArticalArchivesList();
         } else {
@@ -94,10 +98,11 @@ public class ArticalController {
             Map archives = (Map) archivesIterator.next();
             String createdate = (String) archives.get("CREATEDATE");
             Long num = (Long) archives.get("NUM");
-            System.out.println(createdate +" "+ num);
+
             map.put("createdate", createdate);
+            map.put("createdateCn",createdate.replaceAll("-","年")+"月");
             map.put("num", num);
-            if(dateStr != null && dateStr.equals(archives.get("createdate"))){
+            if(dateStr != null && dateStr.equals(createdate)){
                 map.put("current","Y");
             }else{
                 map.put("current","N");
@@ -107,6 +112,46 @@ public class ArticalController {
 
         model.addAttribute("archivesInfos", archivesnfosList);
 
+        Integer pageNum = null;
+        String pageNumStr = request.getParameter("pageIndex");
+        if (pageNumStr != null) {
+            pageNum = Integer.parseInt(pageNumStr);
+        }
+
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, 10);
+        List<Artical> articals = new ArrayList<>();
+        if (dateStr == null || "null".equals(dateStr)) {
+            //查詢所有
+            articals = articalService.queryArticalList();
+        } else {
+            articals = articalService.queryArticalsByCreateDateYm(dateStr);
+        }
+
+        PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);
+        List<Map> articalList = new ArrayList<Map>();
+        Iterator articalIterator = articals.iterator();
+        while (articalIterator.hasNext()) {
+            Map map = new HashMap();
+            Artical artical = (Artical) articalIterator.next();
+            map.put("id", artical.getId());
+            map.put("tittle", artical.getTittle());
+            map.put("categories", artical.getCategories());
+            map.put("createDate", artical.getCreateDate());
+            int caId = artical.getCategories();
+            String categoriesName = articalCategoriesService.queryArticalCategoriesDetailById(caId).getCategoryName();
+            map.put("categoriesName", categoriesName);
+            articalList.add(map);
+        }
+        model.addAttribute("articals", articalList);
+        model.addAttribute("pageInfo", pageInfo);
+        if(dateStr == null || "null".equals(dateStr)){
+            model.addAttribute("archivesStatistic", "您一共发布了"+pageInfo.getTotal()+"篇文章");
+        }else{
+            model.addAttribute("archivesStatistic", "您在"+dateStr.replaceAll("-","年")+"月，一共发布了"+pageInfo.getTotal()+"篇文章");
+        }
         return "archives";
     }
 }

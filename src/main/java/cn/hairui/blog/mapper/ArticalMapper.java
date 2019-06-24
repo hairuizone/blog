@@ -120,8 +120,11 @@ public interface ArticalMapper {
     public List<Artical> queryArticalList();
 
     @Select("SELECT * FROM ARTICAL WHERE CATEGORIES=#{categoriesId} ORDER BY ID DESC")
-    public List<Artical> getAllByCategoriesId(int categoriesId);
+    public List<Artical> queryArticalsByCategoriesId(int categoriesId);
 
-    @Select("SELECT CREATEDATE,COUNT(1) AS NUM ,'N' AS CURRENT FROM ARTICAL GROUP BY CREATEDATE ORDER BY CREATEDATE DESC")
+    @Select("SELECT date_format(CREATEDATE, '%Y-%m') AS CREATEDATE,COUNT(1) AS NUM FROM ARTICAL GROUP BY date_format(CREATEDATE, '%Y-%m') ORDER BY CREATEDATE DESC")
     public List<Map> queryArticalArchivesList();
+
+    @Select("SELECT * FROM ARTICAL WHERE CREATEDATE LIKE CONCAT(#{dateStr},'%') ORDER BY CREATEDATE DESC")
+    public List<Artical> queryArticalsByCreateDateYm(String dateStr);
 }

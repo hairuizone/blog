@@ -4,6 +4,7 @@ import cn.hairui.blog.model.ArticalCategories;
 import net.sf.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author lihairui
@@ -78,4 +79,10 @@ public interface ArticalCategoriesService {
      */
     public void moveArticalCategoriesOrderNextOne();
 
+    /**
+     * 查询分类统计信息
+     *
+     * @return
+     */
+    public List<Map> queryArticalCategoriesStatisticList();
 }

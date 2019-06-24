@@ -4,6 +4,7 @@ import cn.hairui.blog.model.ArticalCategories;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author lihairui
@@ -44,4 +45,6 @@ public interface ArticalCategoriesMapper {
     @Update("update artical_categories set SHOW_ORDER = SHOW_ORDER+1 where SHOW_ORDER is not null and SHOW_ORDER!=''")
     public void moveArticalCategoriesOrderNextOne();
 
+    @Select("SELECT A.ID AS categoryId,A.CATEGORY_NAME as categoryName,COUNT(B.ID) as categoryNum FROM ARTICAL_CATEGORIES A JOIN ARTICAL B ON A.ID = B.CATEGORIES GROUP BY A.ID ORDER BY A.ID ASC")
+    public List<Map> queryArticalCategoriesStatisticList();//别名不能随意改变大小写
 }
