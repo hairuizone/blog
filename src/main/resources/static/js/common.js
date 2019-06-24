@@ -22,13 +22,25 @@ function musicplayer() {
     window.open(url);
 }
 
+
 function showCategories(id) {
-    var url = "categories?id=" + id;
+    var url;
+    if(id == undefined){
+        url = "categories";
+    }else{
+        url = "categories?id=" + id;
+    }
     window.location.href = url;
 }
 
 function showArchive(date) {
-    alert(date);
+    var url;
+    if(date == undefined){
+        url = "archives";
+    }else{
+        url = "archives?date=" + date;
+    }
+    window.location.href = url;
 }
 
 function showTopic(id) {

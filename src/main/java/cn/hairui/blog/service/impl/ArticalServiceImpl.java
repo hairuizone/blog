@@ -1,6 +1,7 @@
 package cn.hairui.blog.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ArticalServiceImpl implements ArticalService {
 
     @Override
     public List<Artical> queryArticalListByNavId(Integer navId, int count) {
-        return articalRepository.queryArticalListByNavId(navId,count);
+        return articalRepository.queryArticalListByNavId(navId, count);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class ArticalServiceImpl implements ArticalService {
 
     @Override
     public List<Artical> queryArticalListByCategories(Integer categories, int count) {
-        return articalRepository.queryArticalListByCategories(categories,count);
+        return articalRepository.queryArticalListByCategories(categories, count);
     }
 
     @Override
@@ -116,7 +117,12 @@ public class ArticalServiceImpl implements ArticalService {
     }
 
     @Override
-	public List<String> queryAllArticalTagsLimited(int maxSize) {
-		return articalRepository.queryArticalTagsLimited(maxSize);
-	}
+    public List<Map> queryArticalArchivesList() {
+        return articalRepository.queryArticalArchivesList();
+    }
+
+    @Override
+    public List<String> queryAllArticalTagsLimited(int maxSize) {
+        return articalRepository.queryArticalTagsLimited(maxSize);
+    }
 }

@@ -2,14 +2,11 @@ package cn.hairui.blog.controller.foreground;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import cn.hairui.blog.constant.PubConstant;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -76,4 +73,40 @@ public class ArticalController {
     }
 
 
+    @RequestMapping(value = "/archives")
+    public String showArchives(HttpServletRequest request, Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+
+        List<Map> archivesList = new ArrayList<>();
+        String dateStr = request.getParameter("date");
+        System.out.println(dateStr);
+        if (dateStr == null || "null".equals(dateStr)) {
+            archivesList = articalService.queryArticalArchivesList();
+        } else {
+            archivesList = articalService.queryArticalArchivesList();
+        }
+
+        Iterator archivesIterator = archivesList.iterator();
+        List<Map> archivesnfosList = new ArrayList<>();
+        while (archivesIterator.hasNext()) {
+            Map map = new HashMap();
+            Map archives = (Map) archivesIterator.next();
+            String createdate = (String) archives.get("CREATEDATE");
+            Long num = (Long) archives.get("NUM");
+            System.out.println(createdate +" "+ num);
+            map.put("createdate", createdate);
+            map.put("num", num);
+            if(dateStr != null && dateStr.equals(archives.get("createdate"))){
+                map.put("current","Y");
+            }else{
+                map.put("current","N");
+            }
+            archivesnfosList.add(map);
+        }
+
+        model.addAttribute("archivesInfos", archivesnfosList);
+
+        return "archives";
+    }
 }

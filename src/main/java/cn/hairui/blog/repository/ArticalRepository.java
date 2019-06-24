@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author lihairui
@@ -132,5 +133,9 @@ public class ArticalRepository {
 
     public List<Artical> getAllByCategoriesId(int categoriesId) {
         return articalMapper.getAllByCategoriesId(categoriesId);
+    }
+
+    public List<Map> queryArticalArchivesList() {
+        return articalMapper.queryArticalArchivesList();
     }
 }
