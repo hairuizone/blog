@@ -7,6 +7,7 @@
     <link rel="icon" href="img/favicon.png"/>
     <!--<script src="js/jquery-3.3.1.min.js"></script>-->
     <script src="js/jquery-3.3.1.min.js"></script>
+
     <!--bootstrap库-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
     <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -15,11 +16,14 @@
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
 
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
     <script src="js/common.js"></script>
     <title th:text="${myinfo.webname}"></title>
+
 </head>
 <style type="text/css">
-    .feed-rss, .feed-about {
+    .feed-about {
         position: relative;
         font-size: 18px;
         display: block;
@@ -57,36 +61,21 @@
         overflow: hidden;
         padding-left: 0px;
     }
-    .widget ul{
-        padding: 15px;
-    }
     #feed_widget li {
         float: left;
-        width: 25%;
+        width: 20%;
         height: 40px;
         line-height: 38px;
         list-style:none;
     }
-    .widget ul li {
-        width: 99%;
-        line-height: 28px;
-        white-space: nowrap;
-        word-wrap: normal;
-        text-overflow: ellipsis;
-        overflow: hidden;
-    }
-    #feed_widget span {
-        display: block;
-    }
 
     #feed_widget a {
-        color: #999;
         width: 40px;
         display: block;
         text-align: center;
         margin: 0 auto;
         border-radius: 20px;
-        border: 1px solid #ddd;
+        border: 1px solid;
     }
     .fa {
         display: inline-block;
@@ -96,9 +85,35 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
-    .fa-wechat:before, .fa-weixin:before {
-        content: "\f1d7";
+    #feed_widget a.qq{
+        border-color: #4FC3FF;
+        color: #4FC3FF;
     }
+    #feed_widget a.weibo{
+        border-color: #FF9595;
+        color: #FF9595;
+    }
+    #feed_widget a.weixin{
+        border-color: #85D57D;
+        color: #85D57D;
+    }
+    #feed_widget a.github{
+        border-color: #4F5D95;
+        color: #4F5D95;
+    }
+    #feed_widget a.rss{
+        border-color: #F18D2B;
+        color: #F18D2B;
+    }
+
+    #feed_widget a:hover{
+        border-color: red;
+        color: red;
+    }
+
+
+
+ 
 </style>
 <script type="text/javascript">
 
@@ -134,9 +149,9 @@
                         <li><a href="javascript:void(0);" onclick="showTransfer();"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
                     </ul>
 
-                    <li class="navinfo"><a class="write-blog" href=""><span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span></a></li>
-                    <li class="navinfo"><a class="message-center" href=""><span><img class="message-icon" src="http://localhost:8848/myblog/img/message-icon.png">消息</span></a></li>
-                    <li class="navinfo"><a class="music" onclick="javascript:musicplayer();"><span class="glyphicon glyphicon-music"></span></a></li>
+                    <li class="navinfo"><i class="fa fa-edit write-icon"></i><a class="write-blog" href="javascript:void(0);"><span>写博客</span></a></li>
+                    <li class="navinfo"><i class="fa fa-envelope message-icon"></i><a class="message-center" href="javascript:void(0);"><span>消息</span></a></li>
+                    <li class="navinfo"><a class="music" onclick="javascript:musicplayer();"><span class="fa fa-music"></span></a></li>
                     <li class="navinfo" >
                         <span>
                             <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">
@@ -213,17 +228,21 @@
                                 <img src="images/author.jpg" alt="QR Code">
                             </div>
                             <div class="about-name">老干部</div>
-                            <div class="about-the">一个不甘平凡的程序员，有趣的灵魂，以此博客记录生活中的点点滴滴。愿你我共同成长。以此博客记录生活中的点点滴滴。愿你我共同成长。
+                            <div class="about-the">一个不甘平凡的程序员，有趣的灵魂<br/>以此博客记录生活中的点点滴滴。愿你我共同成长。以此博客记录生活中的点点<滴滴。愿你我共同成长。
                                 </div>
                         </div>
 
                         <ul>
-                            <li class="weixin">
-                                <a class="iconfont icon-&#45;&#45;" target="blank" rel="external nofollow" href="http://wpa.qq.com/msgrd?V=3&amp;uin=960340835&amp;Site=QQ&amp;Menu=yes" title="QQ在线"><i class="fa fa-qq"></i></a>
-                            </li>
-                            <li class="tqq"><a class="iconfont icon-&#45;&#45;"  target="blank" rel="external nofollow" href="http://wpa.qq.com/msgrd?V=3&amp;uin=960340835&amp;Site=QQ&amp;Menu=yes" title="QQ在线"><i class="fa fa-qq"></i></a></li>
-                            <li class="tsina"><a title="" class="iconfont icon-&#45;&#45;" href="http://www.weibo.com/u/5113943531/home?topnav=1&amp;wvr=6&amp;c=spr_sinamkt_buy_hyww_weibo_t113" target="_blank" rel="external nofollow"><i class="fa fa-weibo"></i></a></li>
-                            <li class="feed"><a title="" class="iconfont icon-&#45;&#45;" href="http://域名/feed/" target="_blank" rel="external nofollow"><i class="fa fa-rss"></i></a></li>
+                            <li><a class="weixin" target="_blank" rel="external nofollow" href="" title="微信"><i class="fa fa-weixin"></i></a></li>
+                            <li><a class="qq" target="_blank" rel="external nofollow" href="" title="QQ"><i class="fa fa-qq"></i></a></li>
+                            <li><a class="weibo" target="_blank" rel="external nofollow" href="" title="微博" ><i class="fa fa-weibo"></i></a></li>
+                            <li><a class="github" target="_blank" rel="external nofollow" href="" title="github" ><i class="fa fa-github"></i></a></li>
+                            <li><a class="rss" target="_blank" rel="external nofollow" href="" title="RSS订阅"><i class="fa fa-rss"></i></a></li>
+
+                            <!--<li><a target="_blank" rel="external nofollow" href="" title="微信"><i class="fa fa-weixin"></i></a></li>
+                            <li><a target="_blank" rel="external nofollow" href="" title="QQ"><i class="fa fa-qq"></i></a></li>
+                            <li><a target="_blank" rel="external nofollow" href="" title="微博" ><i class="fa fa-weibo"></i></a></li>
+                            <li><a target="_blank" rel="external nofollow" href="" title="RSS"><i class="fa fa-rss"></i></a></li>-->
                         </ul>
 
                     </div>

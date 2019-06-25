@@ -86,11 +86,11 @@ a:hover {
     margin-left: 5px;
     margin-top: 2px;
     margin-right: 0px;
-    color: gray;
+    color: #bdbdbd;
 }
 
 .write-icon {
-    margin: 0px 3px 3px 0px;
+    color:#bdbdbd;
 }
 .message-center {
     margin-left: 5px;
@@ -98,9 +98,7 @@ a:hover {
     font-size: 12px;
 }
 .message-icon {
-    width: 20px;
-    height: 16px;
-    margin: 0px 3px 3px 0px;
+    color: #bdbdbd;
 }
 
 .navbar .btn {

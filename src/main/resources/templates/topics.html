@@ -15,6 +15,7 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
     <link href="css/categories.css" rel="stylesheet" type="text/css"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
     <script src="js/common.js"></script>
 </head>
 <style type="text/css">
@@ -54,9 +55,9 @@
                         <li><a href="javascript:void(0);" onclick="showTransfer();"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
                     </ul>
 
-                    <li class="navinfo"><a class="write-blog" href=""><span><img class="write-icon" src="http://localhost:8848/myblog/img/write-icon.png">写博客</span></a></li>
-                    <li class="navinfo"><a class="message-center" href=""><span><img class="message-icon" src="http://localhost:8848/myblog/img/message-icon.png">消息</span></a></li>
-                    <li class="navinfo"><a class="music" onclick="javascript:musicplayer();"><span class="glyphicon glyphicon-music"></span></a></li>
+                    <li class="navinfo"><i class="fa fa-edit write-icon"></i><a class="write-blog" href="javascript:void(0);"><span>写博客</span></a></li>
+                    <li class="navinfo"><i class="fa fa-envelope message-icon"></i><a class="message-center" href="javascript:void(0);"><span>消息</span></a></li>
+                    <li class="navinfo"><a class="music" onclick="javascript:musicplayer();"><span class="fa fa-music"></span></a></li>
                     <li class="navinfo" >
                         <span>
                             <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">

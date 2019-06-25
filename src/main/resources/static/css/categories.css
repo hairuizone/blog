@@ -6,7 +6,7 @@
     margin: 0 0 0 -17px;
     padding: 6px 8px 10px;
     display: inline-block;
-    background-color: #ea3838;
+    background-color: #AAAAAA;
     border-radius: 50%;
 }
 
@@ -17,6 +17,7 @@
     display: inline-block;
     margin-top: 0;
     font-weight: bolder;
+    margin-bottom: 20px;
 }
 
 .timeline-wrap {
@@ -36,7 +37,7 @@
     border-radius: 50%;
     margin: 11px 0 0 -8px;
     display: inline-block;
-    background-color: #ea3838;
+    background-color: #AAAAAA;
     float: left;
 }
 
