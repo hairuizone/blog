@@ -19,7 +19,86 @@
     <title th:text="${myinfo.webname}"></title>
 </head>
 <style type="text/css">
+    .feed-rss, .feed-about {
+        position: relative;
+        font-size: 18px;
+        display: block;
+    }
+    .about-main {
+        font-size: 14px;
+        padding: 5px 10px 5px;
+    }
+    .about-img {
+        text-align: center;
+        background: url(images/about-bg.jpg) center center no-repeat;
+        background-size: cover;
+        height: 80px;
+        margin: 0 0 40px 0;
+    }
+    .about-img img {
+        width: 80px;
+        height: auto;
+        margin: 20px 0 0 0;
+        padding: 5px;
+        border-radius: 50%;
+        border: 2px solid #e21b1b;
+    }
+    .about-name {
+        font-size: 15px;
+        font-weight: 700;
+        text-align: center;
+        height: 25px;
+    }
+    .about-the{
+        height: 115px;
+    }
+    #feed_widget ul {
+        margin: 0 10px;
+        overflow: hidden;
+        padding-left: 0px;
+    }
+    .widget ul{
+        padding: 15px;
+    }
+    #feed_widget li {
+        float: left;
+        width: 25%;
+        height: 40px;
+        line-height: 38px;
+        list-style:none;
+    }
+    .widget ul li {
+        width: 99%;
+        line-height: 28px;
+        white-space: nowrap;
+        word-wrap: normal;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    #feed_widget span {
+        display: block;
+    }
 
+    #feed_widget a {
+        color: #999;
+        width: 40px;
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+        border-radius: 20px;
+        border: 1px solid #ddd;
+    }
+    .fa {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .fa-wechat:before, .fa-weixin:before {
+        content: "\f1d7";
+    }
 </style>
 <script type="text/javascript">
 
@@ -123,24 +202,55 @@
             </div>
         </div>
 
+
         <div class="col-md-3">
-            <div class="block">
-                <div class="card">
+            <div class="block" style="height: 350px;">
+
+                <div id="feed_widget">
+                    <div class="feed-about">
+                        <div class="about-main">
+                            <div class="about-img">
+                                <img src="images/author.jpg" alt="QR Code">
+                            </div>
+                            <div class="about-name">老干部</div>
+                            <div class="about-the">一个不甘平凡的程序员，有趣的灵魂，以此博客记录生活中的点点滴滴。愿你我共同成长。以此博客记录生活中的点点滴滴。愿你我共同成长。
+                                </div>
+                        </div>
+
+                        <ul>
+                            <li class="weixin">
+                                <a class="iconfont icon-&#45;&#45;" target="blank" rel="external nofollow" href="http://wpa.qq.com/msgrd?V=3&amp;uin=960340835&amp;Site=QQ&amp;Menu=yes" title="QQ在线"><i class="fa fa-qq"></i></a>
+                            </li>
+                            <li class="tqq"><a class="iconfont icon-&#45;&#45;"  target="blank" rel="external nofollow" href="http://wpa.qq.com/msgrd?V=3&amp;uin=960340835&amp;Site=QQ&amp;Menu=yes" title="QQ在线"><i class="fa fa-qq"></i></a></li>
+                            <li class="tsina"><a title="" class="iconfont icon-&#45;&#45;" href="http://www.weibo.com/u/5113943531/home?topnav=1&amp;wvr=6&amp;c=spr_sinamkt_buy_hyww_weibo_t113" target="_blank" rel="external nofollow"><i class="fa fa-weibo"></i></a></li>
+                            <li class="feed"><a title="" class="iconfont icon-&#45;&#45;" href="http://域名/feed/" target="_blank" rel="external nofollow"><i class="fa fa-rss"></i></a></li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+
+
+                <!--<div class="card">
                     <h2>我的名片</h2>
                     <p>网名：<label th:text="${myinfo.getNickname()}"></label></p>
                     <p>职业：<label th:text="${myinfo.getOccupation()}"></label></p>
                     <p>现居：<label th:text="${myinfo.getAddress()}"></label></p>
                     <p>邮箱：<label th:text="${myinfo.getEmail()}"></label></p>
+
                     <ul class="linkmore">
                         <li><a href="/" target="_blank" class="iconfont icon-zhuye"
                                title="网站地址"></a>
                         </li>
                         <li>
                             <a href="/"  target="_blank" class="iconfont icon-youxiang" title="我的邮箱"></a></li>
-                        <li><a href="/"  target="_blank" class="iconfont icon---" title="QQ联系我"></a></li>
+                        <li><a href="/"  target="_blank" class="iconfont icon-&#45;&#45;" title="QQ联系我"></a></li>
                         <li id="weixin"><a href="" target="_blank" class="iconfont icon-weixin" title="关注我的微信"></a><i><img src="images/wx.png"></i></li>
                     </ul>
-                </div>
+                </div>-->
+
+
             </div>
         </div>
 
