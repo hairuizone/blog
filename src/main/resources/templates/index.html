@@ -165,7 +165,7 @@
                     <li><a href='#' th:text="${articalTopics.topicName}"></a></li>
                 </ul>
                 <div class="" style="text-align: right;font-size: 0.85em;">
-                    <a href="/">查看更多</a>
+                    <a href="javascript:void(0);" onclick="javascritp:showTopic();">查看更多</a>
                 </div>
             </div>
 
@@ -203,21 +203,24 @@
                 <div class="block">
                     <h2 class="htitle">开源书籍</h2>
                     <div class="col-md-6">
-                        <div class="content-list" th:each="books ,booksStat:${booksList}">
-                            <span class="spandate" th:if="${booksStat.even}" th:text="${books.publishDate}" ></span>
-                            <a href="javascript:void(0);" th:onclick="'javascript:bookDetail('+${books.id}+')'" th:if="${booksStat.even}" th:text="${books.bookName}"></a>
+                        <div class="content-list" th:each="books ,booksStat:${booksListLeft}">
+                            <span class="spandate"th:text="${books.publishDate}" ></span>
+                            <a href="javascript:void(0);" th:onclick="'javascript:bookDetail('+${books.id}+')'"  th:text="${books.bookName}"></a>
+                        </div>
+                        <div class="index-card-footer">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="content-list" th:each="books ,booksStat:${booksList}">
-                            <span class="spandate" th:if="${booksStat.odd}" th:text="${books.publishDate}" ></span>
-                            <a href="javascript:void(0);" th:onclick="'javascript:bookDetail('+${books.id}+')'"  th:if="${booksStat.odd}" th:text="${books.bookName}"></a>
+                        <div class="content-list" th:each="books ,booksStat:${booksListRight}">
+                            <span class="spandate" th:text="${books.publishDate}" ></span>
+                            <a href="javascript:void(0);" th:onclick="'javascript:bookDetail('+${books.id}+')'"  th:text="${books.bookName}"></a>
                         </div>
 
+                        <div class="index-card-footer">
+                            <a href="javascript:void(0);" onclick="javascript:showBooks();">查看更多</a>
+                        </div>
                     </div>
-                    <div class="index-card-footer">
-                        <a href="javascript:void(0);" onclick="javascript:showBooks();">查看更多</a>
-                    </div>
+
                 </div>
             </div>
             <div class="col-md-4">
@@ -228,7 +231,7 @@
                         <a th:href="${onlineTools.url}" target="_blank" th:text="${onlineTools.toolName}"></a>
                     </div>
                     <div class="index-card-footer">
-                        <a href="javascript:void(0);" onclick="javascript:alert('todo');">查看更多</a>
+                        <a href="javascript:void(0);" onclick="javascript:showTools();">查看更多</a>
                     </div>
                 </div>
             </div>
@@ -290,11 +293,7 @@
 
                         </ul>
 
-
-
                         <div class="pagelist">
-
-
 
                                     <a th:if="${pageInfo.hasPreviousPage}"
                                             th:href="@{'categories?pageIndex='+${pageInfo.prePage}}"
@@ -314,7 +313,6 @@
 
 
                                     <span th:text="'共'+${pageInfo.pages}+'页'"></span>
-
 
 
                         </div>

@@ -96,8 +96,11 @@ public class HomePageController {
         model.addAttribute("articalTopicsList", articalTopicsList);
 
         //读取指定数量开源书籍
-        List<Books> booksList = booksService.queryBooksListLimited(PubConstant.MAX_SHOW_BOOK);
-        model.addAttribute("booksList", booksList);
+        List<Books> booksList = booksService.queryBooksListLimited(6);
+        model.addAttribute("booksListLeft", booksList);
+
+        List<Books> booksList2 = booksService.queryBooksListLimited(6);
+        model.addAttribute("booksListRight", booksList2);
 
         //在线工具
         List<OnlineTools> onlineToolsList = onlineToolsService.queryOnlineToolsListLimited(PubConstant.MAX_SHOW_TOOLS);

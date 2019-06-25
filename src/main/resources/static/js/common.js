@@ -67,7 +67,10 @@ function showTransfer() {
     var url = "transfer";
     window.location.href = url;
 }
-
+function showTools(){
+    var url = "tools";
+    window.location.href = url;
+}
 function visitWebsite(url) {
     window.open = url;
 }
