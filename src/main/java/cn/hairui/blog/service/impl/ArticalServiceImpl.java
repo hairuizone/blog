@@ -127,6 +127,21 @@ public class ArticalServiceImpl implements ArticalService {
     }
 
     @Override
+    public List<Map> queryArticalTopicsList() {
+        return articalRepository.queryArticalTopicsList();
+    }
+
+    @Override
+    public List<Artical> queryArticalsByTopicId(Integer id) {
+        return articalRepository.queryArticalsByTopicId(id);
+    }
+
+    @Override
+    public List<Artical> queryArticalInTopicList() {
+        return articalRepository.queryArticalInTopicList();
+    }
+
+    @Override
     public List<String> queryAllArticalTagsLimited(int maxSize) {
         return articalRepository.queryArticalTagsLimited(maxSize);
     }

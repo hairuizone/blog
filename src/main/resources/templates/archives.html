@@ -84,15 +84,16 @@
                                 <!--<label th:text="${categoryInfo}"></label>-->
                                 <div class="category" th:each="archivesInfo:${archivesInfos}">
                                     <span th:if="${archivesInfo['current'] =='N'}">
-                                        <a href="javascript:void(0);" class="categoryName"
+                                        <a href="javascript:void(0);" class="left-name-info"
                                            th:onclick="showArchive([[${archivesInfo['createdate']}]])"
+
                                            th:text="${archivesInfo['createdateCn']}"></a>
-                                        <span class="categoryNum"
+                                        <span class="left-num-info"
                                               th:text="'('+${archivesInfo['num']}+')'"></span>
                                     </span>
                                     <span th:if="${archivesInfo['current']=='Y'}">
-                                        <a class="categoryName2" th:text="${archivesInfo['createdateCn']}"></a>
-                                        <span class="categoryNum2"
+                                        <a class="left-name-info-2" th:text="${archivesInfo['createdateCn']}"></a>
+                                        <span class="left-num-info-2"
                                               th:text="'('+${archivesInfo['num']}+')'"></span>
                                     </span>
                                 </div>
@@ -108,8 +109,8 @@
                                         class="am-icon-folder"></i></span>
                                     <h1 class="title  am-animation-slide-top" th:text="${archivesStatistic}"></h1></div>
                                 <div class="timeline-row-major" th:each="artical:${articals}"><span
-                                        class="node am-animation-slide-top am-animation-delay-1"></span>
-                                    <div class="content am-animation-slide-top am-animation-delay-1">
+                                        class="node am-animation-slide-top "></span>
+                                    <div class="content am-animation-slide-top ">
 
                                         <ul class="list-group">
                                             <li class="list-group-item">

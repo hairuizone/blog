@@ -38,6 +38,14 @@ public class DefaultViewController {
     public String videoplayer() {
         return "videoplayer";
     }
+    @RequestMapping(value = "me")
+    public String aboutme(){
+        return "me";
+    }
+    @RequestMapping(value = "transfer")
+    public String transfer(){
+        return "transfer";
+    }
 
     @RequestMapping(value = "test")
     public String test() {

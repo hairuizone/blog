@@ -6,7 +6,7 @@
     margin: 0 0 0 -17px;
     padding: 6px 8px 10px;
     display: inline-block;
-    background-color: #38b7ea;
+    background-color: #ea3838;
     border-radius: 50%;
 }
 
@@ -36,7 +36,7 @@
     border-radius: 50%;
     margin: 11px 0 0 -8px;
     display: inline-block;
-    background-color: #38b7ea;
+    background-color: #ea3838;
     float: left;
 }
 
@@ -87,20 +87,20 @@
     color: #38b7ea;
 }
 
-.categoryName {
+.left-name-info {
     font-size: 16px;
 }
 
-.categoryName2 {
+.left-name-info-2 {
     font-size: 16px;
     font-weight: bold;
 }
 
-.categoryNum {
+.left-num-info {
     color: #b0b0b0;
 }
 
-.categoryNum2 {
+.left-num-info-2 {
     color: #b0b0b0;
     font-size: 16px;
     font-weight: bold;

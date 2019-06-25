@@ -47,9 +47,9 @@
                 <div id="navbar-menu" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="javascript:void(0);" onclick="homepage()"><span class="glyphicon glyphicon-home">&nbsp;首页</span></a></li>
-                        <li class="active"><a href="javascript:void(0);" onclick="showCategories();"><span class="glyphicon glyphicon-th">&nbsp;分类</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showCategories();"><span class="glyphicon glyphicon-th">&nbsp;分类</span></a></li>
                         <li><a href="javascript:void(0);" onclick="showArchive();"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
-                        <li><a href="javascript:void(0);" onclick="showTopic();"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
+                        <li class="active"><a href="javascript:void(0);" onclick="showTopic();"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
                         <li><a href="javascript:void(0);" onclick="showAboutme();"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
                         <li><a href="javascript:void(0);" onclick="showTransfer();"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
                     </ul>
@@ -76,35 +76,37 @@
         <div class="am-container">
             <div class="am-g">
                 <div class="site-inner">
-                    <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-u-sm-12 am-u-md-4">
                         <div class="categories">
-                            <div class="categories-title"><h3 style="font-size: 20px">Categories</h3></div>
+                            <div class="categories-title"><h3 style="font-size: 20px">Archives</h3></div>
                             <div class="categories-comment am-animation-slide-top">
 
                                 <!--<label th:text="${categoryInfo}"></label>-->
-                                <div class="category" th:each="categoryInfo:${categoryInfos}">
-                                    <span th:if="${categoryInfo['current'] =='N'}">
-                                        <a href="javascript:void(0);" class="left-name-info" th:onclick="'javascript:showCategories('+${categoryInfo['categoryId']}+')'" th:text="${categoryInfo['categoryName']}"></a>
+                                <div class="category" th:each="topicInfo:${topicInfos}">
+                                    <span th:if="${topicInfo['current'] =='N'}">
+                                        <a href="javascript:void(0);" class="left-name-info"
+                                           th:onclick="'javascript:showTopic('+${topicInfo['topicId']}+')'"
+                                           th:text="${topicInfo['topicName']}"></a>
                                         <span class="left-num-info"
-                                              th:text="'('+${categoryInfo['categoryNum']}+')'"></span>
+                                              th:text="'('+${topicInfo['topicNum']}+')'"></span>
                                     </span>
-                                    <span th:if="${categoryInfo['current']=='Y'}">
-                                        <a class="left-name-info-2" th:text="${categoryInfo['categoryName']}"></a>
+                                    <span th:if="${topicInfo['current']=='Y'}">
+                                        <a class="left-name-info-2" th:text="${topicInfo['topicName']}"></a>
                                         <span class="left-num-info-2"
-                                              th:text="'('+${categoryInfo['categoryNum']}+')'"></span>
+                                              th:text="'('+${topicInfo['topicNum']}+')'"></span>
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="am-u-sm-12 am-u-md-9">
+                    <div class="am-u-sm-12 am-u-md-8">
                         <div class="categoryTimeline">
                             <div class="timeline timeline-wrap">
                                 <div class="timeline-row"><span class="node"
                                                                 style="-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;"><i
                                         class="am-icon-folder"></i></span>
-                                    <h1 class="title  am-animation-slide-top" th:text="${articalCategoryName}"></h1></div>
+                                    <h1 class="title  am-animation-slide-top" th:text="${archivesStatistic}"></h1></div>
                                 <div class="timeline-row-major" th:each="artical:${articals}"><span
                                         class="node am-animation-slide-top "></span>
                                     <div class="content am-animation-slide-top ">
@@ -137,21 +139,20 @@
                                 <div id="pagination">
                                     <ul class="page am-pagination  am-pagination-centered">
 
-
                                         <li th:if="${pageInfo.hasPreviousPage}"><a
-                                                th:href="@{'categories?pageIndex='+${pageInfo.prePage}}"
+                                                th:href="@{'topics?pageIndex='+${pageInfo.prePage}}"
                                                 aria-label="Previous"> <i class="fa fa-angle-left"></i>&nbsp;上一页
                                         </a></li>
 
                                         <th:block th:each="nav : ${pageInfo.navigatepageNums}">
                                             <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
-                                                    th:href="@{'categories?pageIndex='+${nav}}"
+                                                    th:href="@{'topics?pageIndex='+${nav}}"
                                                     th:text="${nav}"></a></li>
                                         </th:block>
 
                                         <th:block th:if="${pageInfo.hasNextPage}">
                                             <li><a
-                                                    th:href="@{'categories?pageIndex='+${pageInfo.nextPage}}"
+                                                    th:href="@{'topics?pageIndex='+${pageInfo.nextPage}}"
                                                     aria-label="Next"> 下一页&nbsp;<i class="fa fa-angle-right"></i>
                                             </a></li>
                                         </th:block>

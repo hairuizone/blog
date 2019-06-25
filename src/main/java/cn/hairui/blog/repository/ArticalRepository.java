@@ -142,4 +142,16 @@ public class ArticalRepository {
     public List<Artical> queryArticalsByCreateDateYm(String dateStr) {
         return articalMapper.queryArticalsByCreateDateYm(dateStr);
     }
+
+    public List<Map> queryArticalTopicsList() {
+        return articalMapper.queryArticalTopicsList();
+    }
+
+    public List<Artical> queryArticalsByTopicId(Integer id) {
+        return articalMapper.queryArticalsByTopicId(id);
+    }
+
+    public List<Artical> queryArticalInTopicList() {
+        return articalMapper.queryArticalInTopicList();
+    }
 }

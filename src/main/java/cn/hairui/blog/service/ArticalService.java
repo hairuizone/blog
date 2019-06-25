@@ -166,8 +166,32 @@ public interface ArticalService {
 
     /**
      * 通过年月查询文章信息
+     *
      * @param dateStr
      * @return
      */
     public List<Artical> queryArticalsByCreateDateYm(String dateStr);
+
+    /**
+     * 专题形式统计所有文章
+     *
+     * @return
+     */
+    public List<Map> queryArticalTopicsList();
+
+    /**
+     * 获取专题下所有文章
+     *
+     * @param id
+     * @return
+     */
+    public List<Artical> queryArticalsByTopicId(Integer id);
+
+
+    /**
+     * 获取专题下的所有文章
+     *
+     * @return
+     */
+    public List<Artical> queryArticalInTopicList();
 }

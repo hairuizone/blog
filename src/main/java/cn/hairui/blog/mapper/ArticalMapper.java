@@ -127,4 +127,13 @@ public interface ArticalMapper {
 
     @Select("SELECT * FROM ARTICAL WHERE CREATEDATE LIKE CONCAT(#{dateStr},'%') ORDER BY CREATEDATE DESC")
     public List<Artical> queryArticalsByCreateDateYm(String dateStr);
+
+    @Select("SELECT A.ID AS topicId,A.TOPIC_NAME as topicName,COUNT(B.ID) as topicNum FROM ARTICAL_TOPICS A JOIN ARTICAL B ON A.ID = B.TOPICID GROUP BY A.ID ORDER BY A.ID ASC")
+    public List<Map> queryArticalTopicsList();//别名不能随意改变大小写
+
+    @Select("SELECT * FROM ARTICAL WHERE TOPICID=#{id}")
+    public List<Artical> queryArticalsByTopicId(Integer id);
+
+    @Select("SELECT * FROM ARTICAL WHERE TOPICID IN(SELECT ID FROM ARTICAL_TOPICS)")
+    public List<Artical> queryArticalInTopicList();
 }

@@ -82,14 +82,8 @@ public class ArticalController {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
-        List<Map> archivesList = new ArrayList<>();
+        List<Map> archivesList = archivesList = articalService.queryArticalArchivesList();
         String dateStr = request.getParameter("date");
-
-        if (dateStr == null || "null".equals(dateStr)) {
-            archivesList = articalService.queryArticalArchivesList();
-        } else {
-            archivesList = articalService.queryArticalArchivesList();
-        }
 
         Iterator archivesIterator = archivesList.iterator();
         List<Map> archivesnfosList = new ArrayList<>();

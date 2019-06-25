@@ -39,10 +39,17 @@
     <p style="line-height: 45px;">享受音乐 享受生活</p>
 </div>
 <div class="clear" style="margin: 50px auto 50px;width: 200px;height: 200px;border-radius: 100px;background: #fff;">
+    <div>
+       <embed style="left: 0px; position: absolute; top: 400px; " align=right src="files/flash.swf" width=200 height=200 type=application/x-shockwave-flash wmode="transparent" quality="high"></embed>
+    </div>
+
+
     <div id="vsPlayAudio" style="width: 200px;height: 200px;"></div>
 </div>
 <div style="text-align: center;margin: 50px 0 0 0;">
     <ul>
+        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-backward" style="color: #fff; font-size: 30px;" onClick="player.next()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="皮一下，这也是下一首"> </span></li>
+
         <li id="btn_play" class="btn_hidden" hidden><span class="glyphicon glyphicon-play" style="color: #fff; font-size: 30px;" onclick="player.play()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="播放"></span></li>
         <li id="btn_stop" class="btn_show"><span class="glyphicon glyphicon-pause" style="color: #fff; font-size: 30px;" onClick="player.pause()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="暂停"></span></li>
         <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-forward" style="color: #fff; font-size: 30px;" onClick="player.next()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="下一首"> </span></li>

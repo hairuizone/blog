@@ -44,7 +44,13 @@ function showArchive(date) {
 }
 
 function showTopic(id) {
-    alert(id);
+    var url;
+    if(id == undefined){
+        url = "topics";
+    }else{
+        url = "topics?id=" + id;
+    }
+    window.location.href = url;
 }
 
 function showBooks() {
@@ -53,11 +59,13 @@ function showBooks() {
 }
 
 function showAboutme() {
-    alert("我就是帅气的小哥哥");
+    var url = "me";
+    window.location.href = url;
 }
 
 function showTransfer() {
-    alert("欢迎来到未知星球");
+    var url = "transfer";
+    window.location.href = url;
 }
 
 function visitWebsite(url) {
