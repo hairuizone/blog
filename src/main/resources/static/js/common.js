@@ -65,7 +65,7 @@ function showAboutme() {
 
 function showTransfer() {
     var url = "transfer";
-    window.location.href = url;
+    window.open(url);
 }
 function showTools(){
     var url = "tools";
