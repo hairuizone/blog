@@ -46,8 +46,8 @@ body{
     animation: animations2 5s ease-in-out 5s;
 }
 .block{
-    background: #fff; border-radius: 3px; padding: 10px; margin-bottom: 10px; overflow: hidden;
-    margin-top: 5px;
+    background: #fff; border-radius: 3px; padding: 10px; overflow: hidden;
+    margin-top: 5px; margin-bottom: 5px;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 }
@@ -73,15 +73,15 @@ body{
 .newsitem:nth-child(1) { display: block; }
 /*tab_box*/
 
-.tab_box { clear: both; position: relative;height: 300px; margin-top: 10px;margin-bottom: 20px; }
-.newslist { float: right; width: 66% }
-.newslist li { overflow: hidden; line-height: 32px; padding: 0 20px 10px 20px; }
+.tab_box { clear: both; position: relative;height: 300px; margin-top: 10px;margin-bottom: 10px; }
+.newslist { float: right; width: 60% }
+.newslist li { overflow: hidden; line-height: 30px;}
 .newslist li a {height: 35px;
     text-decoration: none;
     color: #333;
 }
 .newslist li img { width: 100% }
-.newslist li { height: 22px; }
+.newslist li { height: 30px; }
 .newslist li:hover { height: 100%; background: #f7f7f7 }
 .newslist li:hover a { color: #000; font-weight: bold }
 .newslist li:hover i { background: #222; }
@@ -94,10 +94,10 @@ body{
 .newslist:hover li:nth-child(1):hover { height: 100%; background: #f7f7f7; }
 .newslist:hover li:nth-child(1):hover a { color: #000; font-weight: bold }
 .newslist:hover li:nth-child(1):hover i { background: #222; }
-.newslist p { line-height: 24px; font-size: 14px; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 2; height: 48px; }
-.newspic { float: left; width: 32%; height: 218px; overflow: hidden; position: relative; }
+.newslist p { line-height: 24px; font-size: 14px; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 2; height: 50px; }
+.newspic { float: left; width: 35%; height: 250px; overflow: hidden; position: relative; }
 .newspic ul { overflow: hidden; }
-.newspic li { height: 100px; position: relative; background: rgba(0,0,0,1); overflow: hidden; margin-bottom: 10px; border-radius: 3px }
+.newspic li { height: 110px; position: relative; background: rgba(0,0,0,1); overflow: hidden; margin-bottom: 15px; border-radius: 3px }
 .newspic li a { display: block; overflow: hidden;}
 
 
