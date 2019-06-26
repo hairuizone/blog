@@ -1,6 +1,9 @@
 package cn.hairui.blog.controller.foreground;
 
+import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.model.OnlineTools;
+import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.service.OnlineToolsService;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +29,18 @@ import java.util.Map;
  */
 @Controller
 public class OnlineToolsController {
+    @Autowired
+    private MyInfoService myInfoService;
+    @Autowired
+    private  OnlineToolsService onlineToolsService;
+    @RequestMapping(value = "/tools")
+    public String tools(Model model){
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+
+        List<OnlineTools> toolsList = onlineToolsService.queryOnlineToolsList();
+        model.addAttribute("tools",toolsList);
+        return "tools";
+    }
+
 }

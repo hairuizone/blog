@@ -193,7 +193,7 @@
                                     </ul>
                                 </div>
                                 <!--与后台要形成对应 只展示前五条-->
-                                <ul class="newslist" th:if="${articalList[artNavListStat.index].size() == 5}">
+                                <ul class="newslist" style="padding-left: 0px;" th:if="${articalList[artNavListStat.index].size() == 5}">
                                     <li  th:onclick="'javascript:articalDetail('+${articalList[artNavListStat.index].get(0).id}+')'"><i></i><a href="javascript:void(0);" th:text="${articalList[artNavListStat.index].get(0).tittle}"></a>
                                         <p th:text="${articalList[artNavListStat.index].get(0).summary}"/>
                                     </li>
@@ -228,7 +228,7 @@
                                 <img src="images/author.jpg" alt="QR Code">
                             </div>
                             <div class="about-name">老干部</div>
-                            <div class="about-the">一个不甘平凡的程序员，有趣的灵魂<br/>以此博客记录生活中的点点滴滴。愿你我共同成长。以此博客记录生活中的点点<滴滴。愿你我共同成长。
+                            <div class="about-the">一个不甘平凡的程序员，有趣的灵魂<br/>以此博客记录生活中的点点滴滴。愿你我共同成长。以此博客记录生活中的点点滴滴。愿你我共同成长。
                                 </div>
                         </div>
 
@@ -291,7 +291,7 @@
             <div class="block">
                 <h2 class="htitle">专题整理</h2>
                 <ul class="nav nav-tabs nav-stacked" th:each=" articalTopics : ${articalTopicsList}">
-                    <li><a href='#' th:text="${articalTopics.topicName}"></a></li>
+                    <li><a href='javascript:void(0);' th:text="${articalTopics.topicName}" th:onclick="'javascript:showTopic('+${articalTopics.id}+')'"></a></li>
                 </ul>
                 <div class="" style="text-align: right;font-size: 0.85em;">
                     <a href="javascript:void(0);" onclick="javascritp:showTopic();">查看更多</a>
@@ -418,6 +418,13 @@
                                 	<span><a href="/"  th:case="'ZZ'" >【转载】</a></span>
                                 </p>
                                 <a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${articalHomepage.id}+')'" class="viewmore">阅读更多</a>
+
+                                <style type="text/css">
+
+
+
+
+                                </style>
                             </li>
 
                         </ul>

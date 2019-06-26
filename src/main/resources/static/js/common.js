@@ -72,7 +72,7 @@ function showTools(){
     window.location.href = url;
 }
 function visitWebsite(url) {
-    window.open = url;
+    window.open(url);
 }
 
 $(function () {

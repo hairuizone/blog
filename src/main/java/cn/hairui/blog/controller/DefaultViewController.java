@@ -46,10 +46,6 @@ public class DefaultViewController {
     public String transfer(){
         return "transfer";
     }
-    @RequestMapping(value = "tools")
-    public String tools(){
-        return "tools";
-    }
 
     @RequestMapping(value = "test")
     public String test() {
