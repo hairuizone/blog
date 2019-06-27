@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="../background/assets/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="../background/assets/css/app.css">
     <script src="../background/assets/js/jquery.min.js"></script>
-
-
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <script src="../js/manage.js"></script>
 </head>
 
 <body data-type="widgets">
@@ -140,59 +140,91 @@
     <div class="left-sidebar">
         <!-- 用户信息 -->
         <div class="tpl-sidebar-user-panel">
-            <div class="tpl-user-panel-slide-toggleable">
+            <div class="tpl-user-panel-slide-toggleable" th:align="center">
                 <div class="tpl-user-panel-profile-picture">
-                    <img src="../background/assets/img/user01.png" alt="">
+                    <img src="../images/author.jpg" alt="">
                 </div>
                 <span class="user-panel-logged-in-text">
-              <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-              老干部
-          </span>
-                <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
+                    <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
+                    <label style="margin-bottom: 0px;" th:text="老干部"></label>
+                </span>
+
+                <a href="javascript:;" class="tpl-user-panel-action-link" >
+                    <span class="am-icon-pencil"></span>
+                    账号设置
+                </a>
             </div>
         </div>
 
         <!-- 菜单 -->
         <ul class="sidebar-nav">
+            <li class="sidebar-nav-heading">— 后台管理系统 —</span></li>
+            <li class="sidebar-nav-link">
+                <a href="javascript:void(0);" onclick="index();" class="active">
+                    <i class="fa fa-home sidebar-nav-link-logo"></i> 首页
+                </a>
+            </li>
+            <li class="sidebar-nav-link">
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="fa fa-plus-square sidebar-nav-link-logo"></i> 内容管理
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">
+                    <li class="sidebar-nav-link ">
+                        <a href="javascript:void(0);" onclick="articalList();">
+                            <i class="fa fa-bookmark sidebar-nav-link-logo "></i>文章管理
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="categoriesList();">
+                            <i class="fa fa-th-large sidebar-nav-link-logo"></i>分类管理
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="topicList();">
+                            <i class="fa fa-magnet  sidebar-nav-link-logo"></i>专题管理
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="booksList();">
+                            <i class="fa fa-book sidebar-nav-link-logo"></i>书籍管理
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="toolsList();">
+                            <i class="fa fa-cutlery sidebar-nav-link-logo"></i>工具管理
 
-            <li class="sidebar-nav-heading">系统管理</span></li>
-            <li class="sidebar-nav-link">
-                <a href="homepage">
-                    <i class="am-icon-home sidebar-nav-link-logo"></i> 首页
-                </a>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="sidebar-nav-link">
-                <a href="user-list">
-                    <i class="am-icon-key sidebar-nav-link-logo"></i> 用户管理
+                <a href="javascript:;" class="sidebar-nav-sub-title">
+                    <i class="fa fa-plus-square sidebar-nav-link-logo"></i> 系统配置
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
-            </li>
-            <li class="sidebar-nav-link ">
-                <a href="artical-list">
-                    <i class="am-icon-table sidebar-nav-link-logo "></i> 文章管理
-                </a>
-            </li>
-            <li class="sidebar-nav-link">
-                <a href="categories-list" class="active">
-                    <i class="am-icon-calendar sidebar-nav-link-logo"></i> 分类管理
-                </a>
-            </li>
-            <li class="sidebar-nav-link">
-                <a href="topic-list">
-                    <i class="am-icon-wpforms sidebar-nav-link-logo"></i> 专题管理
-
-                </a>
-            </li>
-            <li class="sidebar-nav-link">
-                <a href="books-list">
-                    <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 推荐书籍管理
-
-                </a>
-            </li>
-            <li class="sidebar-nav-link">
-                <a href="tools-list">
-                    <i class="am-icon-bar-chart sidebar-nav-link-logo"></i> 在线工具管理
-
-                </a>
+                <ul class="sidebar-nav sidebar-nav-sub">
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="userList();">
+                            <i class="fa fa-user sidebar-nav-link-logo"></i>用户管理
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="alert();">
+                            <i class="fa fa-info sidebar-nav-link-logo"></i>前端首页索引
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="alert();">
+                            <i class="fa fa-user-circle sidebar-nav-link-logo"></i>个人信息管理
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="alert();">
+                            <i class="fa fa-music sidebar-nav-link-logo"></i>歌单管理
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
