@@ -9,7 +9,7 @@ header {
   position: relative;
 }
 .tpl-header-logo {
-  width: 240px;
+  width: 200px;
   height: 57px;
   display: table;
   text-align: center;
@@ -24,7 +24,7 @@ header {
   width: 170px;
 }
 .tpl-header-fluid {
-  margin-left: 240px;
+  margin-left: 200px;
   height: 56px;
   padding-left: 20px;
   padding-right: 20px;
@@ -265,7 +265,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 }
 .left-sidebar {
   transition: all 0.4s ease-in-out;
-  width: 240px;
+  width: 200px;
   min-height: 100%;
   padding-top: 57px;
   position: absolute;
@@ -280,19 +280,18 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   left: -240px;
 }
 .tpl-sidebar-user-panel {
-  padding: 22px;
-  padding-top: 28px;
+  padding: 10px;
 }
 .tpl-user-panel-profile-picture {
   border-radius: 50%;
-  width: 82px;
-  height: 82px;
+  width: 50px;
+  height: 50px;
   margin-bottom: 10px;
   overflow: hidden;
 }
 .tpl-user-panel-profile-picture img {
   width: auto;
-  height: 82px;
+  height: 50px;
   vertical-align: middle;
 }
 .tpl-user-panel-status-icon {
@@ -341,9 +340,11 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   margin-top: 5px;
 }
 .sidebar-nav-heading {
-  padding: 24px 17px;
-  font-size: 15px;
-  font-weight: 500;
+  padding: 15px 10px;
+  font-size: 17px;
+  font-weight: bolder;
+  text-align: center;
+  background-color: #363e42;
 }
 .sidebar-nav-heading-info {
   font-size: 12px;
@@ -363,6 +364,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   color: #868E8E;
   padding: 10px 17px;
   border-left: #282d2f 3px solid;
+  background-color: #363e42;
   font-size: 14px;
   cursor: pointer;
 }
@@ -1175,6 +1177,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 }
 .theme-white .sidebar-nav-link a {
   border-left: #fff 3px solid;
+  background-color: #efe8e8;
 }
 .theme-white .sidebar-nav-link a:hover {
   background: #f2f6f9;
@@ -1189,10 +1192,12 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 .theme-white .sidebar-nav-heading {
   color: #999;
   border-bottom: 1px solid #eee;
+  background-color: #efe8e8
 }
 .theme-white .tpl-sidebar-user-panel {
   background: #fff;
   border-bottom: 1px solid #eee;
+  background-color: #efe8e8;
 }
 .theme-white .tpl-content-wrapper {
   background: #e9ecf3;
@@ -1797,6 +1802,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 .theme-black .tpl-sidebar-user-panel {
   background: #1f2224;
   border-bottom: 1px solid #1f2224;
+  background-color: #363e42;
 }
 .theme-black .tpl-content-wrapper {
   background: #3a4144;
@@ -1805,14 +1811,13 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   background: #2f3638;
 }
 .theme-black .sidebar-nav-link a.active {
-  background: #232829;
+  background: #497680;
 }
 .theme-black .sidebar-nav-link a:hover {
   background: #232829;
 }
 .theme-black .tpl-header-switch-button {
-  background: #2f3638;
-  border-right: 1px solid #282d2f;
+  border-right: 0px solid #282d2f;
 }
 .theme-black .tpl-header-switch-button:hover {
   background: #282d2f;
@@ -1825,7 +1830,6 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   color: #fff;
 }
 .theme-black .left-sidebar {
-  padding-top: 56px;
   background: #282d2f;
 }
 .theme-black .widget-color-green {

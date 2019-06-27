@@ -121,4 +121,13 @@ public class HomePageController {
         model.addAttribute("pageInfo", pageInfo);
         return "index";
     }
+
+
+    @RequestMapping(value = "me")
+    public String aboutme(Model model){
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+        return "me";
+    }
+
 }

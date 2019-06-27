@@ -17,11 +17,13 @@ function categoriesShow(id) {
     window.location.href = url;
 }
 
+var musicWin;
 function musicplayer() {
-    var url = "musicplayer";
-    window.open(url);
+    if(!musicWin || musicWin.closed){
+        var url = "musicplayer";
+        window.open(url,"_musicWin");
+    }
 }
-
 
 function showCategories(id) {
     var url;
@@ -63,14 +65,19 @@ function showAboutme() {
     window.location.href = url;
 }
 
+var transferWin;
 function showTransfer() {
-    var url = "transfer";
-    window.open(url);
+    if(!transferWin || transferWin.closed){
+        var url = "transfer";
+        window.open(url,"_transferWin");
+    }
 }
+
 function showTools(){
     var url = "tools";
     window.location.href = url;
 }
+
 function visitWebsite(url) {
     window.open(url);
 }

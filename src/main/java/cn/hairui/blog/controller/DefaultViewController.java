@@ -18,10 +18,7 @@ public class DefaultViewController {
     @Autowired
     private MyInfoService myInfoService;
 
-    @RequestMapping(value = "/manage/homepage", method = RequestMethod.GET)
-    public String backgroundHomePage() {
-        return "background/index";
-    }
+
 
     @ResponseBody
     @RequestMapping(value = "/getMyInfo", produces = {"application/json;charset=UTF-8"})
@@ -38,10 +35,7 @@ public class DefaultViewController {
     public String videoplayer() {
         return "videoplayer";
     }
-    @RequestMapping(value = "me")
-    public String aboutme(){
-        return "me";
-    }
+
     @RequestMapping(value = "transfer")
     public String transfer(){
         return "transfer";
