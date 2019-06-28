@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Amaze UI Admin index Examples</title>
-    <meta name="description" content="这是一个 index 页面">
-    <meta name="keywords" content="index">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="Cache-Control" content="no-siteapp"/>
-    <link rel="icon" type="image/png" href="../background/assets/i/favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="../background/assets/i/app-icon72x72@2x.png">
-    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="icon" th:href="'../img/'+${myinfo.webicon}"/>
+    <title th:text="${myinfo.webname}"></title>
     <script src="../background/assets/js/echarts.min.js"></script>
     <link rel="stylesheet" href="../background/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="../background/assets/css/amazeui.datatables.min.css"/>
@@ -42,7 +37,7 @@
                 <ul>
                     <!-- 欢迎语 -->
                     <li class="am-text-sm tpl-header-navbar-welcome">
-                        <a href="javascript:void(0);">欢迎你, <span>老干部</span> </a>
+                        <a href="javascript:void(0);">欢迎你, <span th:text="${myinfo.nickname}"></span> </a>
                     </li>
                     <!-- 退出 -->
                     <li class="am-text-sm">
@@ -72,11 +67,11 @@
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable" th:align="center">
                 <div class="tpl-user-panel-profile-picture">
-                    <img src="../images/author.jpg" alt="">
+                    <img th:src="'../images/'+${myinfo.prophoto}" alt="">
                 </div>
                 <span class="user-panel-logged-in-text">
                     <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-                    <label style="margin-bottom: 0px;" th:text="老干部"></label>
+                    <label style="margin-bottom: 0px;" th:text="${myinfo.nickname}"></label>
                 </span>
                 <a href="javascript:;" class="tpl-user-panel-action-link" >
                     <span class="am-icon-pencil"></span>
@@ -95,7 +90,7 @@
             <li class="sidebar-nav-link">
                 <a href="javascript:void(0);" class="sidebar-nav-sub-title">
                     <i class="fa fa-plus-square sidebar-nav-link-logo"></i> 内容管理
-                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    <span class="am-icon-chevron-up am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link ">
@@ -138,17 +133,17 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="alert();">
+                        <a href="javascript:void(0);" onclick="sysManage();">
                             <i class="fa fa-info sidebar-nav-link-logo"></i>前端首页索引
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="alert();">
-                            <i class="fa fa-user-circle sidebar-nav-link-logo"></i>个人信息管理
+                        <a href="javascript:void(0);" onclick="sysManage();">
+                            <i class="fa fa-cog sidebar-nav-link-logo"></i>系统参数管理
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="alert();">
+                        <a href="javascript:void(0);" onclick="sysManage();">
                             <i class="fa fa-music sidebar-nav-link-logo"></i>歌单管理
                         </a>
                     </li>
@@ -245,8 +240,6 @@
         </div>
     </div>
 </div>
-</div>
-
 
 <script language="JavaScript">
 
@@ -308,9 +301,7 @@
             }
         });
     }
-
 </script>
-
 <script th:inline="javascript">
     /*<![CDATA[*/
     var toolsList = [[${toolsList}]];
@@ -342,5 +333,4 @@
 <script src="../background/assets/js/dataTables.responsive.min.js"></script>
 <script src="../background/assets/js/app.js"></script>
 </body>
-
 </html>

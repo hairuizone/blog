@@ -47,4 +47,11 @@ public class DefaultViewManageController {
 
 
 
+    @RequestMapping(value = "/setting")
+    public String setting(Model model){
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+        return "background/setting";
+    }
+
 }

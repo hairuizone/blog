@@ -461,7 +461,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   padding: 15px;
 }
 .widget-title {
-  font-size: 14px;
+  font-size: 16px;
 }
 .widget-fluctuation-period-text {
   display: inline-block;
@@ -1726,9 +1726,9 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   color: #fff;
 }
 .theme-black .widget {
-  border: 1px solid #33393c;
-  border-top: 2px solid #313639;
-  background: #4b5357;
+  padding: 10px 20px 13px;
+  background-color: #4b5357;
+  border-radius: 4px;
   color: #ffffff;
 }
 .theme-black .widget-primary {

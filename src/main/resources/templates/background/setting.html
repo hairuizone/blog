@@ -19,6 +19,26 @@
 
 <body data-type="widgets">
 <script src="../background/assets/js/theme.js"></script>
+<style type="text/css">
+    .tpl-form-input{
+        margin-top: 10px;
+        height: 40px;
+    }
+    .theme-black .tpl-form-border-form .am-form-label{
+        font-size: 14px;
+        padding-top: 10px;
+        text-align: left;
+    }
+    .theme-white .tpl-form-border-form .am-form-label{
+        font-size: 14px;
+        padding-top: 10px;
+        text-align: left;
+    }
+    .am-form-label{
+
+    }
+
+</style>
 <div class="am-g tpl-g">
 
     <!--公共部分-start-->
@@ -90,9 +110,9 @@
             <li class="sidebar-nav-link">
                 <a href="javascript:void(0);" class="sidebar-nav-sub-title">
                     <i class="fa fa-plus-square sidebar-nav-link-logo"></i> 内容管理
-                    <span class="am-icon-chevron-up am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
-                <ul class="sidebar-nav sidebar-nav-sub">
+                <ul class="sidebar-nav sidebar-nav-sub" style="display: none">
                     <li class="sidebar-nav-link ">
                         <a href="javascript:void(0);" onclick="articalList();">
                             <i class="fa fa-bookmark sidebar-nav-link-logo "></i>文章管理
@@ -104,7 +124,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="topicList();" class="active">
+                        <a href="javascript:void(0);" onclick="topicList();">
                             <i class="fa fa-magnet  sidebar-nav-link-logo"></i>专题管理
                         </a>
                     </li>
@@ -124,9 +144,9 @@
             <li class="sidebar-nav-link">
                 <a href="javascript:void(0);" class="sidebar-nav-sub-title">
                     <i class="fa fa-plus-square sidebar-nav-link-logo"></i> 系统配置
-                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    <span class="am-icon-chevron-up am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
-                <ul class="sidebar-nav sidebar-nav-sub" style="display: none">
+                <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link">
                         <a href="javascript:void(0);" onclick="userList();">
                             <i class="fa fa-user sidebar-nav-link-logo"></i>用户管理
@@ -138,7 +158,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="sysManage();">
+                        <a href="javascript:void(0);" onclick="sysManage();"  class="active">
                             <i class="fa fa-cog sidebar-nav-link-logo"></i>系统参数管理
                         </a>
                     </li>
@@ -159,24 +179,95 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">添加专题</div>
+                            <div class="widget-title am-fl" style="font-size: 16px;font-weight: bold; font-style: italic;">系统参数配置</div>
                         </div>
                         <div class="widget-body am-fr">
-                            <form class="am-form tpl-form-border-form tpl-form-border-br" id="topic-form" type="post"  >
+
+                            <form class="am-form tpl-form-border-form tpl-form-border-br" id="categories-form" type="post"  >
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title am-fl" style="font-style: italic;">我的信息配置</div>
+                                </div>
                                 <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">专题名称 <span class="tpl-form-line-small-title">Topic Name</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
-                                        <input type="text" class="tpl-form-input" name="topicName" placeholder="请输入分类名称文字10-30字左右" >
+                                    <label class="am-u-sm-1 am-form-label">我的昵称<span class="tpl-form-line-small-title">Nick Name</span></label>
+                                    <div class="am-u-sm-3 am-u-sm-pull-8">
+                                        <input type="text" class="tpl-form-input" name="nickname" placeholder="请输入我的昵称" >
                                         <small style="color: red">（必填）</small>
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">分类介绍 <span class="tpl-form-line-small-title">Type Introduce</span></label>
-                                    <div class="am-u-sm-4 am-u-sm-pull-5">
-                                        <textarea class="" name="introduction" rows="6" id="user-intro" placeholder="请对专题进行简单介绍"></textarea>
+
+                                    <label class="am-u-sm-1 am-form-label">我的邮箱<span class="tpl-form-line-small-title">Email</span></label>
+                                    <div class="am-u-sm-3 am-u-sm-pull-8">
+                                        <input type="text" class="tpl-form-input" name="email" placeholder="请输入我的邮箱" >
+                                        <small style="color: red">（必填）</small>
                                     </div>
                                 </div>
+
+
+
+
+
+
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">我的职业<span class="tpl-form-line-small-title">Occupation</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="occupation" placeholder="请输入我的职业" >
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+
+                                    <label class="am-u-sm-1 am-form-label">我的地址<span class="tpl-form-line-small-title">Address</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="address" placeholder="请输入我的地址" >
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                    <div class="am-u-sm-4">
+                                        <label></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="widget-head am-cf">
+                                    <div class="widget-title am-fl">系统信息配置</div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">网站名称<span class="tpl-form-line-small-title">Web Name</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="webname" placeholder="请输入网站名称" >
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+
+                                    <label class="am-u-sm-1 am-form-label">我的昵称<span class="tpl-form-line-small-title">Nick Name</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="nickname" placeholder="请输入我的昵称" >
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                    <div class="am-u-sm-4">
+                                        <label></label>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">我的职业<span class="tpl-form-line-small-title">Occupation</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="occupation" placeholder="请输入我的职业" >
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+
+                                    <label class="am-u-sm-1 am-form-label">我的地址<span class="tpl-form-line-small-title">Address</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="address" placeholder="请输入我的地址" >
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                    <div class="am-u-sm-4">
+                                        <label></label>
+                                    </div>
+                                </div>
+
+
+
+
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
@@ -193,57 +284,6 @@
 </div>
 
 <script language="JavaScript">
-
-    $('.submit-btn').click(function () {
-        var topicName = $("input[name='topicName']").val();
-        if (topicName == "") {
-            AMUI.dialog.alert({
-                title: '提示信息',
-                content: '专题名称为必填',
-                onConfirm: function () {
-                }
-            });
-            return;
-        }
-        $.ajax({
-            //几个参数需要注意一下
-            type: "POST",//方法类型
-            dataType: "json",//预期服务器返回的数据类型
-            url: "topic-adddata" ,//url
-            data: $('#topic-form').serialize(),
-            success: function (result) {
-                var flag = result.flag;
-                if (flag == "success") {
-                    AMUI.dialog.alert({
-                        title: '提示信息',
-                        content: '创建专题成功',
-                        onConfirm: function () {
-                            window.location = "topic-list";
-                        }
-                    });
-                }else{
-                    var message = result.message;
-                    AMUI.dialog.alert({
-                        title: '错误提示',
-                        content: '创建专题失败，错误原因：'+message,
-                        onConfirm: function () {
-                        }
-                    });
-                    return;
-                }
-            },
-            error : function() {
-                AMUI.dialog.alert({
-                    title: '错误提示',
-                    content: '创建专题失败',
-                    onConfirm: function () {
-                    }
-                });
-                return;
-            }
-        });
-    });
-
 </script>
 
 <script src="../background/assets/js/amazeui.min.js"></script>
@@ -252,5 +292,4 @@
 <script src="../background/assets/js/dataTables.responsive.min.js"></script>
 <script src="../background/assets/js/app.js"></script>
 </body>
-
 </html>

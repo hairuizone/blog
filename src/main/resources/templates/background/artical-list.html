@@ -92,7 +92,7 @@
             <li class="sidebar-nav-link">
                 <a href="javascript:void(0);" class="sidebar-nav-sub-title">
                     <i class="fa fa-plus-square sidebar-nav-link-logo"></i> 内容管理
-                    <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                    <span class="am-icon-chevron-up am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
                 <ul class="sidebar-nav sidebar-nav-sub">
                     <li class="sidebar-nav-link ">
@@ -135,17 +135,17 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="alert();">
+                        <a href="javascript:void(0);" onclick="sysManage();">
                             <i class="fa fa-info sidebar-nav-link-logo"></i>前端首页索引
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="alert();">
-                            <i class="fa fa-user-circle sidebar-nav-link-logo"></i>个人信息管理
+                        <a href="javascript:void(0);" onclick="sysManage();">
+                            <i class="fa fa-cog sidebar-nav-link-logo"></i>系统参数管理
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="alert();">
+                        <a href="javascript:void(0);" onclick="sysManage();">
                             <i class="fa fa-music sidebar-nav-link-logo"></i>歌单管理
                         </a>
                     </li>
@@ -162,8 +162,6 @@
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
                             <div class="widget-title  am-cf">文章列表</div>
-
-
                         </div>
                         <div class="widget-body  am-fr">
 
@@ -260,9 +258,7 @@
         </div>
     </div>
 </div>
-
 <script>
-
     $('.addArticalBtn').click(function () {
         var url = 'artical-add'
         window.location.href = url;
@@ -322,11 +318,8 @@
                 return;
             }
         });
-
-
     }
 </script>
-
 <script th:inline="javascript">
     /*<![CDATA[*/
     var articalList = [[${articalList}]];

@@ -162,6 +162,8 @@ public class ArticalManageController {
 
     @RequestMapping(value = "/artical-updatedata", method = RequestMethod.POST)
     public String updateArticalData(@ModelAttribute Artical artical, Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
 
         System.out.println("updatedata" + artical.getContent());
         articalService.updateArtical(artical);

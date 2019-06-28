@@ -137,5 +137,4 @@ public class ArticalTopicsManageController {
         }
         return JSONUtils.toJSONString(map);
     }
-
 }

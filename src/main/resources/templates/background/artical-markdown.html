@@ -60,7 +60,7 @@
 <body data-type="widgets">
 <script src="../background/assets/js/theme.js"></script>
 <div class="am-g tpl-g">
-
+<br/>
     <form id="artical-from" class="am-form tpl-form-border-form tpl-form-border-br"
           th:action="artical-updatemarkdowndata"
           method="post">
@@ -82,13 +82,8 @@
                 </button>
             </div>
         </div>
-
-
     </form>
-
-
 </div>
-
 <script language="JavaScript">
     $('.submit-btn').click(function () {
         $.ajax({
@@ -117,8 +112,6 @@
     $('.cancel-btn').click(function () {
         window.location = "artical-list";
     });
-
 </script>
 </body>
-
 </html>

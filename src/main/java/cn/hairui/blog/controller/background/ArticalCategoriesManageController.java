@@ -75,7 +75,9 @@ public class ArticalCategoriesManageController {
      * @return
      */
     @RequestMapping(value = "/categories-add")
-    public String addArticalCategories() {
+    public String addArticalCategories(Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
         return addPage;
     }
 
@@ -144,6 +146,9 @@ public class ArticalCategoriesManageController {
      */
     @RequestMapping(value = "/categories-update")
     public String updateArticalCategories(Integer id, Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
+
         ArticalCategories articalCategories = articalCategoriesService.queryArticalCategoriesDetailById(id);
         model.addAttribute("articalCategories", articalCategories);
         return updatePage;
