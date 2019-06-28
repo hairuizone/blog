@@ -1,10 +1,15 @@
 package cn.hairui.blog.controller.background;
 
 import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.Artical;
 import cn.hairui.blog.model.ArticalTopics;
+import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.service.ArticalService;
 import cn.hairui.blog.service.ArticalTopicsService;
+import cn.hairui.blog.service.MyInfoService;
 import com.alibaba.druid.support.json.JSONUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +37,8 @@ public class ArticalTopicsManageController {
     private ArticalTopicsService articalTopicsService;
     @Autowired
     private ArticalService articalService;
+    @Autowired
+    private MyInfoService myInfoService;
 
     private String listPage = PubConstant.BACKGROUND_DIR_NAME + "topic-list";//列表页面
     private String addPage = PubConstant.BACKGROUND_DIR_NAME + "topic-add";//新增页面
@@ -38,14 +46,32 @@ public class ArticalTopicsManageController {
 
 
     @RequestMapping(value = "/topic-list")
-    public String listArticalTopics(Model model) {
+    public String listArticalTopics(HttpServletRequest request,Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
+
+        Integer pageNum = null;
+        String pageNumStr = request.getParameter("pageIndex");
+        if (pageNumStr != null) {
+            pageNum = Integer.parseInt(pageNumStr);
+        }
+
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, 5);
         List<ArticalTopics> articalTopicsList = articalTopicsService.qeuryArticalTopicsList();
+        PageInfo<ArticalTopics> pageInfo = new PageInfo<ArticalTopics>(articalTopicsList);
+
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("topicList", articalTopicsList);
         return listPage;
     }
 
     @RequestMapping(value = "/topic-add")
     public String addArticalTopics(Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
         return addPage;
     }
 
@@ -71,6 +97,8 @@ public class ArticalTopicsManageController {
 
     @RequestMapping(value = "/topic-update")
     public String updateArticalTopics(int id, Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
         ArticalTopics articalTopics = articalTopicsService.queryArticalTopicsDetailById(id);
         model.addAttribute("articalTopics", articalTopics);
         return updatePage;

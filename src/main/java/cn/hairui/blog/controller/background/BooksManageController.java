@@ -1,10 +1,15 @@
 package cn.hairui.blog.controller.background;
 
 import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.Artical;
 import cn.hairui.blog.model.Books;
+import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.service.BooksService;
+import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.util.FileUtil;
 import com.alibaba.druid.support.json.JSONUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,18 +40,40 @@ public class BooksManageController {
     @Autowired
     private BooksService booksService;
 
+    @Autowired
+    private MyInfoService myInfoService;
     private String listPage = PubConstant.BACKGROUND_DIR_NAME + "books-list";//列表页面
     private String addPage = PubConstant.BACKGROUND_DIR_NAME + "books-add";//新增页面
 
     @RequestMapping(value = "/books-list")
-    public String listBooks(Model model) {
+    public String listBooks(HttpServletRequest request,Model model) {
+
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
+
+        Integer pageNum = null;
+        String pageNumStr = request.getParameter("pageIndex");
+        if (pageNumStr != null) {
+            pageNum = Integer.parseInt(pageNumStr);
+        }
+
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, 5);
         List<Books> booksList = booksService.queryBooksList();
+        PageInfo<Books> pageInfo = new PageInfo<Books>(booksList);
+
+
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("booksList", booksList);
         return listPage;
     }
 
     @RequestMapping(value = "/books-add")
-    public String addBooks() {
+    public String addBooks(Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
         return addPage;
     }
 

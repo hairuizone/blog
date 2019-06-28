@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import cn.hairui.blog.constant.PubConstant;
 import com.alibaba.druid.support.json.JSONUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,14 +61,27 @@ public class ArticalManageController {
     private String markdownPage = PubConstant.BACKGROUND_DIR_NAME + "artical-markdown";
 
     @RequestMapping(value = "/artical-list", method = RequestMethod.GET)
-    public String listArtical(Model model) {
+    public String listArtical(HttpServletRequest request, Model model) {
 
         MyInfo myInfo = myInfoService.findMyInfoById(1);
         model.addAttribute("myinfo", myInfo);
 
-        List<Artical> articalList = articalService.queryArticalListByCond("1", null);
-        model.addAttribute("articalList", articalList);
+        Integer pageNum = null;
+        String pageNumStr = request.getParameter("pageIndex");
+        if (pageNumStr != null) {
+            pageNum = Integer.parseInt(pageNumStr);
+        }
 
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, 5);
+        List<Artical> articals  = articalService.queryArticalList();
+        PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);
+
+
+        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("articalList", articals);
         List<ArticalCategories> categoriesList = articalCategoriesService.queryArticalCategoriesList();
         model.addAttribute("categoriesList", categoriesList);
         return listPage;

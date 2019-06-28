@@ -1,9 +1,14 @@
 package cn.hairui.blog.controller.background;
 
 import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.Artical;
 import cn.hairui.blog.model.ArticalCategories;
+import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.service.ArticalCategoriesService;
+import cn.hairui.blog.service.MyInfoService;
 import com.alibaba.druid.support.json.JSONUtils;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +34,8 @@ public class ArticalCategoriesManageController {
 
     @Autowired
     private ArticalCategoriesService articalCategoriesService;
-
+    @Autowired
+    private MyInfoService myInfoService;
     private String listPage = PubConstant.BACKGROUND_DIR_NAME + "categories-list";//列表页面
     private String addPage = PubConstant.BACKGROUND_DIR_NAME + "categories-add";//新增页面
     private String updatePage = PubConstant.BACKGROUND_DIR_NAME + "categories-update";//修改页面
@@ -41,9 +47,25 @@ public class ArticalCategoriesManageController {
      * @return
      */
     @RequestMapping(value = "categories-list")
-    public String listArticalCategories(Model model) {
-        List<ArticalCategories> articalCategoriesList = articalCategoriesService.queryArticalCategoriesList();
-        model.addAttribute("articalCategoriesList", articalCategoriesList);
+    public String listArticalCategories(HttpServletRequest request,Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
+        Integer pageNum = null;
+        String pageNumStr = request.getParameter("pageIndex");
+        if (pageNumStr != null) {
+            pageNum = Integer.parseInt(pageNumStr);
+        }
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, 5);
+        List<ArticalCategories> articalCategories  = articalCategoriesService.queryArticalCategoriesList();
+        PageInfo<ArticalCategories> pageInfo = new PageInfo<ArticalCategories>(articalCategories);
+
+
+        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("articalCategoriesList", articalCategories);
+
         return listPage;
     }
 

@@ -200,6 +200,45 @@
                                 </table>
                             </div>
 
+                            <div class="am-u-lg-12 am-cf">
+                                <div class="am-fr">
+                                    <ul class="am-pagination tpl-pagination">
+                                        <li th:if="${pageInfo.hasPreviousPage}"><a
+                                                th:href="@{'categories-list?pageIndex=1'}"
+                                                aria-label="Previous"> <i class="fa fa-angle-double-left"></i>
+                                        </a></li>
+
+                                        <li th:if="${pageInfo.hasPreviousPage}"><a
+                                                th:href="@{'categories-list?pageIndex='+${pageInfo.prePage}}"
+                                                aria-label="Previous"> <i class="fa fa-angle-left"></i>
+                                        </a></li>
+
+
+                                        <th:block th:each="nav : ${pageInfo.navigatepageNums}">
+                                            <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
+                                                    th:href="@{'categories-list?pageIndex='+${nav}}"
+                                                    th:text="${nav}"></a></li>
+                                        </th:block>
+
+                                        <th:block th:if="${pageInfo.hasNextPage}">
+                                            <li><a
+                                                    th:href="@{'categories-list?pageIndex='+${pageInfo.nextPage}}"
+                                                    aria-label="Next"><i class="fa fa-angle-right"></i>
+                                            </a></li>
+                                        </th:block>
+                                        <th:block th:if="${pageInfo.hasNextPage}">
+                                            <li><a
+                                                    th:href="@{'categories-list?pageIndex='+${pageInfo.pages}}"
+                                                    aria-label="Next"><i class="fa fa-angle-double-right"></i>
+                                            </a></li>
+                                        </th:block>
+
+                                        <li><label th:text="'共'+${pageInfo.pages}+'页'"></label></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -254,52 +293,53 @@
                 });
             }
         });
-
-
-
     }
 
     function deleteCategory(id){
-        var r = confirm("删除后将不可恢复，是否确定继续？");
-        if (r == true) {
-            $.ajax({
-                type: "post",
-                url: "categories-delete",
-                data: {
-                    id: id
-                },
-                dataType: 'json',
-                success: function (data) {
-                    if (data.flag == "success") {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '删除成功',
-                            onConfirm: function () {
-                                window.location.href = "categories-list";
-                            }
-                        });
+        AMUI.dialog.confirm({
+            title: '是否确定删除',
+            content: '删除后将不可恢复，是否继续？',
+            onConfirm: function () {
+                $.ajax({
+                    type: "post",
+                    url: "categories-delete",
+                    data: {
+                        id: id
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.flag == "success") {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '删除成功',
+                                onConfirm: function () {
+                                    window.location.href = "categories-list";
+                                }
+                            });
 
-                    } else {
+                        } else {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '删除失败，请重试',
+                                onConfirm: function () {
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
                         AMUI.dialog.alert({
                             title: '提示信息',
-                            content: '删除失败，请重试',
+                            content: '删除失败',
                             onConfirm: function () {
                             }
                         });
                     }
-                },
-                error: function () {
-                    AMUI.dialog.alert({
-                        title: '提示信息',
-                        content: '删除失败',
-                        onConfirm: function () {
-                        }
-                    });
-                }
-            });
-        } else {
-            return;
-        }
+                });
+            },
+            onCancel: function () {
+                return;
+            }
+        });
     }
 
 </script>
