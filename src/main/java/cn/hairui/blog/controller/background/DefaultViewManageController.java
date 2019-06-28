@@ -1,6 +1,11 @@
 package cn.hairui.blog.controller.background;
 
+import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.MyInfo;
+import cn.hairui.blog.service.MyInfoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -26,8 +31,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/manage")
 public class DefaultViewManageController {
 
+    @Autowired
+    private MyInfoService myInfoService;
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String backgroundHomePage() {
+    public String backgroundHomePage(Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
         return "background/index";
     }
 

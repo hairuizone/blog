@@ -4,8 +4,8 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="img/favicon.png"/>
     <title th:text="${myinfo.webname}"></title>
+    <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
 
     <link href="background/assets/css/amazeui.min.css" rel="stylesheet">
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
@@ -40,7 +40,7 @@
                 </button>
                 <a class="navbar-brand"  href="javascript:void(0);" onclick="homepage()">
                 	<span>
-                		<img src="img/brand.jpg" class="img-circle"  style="height: 30px;width: 30px">
+                		<img th:src="'img/'+${myinfo.brandimg}" class="img-circle"  style="height: 30px;width: 30px">
                 	</span>
                     <span th:text="${myinfo.webname}" onclick="homepage()"></span>
                 </a>
@@ -62,9 +62,9 @@
                     <li class="navinfo" >
                         <span>
                             <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">
-                                <img class="img-circle" style="height: 30px;width: 30px;margin: 0 5px;" src="images/author.jpg" />
+                                <img class="img-circle" style="height: 30px;width: 30px;margin: 0 5px;" th:src="'images/'+${myinfo.prophoto}"/>
                             </a>
-                            <label >晚上好，老干部</label>
+                            <label >晚上好，<span th:text="${myinfo.nickname}"></span></label>
                         </span>
                     </li>
                     <li class="navinfo" style="display: none"><a href="javascript:void(0);"><button class="btn btn-sm">登录</button></a></li>

@@ -16,7 +16,60 @@ public class MyInfo {
     public String qq;
     public String wechat;
     public String webroot;
+    public String webicon;
+    public String motto;
+    public String prophoto;
+    public String github;
+    public String weibo;
+    public String brandimg;
 
+    public String getBrandimg() {
+        return brandimg;
+    }
+
+    public void setBrandimg(String brandimg) {
+        this.brandimg = brandimg;
+    }
+
+    public String getWebicon() {
+        return webicon;
+    }
+
+    public void setWebicon(String webicon) {
+        this.webicon = webicon;
+    }
+
+    public String getMotto() {
+        return motto;
+    }
+
+    public void setMotto(String motto) {
+        this.motto = motto;
+    }
+
+    public String getProphoto() {
+        return prophoto;
+    }
+
+    public void setProphoto(String prophoto) {
+        this.prophoto = prophoto;
+    }
+
+    public String getGithub() {
+        return github;
+    }
+
+    public void setGithub(String github) {
+        this.github = github;
+    }
+
+    public String getWeibo() {
+        return weibo;
+    }
+
+    public void setWeibo(String weibo) {
+        this.weibo = weibo;
+    }
 
     public String getWebroot() {
         return webroot;

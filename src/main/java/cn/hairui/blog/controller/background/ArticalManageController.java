@@ -60,6 +60,10 @@ public class ArticalManageController {
 
     @RequestMapping(value = "/artical-list", method = RequestMethod.GET)
     public String listArtical(Model model) {
+
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
+
         List<Artical> articalList = articalService.queryArticalListByCond("1", null);
         model.addAttribute("articalList", articalList);
 
@@ -70,6 +74,10 @@ public class ArticalManageController {
 
     @RequestMapping(value = "/artical-add", method = RequestMethod.GET)
     public String addArtical(Model model) {
+
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
+
         List<ArticalCategories> acList = articalCategoriesService.queryArticalCategoriesList();
         model.addAttribute("acList", acList);
 
@@ -88,6 +96,9 @@ public class ArticalManageController {
 
     @RequestMapping(value = "/artical-adddata", method = RequestMethod.POST)
     public String addArticalDAta(@ModelAttribute Artical artical, Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
+
         //随机设置封面图
         int i = new Random().nextInt(8) + 1;//1-9随机图片
         String imgPath = "images/" + i + ".jpg";
@@ -114,7 +125,8 @@ public class ArticalManageController {
 
     @RequestMapping(value = "/artical-update", method = RequestMethod.GET)
     public String updateArtical(Integer id, Model model) {
-
+        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        model.addAttribute("myinfo", myInfo);
         if (id == null) {
             return "404";
         }
