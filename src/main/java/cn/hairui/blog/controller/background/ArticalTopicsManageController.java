@@ -44,7 +44,7 @@ public class ArticalTopicsManageController {
         return listPage;
     }
 
-    @RequestMapping(value = "/manage/topic-add")
+    @RequestMapping(value = "/topic-add")
     public String addArticalTopics(Model model) {
         return addPage;
     }
