@@ -183,43 +183,20 @@
                         </div>
                         <div class="widget-body am-fr">
 
-                            <form class="am-form tpl-form-border-form tpl-form-border-br" id="categories-form" type="post"  >
+                            <form class="am-form tpl-form-border-form tpl-form-border-br" id="myinfo-form" type="post"  >
                                 <div class="widget-head am-cf">
-                                    <div class="widget-title am-fl" style="font-style: italic;">我的信息配置</div>
+                                    <div class="widget-title am-fl" style="font-style: italic;font-weight: bold;">我的信息配置</div>
                                 </div>
                                 <div class="am-form-group">
+                                    <input type="hidden" th:value="${myinfo.id}" readonly name="id">
                                     <label class="am-u-sm-1 am-form-label">我的昵称<span class="tpl-form-line-small-title">Nick Name</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-8">
-                                        <input type="text" class="tpl-form-input" name="nickname" placeholder="请输入我的昵称" >
+                                    <div class="am-u-sm-3">
+                                        <input type="text" class="tpl-form-input" name="nickname" placeholder="请输入我的昵称" th:value="${myinfo.nickname}">
                                         <small style="color: red">（必填）</small>
                                     </div>
-                                </div>
-
-                                <div class="am-form-group">
-
-                                    <label class="am-u-sm-1 am-form-label">我的邮箱<span class="tpl-form-line-small-title">Email</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-8">
-                                        <input type="text" class="tpl-form-input" name="email" placeholder="请输入我的邮箱" >
-                                        <small style="color: red">（必填）</small>
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-1 am-form-label">我的职业<span class="tpl-form-line-small-title">Occupation</span></label>
-                                    <div class="am-u-sm-3 ">
-                                        <input type="text" class="tpl-form-input" name="occupation" placeholder="请输入我的职业" >
-                                        <small style="color: red">（必填）</small>
-                                    </div>
-
-                                    <label class="am-u-sm-1 am-form-label">我的地址<span class="tpl-form-line-small-title">Address</span></label>
-                                    <div class="am-u-sm-3 ">
-                                        <input type="text" class="tpl-form-input" name="address" placeholder="请输入我的地址" >
+                                    <label class="am-u-sm-1 am-form-label">我的姓名<span class="tpl-form-line-small-title">Name</span></label>
+                                    <div class="am-u-sm-3">
+                                        <input type="text" class="tpl-form-input" name="name" placeholder="请填写真实姓名" th:value="${myinfo.name}">
                                         <small style="color: red">（必填）</small>
                                     </div>
                                     <div class="am-u-sm-4">
@@ -227,20 +204,112 @@
                                     </div>
                                 </div>
 
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">我的头像<span class="tpl-form-line-small-title">Pro Photo</span></label>
+                                    <div class="am-u-sm-3 am-u-sm-pull-8">
+                                        <img id="prophotoImg" th:value="${myinfo.prophoto}"  th:src="'../images/'+${myinfo.prophoto}" style="width: 80px;height: 80px;border-radius: 50%;">
+                                        <input type="text" id="prophoto" name="prophoto" style="border: none;" th:value="${myinfo.prophoto}" readonly>
 
+                                        <div id="wdtx">
+                                            <img src="../images/avatar.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar2.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar3.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar4.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar5.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar6.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar7.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar8.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar9.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../images/avatar10.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <!--需要更多可添加在后面 例如-->
+                                       </div>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">我的邮箱<span class="tpl-form-line-small-title">Email</span></label>
+                                    <div class="am-u-sm-3">
+                                        <input type="text" class="tpl-form-input" name="email" placeholder="请输入我的邮箱" th:value="${myinfo.email}">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                    <div class="am-u-sm-8">
+                                        <label></label>
+                                    </div>
+                                </div>
+
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">我的职业<span class="tpl-form-line-small-title">Occupation</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="occupation" placeholder="请输入我的职业" th:value="${myinfo.occupation}">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+
+                                    <label class="am-u-sm-1 am-form-label">现居地址<span class="tpl-form-line-small-title">Address</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="address" placeholder="请输入我的地址" th:value="${myinfo.address}">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                    <div class="am-u-sm-4">
+                                        <label></label>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">微信号<span class="tpl-form-line-small-title">wechat</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="wechat" placeholder="请输入微信号" th:value="${myinfo.wechat}">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+
+                                    <label class="am-u-sm-1 am-form-label">QQ号<span class="tpl-form-line-small-title">qq</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="qq" placeholder="请输入QQ号" th:value="${myinfo.qq}">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                    <div class="am-u-sm-4">
+                                        <label></label>
+                                    </div>
+                                </div>
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">GitHub<span class="tpl-form-line-small-title">github</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="github" placeholder="请输入github" th:value="${myinfo.github}">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+
+                                    <label class="am-u-sm-1 am-form-label">微博账号<span class="tpl-form-line-small-title">Sina Blog</span></label>
+                                    <div class="am-u-sm-3 ">
+                                        <input type="text" class="tpl-form-input" name="weibo" placeholder="请输入微博账号" th:value="${myinfo.weibo}">
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                    <div class="am-u-sm-4">
+                                        <label></label>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-1 am-form-label">我的个性签名<span class="tpl-form-line-small-title">MOTTO</span></label>
+                                    <div class="am-u-sm-5 am-u-sm-pull-6">
+                                        <textarea class="" name="motto" rows="6"  placeholder="请对分类进行简单描述" th:text="${myinfo.motto}"></textarea>
+                                        <small style="color: red">（必填）</small>
+                                    </div>
+                                </div>
+
+                                <br/>
                                 <div class="widget-head am-cf">
-                                    <div class="widget-title am-fl">系统信息配置</div>
+                                    <div class="widget-title am-fl" style="font-style: italic;font-weight: bold;">系统信息配置</div>
                                 </div>
                                 <div class="am-form-group">
                                     <label class="am-u-sm-1 am-form-label">网站名称<span class="tpl-form-line-small-title">Web Name</span></label>
                                     <div class="am-u-sm-3 ">
-                                        <input type="text" class="tpl-form-input" name="webname" placeholder="请输入网站名称" >
+                                        <input type="text" class="tpl-form-input" name="webname" placeholder="请输入网站名称" th:value="${myinfo.webname}">
                                         <small style="color: red">（必填）</small>
                                     </div>
 
-                                    <label class="am-u-sm-1 am-form-label">我的昵称<span class="tpl-form-line-small-title">Nick Name</span></label>
+                                    <label class="am-u-sm-1 am-form-label">主站地址<span class="tpl-form-line-small-title">Web Site</span></label>
                                     <div class="am-u-sm-3 ">
-                                        <input type="text" class="tpl-form-input" name="nickname" placeholder="请输入我的昵称" >
+                                        <input type="text" class="tpl-form-input" name="website" placeholder="请输入主站地址" th:value="${myinfo.website}">
                                         <small style="color: red">（必填）</small>
                                     </div>
                                     <div class="am-u-sm-4">
@@ -249,29 +318,42 @@
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label class="am-u-sm-1 am-form-label">我的职业<span class="tpl-form-line-small-title">Occupation</span></label>
+                                    <label class="am-u-sm-1 am-form-label">网站图标<span class="tpl-form-line-small-title">Web Icon</span></label>
                                     <div class="am-u-sm-3 ">
-                                        <input type="text" class="tpl-form-input" name="occupation" placeholder="请输入我的职业" >
-                                        <small style="color: red">（必填）</small>
+
+
+                                        <img id="webiconImg" th:value="${myinfo.brandimg}"  th:src="'../img/'+${myinfo.webicon}" style="width: 80px;height: 80px;border-radius: 50%;">
+                                        <input type="text" id="webicon" name="webicon" style="border: none;" th:value="${myinfo.webicon}" readonly>
+
+                                        <div id="wztb">
+                                            <img src="../img/favicon.png" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../img/favicon2.png" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../img/favicon3.png" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                        </div>
                                     </div>
 
-                                    <label class="am-u-sm-1 am-form-label">我的地址<span class="tpl-form-line-small-title">Address</span></label>
+                                    <label class="am-u-sm-1 am-form-label">LOGO图片<span class="tpl-form-line-small-title">Brand Img</span></label>
                                     <div class="am-u-sm-3 ">
-                                        <input type="text" class="tpl-form-input" name="address" placeholder="请输入我的地址" >
-                                        <small style="color: red">（必填）</small>
+                                        <img id="brandimgImg" th:value="${myinfo.brandimg}"  th:src="'../img/'+${myinfo.brandimg}" style="width:80px;height: 80px;border-radius: 50%;">
+                                        <input type="text" id="brandimg" name="brandimg" style="border: none;" th:value="${myinfo.brandimg}" readonly>
+
+                                        <div id="logoimg">
+                                            <img src="../img/brand.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../img/brand2.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../img/brand3.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../img/brand4.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                            <img src="../img/brand5.jpg" style="width:50px;height: 50px;margin:15px 15px 20px 0;border-radius: 50%;"/>
+                                        </div>
+
                                     </div>
                                     <div class="am-u-sm-4">
                                         <label></label>
                                     </div>
                                 </div>
 
-
-
-
-
                                 <div class="am-form-group">
-                                    <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">提交</button>
+                                    <div class="am-u-sm-6 am-u-sm-push-6">
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">保存</button>
                                     </div>
                                 </div>
                             </form>
@@ -284,6 +366,74 @@
 </div>
 
 <script language="JavaScript">
+    $(document).on("click","#wdtx>img",function() {
+        var path = $(this).attr("src");
+        $("#prophotoImg").attr("src",path);
+        $('#prophoto').val(path.replace('../images/',''));
+    });
+
+    $(document).on("click","#logoimg>img",function() {
+        var path = $(this).attr("src");
+        $("#brandimgImg").attr("src",path);
+        $('#brandimg').val(path.replace('../img/',''));
+    });
+
+    $(document).on("click","#wztb>img",function() {
+        var path = $(this).attr("src");
+        $("#webiconImg").attr("src",path);
+        $('#webicon').val(path.replace('../img/',''));
+    });
+
+    $('.submit-btn').click(function () {
+        var nickname = $("input[name='nickname']").val();
+        if (nickname == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '昵称必填',
+                onConfirm: function () {
+                }
+            });
+            return;
+        }
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "myinfo-updatedata" ,//url
+            data: $('#myinfo-form').serialize(),
+            success: function (result) {
+                var flag = result.flag;
+                if (flag == "success") {
+                    AMUI.dialog.alert({
+                        title: '提示信息',
+                        content: '更新成功',
+                        onConfirm: function () {
+                            window.location = "setting";
+                        }
+                    });
+                }else{
+                    var message = result.message;
+                    AMUI.dialog.alert({
+                        title: '错误提示',
+                        content: '更新失败，错误原因：'+message,
+                        onConfirm: function () {
+                        }
+                    });
+                    return;
+                }
+            },
+            error : function() {
+                AMUI.dialog.alert({
+                    title: '错误提示',
+                    content: '更新失败',
+                    onConfirm: function () {
+                    }
+                });
+                return;
+            }
+        });
+    });
+
 </script>
 
 <script src="../background/assets/js/amazeui.min.js"></script>

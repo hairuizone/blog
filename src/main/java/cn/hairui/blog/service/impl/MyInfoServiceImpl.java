@@ -20,4 +20,9 @@ public class MyInfoServiceImpl implements MyInfoService {
     public MyInfo findMyInfoById(Integer id) {
         return myInfoMapper.findMyInfoById(id);
     }
+
+    @Override
+    public int updateMyInfo(MyInfo myInfo) {
+        return myInfoMapper.updateMyInfo(myInfo);
+    }
 }

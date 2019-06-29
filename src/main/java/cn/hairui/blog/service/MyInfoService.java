@@ -22,4 +22,11 @@ public interface MyInfoService {
      * @Description 查询指定编号的信息
      */
     public MyInfo findMyInfoById(Integer id);
+
+    /**
+     * 更新我的信息
+     * @param myInfo
+     * @return
+     */
+    public int updateMyInfo(MyInfo myInfo);
 }

@@ -126,4 +126,37 @@ function content() {
 
 
 
+$(function () {
+    $("[data-toggle='weixinpopvoer']").popover({
+        trigger: 'manual',
+        placement: 'right', //placement of the popover. also can use top, bottom, left or right
+        html: 'true', //needed to show html of course
+        content: content2(), //this is the content of the html box. add the image here or anything you want really.
+        animation: false
+    }).on("mouseenter", function () {
+        var _this = this;
+        $(this).popover("show");
+        $(this).siblings(".popover").on("mouseleave", function () {
+            $(_this).popover('hide');
+        });
+    }).on("mouseleave", function () {
+        var _this = this;
+        setTimeout(function () {
+            if (!$(".popover:hover").length) {
+                $(_this).popover("hide")
+            }
+        }, 100);
+    });
+});
+
+function content2() {
+    var data = $("<div>" +
+        "<div>" +
+        "<img src='images/wx.png' style='width: 115px; height: 115px;margin: -10px;'>" +
+        "</div>");
+    return data;
+}
+
+
+
 

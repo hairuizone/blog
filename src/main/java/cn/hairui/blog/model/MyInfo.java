@@ -8,6 +8,7 @@ package cn.hairui.blog.model;
 public class MyInfo {
     public int id;
     public String nickname;
+    public String name;
     public String webname;
     public String occupation;
     public String address;
@@ -23,6 +24,13 @@ public class MyInfo {
     public String weibo;
     public String brandimg;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     public String getBrandimg() {
         return brandimg;
     }
@@ -149,5 +157,28 @@ public class MyInfo {
 
     public void setWechat(String wechat) {
         this.wechat = wechat;
+    }
+
+    @Override
+    public String toString() {
+        return "MyInfo{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", webname='" + webname + '\'' +
+                ", occupation='" + occupation + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                ", website='" + website + '\'' +
+                ", qq='" + qq + '\'' +
+                ", wechat='" + wechat + '\'' +
+                ", webroot='" + webroot + '\'' +
+                ", webicon='" + webicon + '\'' +
+                ", motto='" + motto + '\'' +
+                ", prophoto='" + prophoto + '\'' +
+                ", github='" + github + '\'' +
+                ", weibo='" + weibo + '\'' +
+                ", brandimg='" + brandimg + '\'' +
+                '}';
     }
 }

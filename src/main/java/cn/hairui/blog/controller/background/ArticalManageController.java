@@ -115,8 +115,8 @@ public class ArticalManageController {
         model.addAttribute("myinfo", myInfo);
 
         //随机设置封面图
-        int i = new Random().nextInt(8) + 1;//1-9随机图片
-        String imgPath = "images/" + i + ".jpg";
+        int i = new Random().nextInt(19) + 1;//1-20随机图片
+        String imgPath = i + ".jpg";
         System.out.println(imgPath);
         artical.setImgpath(imgPath);
         //初始化新增设置
