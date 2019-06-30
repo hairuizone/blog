@@ -44,11 +44,11 @@
                 <ul>
                     <!-- 欢迎语 -->
                     <li class="am-text-sm tpl-header-navbar-welcome">
-                        <a href="javascript:void(0);">欢迎你, <span th:text="${myinfo.nickname}"></span> </a>
+                        <a href="javascript:void(0);">欢迎你, <span th:text="${session.userinfo.nickname}"></span> </a>
                     </li>
                     <!-- 退出 -->
                     <li class="am-text-sm">
-                        <a href="javascript:void(0);"><span class="am-icon-sign-out"></span> 退出</a>
+                        <a href="javascript:void(0);" onclick="userLogout();"><span class="am-icon-sign-out"></span> 退出</a>
                     </li>
                 </ul>
             </div>
@@ -74,11 +74,11 @@
         <div class="tpl-sidebar-user-panel">
             <div class="tpl-user-panel-slide-toggleable" th:align="center">
                 <div class="tpl-user-panel-profile-picture">
-                    <img src="../images/author.jpg" alt="">
+                    <img th:src="'../images/'+${session.userinfo.prophoto}" alt="">
                 </div>
                 <span class="user-panel-logged-in-text">
                     <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
-                    <label style="margin-bottom: 0px;" th:text="${myinfo.nickname}"></label>
+                    <label style="margin-bottom: 0px;" th:text="${session.userinfo.nickname}"></label>
                 </span>
                 <a href="javascript:;" class="tpl-user-panel-action-link" >
                     <span class="am-icon-pencil"></span>

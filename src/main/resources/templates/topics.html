@@ -56,19 +56,19 @@
                         <li><a href="javascript:void(0);" onclick="showTransfer();"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
                     </ul>
 
-                    <li class="navinfo"><i class="fa fa-edit write-icon"></i><a class="write-blog" href="javascript:void(0);"><span>写博客</span></a></li>
-                    <li class="navinfo"><i class="fa fa-envelope message-icon"></i><a class="message-center" href="javascript:void(0);"><span>消息</span></a></li>
+                    <li class="navinfo"><i class="fa fa-edit write-icon"></i><a class="write-blog" href="javascript:void(0);" onclick="writeBlog();"><span>写博客</span></a></li>
+                    <li class="navinfo"><i class="fa fa-envelope message-icon"></i><a class="message-center" href="javascript:void(0);" onclick="checkMsg();"><span>消息</span></a></li>
                     <li class="navinfo"><a class="music" onclick="musicplayer();"><span class="fa fa-music"></span></a></li>
-                    <li class="navinfo" >
+                    <li class="navinfo" th:if="${session.userinfo} != null" >
                         <span>
                             <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">
-                                <img class="img-circle" style="height: 30px;width: 30px;margin: 0 5px;" th:src="'images/'+${myinfo.prophoto}"/>
+                                <img class="img-circle" style="height: 30px;width: 30px;margin: 0 5px;" th:src="'images/'+${session.userinfo.prophoto}"/>
                             </a>
-                            <label >晚上好，<span th:text="${myinfo.nickname}"></span></label>
+                            <label >晚上好，<span th:text="${session.userinfo.nickname}"></span></label>
                         </span>
                     </li>
-                    <li class="navinfo" style="display: none"><a href="javascript:void(0);"><button class="btn btn-sm">登录</button></a></li>
-                    <li class="navinfo" style="display: none"><a href="#"><button class="btn btn-sm">注册</button></a></li>
+                    <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userLogin();"><button class="btn btn-sm">登录</button></a></li>
+                    <li th:if="${session.userinfo} == null" class="navinfo"><a href="#" onclick="userRegister();"><button class="btn btn-sm">注册</button></a></li>
                 </div>
             </div>
         </div>
@@ -164,7 +164,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>

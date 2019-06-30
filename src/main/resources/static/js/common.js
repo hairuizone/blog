@@ -82,6 +82,24 @@ function visitWebsite(url) {
     window.open(url);
 }
 
+function writeBlog(){
+    var url = "manage/artical-add";
+    window.location.href = url;
+}
+
+function userLogin(){
+    var url = "manage/login";
+    window.location.href = url;
+}
+function userLogout(){
+    var url = "manage/logout";
+    window.location.href = url;
+}
+function manageSystem(){
+    var url = "manage/index";
+    window.location.href = url;
+}
+
 $(function () {
     $("[data-toggle='popover']").popover({
         trigger: 'manual',
@@ -118,7 +136,7 @@ function content() {
         "<i class='glyphicon glyphicon-home' style='color: darkgray;font-style: italic'><a href='' target=''>&nbsp;个人中心</a></i>" +
         "</div>" +
         "<div style='margin-top: 3px;margin-bottom: 3px;'>" +
-        "<i class='glyphicon glyphicon-log-out' style='color: darkgray;font-style: italic'><a href='' target=''>&nbsp;退出</a></i>" +
+        "<i class='glyphicon glyphicon-log-out' style='color: darkgray;font-style: italic'><a href='javascript:void(0);' onclick='userLogout();'>&nbsp;退出</a></i>" +
         "</div>" +
         "</div>");
     return data;

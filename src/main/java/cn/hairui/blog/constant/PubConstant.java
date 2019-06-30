@@ -33,7 +33,10 @@ public class PubConstant {
      * 是否 Y-是
      */
     public static final String YES_NO_Y = "Y";
-
+    /**
+     * 是否 N-否
+     */
+    public static final String YES_NO_N = "N";
     /**
      * 第一栏展示分类数量
      */
@@ -76,4 +79,10 @@ public class PubConstant {
     public static final String success = "success";
     public static final String message = "message";
 
+    public static final String locked = "locked";
+
+    /**
+     * 全局用户登录session名称
+     */
+    public static final String GLOBAL_SESSION_NAME = "userinfo";
 }

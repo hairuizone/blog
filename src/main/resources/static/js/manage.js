@@ -1,5 +1,5 @@
 function index(){
-    var url = "index";
+    var url = "home";
     window.location.href = url;
 }
 
@@ -35,5 +35,9 @@ function toolsList(){
 
 function sysManage(){
     var url = "setting";
+    window.location.href = url;
+}
+function userLogout(){
+    var url = "logout";
     window.location.href = url;
 }

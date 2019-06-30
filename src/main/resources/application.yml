@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /myblog
+    context-path: /blog
 
 
 
@@ -17,3 +17,7 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
+
+  #关闭默认模板引擎
+  spring.thymeleaf.cache: false
+  spring.thymeleaf.enabled: false

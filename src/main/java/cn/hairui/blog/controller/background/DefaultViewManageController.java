@@ -44,7 +44,7 @@ public class DefaultViewManageController {
 
     @Autowired
     private MyInfoService myInfoService;
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/index")
     public String backgroundHomePage(Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);

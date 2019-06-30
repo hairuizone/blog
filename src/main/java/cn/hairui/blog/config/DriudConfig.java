@@ -37,9 +37,8 @@ public class DriudConfig {
 
         System.out.println("##############");
         initParams.put("loginUsername", "root");
-        initParams.put("loginPassword", "123456");
+        initParams.put("loginPassword", "Hairui123369");
         initParams.put("allow", "");//默认就是允许所有访问IP
-        initParams.put("deny", "192.168.15.21");  //拒绝访问的IP
         bean.setInitParameters(initParams);
         return bean;
     }

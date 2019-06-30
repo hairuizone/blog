@@ -9,8 +9,11 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.*;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -23,11 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.hairui.blog.model.Artical;
-import cn.hairui.blog.model.ArticalCategories;
-import cn.hairui.blog.model.ArticalTopics;
-import cn.hairui.blog.model.MyInfo;
-import cn.hairui.blog.model.NavIndex;
 import cn.hairui.blog.service.ArticalCategoriesService;
 import cn.hairui.blog.service.ArticalService;
 import cn.hairui.blog.service.ArticalTopicsService;
@@ -57,6 +55,7 @@ public class ArticalManageController {
     private String listPage = PubConstant.BACKGROUND_DIR_NAME + "artical-list";//列表页面
     private String addPage = PubConstant.BACKGROUND_DIR_NAME + "artical-add";//新增页面
     private String updatePage = PubConstant.BACKGROUND_DIR_NAME + "artical-update";//修改页面
+    private String loginPage = PubConstant.BACKGROUND_DIR_NAME + "login";//修改页面
 
     private String markdownPage = PubConstant.BACKGROUND_DIR_NAME + "artical-markdown";
 
@@ -88,8 +87,13 @@ public class ArticalManageController {
     }
 
     @RequestMapping(value = "/artical-add", method = RequestMethod.GET)
-    public String addArtical(Model model) {
+    public String addArtical(HttpServletRequest request, Model model) {
 
+        HttpSession session = request.getSession();
+        User domain = (User) session.getAttribute(PubConstant.GLOBAL_SESSION_NAME);
+        if(!PubConstant.YES_NO_Y.equals(domain.getAdminflag())){
+            System.out.println("权限不足 后期使用切面处理");
+        }
         MyInfo myInfo = myInfoService.findMyInfoById(1);
         model.addAttribute("myinfo", myInfo);
 
