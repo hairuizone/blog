@@ -17,6 +17,12 @@
     }
 }
 
+@media screen and (max-width: 1024px) {
+    .container{
+        width: 100%;
+    }
+}
+
 .navbar-brand{
     font-family: 微软雅黑;
     font-weight: bolder;
@@ -75,6 +81,9 @@
 a:hover {
     text-decoration: none;
     color: #D23039;
+}
+a:focus {
+    text-decoration: none;
 }
 .write-blog {
     margin-left: 5px;

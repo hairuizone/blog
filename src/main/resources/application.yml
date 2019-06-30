@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /blog
+    context-path: /myblog
 
 
 

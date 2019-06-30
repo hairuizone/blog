@@ -1,5 +1,5 @@
 function homepage() {
-    window.location.href = "/myblog";
+    window.location.href = "index";
 }
 
 function articalDetail(id) {
@@ -96,7 +96,7 @@ function userLogout(){
     window.location.href = url;
 }
 function manageSystem(){
-    var url = "manage/index";
+    var url = "manage/home";
     window.location.href = url;
 }
 
@@ -170,7 +170,7 @@ $(function () {
 function content2() {
     var data = $("<div>" +
         "<div>" +
-        "<img src='images/wx.png' style='width: 115px; height: 115px;margin: -10px;'>" +
+        "<img src='images/wx.jpg' style='width: 115px; height: 115px;margin: -10px;'>" +
         "</div>");
     return data;
 }

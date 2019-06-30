@@ -66,12 +66,6 @@ public class ArticalController {
         } else {
             model.addAttribute("categoriesCn", categoriesCn);
         }
-        //名言
-        String solidot = "我一直在坚定不移的在做我认为正确的事情，走我认为正确的道路，并且我还会继续！";
-        String solidotor = "老干部";
-        model.addAttribute("solidot", solidot);
-        model.addAttribute("solidotor", solidotor);
-        model.addAttribute("endmeeting", "欢迎关注我的微信公众号:老干部的咖啡屋");
         model.addAttribute("artical", artical);
         return "articalviewer";
     }

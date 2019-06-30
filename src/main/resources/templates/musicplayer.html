@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="img/favicon.png"/>
-    <title>老干部的咖啡屋-🎵</title>
+
+    <title th:text="${myinfo.webname}+'-🎵'"></title>
+    <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
     <!--默认样式  可无视-->
     <link rel="stylesheet" href="css/reset.css">
     <!--核心js-->
@@ -19,7 +20,23 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <style>
+        @media screen and (max-width: 1920px) {
+            .inbox {
+                width: 85%;
+                margin: 15px auto 0;
+                color: #c9cacc;
+                background-color: #632c61;
+            }
+        }
 
+        @media screen and (max-width: 1024px) {
+            .inbox {
+                width: 100%;
+                margin: 15px auto 0;
+                color: #c9cacc;
+                background-color: #632c61;
+            }
+        }
         .btn_show{
             display:inline-block;width: 60px;
         }
@@ -30,7 +47,7 @@
     </style>
 
 </head>
-<body style="width: 500px;margin: 15px auto 0;color: #c9cacc;background-color: #632c61;">
+<body class="inbox">
 
 <div style="text-align: center;font-size: 36px;font-weight: 700;margin: 50px 0 0 0;">
     <span>欢迎来到老干部的私人音乐馆</span>

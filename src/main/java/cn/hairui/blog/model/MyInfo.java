@@ -23,6 +23,8 @@ public class MyInfo {
     public String github;
     public String weibo;
     public String brandimg;
+    public String solidot;
+    public String endgreeting;
 
     public String getName() {
         return name;
@@ -157,6 +159,22 @@ public class MyInfo {
 
     public void setWechat(String wechat) {
         this.wechat = wechat;
+    }
+
+    public String getSolidot() {
+        return solidot;
+    }
+
+    public void setSolidot(String solidot) {
+        this.solidot = solidot;
+    }
+
+    public String getEndgreeting() {
+        return endgreeting;
+    }
+
+    public void setEndgreeting(String endgreeting) {
+        this.endgreeting = endgreeting;
     }
 
     @Override

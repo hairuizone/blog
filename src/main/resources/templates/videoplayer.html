@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="img/favicon.png"/>
-    <title>老干部的咖啡屋-🎬</title>
+
+    <title th:text="${myinfo.webname}+'-🎬'"></title>
+    <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
     <!--可无视-->
     <link rel="stylesheet" type="text/css" href="css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="css/resetvideo.css">

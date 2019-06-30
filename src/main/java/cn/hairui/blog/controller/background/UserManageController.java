@@ -1,11 +1,14 @@
 package cn.hairui.blog.controller.background;
 
 import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.model.User;
+import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.service.UserService;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,6 +31,9 @@ public class UserManageController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private MyInfoService myInfoService;
+
     private String listPage = PubConstant.BACKGROUND_DIR_NAME + "user-list";//列表页面
     private String loginPage = PubConstant.BACKGROUND_DIR_NAME + "login";
 
@@ -37,7 +43,9 @@ public class UserManageController {
     }
 
     @RequestMapping(value = "/login")
-    private String login(){
+    private String login(Model model){
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
         return loginPage;
     }
     @RequestMapping(value = "/logout")

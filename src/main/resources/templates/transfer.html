@@ -4,7 +4,10 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>老干部的咖啡屋-实验室</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${myinfo.webname}"></title>
+    <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
+
     <link href="css/metro.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery.plugins.min.js"></script>
@@ -28,7 +31,7 @@
 <body>
 <div class="metro-layout horizontal">
     <div class="header">
-        <h1>老干部的实验室</h1>
+        <h1 th:text="${myinfo.webname}+'—实验室'"></h1>
         <div class="controls">
             <span class="down" title="Scroll down"></span>
             <span class="up" title="Scroll up"></span>
