@@ -47,7 +47,7 @@ public class ArticalTopicsManageController {
 
     @RequestMapping(value = "/topic-list")
     public String listArticalTopics(HttpServletRequest request,Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         Integer pageNum = null;
@@ -70,7 +70,7 @@ public class ArticalTopicsManageController {
 
     @RequestMapping(value = "/topic-add")
     public String addArticalTopics(Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         return addPage;
     }
@@ -86,9 +86,6 @@ public class ArticalTopicsManageController {
             map.put(PubConstant.flag, PubConstant.failed);
             map.put(PubConstant.message, "专题名称重复");
         } else {
-
-            //新增专题默认文章数量为0
-            articalTopics.setArticalCount(0);
             int id = articalTopicsService.addArticalTopics(articalTopics);
             map.put(PubConstant.flag, PubConstant.success);
         }
@@ -97,7 +94,7 @@ public class ArticalTopicsManageController {
 
     @RequestMapping(value = "/topic-update")
     public String updateArticalTopics(int id, Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         ArticalTopics articalTopics = articalTopicsService.queryArticalTopicsDetailById(id);
         model.addAttribute("articalTopics", articalTopics);

@@ -49,7 +49,7 @@ public class ArticalController {
 
     @RequestMapping(value = "artical-view")
     public String articalView(String type, int id, Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         Artical artical = articalService.queryArticalDetailById(id);

@@ -1,5 +1,10 @@
 package cn.hairui.blog.controller.background;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,20 +22,20 @@ import cn.hairui.blog.model.*;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import cn.hairui.blog.service.ArticalCategoriesService;
 import cn.hairui.blog.service.ArticalService;
 import cn.hairui.blog.service.ArticalTopicsService;
 import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.service.NavIndexService;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author lihairui
@@ -62,7 +67,7 @@ public class ArticalManageController {
     @RequestMapping(value = "/artical-list", method = RequestMethod.GET)
     public String listArtical(HttpServletRequest request, Model model) {
 
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         Integer pageNum = null;
@@ -75,7 +80,7 @@ public class ArticalManageController {
             pageNum = 1;
         }
         PageHelper.startPage(pageNum, 5);
-        List<Artical> articals  = articalService.queryArticalList();
+        List<Artical> articals = articalService.queryArticalList();
         PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);
 
 
@@ -91,10 +96,10 @@ public class ArticalManageController {
 
         HttpSession session = request.getSession();
         User domain = (User) session.getAttribute(PubConstant.GLOBAL_SESSION_NAME);
-        if(!PubConstant.YES_NO_Y.equals(domain.getAdminflag())){
+        if (!PubConstant.YES_NO_Y.equals(domain.getAdminflag())) {
             System.out.println("权限不足 后期使用切面处理");
         }
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         List<ArticalCategories> acList = articalCategoriesService.queryArticalCategoriesList();
@@ -115,7 +120,7 @@ public class ArticalManageController {
 
     @RequestMapping(value = "/artical-adddata", method = RequestMethod.POST)
     public String addArticalDAta(@ModelAttribute Artical artical, Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         //随机设置封面图
@@ -144,7 +149,7 @@ public class ArticalManageController {
 
     @RequestMapping(value = "/artical-update", method = RequestMethod.GET)
     public String updateArtical(Integer id, Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         if (id == null) {
             return "404";
@@ -166,7 +171,7 @@ public class ArticalManageController {
 
     @RequestMapping(value = "/artical-updatedata", method = RequestMethod.POST)
     public String updateArticalData(@ModelAttribute Artical artical, Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         System.out.println("updatedata" + artical.getContent());
@@ -217,4 +222,39 @@ public class ArticalManageController {
         return JSONUtils.toJSONString(map);
     }
 
+
+
+    private String editmdImgPath = "D:/upload/images/";
+
+    @RequestMapping("/uploadimg")
+       public @ResponseBody Map<String,Object> demo(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file, HttpServletRequest request) {
+        Map<String,Object> resultMap = new HashMap<String,Object>();
+        System.out.println(request.getContextPath());
+        String UPLOADED_FOLDER = editmdImgPath;
+        String realPath = UPLOADED_FOLDER ;
+        String fileName = file.getOriginalFilename();
+        System.out.println(fileName);
+/*        File targetFile = new File(realPath, fileName);
+        if(!targetFile.exists()){
+            targetFile.mkdirs();
+        }*/
+        //保存
+        try {
+            /*            file.transferTo(targetFile);*/
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Files.write(path, bytes);
+            resultMap.put("success", 1);
+            resultMap.put("message", "上传成功！");
+            resultMap.put("url",UPLOADED_FOLDER+fileName);
+        } catch (Exception e) {
+            resultMap.put("success", 0);
+            resultMap.put("message", "上传失败！");
+            e.printStackTrace();
+        }
+        System.out.println(resultMap.get("success"));
+        return resultMap;
+
+
+    }
 }

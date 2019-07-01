@@ -48,7 +48,7 @@ public class BooksManageController {
     @RequestMapping(value = "/books-list")
     public String listBooks(HttpServletRequest request,Model model) {
 
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         Integer pageNum = null;
@@ -72,7 +72,7 @@ public class BooksManageController {
 
     @RequestMapping(value = "/books-add")
     public String addBooks(Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         return addPage;
     }

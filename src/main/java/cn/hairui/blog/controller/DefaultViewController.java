@@ -29,7 +29,7 @@ public class DefaultViewController {
     @ResponseBody
     @RequestMapping(value = "/getMyInfo", produces = {"application/json;charset=UTF-8"})
     public MyInfo getMyInfo() {
-        return myInfoService.findMyInfoById(1);
+        return myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
     }
 
     @RequestMapping(value = "musicplayer")

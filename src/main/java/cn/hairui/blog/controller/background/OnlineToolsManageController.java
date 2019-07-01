@@ -45,7 +45,7 @@ public class OnlineToolsManageController {
 
     @RequestMapping(value = "/tools-list")
     public String listOnlineTools(HttpServletRequest request,Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         Integer pageNum = null;
@@ -68,7 +68,7 @@ public class OnlineToolsManageController {
 
     @RequestMapping(value = "/tools-add")
     public String addOnlineTools(Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         return addPage;
     }
@@ -98,7 +98,7 @@ public class OnlineToolsManageController {
 
     @RequestMapping(value = "/tools-update")
     public String updateOnlineTools(int id, Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         OnlineTools onlineTools = onlineToolsService.queryOnlineToolsById(id);

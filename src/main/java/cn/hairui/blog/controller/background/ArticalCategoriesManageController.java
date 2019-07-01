@@ -48,7 +48,7 @@ public class ArticalCategoriesManageController {
      */
     @RequestMapping(value = "categories-list")
     public String listArticalCategories(HttpServletRequest request,Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         Integer pageNum = null;
         String pageNumStr = request.getParameter("pageIndex");
@@ -76,7 +76,7 @@ public class ArticalCategoriesManageController {
      */
     @RequestMapping(value = "/categories-add")
     public String addArticalCategories(Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         return addPage;
     }
@@ -128,9 +128,6 @@ public class ArticalCategoriesManageController {
                 //首页不展示
                 articalCategories.setShowOrder(null);
             }
-
-            //新增分类默认文章数量为0
-            articalCategories.setArticalCount(0);
             int id = articalCategoriesService.addArticalCategories(articalCategories);
             map.put(PubConstant.flag, PubConstant.success);
         }
@@ -146,7 +143,7 @@ public class ArticalCategoriesManageController {
      */
     @RequestMapping(value = "/categories-update")
     public String updateArticalCategories(Integer id, Model model) {
-        MyInfo myInfo = myInfoService.findMyInfoById(1);
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
         ArticalCategories articalCategories = articalCategoriesService.queryArticalCategoriesDetailById(id);
