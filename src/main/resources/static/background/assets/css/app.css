@@ -769,10 +769,10 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   color: #39bae4;
 }
 .theme-white .tpl-login-content {
-  width: 500px;
+  /*width: 500px;
   padding: 40px 40px 25px;
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: 4px;*/
 }
 .theme-white .tpl-form-line-form,
 .theme-white .tpl-form-border-form {

@@ -91,6 +91,9 @@ function userLogin(){
     var url = "manage/login";
     window.location.href = url;
 }
+function userRegister(){
+    alert("测试阶段暂时不对外开放，敬请谅解！");
+}
 function userLogout(){
     var url = "manage/logout";
     window.location.href = url;

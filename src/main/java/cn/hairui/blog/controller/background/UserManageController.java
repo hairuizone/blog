@@ -5,6 +5,7 @@ import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.model.User;
 import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.service.UserService;
+import cn.hairui.blog.util.MD5;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,11 +59,12 @@ public class UserManageController {
     @ResponseBody
     public String userLogin(HttpServletRequest request, User user){
         HttpSession session = request.getSession();
-
         Map map = new HashMap();
-        System.out.println(user.getUsername() +" "+user.getPassword());
+        String password = MD5.getMD5ofStr(user.getPassword());
+        System.out.println(user.getUsername() +" "+password);
 
-        User domain = userService.queryUserByNameAndPwd(user.getUsername(),user.getPassword());
+        User domain = userService.queryUserByNameAndPwd(user.getUsername(),password);
+
         if(domain !=null && PubConstant.YES_NO_N.equals(domain.getLockflag())){
             session.setAttribute(PubConstant.GLOBAL_SESSION_NAME,domain);
             map.put(PubConstant.flag, PubConstant.success);

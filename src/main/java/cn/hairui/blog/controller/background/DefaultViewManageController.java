@@ -58,6 +58,13 @@ public class DefaultViewManageController {
     }
 
 
+    @RequestMapping(value = "/forgeindex")
+    public String forgeindex(Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+        return "redirect:/";
+    }
+
     @RequestMapping(value = "/calendar", method = RequestMethod.GET)
     public String calendar() {
         return "background/calendar";
