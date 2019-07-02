@@ -20,7 +20,7 @@ public interface ArticalCategoriesMapper {
     @Select("select * from artical_categories order by id asc")
     public List<ArticalCategories> queryArticalCategoriesList();
 
-    @Insert("insert into artical_categories(id,CATEGORY_NAME,IS_SHOW,SHOW_ORDER,ARTICAL_COUNT,INTRODUCTION) value(#{id},#{categoryName},#{isShow},#{showOrder},#{articalCount},#{introduction})")
+    @Insert("insert into artical_categories(id,CATEGORY_NAME,IS_SHOW,SHOW_ORDER,INTRODUCTION) value(#{id},#{categoryName},#{isShow},#{showOrder},#{introduction})")
     //@Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
     public int addArticalCategories(ArticalCategories articalCategories);
 

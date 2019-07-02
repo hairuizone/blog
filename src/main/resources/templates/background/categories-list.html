@@ -181,7 +181,6 @@
                                     <tr>
                                         <th>编号</th>
                                         <th>名称</th>
-                                        <th>数量</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -341,11 +340,10 @@
         var x = document.getElementById('example-r').insertRow(i)
         var id = x.insertCell(0)
         var cateName = x.insertCell(1)
-        var cateCount = x.insertCell(2)
-        var div = x.insertCell(3)
+        var div = x.insertCell(2)
         id.innerHTML = articalCategoriesList[i - 1].id;
         cateName.innerHTML = articalCategoriesList[i - 1].categoryName;
-        cateCount.innerHTML = articalCategoriesList[i - 1].articalCount;
+
         var idNo = articalCategoriesList[i - 1].id;
         var textHtml = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);"'+' onclick=updateRow('+idNo+') class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
         div.innerHTML = textHtml;

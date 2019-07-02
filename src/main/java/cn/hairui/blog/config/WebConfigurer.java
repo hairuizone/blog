@@ -20,26 +20,13 @@ public class WebConfigurer implements WebMvcConfigurer {
     @Autowired
     private MyInterceptor myInterceptor;
 
-    @Value("${blog.editmd.upload.imgages}")
-    private String mImagesPath;
+    @Value("${upload_path}")
+    private String uploadPath;
     // 这个方法是用来配置静态资源的，比如html，js，css，等等
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
-        registry.addResourceHandler("/image/**").addResourceLocations("file:D:/upload/images/");
-       /* if (mImagesPath.equals("") || mImagesPath.equals("${blog.editmd.upload.imgages}")) {
-            String imagesPath = WebConfigurer.class.getClassLoader().getResource("").getPath();
-            if (imagesPath.indexOf(".jar") > 0) {
-                imagesPath = imagesPath.substring(0, imagesPath.indexOf(".jar"));
-            } else if (imagesPath.indexOf("classes") > 0) {
-                imagesPath = "file:" + imagesPath.substring(0, imagesPath.indexOf("classes"));
-            }
-            imagesPath = imagesPath.substring(0, imagesPath.lastIndexOf("/")) + "/images/";
-            mImagesPath = imagesPath;
-        }
-        LoggerFactory.getLogger(WebConfigurer.class).info("imagesPath=" + mImagesPath);
-        registry.addResourceHandler("/images/**").addResourceLocations(mImagesPath);
-        WebMvcConfigurer.super.addResourceHandlers(registry);*/
+      registry.addResourceHandler("/upload/**").addResourceLocations("file:"+uploadPath);
+      WebMvcConfigurer.super.addResourceHandlers(registry);
     }
 
     // 这个方法用来注册拦截器，我们自己写好的拦截器需要通过这里添加注册才能生效

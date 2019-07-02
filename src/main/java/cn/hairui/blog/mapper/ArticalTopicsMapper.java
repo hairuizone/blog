@@ -22,7 +22,7 @@ public interface ArticalTopicsMapper {
     @Select("select count(1) from Artical_Topics where TOPIC_NAME=#{topicName}")
     public int qeuryArticalTopicsByName(String topicName);
 
-    @Insert("insert into Artical_Topics(TOPIC_NAME,ARTICAL_COUNT,introduction) value(#{topicName},#{articalCount},#{introduction})")
+    @Insert("insert into Artical_Topics(TOPIC_NAME,introduction) value(#{topicName},#{introduction})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")//加入该注解可以保持对象后，查看对象插入id
     public int addArticalTopics(ArticalTopics articalTopics);
 

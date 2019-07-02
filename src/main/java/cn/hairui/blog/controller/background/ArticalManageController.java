@@ -223,30 +223,28 @@ public class ArticalManageController {
     }
 
 
-
-    private String editmdImgPath = "D:/upload/images/";
+    @Value("${upload_path}")
+    private String uploadPath;
 
     @RequestMapping("/uploadimg")
-       public @ResponseBody Map<String,Object> demo(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file, HttpServletRequest request) {
-        Map<String,Object> resultMap = new HashMap<String,Object>();
-        System.out.println(request.getContextPath());
-        String UPLOADED_FOLDER = editmdImgPath;
-        String realPath = UPLOADED_FOLDER ;
+    public @ResponseBody Map<String, Object> demo(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file, HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        String contextName = request.getContextPath();
+        System.out.println(contextName);
         String fileName = file.getOriginalFilename();
         System.out.println(fileName);
-/*        File targetFile = new File(realPath, fileName);
-        if(!targetFile.exists()){
+        File targetFile = new File(uploadPath);
+        if (!targetFile.exists()) {
             targetFile.mkdirs();
-        }*/
+        }
         //保存
         try {
-            /*            file.transferTo(targetFile);*/
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Path path = Paths.get(uploadPath + file.getOriginalFilename());
             Files.write(path, bytes);
             resultMap.put("success", 1);
             resultMap.put("message", "上传成功！");
-            resultMap.put("url",UPLOADED_FOLDER+fileName);
+            resultMap.put("url", contextName + "/upload/" + fileName);
         } catch (Exception e) {
             resultMap.put("success", 0);
             resultMap.put("message", "上传失败！");
@@ -254,7 +252,5 @@ public class ArticalManageController {
         }
         System.out.println(resultMap.get("success"));
         return resultMap;
-
-
     }
 }
