@@ -69,11 +69,11 @@ public class HomePageController {
         model.addAttribute("articalList", articalList);
 
 
-        //查询展示的分类，只展示指定数量的内容，分开展示两栏
+        //查询展示的分类，只展示指定数量的内容，分开展示两栏 0-2 2-4
         List<ArticalCategories> articalCategoriesList = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y, 0, PubConstant.MAX_SHOW_ARTICALCATEGORIES);
         model.addAttribute("articalCategoriesList", articalCategoriesList);
 
-        List<ArticalCategories> articalCategoriesList2 = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y, PubConstant.MAX_SHOW_ARTICALCATEGORIES, PubConstant.MAX_SHOW_ARTICALCATEGORIES_2);
+        List<ArticalCategories> articalCategoriesList2 = articalCategoriesService.qeuryArticalCategoriesByIsShow(PubConstant.YES_NO_Y, PubConstant.MAX_SHOW_ARTICALCATEGORIES, PubConstant.MAX_SHOW_ARTICALCATEGORIES);
         model.addAttribute("articalCategoriesList2", articalCategoriesList2);
 
 

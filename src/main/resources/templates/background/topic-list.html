@@ -184,7 +184,6 @@
                                     <tr>
                                         <th>编号</th>
                                         <th>专题名称</th>
-                                        <th>文章数量</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -309,11 +308,10 @@
         var x = document.getElementById('example-r').insertRow(i)
         var id = x.insertCell(0)
         var topName = x.insertCell(1)
-        var topCount = x.insertCell(2)
-        var div = x.insertCell(3)
+        var div = x.insertCell(2)
         id.innerHTML = topicList[i - 1].id;
         topName.innerHTML = topicList[i - 1].topicName;
-        topCount.innerHTML = topicList[i - 1].articalCount;
+
         var idNo = topicList[i - 1].id;
         var textHtml = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);" onclick=updateRow(' + idNo + '); class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>'
         div.innerHTML = textHtml;

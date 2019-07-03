@@ -168,7 +168,8 @@ public class ArticalCategoriesManageController {
             int maxSerno = articalCategoriesService.queryArticalCategoriesMaxShowOrder();
             if (articalCategories.getShowOrder() == 1) {
                 //置顶展示 需要将当前的排序编号全部后移+1
-                //TODO
+                articalCategoriesService.moveArticalCategoriesOrderNextOne();
+                articalCategories.setShowOrder(1);//将置顶展示的顺序设置为1
             } else if (articalCategories.getShowOrder() == 0) {
                 //追加展示 设置当前分类编号为maxSerno+1
                 articalCategories.setShowOrder(maxSerno + 1);

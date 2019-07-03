@@ -22,10 +22,13 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     @Value("${upload_path}")
     private String uploadPath;
+
+    @Value("${virtual_upload_path}")
+    private String virtualUploadPath;
     // 这个方法是用来配置静态资源的，比如html，js，css，等等
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-      registry.addResourceHandler("/upload/**").addResourceLocations("file:"+uploadPath);
+      registry.addResourceHandler(virtualUploadPath+"**").addResourceLocations("file:"+uploadPath);
       WebMvcConfigurer.super.addResourceHandlers(registry);
     }
 

@@ -19,8 +19,8 @@ public class ArticalCategoriesRepository {
     @Autowired
     private ArticalCategoriesMapper articalCategoriesMapper;
 
-    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow, int beginIdx, int endIdx) {
-        return articalCategoriesMapper.queryArticalCategoriesByIsShow(isShow, beginIdx, endIdx);
+    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow, int beginIdx, int count) {
+        return articalCategoriesMapper.queryArticalCategoriesByIsShow(isShow, beginIdx, count);
     }
 
     public List<ArticalCategories> queryArticalCategoriesList() {

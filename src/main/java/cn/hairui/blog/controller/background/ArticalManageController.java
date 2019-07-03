@@ -7,11 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -132,7 +128,9 @@ public class ArticalManageController {
         artical.setLikeNums(0);
         artical.setDissNums(0);
         artical.setUpdateDate(artical.getCreateDate());
-
+        if(artical.getTopicId().contains("请选择")){
+            artical.setTopicId(null);
+        }
         //获取最大值
         Integer max = articalService.getMaxArticalId();
         if (max == null) {
@@ -173,7 +171,9 @@ public class ArticalManageController {
     public String updateArticalData(@ModelAttribute Artical artical, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
-
+        if(artical.getTopicId().contains("请选择")){
+            artical.setTopicId(null);
+        }
         System.out.println("updatedata" + artical.getContent());
         articalService.updateArtical(artical);
         model.addAttribute("artical", artical);
@@ -226,31 +226,38 @@ public class ArticalManageController {
     @Value("${upload_path}")
     private String uploadPath;
 
+    @Value("${virtual_upload_path}")
+    private  String virtualUploadPath;
+
     @RequestMapping("/uploadimg")
     public @ResponseBody Map<String, Object> demo(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String contextName = request.getContextPath();
         System.out.println(contextName);
         String fileName = file.getOriginalFilename();
+
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        //重新生成文件名
+        fileName = UUID.randomUUID()+suffixName;
+
         System.out.println(fileName);
-        File targetFile = new File(uploadPath);
-        if (!targetFile.exists()) {
-            targetFile.mkdirs();
+        File targetPath = new File(uploadPath);
+        if (!targetPath.exists()) {
+            targetPath.mkdirs();
         }
         //保存
         try {
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(uploadPath + file.getOriginalFilename());
+            Path path = Paths.get(uploadPath + fileName);
             Files.write(path, bytes);
             resultMap.put("success", 1);
             resultMap.put("message", "上传成功！");
-            resultMap.put("url", contextName + "/upload/" + fileName);
+            resultMap.put("url", contextName + virtualUploadPath + fileName);
         } catch (Exception e) {
             resultMap.put("success", 0);
             resultMap.put("message", "上传失败！");
             e.printStackTrace();
         }
-        System.out.println(resultMap.get("success"));
         return resultMap;
     }
 }

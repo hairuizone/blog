@@ -14,8 +14,8 @@ import java.util.Map;
 @Mapper
 public interface ArticalCategoriesMapper {
 
-    @Select("select * from artical_categories where is_show=#{isShow} order by show_order asc  limit #{beginIdx},#{endIdx}")
-    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow, int beginIdx, int endIdx);
+    @Select("select * from artical_categories where is_show=#{isShow} order by show_order asc  limit #{beginIdx},#{count}")
+    public List<ArticalCategories> queryArticalCategoriesByIsShow(String isShow, int beginIdx, int count);
 
     @Select("select * from artical_categories order by id asc")
     public List<ArticalCategories> queryArticalCategoriesList();

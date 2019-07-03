@@ -16,11 +16,11 @@ public interface ArticalCategoriesService {
     /**
      * @param isShow   是否展示
      * @param beginIdx
-     * @param endIdx
+     * @param count
      * @return
      * @Description 获取指定条数的是否要展示的信息
      */
-    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow, int beginIdx, int endIdx);
+    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow, int beginIdx, int count);
 
     /**
      * @return

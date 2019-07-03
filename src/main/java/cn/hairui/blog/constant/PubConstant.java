@@ -41,11 +41,6 @@ public class PubConstant {
      * 第一栏展示分类数量
      */
     public static final int MAX_SHOW_ARTICALCATEGORIES = 2;
-
-    /**
-     * 第二栏展示分类数量
-     */
-    public static final int MAX_SHOW_ARTICALCATEGORIES_2 = 4;
     /**
      * 分类中展示做多内容条数
      */
@@ -63,7 +58,7 @@ public class PubConstant {
     /**
      * 首页展示标签最大数量
      */
-    public static final int MAX_SHOW_ARTICALTAGS = 50;
+    public static final int MAX_SHOW_ARTICALTAGS = 20;
     /**
      * 首页展示在线工具数量
      */

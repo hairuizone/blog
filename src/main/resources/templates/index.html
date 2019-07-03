@@ -239,7 +239,6 @@
                             <li><a class="github" target="_blank" href="https://github.com/hairuizone" title="github" ><i class="fa fa-github"></i></a></li>
                             <li><a class="rss" target="_blank" rel="external nofollow" href="" title="RSS订阅"><i class="fa fa-rss"></i></a></li>
                         </ul>
-
                     </div>
                 </div>
             </div>
@@ -275,7 +274,9 @@
             <div class="col-md-6 " th:each="articalCategories, articalBolck :${articalCategoriesList2}">
                 <div class="block">
                     <h2 class="htitle" th:text="${articalCategories.categoryName}"></h2>
-                    <div class="content-list" th:each="artical ,articalStat: ${articals[articalBolck.index]}">
+
+                   <!-- <th:block th:text="${articalCategories.id}"></th:block>-->
+                    <div class="content-list" th:each="artical ,articalStat: ${articals[articalBolck.index+2]}">
                         <span class="spandate" th:text="${artical.createDate}"></span>
                         <a href="javascript:void(0);" th:onclick="'javascript:articalDetail('+${artical.id}+')'" th:text="${artical.tittle}"></a>
                     </div>
@@ -294,7 +295,9 @@
                         <a href="javascript:void(0);"  th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" ></a>
                     </div>
                 </aside>
-
+                <div class="" style="text-align: right;font-size: 0.85em;">
+                    <a href="javascript:void(0);" onclick="javascritp:showTips();">查看更多</a>
+                </div>
             </div>
         </div>
 
@@ -342,7 +345,7 @@
                 <ul>
                     <li><b>建站时间</b>：2019-03-24</li>
                     <li><b>网站程序</b>：springboot</li>
-                    <li><b>主题模板</b>：<a href="#" target="_blank">《年少有为》</a></li>
+                    <li><b>今日访问量</b>：128次</a></li>
                     <li><b>文章统计</b>：59篇</li>
                     <li><b>文章评论</b>：490条</li>
                     <li><b>统计数据</b>：<a href="/">站内统计</a></li>

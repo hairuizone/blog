@@ -22,8 +22,8 @@ public class ArticalCategoriesServiceImpl implements ArticalCategoriesService {
     private ArticalCategoriesRepository articalCategoriesRepository;
 
     @Override
-    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow,int beginIdx,int endIdx) {
-        return articalCategoriesRepository.queryArticalCategoriesByIsShow(isShow,beginIdx,endIdx);
+    public List<ArticalCategories> qeuryArticalCategoriesByIsShow(String isShow,int beginIdx,int count) {
+        return articalCategoriesRepository.queryArticalCategoriesByIsShow(isShow,beginIdx,count);
     }
     @Override
     public int addArticalCategories(ArticalCategories articalCategories) {

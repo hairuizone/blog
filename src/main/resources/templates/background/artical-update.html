@@ -213,14 +213,14 @@
                             <form id="artical-from" class="am-form tpl-form-border-form tpl-form-border-br" th:action="artical-updatedata" method="post">
                                 <div class="am-form-group" hidden="hidden">
                                     <label class="am-u-sm-3 am-form-label">文章编号 <span class="tpl-form-line-small-title">ID</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <input th:value="${artical.id}" type="text" readonly class="tpl-form-input" name="id">
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">标题 <span class="tpl-form-line-small-title">Title</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <input id="tittle" th:value="${artical.tittle}" type="text" class="tpl-form-input" name="tittle" placeholder="请输入标题文字">
                                         <small>请填写标题文字10-30字左右。</small>
                                     </div>
@@ -228,14 +228,14 @@
 
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">作者<span class="tpl-form-line-small-title">Author</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <input type="text" placeholder="请输入作者姓名" th:value="${artical.author}" name="author" readonly>
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">文章类型</label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <label class="am-radio am-success">
                                             <input type="radio" name="type" id="radio_yc" class="radio" value="YC" data-am-ucheck checked required>原创
                                         </label>
@@ -247,21 +247,21 @@
 
                                 <div class="am-form-group originAuthor">
                                     <label class="am-u-sm-3 am-form-label">原文作者<span class="tpl-form-line-small-title">Origin Author</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <input type="text" placeholder="请输入原文作者姓名" th:value="${artical.originAuthor}" name="originAuthor" id="originAuthor">
                                     </div>
                                 </div>
 
                                 <div class="am-form-group originUrl">
                                     <label class="am-u-sm-3 am-form-label">原文链接<span class="tpl-form-line-small-title">Origin Link</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <input type="text" placeholder="请输入原文链接" th:value="${artical.originUrl}" name="originUrl" id="originUrl">
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <input type="text" class="am-form-field tpl-form-no-bg" placeholder="发布时间" th:value="${artical.createDate}" data-am-datepicker="" readonly="" name="createDate">
                                         <small>发布时间为必填</small>
                                     </div>
@@ -269,7 +269,7 @@
 
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">首页分类 <span class="tpl-form-line-small-title"> Homepage Type</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <select data-am-selected="{searchBox: 1}" style="display: none;" name="navId" id="navId" th:value="${artical.navId}">
                                         </select>
                                         <small style="color: red">（必选）</small>
@@ -278,7 +278,7 @@
 
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">分类 <span class="tpl-form-line-small-title">Category</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <select data-am-selected="{searchBox: 1}" style="display: none;" name="categories" id="categories">
                                         </select>
                                         <small style="color: red">（必选）</small>
@@ -286,7 +286,7 @@
                                 </div>
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">专题 <span class="tpl-form-line-small-title">Topic</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <select data-am-selected="{searchBox: 1}" style="display: none;" name="topicId" id="topicId">
                                             <option selected="selected">请选择</option>
                                         </select>
@@ -296,7 +296,7 @@
 
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">标签<span class="tpl-form-line-small-title">TAGS</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
                                         <input type="text" th:value="${artical.tags}" placeholder="标签用#包裹，标签之间用/分隔开 例如：#java#/#虚拟机#/#趣事#" name="tags">
                                     </div>
                                 </div>
