@@ -150,7 +150,8 @@
 
         <!--文章内容-->
         <div id="editormd-view">
-            <textarea th:text="${artical.content}"></textarea>
+            <!--一定要添加hidden属性 否则会导致延迟渲染 文本框原始内容闪现-->
+            <textarea th:text="${artical.content}" hidden></textarea>
         </div>
 
         <!--结束-->
