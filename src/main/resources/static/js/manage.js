@@ -37,6 +37,11 @@ function sysManage(){
     var url = "setting";
     window.location.href = url;
 }
+
+function musicManage(){
+    var url = "music";
+    window.location.href = url;
+}
 function userLogout(){
     var url = "logout";
     window.location.href = url;

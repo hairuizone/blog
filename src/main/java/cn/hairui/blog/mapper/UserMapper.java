@@ -1,8 +1,10 @@
 package cn.hairui.blog.mapper;
 
+import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * @author lihairui
@@ -14,4 +16,5 @@ public interface UserMapper {
 
     @Select("SELECT * FROM USER WHERE USERNAME=#{username} AND PASSWORD=#{password}")
     public User queryUserByNameAndPwd(String username, String password);
+
 }

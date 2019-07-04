@@ -1,5 +1,6 @@
 package cn.hairui.blog.service;
 
+import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.MyInfo;
 
 /**
@@ -29,4 +30,18 @@ public interface MyInfoService {
      * @return
      */
     public int updateMyInfo(MyInfo myInfo);
+
+    /**
+     * 通过编号查询歌单
+     * @param id
+     * @return
+     */
+    public MusicList queryMusicListById(Integer id);
+
+    /**
+     * 更新歌单信息
+     * @param music
+     * @return
+     */
+    public int updateMusicListInfo(MusicList music);
 }

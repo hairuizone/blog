@@ -1,5 +1,6 @@
 package cn.hairui.blog.service.impl;
 
+import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.User;
 import cn.hairui.blog.repository.UserRepository;
 import cn.hairui.blog.service.UserService;
@@ -20,4 +21,5 @@ public class UserServiceImpl implements UserService {
     public User queryUserByNameAndPwd(String username, String password) {
         return userRepository.queryUserByNameAndPwd(username,password);
     }
+
 }

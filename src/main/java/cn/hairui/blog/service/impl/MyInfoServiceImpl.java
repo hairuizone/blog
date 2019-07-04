@@ -1,6 +1,7 @@
 package cn.hairui.blog.service.impl;
 
 import cn.hairui.blog.mapper.MyInfoMapper;
+import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.service.MyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,15 @@ public class MyInfoServiceImpl implements MyInfoService {
     public int updateMyInfo(MyInfo myInfo) {
         return myInfoMapper.updateMyInfo(myInfo);
     }
+
+    @Override
+    public MusicList queryMusicListById(Integer id) {
+        return myInfoMapper.queryMusicListById(id);
+    }
+
+    @Override
+    public int updateMusicListInfo(MusicList music) {
+        return myInfoMapper.updateMusicListInfo(music);
+    }
+
 }

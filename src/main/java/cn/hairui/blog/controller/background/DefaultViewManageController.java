@@ -1,9 +1,11 @@
 package cn.hairui.blog.controller.background;
 
 import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.model.OnlineTools;
 import cn.hairui.blog.service.MyInfoService;
+import cn.hairui.blog.service.UserService;
 import com.alibaba.druid.support.json.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +46,8 @@ public class DefaultViewManageController {
 
     @Autowired
     private MyInfoService myInfoService;
+    @Autowired
+    private UserService userService;
     @RequestMapping(value = "/index")
     public String indexPage(Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
@@ -78,17 +82,41 @@ public class DefaultViewManageController {
         model.addAttribute("myinfo", myInfo);
         return "background/setting";
     }
+    @RequestMapping(value = "/music")
+    public String music(Model model){
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+        //查询歌单
+        MusicList musicList = myInfoService.queryMusicListById(PubConstant.MY_INFO_ID);
+        model.addAttribute("music",musicList);
+        return "background/music";
+    }
 
 
     @RequestMapping(value = "/myinfo-updatedata", method = RequestMethod.POST)
     @ResponseBody
     @Transactional
-    public String updateOnlineToolsData(@ModelAttribute MyInfo myInfo) {
+    public String updateMyInfoData(@ModelAttribute MyInfo myInfo) {
         System.out.println(myInfo.toString());
         Map map = new HashMap();
         int id = myInfoService.updateMyInfo(myInfo);
         map.put(PubConstant.flag, PubConstant.success);
         return JSONUtils.toJSONString(map);
     }
+
+    @RequestMapping(value = "/music-updatedata", method = RequestMethod.POST)
+    @ResponseBody
+    @Transactional
+    public String updateMuiscData(@ModelAttribute MusicList music) {
+        System.out.println(music.toString());
+        Map map = new HashMap();
+
+        int id = myInfoService.updateMusicListInfo(music);
+        map.put(PubConstant.flag, PubConstant.success);
+        return JSONUtils.toJSONString(map);
+    }
+
+
+
 
 }

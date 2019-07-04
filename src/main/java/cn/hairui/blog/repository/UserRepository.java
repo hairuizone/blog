@@ -1,6 +1,7 @@
 package cn.hairui.blog.repository;
 
 import cn.hairui.blog.mapper.UserMapper;
+import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

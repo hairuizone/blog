@@ -1,5 +1,6 @@
 package cn.hairui.blog.service;
 
+import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.User;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +18,5 @@ public interface UserService {
      * @return
      */
     public User queryUserByNameAndPwd(String username,String password);
+
 }

@@ -1,6 +1,7 @@
 package cn.hairui.blog.controller;
 
 import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.service.MyInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class DefaultViewController {
     public String musicplayer(Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
+
+        MusicList musicList = myInfoService.queryMusicListById(PubConstant.MY_INFO_ID);
+        model.addAttribute("music",musicList);
         return "musicplayer";
     }
 

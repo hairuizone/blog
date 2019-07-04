@@ -58,6 +58,14 @@
         width: 70%;
         font-size: 15px;
     }
+    .origininfo{
+        text-align: left;
+        border-color:#ffffff;
+        color: gray;
+        font-family: "Microsoft YaHei";
+        width: 70%;
+        font-size: 12px;
+    }
     .footcourse{
         background-color:#E3E3E3;border-color:#FF0000;font-size: 14px;width: 70%
     }
@@ -67,6 +75,9 @@
             margin: 0 auto;
         }
         .mymoto{
+            width: 100%;
+        }
+        .origininfo{
             width: 100%;
         }
         .footcourse{
@@ -140,12 +151,23 @@
             <span class="am-icon-user" style="font-family: Segoe UI;margin-right: 5px;font-size: 14px;" th:text="${artical.author}"></span>
             <span class="am-icon-bookmark" style="font-family: Segoe UI;margin-right: 5px;font-size: 14px;" th:text="${categoriesCn}"></span>
         </div>
+
         <!--我的名言-->
         <div align="center" style="margin-top: 20px;margin-bottom: 20px;">
             <blockquote class="mymoto">
                 <p align="left" th:text="${myinfo.solidot}"></p>
                 <p align="right" th:text="'——'+${myinfo.nickname}"></p>
             </blockquote>
+        </div>
+        <div align="center" >
+            <th:block th:if="${artical.type}=='ZZ'">
+                <blockquote class="origininfo">
+                    <p style="" align="left" th:text="'原文作者：'+${artical.originAuthor}"></p><br/>
+                    <p style="margin-top: -35px;" align="left;">
+                        原文链接：<a th:href="${artical.originUrl}" target="_blank" th:text="${artical.originUrl}"></a>
+                    </p>
+                </blockquote>
+            </th:block>
         </div>
 
         <!--文章内容-->
@@ -172,7 +194,7 @@
         <div align="center">
             <blockquote class="footcourse">
                 <p style="margin: 1px;" align="left" th:text="'本文作者：'+${artical.author}"></p>
-                <p style="margin: 1px;" align="left" >原文链接：
+                <p style="margin: 1px;" align="left">
                     原文链接：<a th:href="${myinfo.website}+'/artical-view?id='+${artical.id}" target="_blank" th:text="${myinfo.website}+'/artical-view?id='+${artical.id}"></a>
                 </p>
                 <p style="margin: 1px;" align="left" th:text="'版权声明：原创作品创作不易，转载请注明出处！'"></p>
