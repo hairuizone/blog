@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author laoganbu
  * @date: 2019/2/25 17:37
@@ -34,7 +36,13 @@ public class DefaultViewController {
     }
 
     @RequestMapping(value = "musicplayer")
-    public String musicplayer(Model model) {
+    public String musicplayer(String pid ,Model model) {
+        if("".equals(pid) || pid == null){
+            model.addAttribute("pid","-1");
+        }else{
+            model.addAttribute("pid",pid);
+        }
+
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 

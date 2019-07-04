@@ -44,13 +44,17 @@
             display:none;width: 60px;
         }
 
+        .my-play-list ul,li{ margin-bottom:1px; padding:0; font-size:16px;}
+        .my-play-list ul{ overflow:hidden;zoom:1;}
+        .my-play-list ul li{list-style:none}
+        .my-play-list ul li a{width:350px; height:50px; display:block; line-height:50px;text-align: left;text-align:center; font-weight:bold; text-decoration:none; background: #633d58; color:#FFF;}
+        .my-play-list ul li a:hover{background: #de97ff;color: #000;}
     </style>
-
 </head>
 <body class="inbox">
 
 <div style="text-align: center;font-size: 36px;font-weight: 700;margin: 50px 0 0 0;">
-    <span>欢迎来到老干部的私人音乐馆</span>
+    <span th:text="'欢迎来到'+${myinfo.nickname}+'的私人音乐馆'"></span>
 </div>
 <div style="text-align: center;font-size: 18px;margin: 50px 0 0 0;">
     <p style="line-height: 45px;">享受音乐 享受生活</p>
@@ -60,27 +64,40 @@
        <embed style="position:absolute; left:0; bottom:0;" align=right src="files/flash.swf" width=10% height=25% type=application/x-shockwave-flash wmode="transparent" quality="high"></embed>
     </div>
 
-
     <div id="vsPlayAudio" style="width: 200px;height: 200px;"></div>
 </div>
 <div style="text-align: center;margin: 50px 0 0 0;">
     <ul>
         <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-backward" style="color: #fff; font-size: 30px;" onClick="player.next()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="皮一下，这也是下一首"> </span></li>
-
         <li id="btn_play" class="btn_hidden" hidden><span class="glyphicon glyphicon-play" style="color: #fff; font-size: 30px;" onclick="player.play()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="播放"></span></li>
         <li id="btn_stop" class="btn_show"><span class="glyphicon glyphicon-pause" style="color: #fff; font-size: 30px;" onClick="player.pause()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="暂停"></span></li>
         <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-forward" style="color: #fff; font-size: 30px;" onClick="player.next()" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="下一首"> </span></li>
-        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-list" style="color: #fff; font-size: 30px;" onclick="" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="切换歌单"> </span></li>
+        <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-list" style="color: #fff; font-size: 30px;" id="change-play-list" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="切换歌单"> </span></li>
         <li style="display:inline-block;width: 60px;"><span class="glyphicon glyphicon-off" style="color: #fff; font-size: 30px;" onclick="javascript:window.close();" onmouseover="this.style.color='gray'" onmouseout="this.style.color='#fff'" title="退出"> </span></li>
 
     </ul>
+    <div id="play-list" class="my-play-list" align="center" hidden="hidden">
+        <ul>
+            <li><a th:id="${music.listNoOne}" th:href="'musicplayer?pid='+${music.listNoOne}" target="_self" th:text="${music.listNameOne}"></a></li>
+            <li><a th:id="${music.listNoTwo}" th:href="'musicplayer?pid='+${music.listNoTwo}" target="_self" th:text="${music.listNameTwo}"></a></li>
+            <li><a th:id="${music.listNoThree}" th:href="'musicplayer?pid='+${music.listNoThree}" target="_self" th:text="${music.listNameThree}"></a></li>
+            <li><a th:id="${music.listNoFour}" th:href="'musicplayer?pid='+${music.listNoFour}" target="_self" th:text="${music.listNameFour}"></a></li>
+            <li><a th:id="${music.listNoFive}" th:href="'musicplayer?pid='+${music.listNoFive}" target="_self" th:text="${music.listNameFive}"></a></li>
+        </ul>
+    </div>
 </div>
 
 <script>
     /*<![CDATA[*/
-    var default_playlist = [[${music.defaultList}]];//歌单编号
-    /*]]>*/
 
+    var default_playlist = [[${music.defaultList}]];//歌单编号
+    var show_list = [[${pid}]];
+    if(show_list != -1){
+        default_playlist = show_list;
+    }
+    $("#"+default_playlist).css("background","#de97ff");
+    $("#"+default_playlist).css("color","#000");
+    /*]]>*/
 
     $("#btn_play").click(function() {
         document.getElementById("btn_play").classList.remove("btn_show")
@@ -113,6 +130,16 @@
     });
     //初始化显示歌曲列表  如果不需要初始化展示则注释即可实现
     document.getElementById("vsPlayAudio-control").classList.add("vsPlayAudio-control-show");
+
+    $("#change-play-list").click(function() {
+        if($('#play-list').is(':hidden')){
+            //如果隐藏时。。。
+            $("#play-list").show()
+        }else{
+            //如果显示时。。。
+            $("#play-list").hide()
+        }
+    });
 </script>
 </body>
 </html>
