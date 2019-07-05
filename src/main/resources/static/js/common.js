@@ -25,6 +25,11 @@ function musicplayer() {
     }
 }
 
+function showGallerys() {
+    var url = "gallerys";
+    window.location.href = url;
+}
+
 function showCategories(id) {
     var url;
     if(id == undefined){

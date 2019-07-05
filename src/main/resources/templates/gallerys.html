@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>老干部的画廊</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${myinfo.webname}+'-相册'"></title>
+    <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
 
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <link href="css/sim-prev-anim.css" rel="stylesheet" type="text/css" />
@@ -13,17 +15,16 @@
     function showGallery(id) {
         var id = "123";
         var url = "gallery?gallery_id="+id;
-        window.open(url);
+        window.open(url,'_blank');
     }
-
 
 </script>
 <body>
 
 <div class="albums">
     <div class="albums-inner">
-        <div class="albums-tab" th:onclick="'javascript:showGallery(1234)'" >
-            <div class="albums-tab-thumb sim-anim-1">
+        <div class="albums-tab">
+            <div class="albums-tab-thumb sim-anim-1" th:onclick="'javascript:showGallery(1234)'">
                 <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
                 <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
                 <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
@@ -32,7 +33,7 @@
                 <img src="upload/gallery/studio_0006.jpg" class="all studio"/>
                 <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
             </div>
-            <div class="albums-tab-text">.sim-anim-1 <span>(7 pictures)</span></div>
+            <div class="albums-tab-text">青春时代 <span>(7)</span></div>
         </div>
 
         <div class="albums-tab">
