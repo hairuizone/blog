@@ -41,10 +41,10 @@ body {
 	height: 200px;
 }
 .albums-tab-thumb img {
-	height: auto;
+	height: 190px;
 	width: 290px;
 	background-color: rgba(255,255,255,1);
-	padding: 5px;		
+	padding: 5px;
 }
 .albums-tab-text{
 	float: left;

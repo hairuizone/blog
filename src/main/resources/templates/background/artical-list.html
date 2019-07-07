@@ -118,7 +118,11 @@
                     <li class="sidebar-nav-link">
                         <a href="javascript:void(0);" onclick="toolsList();">
                             <i class="fa fa-cutlery sidebar-nav-link-logo"></i>工具管理
-
+                        </a>
+                    </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="gallerysList();">
+                            <i class="fa fa-image sidebar-nav-link-logo"></i>相册管理
                         </a>
                     </li>
                 </ul>
@@ -305,7 +309,7 @@
                     error: function () {
                         AMUI.dialog.alert({
                             title: '提示信息',
-                            content: '删除成功',
+                            content: '删除失败',
                             onConfirm: function () {
                                 console.log('close');
                                 window.location.href = "artical-list";

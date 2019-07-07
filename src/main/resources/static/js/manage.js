@@ -33,6 +33,11 @@ function toolsList(){
     window.location.href = url;
 }
 
+function gallerysList(){
+    var url = "gallerys-list";
+    window.location.href = url;
+}
+
 function sysManage(){
     var url = "setting";
     window.location.href = url;

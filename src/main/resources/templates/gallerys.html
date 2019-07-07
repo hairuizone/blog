@@ -8,14 +8,16 @@
     <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
 
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="css/sim-prev-anim.css" rel="stylesheet" type="text/css" />
+    <link href="css/sim-prev-anim.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <script language="JavaScript">
+    var galleryWin;
     function showGallery(id) {
-        var id = "123";
-        var url = "gallery?gallery_id="+id;
-        window.open(url,'_blank');
+        if(!galleryWin || galleryWin.closed) {
+            var url = "gallery?gallery_id=" + id;
+            window.open(url, '_galleryWin');
+        }
     }
 
 </script>
@@ -23,140 +25,16 @@
 
 <div class="albums">
     <div class="albums-inner">
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-1" th:onclick="'javascript:showGallery(1234)'">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0005.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0006.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
+        <div class="albums-tab" th:each="gallerys , gallerysStat : ${gallerysInfo}">
+            <div th:class="'albums-tab-thumb sim-anim-'+${gallerysStat.index+1}" th:onclick="'javascript:showGallery('+${gallerys.id}+')'">
+                <th:block th:each="gallery : ${gallerys.gallery}">
+                    <img th:src="'upload/gallery/'+${gallery.imgPath}" class="all studio"/>
+                </th:block>
             </div>
-            <div class="albums-tab-text">青春时代 <span>(7)</span></div>
+            <div class="albums-tab-text" th:text="${gallerys.name}+' ('+${gallerys[num]}+')'"></div>
         </div>
-
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-2">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0010.jpg" class="all studio"/>
-
-            </div>
-            <div class="albums-tab-text">.sim-anim-2 <span>(5 pictures)</span></div>
-        </div>
-
-
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-3">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0005.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0006.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0007.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0008.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0011.jpg" class="all studio"/>
-
-            </div>
-            <div class="albums-tab-text">.sim-anim-3 <span>(9 pictures)</span></div>
-        </div>
-
-
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-4">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0005.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0006.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0007.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0008.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0009.jpg" class="all studio"/>
-
-            </div>
-            <div class="albums-tab-text">.sim-anim-4 <span>(9 pictures)</span></div>
-        </div>
-
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-5">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0005.jpg" class="all studio"/>
-
-            </div>
-            <div class="albums-tab-text">.sim-anim-5 <span>(5 pictures)</span></div>
-        </div>
-
-
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-6">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0009.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0005.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0006.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0007.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0008.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-            </div>
-            <div class="albums-tab-text">.sim-anim-6 <span>(9 pictures)</span></div>
-        </div>
-
-
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-7">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-
-            </div>
-            <div class="albums-tab-text">.sim-anim-7 <span>(4 pictures)</span></div>
-        </div>
-
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-8">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0009.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0005.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0006.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0007.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0008.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-            </div>
-            <div class="albums-tab-text">.sim-anim-8 <span>(9 pictures)</span></div>
-        </div>
-
-        <div class="albums-tab">
-            <div class="albums-tab-thumb sim-anim-9">
-                <img src="upload/gallery/studio_0001.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0002.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0003.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0004.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0005.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0009.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0007.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0008.jpg" class="all studio"/>
-                <img src="upload/gallery/studio_0006.jpg" class="all studio"/>
-            </div>
-            <div class="albums-tab-text">.sim-anim-9 <span>(9 pictures)</span></div>
-        </div>
-
-
     </div>
-
 </div>
-
 </body>
 </html>
 

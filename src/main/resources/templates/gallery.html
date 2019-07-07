@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="lightgallery/css/bluestep-demo.css"><!--演示页面样式，使用时可以不引用-->
     <link href="lightgallery/css/lightgallery.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
+    <script src="js/common.js"></script>
 </head>
 <style type="text/css">
     .bluestep-container .nav-off {
@@ -18,78 +19,43 @@
         margin: 10px;
     }
 
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 8px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline;
+        font-size: 20px;
+        cursor: pointer;
+        float: left;
+        border-radius: 4px;
+    }
+
+    .button:hover {
+        background-color: #3e8e41;
+        border-color:#3e8e41 ;
+    }
+
 </style>
 <body>
 
 
 <div class="bluestep-container">
     <div class="nav-off">
-        <div><li class="fa fa-backward" style="color: black"></li></div>
+        <div><button class="fa fa-home button" title="相册首页" onclick="javascript:showGallerys();"></button></div>
 
     </div>
     <div class="demo-gallery">
         <ul id="lightgallery" class="list-unstyled row">
-            <li class="col-xs-6 col-sm-4 col-md-3"
-                data-src="upload/gallery/studio_0001.jpg"
+            <li class="col-xs-6 col-sm-4 col-md-3" th:each=" galleryImg : ${galleryImgList}"
+                th:data-src="'upload/gallery/'+${galleryImg.imgPath}"
                 data-sub-html="<h4>Fading Light</h4><p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
                 <a href="">
-                    <img class="img-responsive" src="upload/gallery/studio_0001.jpg">
+                    <img class="img-responsive" th:src="'upload/gallery/'+${galleryImg.imgPath}">
                 </a>
             </li>
-            <li class="col-xs-6 col-sm-4 col-md-3"
-                data-src="upload/gallery/studio_0002.jpg"
-                data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
-                <a href="">
-                    <img class="img-responsive" src="upload/gallery/studio_0002.jpg">
-                </a>
-            </li>
-            <li class="col-xs-6 col-sm-4 col-md-3"
-                data-src="upload/gallery/studio_0003.jpg"
-                data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
-                <a href="">
-                    <img class="img-responsive" src="upload/gallery/studio_0003.jpg">
-                </a>
-            </li>
-            <li class="col-xs-6 col-sm-4 col-md-3"
-                data-src="upload/gallery/studio_0004.jpg"
-                data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
-                <a href="">
-                    <img class="img-responsive" src="upload/gallery/studio_0004.jpg">
-                </a>
-            </li>
-
-            <li class="col-xs-6 col-sm-4 col-md-3"
-                data-src="upload/gallery/studio_0005.jpg"
-                data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
-                <a href="">
-                    <img class="img-responsive" src="upload/gallery/studio_0005.jpg">
-                </a>
-            </li>
-
-            <li class="col-xs-6 col-sm-4 col-md-3"
-                data-src="upload/gallery/studio_0006.jpg"
-                data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
-                <a href="">
-                    <img class="img-responsive" src="upload/gallery/studio_0006.jpg">
-                </a>
-            </li>
-
-            <li class="col-xs-6 col-sm-4 col-md-3"
-                data-src="upload/gallery/studio_0007.jpg"
-                data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
-                <a href="">
-                    <img class="img-responsive" src="upload/gallery/studio_0007.jpg">
-                </a>
-            </li>
-
-            <li class="col-xs-6 col-sm-4 col-md-3"
-                data-src="upload/gallery/studio_0008.jpg"
-                data-sub-html="<h4>Bowness Bay</h4><p>A beautiful Sunrise this morning taken En-route to Keswick not one as planned but I'm extremely happy I was passing the right place at the right time....</p>">
-                <a href="">
-                    <img class="img-responsive" src="upload/gallery/studio_0008.jpg">
-                </a>
-            </li>
-
         </ul>
     </div>
 </div>

@@ -80,4 +80,12 @@ public class PubConstant {
      * 全局用户登录session名称
      */
     public static final String GLOBAL_SESSION_NAME = "userinfo";
+    /**
+     * 相册存放文件相对路径
+     */
+    public static final String GALLERS_DIR = "/gallery/";
+    /**
+     * 相册预览照片数量
+     */
+    public static final Integer GALLERY_PREVIEW_NUM = 9;
 }
