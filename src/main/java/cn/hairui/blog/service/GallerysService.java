@@ -70,4 +70,48 @@ public interface GallerysService {
      * @return
      */
     public int updateGallerys(Gallerys gallerys);
+
+    /**
+     * 通过照片编号查询照片信息
+     * @param id
+     * @return
+     */
+    public GalleryImg queryGalleryImgById(Integer id);
+
+    /**
+     * 查询编号不是id 名称是imgName的照片
+     * @param id
+     * @param imgPath
+     * @return
+     */
+    public GalleryImg queryGalleryImgByImgPathExceptId(Integer id, String imgPath);
+
+    /**
+     * 通过照片编号删除照片信息
+     * @param id
+     * @return
+     */
+    public int deleteGalleryImgById(Integer id);
+
+    /**
+     * 获取相册中下一张照片的信息
+     * @param galleryId
+     * @return
+     */
+    public GalleryImg queryGalleryImgByGalleryIdFirst(Integer galleryId);
+
+    /**
+     * 修改封面图信息
+     * @param galleryId
+     * @param newImg
+     * @return
+     */
+    public int setShowImgByGalleryId(Integer galleryId, String newImg);
+
+    /**
+     * 通过编号删除相册
+     * @param galleryId
+     * @return
+     */
+    public int deleteGallerysById(Integer galleryId);
 }

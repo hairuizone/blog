@@ -6,6 +6,7 @@ import cn.hairui.blog.model.Gallerys;
 import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.service.GallerysService;
 import cn.hairui.blog.service.MyInfoService;
+import cn.hairui.blog.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,7 @@ public class GallerysManageController {
     private String listPage = PubConstant.BACKGROUND_DIR_NAME + "gallerys-list";//列表页面
     private String addPage = PubConstant.BACKGROUND_DIR_NAME + "gallerys-add";//新增相册页面
     private String updatePage = PubConstant.BACKGROUND_DIR_NAME + "gallerys-update";//新增相册页面
+    private String uploadPage = PubConstant.BACKGROUND_DIR_NAME + "gallerys-upload";//上传图片页面
 
     @RequestMapping(value = "/gallerys-list")
     public String queryGallserysList(Model model) {
@@ -171,12 +173,12 @@ public class GallerysManageController {
 
                 int i = gallerysService.addGalleryImg(galleryImg);
 
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             gallerys.setShowImg(fileName);
 
-        }else{
+        } else {
             System.out.println("封面图未发生变化");
             gallerys.setShowImg(gallerysService.queryGallerysById(id).getShowImg());
         }
@@ -200,10 +202,74 @@ public class GallerysManageController {
         return map;
     }
 
-    @RequestMapping(value = "upload_galleryimg")
-    public String uploadGalleryImg(Model model){
+    @RequestMapping(value = "upload_gallerys")
+    public String uploadGalleryImg(Integer id, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
-        return "gallerys-upload";
+
+        //获取相册信息
+        Gallerys gallerys = gallerysService.queryGallerysById(id);
+        model.addAttribute("gallerys", gallerys);
+
+        Integer imgcount = gallerysService.queryGalleryImgCountByGalleryId(gallerys.getId());
+        model.addAttribute("imgcount",imgcount);
+        //通过id获取相册信息
+        List<GalleryImg> galleryImgList = gallerysService.queryGalleryImgList(id);
+        model.addAttribute("galleryImgs", galleryImgList);
+        System.out.println("upload_gallerys");
+        return uploadPage;
+    }
+
+    @RequestMapping(value = "galleryimg-delete")
+    @ResponseBody
+    @Transactional
+    public Map deleteGalleryImg(Integer id, Model model) {
+        Map map = new HashMap();
+        try {
+            //防止图片上传多次，查询数据库中存在其他相册下有该照片信息
+            GalleryImg galleryImg = gallerysService.queryGalleryImgById(id);
+            String imgPath = galleryImg.getImgPath();
+            System.out.println("galleryImg:" + galleryImg);
+
+            GalleryImg galleryImg1 = gallerysService.queryGalleryImgByImgPathExceptId(id, imgPath);
+            System.out.println("galleryImg1:" + galleryImg1);
+            if (galleryImg1 == null) {
+                //不存在重名的 可以删除文件
+                String path = uploadPath + PubConstant.GALLERS_DIR + imgPath;
+                System.out.println(path);
+                FileUtil.deleteSingleFile(path);
+            }
+
+            //删除数据库记录
+            int i = gallerysService.deleteGalleryImgById(id);
+
+            Integer galleryId = galleryImg.getGalleryId();
+            int galleryImgCount = gallerysService.queryGalleryImgCountByGalleryId(galleryId);
+            if(galleryImgCount == 0){
+                int m = gallerysService.deleteGallerysById(galleryId);
+                map.put("clear","Y");//设置情况标识
+            }else {
+                Gallerys gallerys = gallerysService.queryGallerysById(galleryId);
+
+                //判断删除的是否为封面图
+                if(gallerys != null && galleryImg1 == null && gallerys.getShowImg().equals(imgPath)){
+                    //将 galleryId 对应的相册的封面图设置为下一站图片
+                    GalleryImg galleryImg2 = gallerysService.queryGalleryImgByGalleryIdFirst(galleryId);
+                    if(galleryImg2 != null){
+                        String newImg = galleryImg2.getImgPath();
+                        int x = gallerysService.setShowImgByGalleryId(galleryId,newImg);
+                    }
+                }
+                map.put("clear","N");
+            }
+
+
+
+            map.put(PubConstant.flag, PubConstant.success);
+        } catch (Exception e) {
+            e.printStackTrace();
+            map.put(PubConstant.flag, PubConstant.failed);
+        }
+        return map;
     }
 }

@@ -36,7 +36,7 @@ public class GallerysRepository {
     }
 
     public List<GalleryImg> queryGalleryImgByGalleryIdLimited(Integer id, Integer maxSize) {
-        return gallerysMapper.queryGalleryImgByGalleryIdLimited(id,maxSize);
+        return gallerysMapper.queryGalleryImgByGalleryIdLimited(id, maxSize);
     }
 
     public List<GalleryImg> queryGalleryImgList(Integer gallery_id) {
@@ -49,5 +49,29 @@ public class GallerysRepository {
 
     public int updateGallerys(Gallerys gallerys) {
         return gallerysMapper.updateGallerys(gallerys);
+    }
+
+    public GalleryImg queryGalleryImgById(Integer id) {
+        return gallerysMapper.queryGalleryImgById(id);
+    }
+
+    public GalleryImg queryGalleryImgByImgPathExceptId(Integer id, String imgPath) {
+        return gallerysMapper.queryGalleryImgByImgPathExceptId(id, imgPath);
+    }
+
+    public int deleteGalleryImgById(Integer id) {
+        return gallerysMapper.deleteGalleryImgById(id);
+    }
+
+    public GalleryImg queryGalleryImgByGalleryIdFirst(Integer galleryId) {
+        return gallerysMapper.queryGalleryImgByGalleryIdFirst(galleryId);
+    }
+
+    public int setShowImgByGalleryId(Integer galleryId, String newImg) {
+        return gallerysMapper.setShowImgByGalleryId(galleryId,newImg);
+    }
+
+    public int deleteGallerysById(Integer galleryId) {
+        return gallerysMapper.deleteGallerysById(galleryId);
     }
 }

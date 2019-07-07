@@ -165,7 +165,7 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title  am-cf">文章列表</div>
+                            <div class="widget-title  am-cf">相册列表</div>
                         </div>
                         <div class="widget-body  am-fr">
 
@@ -217,7 +217,7 @@
         window.location.href = url;
     }
     function addGalleryImg(id){
-        var url = 'upload_galleryimg?id='+id;
+        var url = 'upload_gallerys?id='+id;
         window.location.href = url;
     }
 
@@ -296,7 +296,11 @@
         creator.innerHTML = gallerysList[i - 1].creator;
         createTime.innerHTML = gallerysList[i - 1].createTime;
         var idNo = gallerysList[i - 1].id;
-        var textHtml = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);" onclick=addGalleryImg(\' + idNo + \'); class=""> <i class="am-icon-pencil"></i> 添加照片 </a><a href="javascript:void(0);" onclick=updateRow(' + idNo + '); class=""> <i class="am-icon-pencil"></i> 编辑 </a> <a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>'
+        var textHtml = '<div class="tpl-table-black-operation"> ' +
+            '<a href="javascript:void(0);" onclick=addGalleryImg(' + idNo + '); class=""> <i class="am-icon-pencil"></i> 内容管理 </a>' +
+            '<a href="javascript:void(0);" onclick=updateRow(' + idNo + '); class=""> <i class="am-icon-pencil"></i> 编辑 </a>' +
+            '<a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a>' +
+            '</div>'
 
         div.innerHTML = textHtml;
     }

@@ -58,4 +58,35 @@ public class GallerysServiceImpl implements GallerysService {
     public int updateGallerys(Gallerys gallerys) {
         return gallerysRepository.updateGallerys(gallerys);
     }
+
+    @Override
+    public GalleryImg queryGalleryImgById(Integer id) {
+        return gallerysRepository.queryGalleryImgById(id);
+    }
+
+    @Override
+    public GalleryImg queryGalleryImgByImgPathExceptId(Integer id, String imgPath) {
+        return gallerysRepository.queryGalleryImgByImgPathExceptId(id,imgPath);
+    }
+
+    @Override
+    public int deleteGalleryImgById(Integer id) {
+        return gallerysRepository.deleteGalleryImgById(id);
+    }
+
+    @Override
+    public GalleryImg queryGalleryImgByGalleryIdFirst(Integer galleryId) {
+        return gallerysRepository.queryGalleryImgByGalleryIdFirst(galleryId);
+    }
+
+    @Override
+    public int setShowImgByGalleryId(Integer galleryId, String newImg) {
+        return gallerysRepository.setShowImgByGalleryId(galleryId,newImg);
+    }
+
+    @Override
+    public int deleteGallerysById(Integer galleryId) {
+        return gallerysRepository.deleteGallerysById(galleryId);
+    }
+
 }

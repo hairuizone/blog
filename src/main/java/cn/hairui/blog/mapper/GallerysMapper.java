@@ -46,4 +46,22 @@ public interface GallerysMapper {
 
     @Update("UPDATE GALLERYS SET NAME=#{name},SHOW_IMG=#{showImg},SHOW_FLAG=#{showFlag},INTRODUCTION=#{introduction} WHERE ID=#{id}")
     public int updateGallerys(Gallerys gallerys);
+
+    @Select("SELECT * FROM GALLERY_IMG WHERE ID=#{id}")
+    public GalleryImg queryGalleryImgById(Integer id);
+
+    @Select("SELECT * FROM GALLERY_IMG WHERE ID!=#{id} AND IMG_PATH=#{imgPath}")
+    public GalleryImg queryGalleryImgByImgPathExceptId(Integer id, String imgPath);
+
+    @Delete("DELETE FROM GALLERY_IMG WHERE ID=#{id}")
+    public int deleteGalleryImgById(Integer id);
+
+    @Select("SELECT * FROM GALLERY_IMG WHERE GALLERY_ID=#{galleryId} oRDER BY ID DESC LIMIT 1")
+    public GalleryImg queryGalleryImgByGalleryIdFirst(Integer galleryId);
+
+    @Update("UPDATE GALLERYS SET SHOW_IMG=#{newImg} WHERE ID=#{galleryId}")
+    public int setShowImgByGalleryId(Integer galleryId, String newImg);
+
+    @Delete("DELETE FROM GALLERYS WHERE ID=#{id}")
+    public int deleteGallerysById(Integer galleryId);
 }
