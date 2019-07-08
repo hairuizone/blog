@@ -74,4 +74,8 @@ public class GallerysRepository {
     public int deleteGallerysById(Integer galleryId) {
         return gallerysMapper.deleteGallerysById(galleryId);
     }
+
+    public int queryGalleryImgByImgPath(String imgName) {
+        return gallerysMapper.queryGalleryImgByImgPath(imgName);
+    }
 }

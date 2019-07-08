@@ -9,24 +9,47 @@
 
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
     <link href="css/sim-prev-anim.css" rel="stylesheet" type="text/css"/>
-
+    <link href="lightgallery/css/lightgallery.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <script src="js/common.js"></script>
 </head>
-<script language="JavaScript">
-    var galleryWin;
-    function showGallery(id) {
-        if(!galleryWin || galleryWin.closed) {
-            var url = "gallery?gallery_id=" + id;
-            window.open(url, '_galleryWin');
-        }
+<style type="text/css">
+    .nav-off {
+        width: 40px;
+        height: 40px;
+        margin: 10px;
     }
 
-</script>
-<body>
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 8px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline;
+        font-size: 20px;
+        cursor: pointer;
+        float: left;
+        border-radius: 4px;
+    }
 
+    .button:hover {
+        background-color: #3e8e41;
+        border-color: #3e8e41;
+    }
+</style>
+<body>
+<div class="nav-off">
+    <div>
+        <button class="fa fa-home button" title="回到实验室" onclick="javascript:showTransfer();"></button>
+    </div>
+</div>
 <div class="albums">
     <div class="albums-inner">
         <div class="albums-tab" th:each="gallerys , gallerysStat : ${gallerysInfo}">
-            <div th:class="'albums-tab-thumb sim-anim-'+${gallerysStat.index+1}" th:onclick="'javascript:showGallery('+${gallerys.id}+')'">
+            <div th:class="'albums-tab-thumb sim-anim-'+${gallerysStat.index+1}"
+                 th:onclick="'javascript:showGallery('+${gallerys.id}+')'">
                 <th:block th:each="gallery : ${gallerys.gallery}">
                     <img th:src="'upload/gallery/'+${gallery.imgPath}" class="all studio"/>
                 </th:block>

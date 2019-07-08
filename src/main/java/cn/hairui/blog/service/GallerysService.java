@@ -114,4 +114,11 @@ public interface GallerysService {
      * @return
      */
     public int deleteGallerysById(Integer galleryId);
+
+    /**
+     * 通过图片名称查询是否已经存在了
+     * @param imgName
+     * @return
+     */
+    public int queryGalleryImgByImgPath(String imgName);
 }

@@ -18,10 +18,11 @@ function categoriesShow(id) {
 }
 
 var musicWin;
+
 function musicplayer() {
-    if(!musicWin || musicWin.closed){
+    if (!musicWin || musicWin.closed) {
         var url = "musicplayer";
-        window.open(url,"_musicWin");
+        window.open(url, "_musicWin");
     }
 }
 
@@ -30,11 +31,20 @@ function showGallerys() {
     window.location.href = url;
 }
 
+var galleryWin;
+
+function showGallery(id) {
+    if (!galleryWin || galleryWin.closed) {
+        var url = "gallery?gallery_id=" + id;
+        window.open(url, '_galleryWin');
+    }
+}
+
 function showCategories(id) {
     var url;
-    if(id == undefined){
+    if (id == undefined) {
         url = "categories";
-    }else{
+    } else {
         url = "categories?id=" + id;
     }
     window.location.href = url;
@@ -42,9 +52,9 @@ function showCategories(id) {
 
 function showArchive(date) {
     var url;
-    if(date == undefined){
+    if (date == undefined) {
         url = "archives";
-    }else{
+    } else {
         url = "archives?date=" + date;
     }
     window.location.href = url;
@@ -52,9 +62,9 @@ function showArchive(date) {
 
 function showTopic(id) {
     var url;
-    if(id == undefined){
+    if (id == undefined) {
         url = "topics";
-    }else{
+    } else {
         url = "topics?id=" + id;
     }
     window.location.href = url;
@@ -71,14 +81,15 @@ function showAboutme() {
 }
 
 var transferWin;
+
 function showTransfer() {
-    if(!transferWin || transferWin.closed){
+    if (!transferWin || transferWin.closed) {
         var url = "transfer";
-        window.open(url,"_transferWin");
+        window.open(url, "_transferWin");
     }
 }
 
-function showTools(){
+function showTools() {
     var url = "tools";
     window.location.href = url;
 }
@@ -87,23 +98,26 @@ function visitWebsite(url) {
     window.open(url);
 }
 
-function writeBlog(){
+function writeBlog() {
     var url = "manage/artical-add";
     window.location.href = url;
 }
 
-function userLogin(){
+function userLogin() {
     var url = "manage/login";
     window.location.href = url;
 }
-function userRegister(){
+
+function userRegister() {
     alert("测试阶段暂时不对外开放，敬请谅解！");
 }
-function userLogout(){
+
+function userLogout() {
     var url = "manage/logout";
     window.location.href = url;
 }
-function manageSystem(){
+
+function manageSystem() {
     var url = "manage/home";
     window.location.href = url;
 }
@@ -149,7 +163,6 @@ function content() {
         "</div>");
     return data;
 }
-
 
 
 $(function () {

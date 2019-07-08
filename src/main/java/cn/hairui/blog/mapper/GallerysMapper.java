@@ -64,4 +64,7 @@ public interface GallerysMapper {
 
     @Delete("DELETE FROM GALLERYS WHERE ID=#{id}")
     public int deleteGallerysById(Integer galleryId);
+
+    @Select("SELECT COUNT(1) FROM GALLERY_IMG WHERE IMG_PATH=#{imgName}")
+    public int queryGalleryImgByImgPath(String imgName);
 }

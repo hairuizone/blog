@@ -7,6 +7,7 @@ import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.service.GallerysService;
 import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.util.FileUtil;
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -285,133 +286,105 @@ public class GallerysManageController {
         return "background/gallery-upload";
     }
 
+    public static void main(String[] args) {
+        String a = "{}";
+
+        String[] aa = a.split("\\,\\{");
+        System.out.println(aa.length);
+        for (String i : aa) {
+            if (!i.startsWith("{")) {
+                i = "{" + i;
+            }
+            System.out.println(i);
+        }
+    }
+
     @RequestMapping(value = "galleryimg-send")
     @ResponseBody
     public Map uploadGalleryImgs(@RequestParam("base64Str") String base64Str, Integer gallery_id, Model model) {
-
-        base64Str = base64Str.substring(1,base64Str.length()-1);
-        System.out.println("aaaaa:"+base64Str);
-
-        String[] tempStr = base64Str.split("\\}\\,\\{");
-        System.out.println("BBBB "+tempStr.length);
-
-        for(String str:tempStr){
-            System.out.println("******");
-            System.out.println(str);
-        }
-
-        String base64Data = base64Str.toString();
-
-        System.out.println("CCCCC :"+base64Data);
         Map map = new HashMap();
-        //String galleryId = request.getParameter("gallery_id");
-        System.out.println("gallery_id = " + gallery_id);
+        base64Str = base64Str.substring(1, base64Str.length() - 1);
+        String[] tempStr = base64Str.split("\\,\\{");
+        for (String imgData : tempStr) {
+            if (!imgData.startsWith("{")) {
+                imgData = "{" + imgData;
+            }
+            //System.out.println(imgData);
 
+            JSONObject imgJson = JSONObject.fromObject(imgData);
+            String imgName = (String) imgJson.get("name");
+            String source = (String) imgJson.get("base64");
+            String desc = (String) imgJson.get("desc");
+            System.out.println(desc);
+            String dataPrix = ""; //base64格式前头
+            String data = "";//实体部分数据
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        String dataPrix = ""; //base64格式前头
-        String data = "";//实体部分数据
-        if(base64Data==null||"".equals(base64Data)){
-            return null;
-        }else {
-            String [] d = base64Data.split("base64,");//将字符串分成数组
-            if(d != null && d.length == 2){
+            String[] d = source.split("base64,");//将字符串分成数组
+            if (d != null && d.length == 2) {
                 dataPrix = d[0];
                 data = d[1];
-            }else {
+            } else {
                 return null;
             }
-        }
-        String suffix = "";//图片后缀，用以识别哪种格式数据
-        //data:image/jpeg;base64,base64编码的jpeg图片数据
-        if("data:image/jpg;".equalsIgnoreCase(dataPrix)){
-            suffix = ".jpg";
-        }else if("data:image/jpeg;".equalsIgnoreCase(dataPrix)){
-            suffix = ".jpeg";
-        }else if("data:image/x-icon;".equalsIgnoreCase(dataPrix)){
-            //data:image/x-icon;base64,base64编码的icon图片数据
-            suffix = ".ico";
-        }else if("data:image/gif;".equalsIgnoreCase(dataPrix)){
-            //data:image/gif;base64,base64编码的gif图片数据
-            suffix = ".gif";
-        }else if("data:image/png;".equalsIgnoreCase(dataPrix)){
-            //data:image/png;base64,base64编码的png图片数据
-            suffix = ".png";
-        }else if("data:image/bmp;".equalsIgnoreCase(dataPrix)){
-            //data:image/png;base64,base64编码的png图片数据
-            suffix = ".bmp";
-        }else {
-            return null;
-        }
-
-
-        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
-        String tempFileName=uuid+suffix;
-        String imgFilePath = "D:\\upload\\Images\\"+tempFileName;//新生成的图片
-        BASE64Decoder decoder = new BASE64Decoder();
-        try {
-            //Base64解码
-            byte[] b = decoder.decodeBuffer(data);
-            for(int i=0;i<b.length;++i) {
-                if(b[i]<0) {
-                    //调整异常数据
-                    b[i]+=256;
-                }
+            /*
+            //这里直接拿前台传入的图片名称 不进行判断了
+            String suffix = "";//图片后缀，用以识别哪种格式数据
+            //data:image/jpeg;base64,base64编码的jpeg图片数据
+            if("data:image/jpeg;".equalsIgnoreCase(dataPrix)){
+                suffix = ".jpg";
+            }else if("data:image/x-icon;".equalsIgnoreCase(dataPrix)){
+                //data:image/x-icon;base64,base64编码的icon图片数据
+                suffix = ".ico";
+            }else if("data:image/gif;".equalsIgnoreCase(dataPrix)){
+                //data:image/gif;base64,base64编码的gif图片数据
+                suffix = ".gif";
+            }else if("data:image/png;".equalsIgnoreCase(dataPrix)){
+                //data:image/png;base64,base64编码的png图片数据
+                suffix = ".png";
+            }else if("data:image/bmp;".equalsIgnoreCase(dataPrix)){
+                //data:image/png;base64,base64编码的png图片数据
+                suffix = ".bmp";
             }
-            OutputStream out = new FileOutputStream(imgFilePath);
-            out.write(b);
-            out.flush();
-            out.close();
-            String imgurl="http://xxxxxxxx/"+tempFileName;
-            //imageService.save(imgurl);
+            String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+            String tempFileName=uuid+suffix;
+            String imgFilePath = "D:\\upload\\Images\\"+tempFileName;//新生成的图片
+            */
+            //根据imgName名称判断是否已经存在  存在则绕过上传和保存
+            int x = gallerysService.queryGalleryImgByImgPath(imgName);
+            if (x == 0) {
+                String imgFilePath = uploadPath + PubConstant.GALLERS_DIR + imgName;//新生成的图片
+                BASE64Decoder decoder = new BASE64Decoder();
+                try {
+                    //Base64解码
+                    byte[] b = decoder.decodeBuffer(data);
+                    for (int i = 0; i < b.length; ++i) {
+                        if (b[i] < 0) {
+                            //调整异常数据
+                            b[i] += 256;
+                        }
+                    }
+                    OutputStream out = new FileOutputStream(imgFilePath);
+                    out.write(b);
+                    out.flush();
+                    out.close();
+
+                    //创建GalleryImg对新
+                    GalleryImg galleryImg = new GalleryImg();
+                    galleryImg.setGalleryId(gallery_id);
+                    galleryImg.setImgPath(imgName);
+                    galleryImg.setIntroduction(desc);
+                    gallerysService.addGalleryImg(galleryImg);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    map.put(PubConstant.flag, PubConstant.failed);
+                    return map;
+                }
+            } else {
+                System.out.println("图片" + imgName +"已经存在 不上传  不保存");
+            }
+
             map.put(PubConstant.flag, PubConstant.success);
-        } catch (IOException e) {
-            e.printStackTrace();
-            map.put(PubConstant.flag, PubConstant.failed);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        map.put(PubConstant.flag, PubConstant.success);
         return map;
     }
 }

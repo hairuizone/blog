@@ -89,4 +89,9 @@ public class GallerysServiceImpl implements GallerysService {
         return gallerysRepository.deleteGallerysById(galleryId);
     }
 
+    @Override
+    public int queryGalleryImgByImgPath(String imgName) {
+        return gallerysRepository.queryGalleryImgByImgPath(imgName);
+    }
+
 }
