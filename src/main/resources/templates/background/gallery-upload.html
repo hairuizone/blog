@@ -20,6 +20,59 @@
     <script src="../js/viewer.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
+<style type="text/css">
+    .float {
+        float: left;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        border: 1px solid #CCCCCC;
+        border-radius: 10px;
+        padding: 5px;
+        margin: 5px;
+    }
+
+    img {
+        position: relative;
+    }
+
+    .result {
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+
+    #file_input {
+        display: none;
+    }
+
+
+    .delete {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        text-align: center;
+        line-height: 200px;
+        z-index: 10;
+        font-size: 30px;
+        background-color: rgba(255, 255, 255, 0.8);
+        color: #777;
+        opacity: 0;
+        transition-duration: 0.7s;
+        -webkit-transition-duration: 0.7s;
+    }
+
+
+    .delete:hover {
+        cursor: pointer;
+        opacity: 1;
+    }
+
+
+</style>
+
 <body data-type="widgets">
 <script src="../background/assets/js/theme.js"></script>
 <div class="am-g tpl-g">
@@ -75,7 +128,7 @@
                     <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
                     <label style="margin-bottom: 0px;" th:text="${session.userinfo.nickname}"></label>
                 </span>
-                <a href="javascript:;" class="tpl-user-panel-action-link" >
+                <a href="javascript:;" class="tpl-user-panel-action-link">
                     <span class="am-icon-pencil"></span>
                     账号设置
                 </a>
@@ -121,7 +174,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="gallerysList();"  class="active">
+                        <a href="javascript:void(0);" onclick="gallerysList();" class="active">
                             <i class="fa fa-image sidebar-nav-link-logo"></i>相册管理
                         </a>
                     </li>
@@ -159,74 +212,25 @@
     </div>
     <!--公共部分-end-->
     <!-- 内容区域 -->
+
     <div class="tpl-content-wrapper">
-        <div class="row-content am-cf">
-            <div class="row">
-                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
-                    <div class="widget am-cf">
-                        <div class="widget-head am-cf">
-                            <div class="widget-title am-f1">编辑相册信息</div>
-                        </div>
-                        <div class="widget-body am-fr">
-                            <form id="gallerys-from" class="am-form tpl-form-border-form tpl-form-border-br" th:action="gallerys-adddata" method="post" enctype="multipart/form-data">
-                                <input type="hidden" name="id" th:value="${gallerys.id}" readonly>
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">相册名称 <span class="tpl-form-line-small-title">Gallery Name</span></label>
-                                    <div class="am-u-sm-4 am-u-sm-pull-5">
-                                        <input type="text" class="tpl-form-input" name="name" th:value="${gallerys.name}" placeholder="请输入名称">
-                                        <small>请填写名称文字10-30字左右。</small>
-                                    </div>
-                                </div>
+        <div class="row-content am-cf" id="float-parent">
+            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                <div class="widget am-cf">
+                    <div class="widget-head am-cf">
+                        <div class="widget-title  am-cf" style="font-style: italic;font-weight: bold" th:text="'当前相册名称：'+${gallerys.name}"></div>
+                    </div>
 
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">作者<span class="tpl-form-line-small-title">Author</span></label>
-                                    <div class="am-u-sm-4 am-u-sm-pull-5">
-                                        <input type="text" placeholder="请输入作者姓名" th:value="${gallerys.creator}" readonly name="creator">
-                                    </div>
-                                </div>
+                    <div class="container">
+                        <label>请选择一个图像文件：</label>
+                        <button type="button" id="select" class="am-round am-btn am-btn-success am-btn-sm">(重新)选择图片</button>
 
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">封面图 <span class="tpl-form-line-small-title">Images</span></label>
-                                    <div class="am-u-sm-9">
-                                        <div class="am-form-group am-form-file">
-                                            <div class="tpl-form-file-img">
-                                                <img id="pic" th:src="'../upload/gallery/'+${gallerys.showImg}" style="width: 300px;height: 250px;">
-                                            </div>
-                                            <button type="button" class="am-btn am-btn-danger am-btn-sm">
-                                                <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
-                                            <input id="img" type="file" multiple="" name="showImgFile" accept="image/*">
-                                        </div>
-                                    </div>
-                                </div>
+                        <button type="button" id="add" class="am-round am-btn am-btn-success am-btn-sm">(追加)图片</button>
 
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">是否公开展示<span class="tpl-form-line-small-title">Show</span></label>
-                                    <div class="am-u-sm-4 am-u-sm-pull-5">
-                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="showFlag">
-                                            <option th:selected="${gallerys.showFlag=='Y'}" value="Y">公开</option>
-                                            <option th:selected="${gallerys.showFlag=='N'}" value="N">不公开</option>
-                                        </select>
-                                        <small style="color: red">（必选）</small>
-                                    </div>
-                                </div>
+                        <input type="file" id="file_input" multiple/>
+                        <!--用input标签并选择type=file，记得带上multiple，不然就只能单选图片了-->
+                        <button type="button" id="submit" class="am-round am-btn am-btn-success am-btn-sm">提交</button>
 
-
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">相册简介<span class="tpl-form-line-small-title">Summary</span></label>
-                                    <div class="am-u-sm-4 am-u-sm-pull-5">
-                                        <textarea class="" rows="6" placeholder="请填写相册简介" name="introduction" th:text="${gallerys.introduction}"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">确定
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -234,74 +238,161 @@
     </div>
 </div>
 
+
 <script type="text/javascript">
 
-    $(function() {
-        $('#img').change(function() {
-            var file = this.files[0]; //选择上传的文件
-            var r = new FileReader();
-            r.readAsDataURL(file); //Base64
-            $(r).load(function() {
-                $('#pic').attr('src',this.result);
-            });
-        });
-    });
+
+    window.onload = function () {
+        var input = document.getElementById("file_input");
+        var result;
+        var dataArr = []; // 储存所选图片的结果(文件名和base64数据)
+        var fd;  //FormData方式发送请求
+        var oSelect = document.getElementById("select");
+        var oAdd = document.getElementById("add");
+        var oSubmit = document.getElementById("submit");
+        var oInput = document.getElementById("file_input");
+
+        if (typeof FileReader === 'undefined') {
+            alert("抱歉，你的浏览器不支持 FileReader");
+            input.setAttribute('disabled', 'disabled');
+        } else {
+            input.addEventListener('change', readFile, false);
+        }　　　　　//handler
 
 
-    $('.submit-btn').click(function () {
-        var name = $("input[name='name']").val();
-        if (name == "") {
-            AMUI.dialog.alert({
-                title: '提示信息',
-                content: '相册名称必填',
-                onConfirm: function () {
+        function readFile() {
+            fd = new FormData();
+            var iLen = this.files.length;
+            for (var i = 0; i < iLen; i++) {
+                if (!input['value'].match(/.jpg|.gif|.png|.jpeg|.bmp/i)) {　　//判断上传文件格式
+                    return alert("上传的图片格式不正确，请重新选择");
                 }
-            });
-            return;
+                var reader = new FileReader();
+                fd.append(i, this.files[i]);
+                reader.readAsDataURL(this.files[i]);  //转成base64
+                reader.fileName = this.files[i].name;
+
+                reader.onload = function (e) {
+                    var imgMsg = {
+                        name: this.fileName,//获取文件名
+                        base64: this.result   //reader.readAsDataURL方法执行完后，base64数据储存在reader.result里
+                    }
+                    dataArr.push(imgMsg);
+                    result = '<div class="delete">delete</div><div class="result"><img class="subPic" src="' + this.result + '" alt="' + this.fileName + '"/></div>';
+                    var div = document.createElement('div');
+                    div.innerHTML = result;
+                    div['className'] = 'float';
+                    //document.getElementsByTagName('body')[0].appendChild(div);  　　//插入dom树
+                    document.getElementById("float-parent").appendChild(div);
+                    var img = div.getElementsByTagName('img')[0];
+                    img.onload = function () {
+                        var nowHeight = ReSizePic(this); //设置图片大小
+                        this.parentNode.style.display = 'block';
+                        var oParent = this.parentNode;
+                        if (nowHeight) {
+                            oParent.style.paddingTop = (oParent.offsetHeight - nowHeight) / 2 + 'px';
+                        }
+                    }
+                    div.onclick = function () {
+                        $(this).remove();                  // 在页面中删除该图片元素
+                    }
+                }
+            }
         }
 
-        var formdata = new FormData($("#gallerys-from")[0]);
-        $.ajax({
-            type: 'POST',
-            url: "gallerys-updatedata",
-            data: formdata ,
-            dataType: 'JSON',
-            contentType: false,
-            processData:false,
-            success: function (data) {
-                if (data.flag == "success") {
-                    AMUI.dialog.alert({
-                        title: '提示信息',
-                        content: '更新成功',
-                        onConfirm: function () {
-                            window.location.href = "gallerys-list";
-                        }
-                    });
 
-                } else {
-                    AMUI.dialog.alert({
-                        title: '提示信息',
-                        content: '更新失败，请重试',
-                        onConfirm: function () {
-                            window.location.href = "gallerys-list";
-                        }
+        function send() {
+            var submitArr = [];
+            $('.subPic').each(function () {
+                    submitArr.push({
+                        name: $(this).attr('alt'),
+                        base64: $(this).attr('src')
                     });
                 }
-            },
-            error: function () {
-                AMUI.dialog.alert({
-                    title: '提示信息',
-                    content: '更新失败',
-                    onConfirm: function () {
+            );
+            /*submitArr.push({
+                "gallery_id":"123"
+            })*/
+            var data = JSON.stringify(submitArr);
+            console.log(data);
+            $.ajax({
+                url: 'galleryimg-send',
+                type: 'post',
+                //data: JSON.stringify(submitArr),
+                data: {
+                    base64Str: JSON.stringify(submitArr),
+                    gallery_id:'12345'
+                },
+
+                dataType: 'json',
+                //processData: false,   用FormData传fd时需有这两项
+                //contentType: false,
+                success: function (data) {
+                    if (data.flag == "success") {
+                        AMUI.dialog.alert({
+                            title: '提示信息',
+                            content: '上传成功',
+                            onConfirm: function () {
+                                //window.location.href = "gallerys-list";
+                            }
+                        });
                     }
-                });
+                }
+            })
+        }
+
+        oSelect.onclick = function () {
+            oInput.value = "";   // 先将oInput值清空，否则选择图片与上次相同时change事件不会触发
+            //清空已选图片
+            $('.float').remove();
+            oInput.click();
+        }
+
+
+        oAdd.onclick = function () {
+            oInput.value = "";   // 先将oInput值清空，否则选择图片与上次相同时change事件不会触发
+            oInput.click();
+        }
+
+
+        oSubmit.onclick = function () {
+            if (!dataArr.length) {
+                return alert('请先选择文件');
             }
-        });
+            send();
+        }
+    }
+
+    /*
+     用ajax发送fd参数时要告诉jQuery不要去处理发送的数据，
+     不要去设置Content-Type请求头才可以发送成功，否则会报“Illegal invocation”的错误，
+     也就是非法调用，所以要加上“processData: false,contentType: false,”
+     * */
 
 
-        /*document.getElementById("gallerys-from").submit();*/
-    });
+    function ReSizePic(ThisPic) {
+        var RePicWidth = 200; //这里修改为您想显示的宽度值
+
+        var TrueWidth = ThisPic.width; //图片实际宽度
+        var TrueHeight = ThisPic.height; //图片实际高度
+
+        if (TrueWidth > TrueHeight) {
+            //宽大于高
+            var reWidth = RePicWidth;
+            ThisPic.width = reWidth;
+            //垂直居中
+            var nowHeight = TrueHeight * (reWidth / TrueWidth);
+            return nowHeight;  //将图片修改后的高度返回，供垂直居中用
+        } else {
+            //宽小于高
+            var reHeight = RePicWidth;
+            ThisPic.height = reHeight;
+        }
+    }
+
 </script>
+
+
 <script src="../background/assets/js/amazeui.min.js"></script>
 <script src="../background/assets/js/amazeui.dialog.min.js"></script>
 <script src="../background/assets/js/amazeui.datatables.min.js"></script>

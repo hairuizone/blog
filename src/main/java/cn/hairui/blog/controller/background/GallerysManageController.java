@@ -7,27 +7,31 @@ import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.service.GallerysService;
 import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.util.FileUtil;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author lihairui
@@ -212,7 +216,7 @@ public class GallerysManageController {
         model.addAttribute("gallerys", gallerys);
 
         Integer imgcount = gallerysService.queryGalleryImgCountByGalleryId(gallerys.getId());
-        model.addAttribute("imgcount",imgcount);
+        model.addAttribute("imgcount", imgcount);
         //通过id获取相册信息
         List<GalleryImg> galleryImgList = gallerysService.queryGalleryImgList(id);
         model.addAttribute("galleryImgs", galleryImgList);
@@ -245,31 +249,169 @@ public class GallerysManageController {
 
             Integer galleryId = galleryImg.getGalleryId();
             int galleryImgCount = gallerysService.queryGalleryImgCountByGalleryId(galleryId);
-            if(galleryImgCount == 0){
+            if (galleryImgCount == 0) {
                 int m = gallerysService.deleteGallerysById(galleryId);
-                map.put("clear","Y");//设置情况标识
-            }else {
+                map.put("clear", "Y");//设置情况标识
+            } else {
                 Gallerys gallerys = gallerysService.queryGallerysById(galleryId);
 
                 //判断删除的是否为封面图
-                if(gallerys != null && galleryImg1 == null && gallerys.getShowImg().equals(imgPath)){
+                if (gallerys != null && galleryImg1 == null && gallerys.getShowImg().equals(imgPath)) {
                     //将 galleryId 对应的相册的封面图设置为下一站图片
                     GalleryImg galleryImg2 = gallerysService.queryGalleryImgByGalleryIdFirst(galleryId);
-                    if(galleryImg2 != null){
+                    if (galleryImg2 != null) {
                         String newImg = galleryImg2.getImgPath();
-                        int x = gallerysService.setShowImgByGalleryId(galleryId,newImg);
+                        int x = gallerysService.setShowImgByGalleryId(galleryId, newImg);
                     }
                 }
-                map.put("clear","N");
+                map.put("clear", "N");
             }
-
-
-
             map.put(PubConstant.flag, PubConstant.success);
         } catch (Exception e) {
             e.printStackTrace();
             map.put(PubConstant.flag, PubConstant.failed);
         }
+        return map;
+    }
+
+
+    @RequestMapping(value = "gallery-upload")
+    public String addGalleryImg(Integer gallery_id, Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+
+        Gallerys gallerys = gallerysService.queryGallerysById(gallery_id);
+        model.addAttribute("gallerys", gallerys);
+        return "background/gallery-upload";
+    }
+
+    @RequestMapping(value = "galleryimg-send")
+    @ResponseBody
+    public Map uploadGalleryImgs(@RequestParam("base64Str") String base64Str, Integer gallery_id, Model model) {
+
+        base64Str = base64Str.substring(1,base64Str.length()-1);
+        System.out.println("aaaaa:"+base64Str);
+
+        String[] tempStr = base64Str.split("\\}\\,\\{");
+        System.out.println("BBBB "+tempStr.length);
+
+        for(String str:tempStr){
+            System.out.println("******");
+            System.out.println(str);
+        }
+
+        String base64Data = base64Str.toString();
+
+        System.out.println("CCCCC :"+base64Data);
+        Map map = new HashMap();
+        //String galleryId = request.getParameter("gallery_id");
+        System.out.println("gallery_id = " + gallery_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        String dataPrix = ""; //base64格式前头
+        String data = "";//实体部分数据
+        if(base64Data==null||"".equals(base64Data)){
+            return null;
+        }else {
+            String [] d = base64Data.split("base64,");//将字符串分成数组
+            if(d != null && d.length == 2){
+                dataPrix = d[0];
+                data = d[1];
+            }else {
+                return null;
+            }
+        }
+        String suffix = "";//图片后缀，用以识别哪种格式数据
+        //data:image/jpeg;base64,base64编码的jpeg图片数据
+        if("data:image/jpg;".equalsIgnoreCase(dataPrix)){
+            suffix = ".jpg";
+        }else if("data:image/jpeg;".equalsIgnoreCase(dataPrix)){
+            suffix = ".jpeg";
+        }else if("data:image/x-icon;".equalsIgnoreCase(dataPrix)){
+            //data:image/x-icon;base64,base64编码的icon图片数据
+            suffix = ".ico";
+        }else if("data:image/gif;".equalsIgnoreCase(dataPrix)){
+            //data:image/gif;base64,base64编码的gif图片数据
+            suffix = ".gif";
+        }else if("data:image/png;".equalsIgnoreCase(dataPrix)){
+            //data:image/png;base64,base64编码的png图片数据
+            suffix = ".png";
+        }else if("data:image/bmp;".equalsIgnoreCase(dataPrix)){
+            //data:image/png;base64,base64编码的png图片数据
+            suffix = ".bmp";
+        }else {
+            return null;
+        }
+
+
+        String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+        String tempFileName=uuid+suffix;
+        String imgFilePath = "D:\\upload\\Images\\"+tempFileName;//新生成的图片
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            //Base64解码
+            byte[] b = decoder.decodeBuffer(data);
+            for(int i=0;i<b.length;++i) {
+                if(b[i]<0) {
+                    //调整异常数据
+                    b[i]+=256;
+                }
+            }
+            OutputStream out = new FileOutputStream(imgFilePath);
+            out.write(b);
+            out.flush();
+            out.close();
+            String imgurl="http://xxxxxxxx/"+tempFileName;
+            //imageService.save(imgurl);
+            map.put(PubConstant.flag, PubConstant.success);
+        } catch (IOException e) {
+            e.printStackTrace();
+            map.put(PubConstant.flag, PubConstant.failed);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        map.put(PubConstant.flag, PubConstant.success);
         return map;
     }
 }

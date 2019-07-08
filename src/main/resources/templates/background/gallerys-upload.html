@@ -222,8 +222,6 @@
                 }
             });
         }
-
-
     }
 
 
@@ -276,6 +274,11 @@
                 });
             }
         });
+    }
+
+    function addGalleryImg(id) {
+        var url = "gallery-upload?gallery_id=" + id;
+        window.location.href = url;
     }
 </script>
 <script src="../background/assets/js/amazeui.min.js"></script>
