@@ -247,7 +247,7 @@
                         } else {
                             AMUI.dialog.alert({
                                 title: '提示信息',
-                                content: '删除失败，请重试',
+                                content: '删除失败，原因：' + data.message,
                                 onConfirm: function () {
                                     window.location.href = "gallerys-list";
                                 }
@@ -257,9 +257,8 @@
                     error: function () {
                         AMUI.dialog.alert({
                             title: '提示信息',
-                            content: '删除成功',
+                            content: '删除失败',
                             onConfirm: function () {
-                                console.log('close');
                                 window.location.href = "gallerys-list";
                             }
                         });

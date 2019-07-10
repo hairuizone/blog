@@ -121,4 +121,16 @@ public interface GallerysService {
      * @return
      */
     public int queryGalleryImgByImgPath(String imgName);
+
+    /**
+     * 获取展示的相册信息
+     * @return
+     */
+    public List<Gallerys> queryGallerysShowList();
+
+    /**
+     * 查询所有者的相册信息
+     * @return
+     */
+    public List<Gallerys> queryGallerysListByOwner(String username);
 }

@@ -194,18 +194,30 @@ public class GallerysManageController {
         try {
 
             gallerysService.updateGallerys(gallerys);//创建相册
-            System.out.println("zhujian " + gallerys.getId());
-            System.out.println("success");
+
             map.put(PubConstant.flag, PubConstant.success);
         } catch (Exception e) {
             map.put(PubConstant.flag, PubConstant.failed);
-            System.out.println("error");
             e.printStackTrace();
         }
-        System.out.println(gallerys.toString());
-        //gallerysService.updateGallerys(gallerys);
 
         map.put(PubConstant.flag, PubConstant.success);
+        return map;
+    }
+
+    @RequestMapping(value = "gallerys-delete")
+    @ResponseBody
+    public Map deleteGallerys(Integer id, Model model) {
+        Map map = new HashMap();
+        int count = gallerysService.queryGalleryImgCountByGalleryId(id);
+        if (count <= 1) {
+            //没有照片或者只有一张封面图
+            gallerysService.deleteGallerysById(id);
+            map.put(PubConstant.flag, PubConstant.success);
+        } else {
+            map.put(PubConstant.flag, PubConstant.failed);
+            map.put(PubConstant.message, "该相册下面存在未被删除的图片，无法删除");
+        }
         return map;
     }
 
@@ -304,72 +316,48 @@ public class GallerysManageController {
     @RequestMapping(value = "galleryimg-upload")
     @ResponseBody
     public Map uploadGalleryImg(HttpServletRequest request, @RequestParam(value = "file", required = true) List<MultipartFile> files, Model model) {
-
+        Map map = new HashMap();
         Integer gallery_id = Integer.parseInt(request.getParameter("gallery_id"));
         String descStr = request.getParameter("desc");
         descStr = descStr.substring(1, descStr.length() - 1);
         String[] tempStr = descStr.split("\\,\\{");
         Map descMap = new HashMap();
         //将temStr重组为map
-        for(String str: tempStr){
+        for (String str : tempStr) {
             if (!str.startsWith("{")) {
                 str = "{" + str;
             }
-            //System.out.println(imgData);
-
             JSONObject descJson = JSONObject.fromObject(str);
-            System.out.println(descJson.get("name") + " : "+descJson.get("value"));
-            descMap.put(descJson.get("name"),descJson.get("value"));
-            //todoo
-            System.out.println(descMap.toString());
-
+            descMap.put(descJson.get("name"), descJson.get("value"));
         }
 
-        //[{"name":"4.jpg","value":"1"},{"name":"3.jpg","value":"2"},{"name":"2.jpg","value":"3"},{"name":"1.jpg","value":"4"},{"name":"f1.jpg","value":"5"}]
         for (MultipartFile file : files) {
             System.out.println("文件名：" + file.getOriginalFilename() + "---contentType：" + file.getContentType());
             try {
                 int x = gallerysService.queryGalleryImgByImgPath(file.getOriginalFilename());
-                if (x > 0) {
-                    String imgFilePath = uploadPath + PubConstant.GALLERS_DIR + "test/" + file.getOriginalFilename();//新生成的图片
+                if (x == 0) {
+                    String imgFilePath = uploadPath + PubConstant.GALLERS_DIR + file.getOriginalFilename();//新生成的图片
+                    System.out.println(imgFilePath);
                     byte[] bytes = file.getBytes();
                     Path path = Paths.get(imgFilePath);
                     Files.write(path, bytes);
                     GalleryImg galleryImg = new GalleryImg();
                     galleryImg.setGalleryId(gallery_id);
                     galleryImg.setImgPath(file.getOriginalFilename());
-                    //galleryImg.setIntroduction(desc);
-                    //gallerysService.addGalleryImg(galleryImg);
-
+                    galleryImg.setIntroduction((String) descMap.get(file.getOriginalFilename()));
+                    gallerysService.addGalleryImg(galleryImg);
+                } else {
+                    System.out.println("图片" + file.getOriginalFilename() + "已经存在 不上传  不保存");
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
+                map.put(PubConstant.flag, PubConstant.failed);
+                return map;
             }
-
         }
-
+        map.put(PubConstant.flag, PubConstant.success);
         System.out.println(request.getParameter("gallery_id"));
-
-        /*MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
-        MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
-
-        System.out.println(multipartRequest.getFileNames());
-        System.out.println(multipartRequest.getMultiFileMap().toSingleValueMap().toString());
-        List<MultipartFile> filelist = multipartRequest.getFiles("files");
-        String fileName = "";
-        MultipartFile file = null;
-
-        file = (MultipartFile) filelist.get(0);
-        fileName = filelist.get(0).getOriginalFilename();
-        System.out.println(fileName);*/
-        /*byte[] bytes = file.getBytes();
-        Path path = Paths.get(uploadPath + PubConstant.GALLERS_DIR +"test/"+ fileName);
-        Files.write(path, bytes);
-        */
-
-        return null;
-
+        return map;
     }
 
     @RequestMapping(value = "galleryimg-send")
@@ -382,7 +370,6 @@ public class GallerysManageController {
             if (!imgData.startsWith("{")) {
                 imgData = "{" + imgData;
             }
-            //System.out.println(imgData);
 
             JSONObject imgJson = JSONObject.fromObject(imgData);
             String imgName = (String) imgJson.get("name");

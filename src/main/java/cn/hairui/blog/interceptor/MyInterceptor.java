@@ -28,6 +28,13 @@ public class MyInterceptor implements HandlerInterceptor {
             admin = request.getSession().getAttribute("name");*/
             response.sendRedirect( "login");
             return false;
+        }else{
+            //判断是否管理用户
+            /*if(!PubConstant.YES_NO_Y.equals(userinfo.getAdminflag())){
+                System.out.println("当前用户不是管理用户："+userinfo.getUsername());
+                response.sendRedirect("logout");
+                return false;
+            }*/
         }
         System.out.println("当前用户已登录，登录的用户名为： " + userinfo.getUsername());
         return true;

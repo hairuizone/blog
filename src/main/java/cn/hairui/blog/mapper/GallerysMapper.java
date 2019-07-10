@@ -67,4 +67,10 @@ public interface GallerysMapper {
 
     @Select("SELECT COUNT(1) FROM GALLERY_IMG WHERE IMG_PATH=#{imgName}")
     public int queryGalleryImgByImgPath(String imgName);
+
+    @Select("SELECT * FROM GALLERYS WHERE SHOW_FLAG='Y'")
+    public List<Gallerys> queryGallerysShowList();
+
+    @Select("SELECT * FROM GALLERYS WHERE CREATOR=#{username}")
+    public List<Gallerys> queryGallerysListByOwner(String username);
 }

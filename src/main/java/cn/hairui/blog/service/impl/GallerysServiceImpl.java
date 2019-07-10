@@ -94,4 +94,14 @@ public class GallerysServiceImpl implements GallerysService {
         return gallerysRepository.queryGalleryImgByImgPath(imgName);
     }
 
+    @Override
+    public List<Gallerys> queryGallerysShowList() {
+        return gallerysRepository.queryGallerysShowList();
+    }
+
+    @Override
+    public List<Gallerys> queryGallerysListByOwner(String username) {
+        return gallerysRepository.queryGallerysListByOwner(username);
+    }
+
 }

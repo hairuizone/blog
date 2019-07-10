@@ -28,6 +28,10 @@ public class DefaultViewController {
     public String foreIndexPage(){
         return "redirect:/";
     }
+    @RequestMapping(value = "/permissions")
+    public String permissions(){
+        return "permissions";
+    }
 
     @ResponseBody
     @RequestMapping(value = "/getMyInfo", produces = {"application/json;charset=UTF-8"})

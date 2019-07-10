@@ -16,6 +16,7 @@ public class User {
     private String mobile;
     private String lockflag;
     private String adminflag;
+    private String superUser;//超级用户
 
     public Integer getId() {
         return id;
@@ -87,5 +88,29 @@ public class User {
 
     public void setAdminflag(String adminflag) {
         this.adminflag = adminflag;
+    }
+
+    public String getSuperUser() {
+        return superUser;
+    }
+
+    public void setSuperUser(String superUser) {
+        this.superUser = superUser;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", prophoto='" + prophoto + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", lockflag='" + lockflag + '\'' +
+                ", adminflag='" + adminflag + '\'' +
+                ", superUser='" + superUser + '\'' +
+                '}';
     }
 }

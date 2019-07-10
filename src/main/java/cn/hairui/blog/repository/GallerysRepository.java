@@ -78,4 +78,12 @@ public class GallerysRepository {
     public int queryGalleryImgByImgPath(String imgName) {
         return gallerysMapper.queryGalleryImgByImgPath(imgName);
     }
+
+    public List<Gallerys> queryGallerysShowList() {
+        return gallerysMapper.queryGallerysShowList();
+    }
+
+    public List<Gallerys> queryGallerysListByOwner(String username) {
+        return gallerysMapper.queryGallerysListByOwner(username);
+    }
 }
