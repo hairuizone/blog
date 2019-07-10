@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -299,9 +301,80 @@ public class GallerysManageController {
         }
     }
 
+    @RequestMapping(value = "galleryimg-upload")
+    @ResponseBody
+    public Map uploadGalleryImg(HttpServletRequest request, @RequestParam(value = "file", required = true) List<MultipartFile> files, Model model) {
+
+        Integer gallery_id = Integer.parseInt(request.getParameter("gallery_id"));
+        String descStr = request.getParameter("desc");
+        descStr = descStr.substring(1, descStr.length() - 1);
+        String[] tempStr = descStr.split("\\,\\{");
+        Map descMap = new HashMap();
+        //将temStr重组为map
+        for(String str: tempStr){
+            if (!str.startsWith("{")) {
+                str = "{" + str;
+            }
+            //System.out.println(imgData);
+
+            JSONObject descJson = JSONObject.fromObject(str);
+            System.out.println(descJson.get("name") + " : "+descJson.get("value"));
+            descMap.put(descJson.get("name"),descJson.get("value"));
+            //todoo
+            System.out.println(descMap.toString());
+
+        }
+
+        //[{"name":"4.jpg","value":"1"},{"name":"3.jpg","value":"2"},{"name":"2.jpg","value":"3"},{"name":"1.jpg","value":"4"},{"name":"f1.jpg","value":"5"}]
+        for (MultipartFile file : files) {
+            System.out.println("文件名：" + file.getOriginalFilename() + "---contentType：" + file.getContentType());
+            try {
+                int x = gallerysService.queryGalleryImgByImgPath(file.getOriginalFilename());
+                if (x > 0) {
+                    String imgFilePath = uploadPath + PubConstant.GALLERS_DIR + "test/" + file.getOriginalFilename();//新生成的图片
+                    byte[] bytes = file.getBytes();
+                    Path path = Paths.get(imgFilePath);
+                    Files.write(path, bytes);
+                    GalleryImg galleryImg = new GalleryImg();
+                    galleryImg.setGalleryId(gallery_id);
+                    galleryImg.setImgPath(file.getOriginalFilename());
+                    //galleryImg.setIntroduction(desc);
+                    //gallerysService.addGalleryImg(galleryImg);
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        System.out.println(request.getParameter("gallery_id"));
+
+        /*MultipartResolver resolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        MultipartHttpServletRequest multipartRequest = resolver.resolveMultipart(request);
+
+        System.out.println(multipartRequest.getFileNames());
+        System.out.println(multipartRequest.getMultiFileMap().toSingleValueMap().toString());
+        List<MultipartFile> filelist = multipartRequest.getFiles("files");
+        String fileName = "";
+        MultipartFile file = null;
+
+        file = (MultipartFile) filelist.get(0);
+        fileName = filelist.get(0).getOriginalFilename();
+        System.out.println(fileName);*/
+        /*byte[] bytes = file.getBytes();
+        Path path = Paths.get(uploadPath + PubConstant.GALLERS_DIR +"test/"+ fileName);
+        Files.write(path, bytes);
+        */
+
+        return null;
+
+    }
+
     @RequestMapping(value = "galleryimg-send")
     @ResponseBody
-    public Map uploadGalleryImgs(@RequestParam("base64Str") String base64Str, Integer gallery_id, Model model) {
+    public Map sendGalleryImgs(@RequestParam("base64Str") String base64Str, Integer gallery_id, Model model) {
         Map map = new HashMap();
         base64Str = base64Str.substring(1, base64Str.length() - 1);
         String[] tempStr = base64Str.split("\\,\\{");
@@ -380,7 +453,7 @@ public class GallerysManageController {
                     return map;
                 }
             } else {
-                System.out.println("图片" + imgName +"已经存在 不上传  不保存");
+                System.out.println("图片" + imgName + "已经存在 不上传  不保存");
             }
 
             map.put(PubConstant.flag, PubConstant.success);

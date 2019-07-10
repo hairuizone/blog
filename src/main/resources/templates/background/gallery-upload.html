@@ -237,6 +237,7 @@
         var result;
         var dataArr = []; // 储存所选图片的结果(文件名和base64数据)
         var fd;  //FormData方式发送请求
+        fd = new FormData();
         var oSelect = document.getElementById("select");
         var oAdd = document.getElementById("add");
         var oSubmit = document.getElementById("submit");
@@ -250,14 +251,15 @@
         }
 
         function readFile() {
-            fd = new FormData();
+            //fd = new FormData();
             var iLen = this.files.length;
             for (var i = 0; i < iLen; i++) {
                 if (!input['value'].match(/.jpg|.gif|.png|.jpeg|.bmp/i)) {　　//判断上传文件格式
                     return alert("上传的图片格式不正确，请重新选择");
                 }
                 var reader = new FileReader();
-                fd.append(i, this.files[i]);
+                //fd.append(i, this.files[i]);
+                fd.append("file", this.files[i]);
                 reader.readAsDataURL(this.files[i]);  //转成base64
                 reader.fileName = this.files[i].name;
 
@@ -292,48 +294,84 @@
         }
 
         function send() {
-            var submitArr = [];
-            $('.subPic').each(function () {
-                    submitArr.push({
-                        name: $(this).attr('alt'),
-                        base64: $(this).attr('src'),
-                        desc:$(this).parents('div').next('div').find('input:first').val()
-                    });
-                }
-            );
-
-            var data = JSON.stringify(submitArr);
-            console.log(data);
-            $.ajax({
-                url: 'galleryimg-send',
-                type: 'post',
-                //data: JSON.stringify(submitArr),
-                data: {
-                    base64Str: JSON.stringify(submitArr),
-                    gallery_id: gallery_id
-                },
-
-                dataType: 'json',
-                //processData: false,   用FormData传fd时需有这两项
-                //contentType: false,
-                success: function (data) {
-                    if (data.flag == "success") {
-                        AMUI.dialog.alert({
-                            title: '提示信息',
-                            content: '上传成功',
-                            onConfirm: function () {
-                                window.location.href = "upload_gallerys?id="+gallery_id;
-                            }
+            if(1 == 2){
+                //方法一：base64上传
+                var submitArr = [];
+                $('.subPic').each(function () {
+                        submitArr.push({
+                            name: $(this).attr('alt'),
+                            base64: $(this).attr('src'),
+                            desc:$(this).parents('div').next('div').find('input:first').val()
                         });
                     }
-                }
-            })
+                );
+
+                var data = JSON.stringify(submitArr);
+                console.log(data);
+                $.ajax({
+                    url: 'galleryimg-send',
+                    type: 'post',
+                    //data: JSON.stringify(submitArr),
+                    data: {
+                        base64Str: JSON.stringify(submitArr),
+                        gallery_id: gallery_id
+                    },
+
+                    dataType: 'json',
+                    //processData: false,   用FormData传fd时需有这两项
+                    //contentType: false,
+                    success: function (data) {
+                        if (data.flag == "success") {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '上传成功',
+                                onConfirm: function () {
+                                    window.location.href = "upload_gallerys?id="+gallery_id;
+                                }
+                            });
+                        }
+                    }
+                })
+            }else{
+                var submitArr = [];
+
+                $('.subPic').each(function () {
+                    var keystr = $(this).attr('alt');
+                    var value = $(this).parents('div').next('div').find('input:first').val();
+                    var str = {};
+
+                    str.name = keystr;
+                    str.value = value;
+                    submitArr.push(str);
+                    }
+                );
+                fd.delete("desc");
+                fd.append("desc",JSON.stringify(submitArr))
+
+                //方法二：文件上传
+                $.ajax({
+                    url:'galleryimg-upload',
+                    type:'post',
+                    data: fd,
+                    processData:false,
+                    contentType:false,
+                    success:function(data){
+
+                    }
+                })
+
+            }
+
         }
 
         oSelect.onclick = function () {
             oInput.value = "";   // 先将oInput值清空，否则选择图片与上次相同时change事件不会触发
             //清空已选图片
             $('.float').remove();
+            for (var key of fd.keys()){
+                fd.delete(key);
+            };
+            fd.append("gallery_id",gallery_id);
             oInput.click();
         }
 
