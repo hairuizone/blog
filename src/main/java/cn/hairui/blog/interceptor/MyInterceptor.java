@@ -28,13 +28,12 @@ public class MyInterceptor implements HandlerInterceptor {
             admin = request.getSession().getAttribute("name");*/
             response.sendRedirect( "login");
             return false;
-        }else{
-            //判断是否管理用户
-            /*if(!PubConstant.YES_NO_Y.equals(userinfo.getAdminflag())){
-                System.out.println("当前用户不是管理用户："+userinfo.getUsername());
-                response.sendRedirect("logout");
-                return false;
-            }*/
+        }else if (userinfo != null && !PubConstant.YES_NO_Y.equals(userinfo.getAdminflag())) {
+            System.out.println("当前用户已经登录但是管理权限不足!登录用户名："+userinfo.getUsername());
+            /*request.getSession().setAttribute("name","lihairui");
+            admin = request.getSession().getAttribute("name");*/
+            response.sendRedirect( "forgeindex");
+            return false;
         }
         System.out.println("当前用户已登录，登录的用户名为： " + userinfo.getUsername());
         return true;

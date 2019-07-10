@@ -1,7 +1,6 @@
 package cn.hairui.blog.config;
 
 import cn.hairui.blog.interceptor.MyInterceptor;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +36,7 @@ public class WebConfigurer implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         // addPathPatterns("/**") 表示拦截所有的请求，
         // excludePathPatterns("/login", "/register") 表示除了登陆与注册之外，因为登陆注册不需要登陆也可以访问
-        registry.addInterceptor(myInterceptor).addPathPatterns("/manage/*").excludePathPatterns("/manage/login","/manage/user-login","/manage/forgeindex");
-    }
+        registry.addInterceptor(myInterceptor).addPathPatterns("/manage/*").excludePathPatterns("/manage/login","/manage/user-login","/manage/forgeindex","/manage/logout");
+     }
 
 }

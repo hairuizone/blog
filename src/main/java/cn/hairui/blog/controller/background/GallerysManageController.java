@@ -4,6 +4,7 @@ import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.GalleryImg;
 import cn.hairui.blog.model.Gallerys;
 import cn.hairui.blog.model.MyInfo;
+import cn.hairui.blog.model.User;
 import cn.hairui.blog.service.GallerysService;
 import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.util.FileUtil;
@@ -55,11 +56,22 @@ public class GallerysManageController {
     private String uploadPage = PubConstant.BACKGROUND_DIR_NAME + "gallerys-upload";//上传图片页面
 
     @RequestMapping(value = "/gallerys-list")
-    public String queryGallserysList(Model model) {
+    public String queryGallserysList(HttpServletRequest request, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
+        List<Gallerys> gallerysList = null;
+        //获取登录用户信息
+        User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
+        if (PubConstant.YES_NO_Y.equals(user.getSuperUser())) {
+            //超级权限可以访问所有
+            gallerysList = gallerysService.queryGallerysList();
+        } else if (PubConstant.YES_NO_Y.equals(user.getAdminflag())) {
+            //后台管理用户
+            gallerysList = gallerysService.queryGallerysListByOwner(user.getUsername());
+        } else {
+            //非法用户 你想干什么
+        }
 
-        List<Gallerys> gallerysList = gallerysService.queryGallerysList();
         System.out.println(gallerysList.toString());
         model.addAttribute("gallerysList", gallerysList);
 
@@ -87,7 +99,9 @@ public class GallerysManageController {
         Map map = new HashMap();
         Gallerys gallerys = new Gallerys();
         gallerys.setName(name);
-        gallerys.setCreator(creator);
+        //废弃前台获取creator 从登录信息中获取
+        User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
+        gallerys.setCreator(user.getUsername());
         gallerys.setShowFlag(showFlag);
         gallerys.setIntroduction(introduction);
         gallerys.setCreateTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
@@ -100,7 +114,6 @@ public class GallerysManageController {
             file = (MultipartFile) filelist.get(0);
             fileName = filelist.get(0).getOriginalFilename();
             gallerys.setShowImg(fileName);
-
         }
         ////文件上传 对象提交插入数据库
         File targetPath = new File(uploadPath);
@@ -121,7 +134,6 @@ public class GallerysManageController {
 
             int i = gallerysService.addGalleryImg(galleryImg);
 
-            System.out.println("zhujian " + gallerys.getId());
             System.out.println("success");
             map.put(PubConstant.flag, PubConstant.success);
         } catch (Exception e) {
@@ -192,15 +204,12 @@ public class GallerysManageController {
 
         //保存
         try {
-
             gallerysService.updateGallerys(gallerys);//创建相册
-
             map.put(PubConstant.flag, PubConstant.success);
         } catch (Exception e) {
             map.put(PubConstant.flag, PubConstant.failed);
             e.printStackTrace();
         }
-
         map.put(PubConstant.flag, PubConstant.success);
         return map;
     }
@@ -222,20 +231,33 @@ public class GallerysManageController {
     }
 
     @RequestMapping(value = "upload_gallerys")
-    public String uploadGalleryImg(Integer id, Model model) {
+    public String uploadGalleryImg(HttpServletRequest request, Integer id, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
-
         //获取相册信息
         Gallerys gallerys = gallerysService.queryGallerysById(id);
-        model.addAttribute("gallerys", gallerys);
+        User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
+        if (PubConstant.YES_NO_Y.equals(user.getSuperUser())) {
 
-        Integer imgcount = gallerysService.queryGalleryImgCountByGalleryId(gallerys.getId());
-        model.addAttribute("imgcount", imgcount);
-        //通过id获取相册信息
-        List<GalleryImg> galleryImgList = gallerysService.queryGalleryImgList(id);
-        model.addAttribute("galleryImgs", galleryImgList);
-        System.out.println("upload_gallerys");
+        } else if (PubConstant.YES_NO_Y.equals(user.getAdminflag())) {
+            //管理用户 确认该相册是否归属其管理
+            if (!user.getUsername().equals(gallerys.getCreator().trim())) {
+                gallerys = null;
+            }
+        } else {
+            //盗链用户 胆子肥的很
+            gallerys = null;
+        }
+        model.addAttribute("gallerys", gallerys);
+        if (gallerys != null) {
+            Integer imgcount = gallerysService.queryGalleryImgCountByGalleryId(gallerys.getId());
+            model.addAttribute("imgcount", imgcount);
+            //通过id获取相册信息
+            List<GalleryImg> galleryImgList = gallerysService.queryGalleryImgList(id);
+            model.addAttribute("galleryImgs", galleryImgList);
+        } else {
+            model.addAttribute("galleryImgs", null);
+        }
         return uploadPage;
     }
 
@@ -248,10 +270,9 @@ public class GallerysManageController {
             //防止图片上传多次，查询数据库中存在其他相册下有该照片信息
             GalleryImg galleryImg = gallerysService.queryGalleryImgById(id);
             String imgPath = galleryImg.getImgPath();
-            System.out.println("galleryImg:" + galleryImg);
 
             GalleryImg galleryImg1 = gallerysService.queryGalleryImgByImgPathExceptId(id, imgPath);
-            System.out.println("galleryImg1:" + galleryImg1);
+
             if (galleryImg1 == null) {
                 //不存在重名的 可以删除文件
                 String path = uploadPath + PubConstant.GALLERS_DIR + imgPath;
@@ -291,11 +312,22 @@ public class GallerysManageController {
 
 
     @RequestMapping(value = "gallery-upload")
-    public String addGalleryImg(Integer gallery_id, Model model) {
+    public String addGalleryImg(HttpServletRequest request, Integer gallery_id, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
-
         Gallerys gallerys = gallerysService.queryGallerysById(gallery_id);
+
+        User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
+        if (PubConstant.YES_NO_Y.equals(user.getSuperUser())) {
+
+        } else if (PubConstant.YES_NO_Y.equals(user.getAdminflag())) {
+            if (!user.getUsername().equals(gallerys.getCreator().trim())) {
+                gallerys = null;
+            }
+        } else {
+            gallerys = null;
+        }
+
         model.addAttribute("gallerys", gallerys);
         return "background/gallery-upload";
     }
