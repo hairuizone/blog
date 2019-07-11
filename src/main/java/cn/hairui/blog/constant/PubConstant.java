@@ -88,4 +88,8 @@ public class PubConstant {
      * 相册预览照片数量
      */
     public static final Integer GALLERY_PREVIEW_NUM = 9;
+    /**
+     * 重置后初始化密码
+     */
+    public static final String ORIGIN_PWD = "111111";
 }

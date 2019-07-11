@@ -3,6 +3,7 @@ package cn.hairui.blog.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -21,6 +22,15 @@ import java.util.Map;
 @Configuration
 public class DriudConfig {
 
+    @Value("${druid.login.user_name}")
+    private String userName;
+
+    @Value("${druid.login.password}")
+    private String password;
+
+    @Value("${druid.allow.ip}")
+    private String allowIp;
+
     @ConfigurationProperties(prefix = "spring.datasource")
     @Bean
     public DataSource druid() {
@@ -28,30 +38,29 @@ public class DriudConfig {
     }
 
     //配置Druid监控 访问  http://localhost:8080/druid/login.html
-    //配置一个管理后台的Servlet
+    //1.配置一个管理后台的Servlet
     @Bean
     public ServletRegistrationBean statViewServlet() {
         //注册一个Servlet
-        ServletRegistrationBean bean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
+        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new StatViewServlet(), "/druid/*");
         Map<String, String> initParams = new HashMap<>();
-
-        System.out.println("##############");
-        initParams.put("loginUsername", "root");
-        initParams.put("loginPassword", "Hairui123369");
-        initParams.put("allow", "");//默认就是允许所有访问IP
-        bean.setInitParameters(initParams);
-        return bean;
+        initParams.put("loginUsername", userName);
+        initParams.put("loginPassword", password);
+        initParams.put("allow", "");//默认就是允许所有访问IP allowIp
+        servletRegistrationBean.setInitParameters(initParams);
+        return servletRegistrationBean;
     }
 
     //2.配置一个web监控的filter
     @Bean
-    public FilterRegistrationBean webStatFilter() {//注册一个Filter
-        FilterRegistrationBean bean = new FilterRegistrationBean(new WebStatFilter());
+    public FilterRegistrationBean webStatFilter() {
+        //注册一个Filter
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
         Map<String, String> initParams = new HashMap<>();
         initParams.put("exclusions", "*.js,*.css,/druid/*"); //排除的请求
-        bean.setInitParameters(initParams);
-        bean.setUrlPatterns(Arrays.asList("/*")); //拦截的请求
-        System.out.println("**********");
-        return bean;
+        filterRegistrationBean.setInitParameters(initParams);
+        filterRegistrationBean.setUrlPatterns(Arrays.asList("/*")); //拦截的请求
+
+        return filterRegistrationBean;
     }
 }

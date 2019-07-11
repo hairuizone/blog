@@ -157,12 +157,291 @@
     </div>
     <!--公共部分-end-->
     <!-- 内容区域 -->
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+            <div class="row">
+                <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                    <div class="widget am-cf">
+                        <div class="widget-head am-cf">
+                            <div class="widget-title  am-cf">用户</div>
+                        </div>
+                        <div class="widget-body  am-fr">
 
+                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                                <div class="am-form-group">
+                                    <div class="am-btn-toolbar">
+                                        <div class="am-btn-group am-btn-group-xs">
+                                            <button type="button"
+                                                    class="am-btn am-btn-default am-btn-success addBooksBtn"><span
+                                                    class="am-icon-plus"></span> 新增
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="am-u-sm-12">
+                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black am-table-hover " id="example-r">
+                                    <thead>
+                                    <tr>
+                                        <th>编号</th>
+                                        <th>用户帐号</th>
+                                        <th>昵称</th>
+                                        <th>邮箱</th>
+                                        <th>手机号</th>
+                                        <th>是否锁定</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr class="gradeX"></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="am-u-lg-12 am-cf">
+                                <div class="am-fr">
+                                    <ul class="am-pagination tpl-pagination">
+                                        <li th:if="${pageInfo.hasPreviousPage}"><a
+                                                th:href="@{'user-list?pageIndex=1'}"
+                                                aria-label="Previous"> <i class="fa fa-angle-double-left"></i>
+                                        </a></li>
+
+                                        <li th:if="${pageInfo.hasPreviousPage}"><a
+                                                th:href="@{'user-list?pageIndex='+${pageInfo.prePage}}"
+                                                aria-label="Previous"> <i class="fa fa-angle-left"></i>
+                                        </a></li>
+
+                                        <th:block th:each="nav : ${pageInfo.navigatepageNums}">
+                                            <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
+                                                    th:href="@{'user-list?pageIndex='+${nav}}"
+                                                    th:text="${nav}"></a></li>
+                                        </th:block>
+
+                                        <th:block th:if="${pageInfo.hasNextPage}">
+                                            <li><a
+                                                    th:href="@{'user-list?pageIndex='+${pageInfo.nextPage}}"
+                                                    aria-label="Next"><i class="fa fa-angle-right"></i>
+                                            </a></li>
+                                        </th:block>
+                                        <th:block th:if="${pageInfo.hasNextPage}">
+                                            <li><a
+                                                    th:href="@{'user-list?pageIndex='+${pageInfo.pages}}"
+                                                    aria-label="Next"><i class="fa fa-angle-double-right"></i>
+                                            </a></li>
+                                        </th:block>
+
+                                        <li><label th:text="'共'+${pageInfo.pages}+'页'"></label></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 
 <script language="JavaScript">
 
+    function resetPwdRow(id){
+        AMUI.dialog.confirm({
+            title: '提示信息',
+            content: '是否确定重置该用户密码？',
+            onConfirm: function () {
+                $.ajax({
+                    type: "post",
+                    url: "user-reset",
+                    data: {
+                        id: id
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.flag == "success") {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '密码重置成功',
+                                onConfirm: function () {
+
+                                }
+                            });
+
+                        } else {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '密码重置失败',
+                                onConfirm: function () {
+
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+                        AMUI.dialog.alert({
+                            title: '提示信息',
+                            content: '密码重置失败',
+                            onConfirm: function () {
+
+                            }
+                        });
+                    }
+                });
+            },
+            onCancel: function () {
+                return;
+            }
+        });
+    }
+    function lockRow(id){
+        AMUI.dialog.confirm({
+            title: '提示信息',
+            content: '是否确定锁定该用户？',
+            onConfirm: function () {
+                $.ajax({
+                    type: "post",
+                    url: "user-lock",
+                    data: {
+                        id: id,
+                        lock:'Y'
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.flag == "success") {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '用户锁定成功',
+                                onConfirm: function () {
+                                    window.location.href = "user-list";
+                                }
+                            });
+
+                        } else {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '用户锁定失败',
+                                onConfirm: function () {
+
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+                        AMUI.dialog.alert({
+                            title: '提示信息',
+                            content: '用户锁定失败',
+                            onConfirm: function () {
+
+                            }
+                        });
+                    }
+                });
+            },
+            onCancel: function () {
+                return;
+            }
+        });
+    }
+    function unlockRow(id) {
+
+        AMUI.dialog.confirm({
+            title: '提示信息',
+            content: '是否确定解锁该用户？',
+            onConfirm: function () {
+                $.ajax({
+                    type: "post",
+                    url: "user-lock",
+                    data: {
+                        id: id,
+                        lock:'N'
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.flag == "success") {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '用户解锁成功',
+                                onConfirm: function () {
+                                    window.location.href = "user-list";
+                                }
+                            });
+
+                        } else {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '用户解锁失败',
+                                onConfirm: function () {
+
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+                        AMUI.dialog.alert({
+                            title: '提示信息',
+                            content: '用户解锁失败',
+                            onConfirm: function () {
+
+                            }
+                        });
+                    }
+                });
+            },
+            onCancel: function () {
+                return;
+            }
+        });
+    }
+    function adminRow(id){
+        AMUI.dialog.alert({
+            title: '提示信息',
+            content: '功能暂未开放！！！',
+            onConfirm: function () {
+
+            }
+        });
+    }
+
+
+
+
+</script>
+
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var users = [[${users}]];
+    var size = users.length;
+    for (var i = 1; i <= size; i++) {
+        var x = document.getElementById('example-r').insertRow(i)
+        var id = x.insertCell(0)
+        var username = x.insertCell(1)
+        var nickname = x.insertCell(2)
+        var email = x.insertCell(3)
+        var mobile = x.insertCell(4)
+        var lockflag = x.insertCell(5)
+        var div = x.insertCell(6)
+        id.innerHTML = users[i - 1].id;
+        username.innerHTML = users[i - 1].username;
+
+        nickname.innerHTML = users[i - 1].nickname;
+        email.innerHTML = users[i - 1].email;
+        mobile.innerHTML = users[i - 1].mobile;
+        lockflag.innerHTML = users[i - 1].lockflag;
+
+        var idNo = users[i - 1].id;
+        var textHtml = '' +
+            '<div class="tpl-table-black-operation">' +
+            '   <a href="javascript:void(0);" onclick=resetPwdRow(' + idNo + '); class=""> <i class="am-icon-refresh"></i>密码重置</a>' +
+            '   <a href="javascript:void(0);" onclick=lockRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-lock"></i>锁定用户</a> ' +
+            '   <a href="javascript:void(0);" onclick=unlockRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-unlock"></i>解锁用户</a> ' +
+            '   <a href="javascript:void(0);" onclick=adminRow(' + idNo + '); class=""> <i class="am-icon-pencil"></i>设为管理员</a>' +
+            '</div>';
+        div.innerHTML = textHtml;
+    }
+    /*]]>*/
 </script>
 
 <script src="../background/assets/js/amazeui.min.js"></script>
