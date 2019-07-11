@@ -1,363 +1,205 @@
-<html lang="zh_CN" class="default-style"><head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-    <title>记忆河|mr - 码农的技术经验分享与日常生活工作杂谈</title>
-
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
-    <meta name="keywords" content="mr,momery river,momery,博客,记忆之河,记忆河,独立博客,个人博客,原创博客,原创独立博客">
-    <meta name="description" content="记忆河博客，记录自己日常工作遇到的问题解决方法、生活杂谈与分享一些IT互联网技术的原创型个人博客网站">
-    <meta name="author" content="Rickey">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Barlow:300,400,500,600,700" rel="stylesheet">
-
-    <!-- Icon fonts -->
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/fonts/ionicons.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/fonts/linearicons.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-
-    <!-- Core stylesheets -->
-    <!-- 不使用Theme settings情况下，需要引入具体的css -->
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/css/rtl/bootstrap-material.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA" class="theme-settings-bootstrap-css">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/css/rtl/appwork-material.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/css/rtl/theme-cotton-material.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <!-- / 不使用Theme settings情况下，需要引入具体的css -->
-
-    <!-- 使用Theme settings情况下引入的css -->
-    <!--   <link rel="stylesheet" type="text/css" th:href="@{/assets/vendor/css/rtl/bootstrap.css}" class="theme-settings-bootstrap-css"> -->
-    <!--   <link rel="stylesheet" type="text/css" th:href="@{/assets/vendor/css/rtl/appwork.css}" class="theme-settings-appwork-css"> -->
-    <!-- / 使用Theme settings情况下引入的css -->
-
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/css/rtl/theme-corporate.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA" class="theme-settings-theme-css">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/css/rtl/colors.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA" class="theme-settings-colors-css">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/css/rtl/uikit.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-
-    <script src="https://hm.baidu.com/hm.js?ff3e9c06b40ed6462941e1b8e7cd3850"></script><script src="/assets/vendor/js/material-ripple.js"></script><style type="text/css">/*!
- * Waves v0.7.6
- * http://fian.my.id/Waves
- *
- * Copyright 2014-2018 Alfiana E. Sibuea and other contributors
- * Released under the MIT license
- * https://github.com/fians/Waves/blob/master/LICENSE */
-.waves-effect {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
-    overflow: hidden;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
-}
-.waves-effect .waves-ripple {
-    position: absolute;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    margin-top: -50px;
-    margin-left: -50px;
-    opacity: 0;
-    background: rgba(0, 0, 0, 0.2);
-    background: -webkit-radial-gradient(rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
-    background: -o-radial-gradient(rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
-    background: -moz-radial-gradient(rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
-    background: radial-gradient(rgba(0, 0, 0, 0.2) 0, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
-    -webkit-transition: all 0.5s ease-out;
-    -moz-transition: all 0.5s ease-out;
-    -o-transition: all 0.5s ease-out;
-    transition: all 0.5s ease-out;
-    -webkit-transition-property: -webkit-transform, opacity;
-    -moz-transition-property: -moz-transform, opacity;
-    -o-transition-property: -o-transform, opacity;
-    transition-property: transform, opacity;
-    -webkit-transform: scale(0) translate(0, 0);
-    -moz-transform: scale(0) translate(0, 0);
-    -ms-transform: scale(0) translate(0, 0);
-    -o-transform: scale(0) translate(0, 0);
-    transform: scale(0) translate(0, 0);
-    pointer-events: none;
-}
-.waves-effect.waves-light .waves-ripple {
-    background: rgba(255, 255, 255, 0.4);
-    background: -webkit-radial-gradient(rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
-    background: -o-radial-gradient(rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
-    background: -moz-radial-gradient(rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
-    background: radial-gradient(rgba(255, 255, 255, 0.2) 0, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0.5) 60%, rgba(255, 255, 255, 0) 70%);
-}
-.waves-effect.waves-classic .waves-ripple {
-    background: rgba(0, 0, 0, 0.2);
-}
-.waves-effect.waves-classic.waves-light .waves-ripple {
-    background: rgba(255, 255, 255, 0.4);
-}
-.waves-notransition {
-    -webkit-transition: none !important;
-    -moz-transition: none !important;
-    -o-transition: none !important;
-    transition: none !important;
-}
-.waves-button,
-.waves-circle {
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    -o-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);
-}
-.waves-button,
-.waves-button:hover,
-.waves-button:visited,
-.waves-button-input {
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    color: inherit;
-    background-color: rgba(0, 0, 0, 0);
-    font-size: 1em;
-    line-height: 1em;
-    text-align: center;
-    text-decoration: none;
-    z-index: 1;
-}
-.waves-button {
-    padding: 0.85em 1.1em;
-    border-radius: 0.2em;
-}
-.waves-button-input {
-    margin: 0;
-    padding: 0.85em 1.1em;
-}
-.waves-input-wrapper {
-    border-radius: 0.2em;
-    vertical-align: bottom;
-}
-.waves-input-wrapper.waves-button {
-    padding: 0;
-}
-.waves-input-wrapper .waves-button-input {
-    position: relative;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-.waves-circle {
-    text-align: center;
-    width: 2.5em;
-    height: 2.5em;
-    line-height: 2.5em;
-    border-radius: 50%;
-}
-.waves-float {
-    -webkit-mask-image: none;
-    -webkit-box-shadow: 0px 1px 1.5px 1px rgba(0, 0, 0, 0.12);
-    box-shadow: 0px 1px 1.5px 1px rgba(0, 0, 0, 0.12);
-    -webkit-transition: all 300ms;
-    -moz-transition: all 300ms;
-    -o-transition: all 300ms;
-    transition: all 300ms;
-}
-.waves-float:active {
-    -webkit-box-shadow: 0px 8px 20px 1px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 8px 20px 1px rgba(0, 0, 0, 0.3);
-}
-.waves-block {
-    display: block;
-}
-</style>
-    <script src="/assets/vendor/js/layout-helpers.js"></script><style type="text/css">
-    .layout-fixed .layout-1 .layout-sidenav,
-    .layout-fixed-offcanvas .layout-1 .layout-sidenav {
-        top: 0px !important;
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+<HEAD><TITLE>错误提示</TITLE>
+    <META content="text/html; charset=utf-8" http-equiv=Content-Type>
+    <STYLE type=text/css>BODY {
+        PADDING-BOTTOM: 0px;
+        MARGIN: 0px;
+        PADDING-LEFT: 0px;
+        PADDING-RIGHT: 0px;
+        FONT: 14px/1.6 Arial, Sans-serif;
+        PADDING-TOP: 0px
     }
-    .layout-container {
-        padding-top: 0px !important;
-    }
-    .layout-content {
-        padding-bottom: 0px !important;
-    }</style>
 
-    <!-- Theme settings -->
-    <!-- This file MUST be included after core stylesheets and layout-helpers.js in the <head> section -->
-    <!--   <script src="/assets/vendor/js/theme-settings.js"></script> -->
-    <script>
-        //     window.themeSettings = new ThemeSettings({
-        //       cssPath: '/assets/vendor/css/rtl/',
-        //       themesPath: '/assets/vendor/css/rtl/'
-        //     });
-    </script>
-    <!-- / Theme settings -->
-
-    <!-- 不使用Theme settings情况下，需要引入具体的css -->
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/css/rtl/theme-cotton.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <!-- / 不使用Theme settings情况下，需要引入具体的css -->
-
-    <!-- Core scripts -->
-    <script src="/assets/vendor/js/pace.js"></script><style type="text/css" id="pace-js-stylesheets">
-    .pace {
-        display: block !important;
+    A:link {
+        COLOR: #ea1921;
+        TEXT-DECORATION: none
     }
-    .page-loader {
-        display: none;
-        position: fixed;
-        height: 2px;
-        overflow: hidden;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 999999;
-    }
-    .page-loader div {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        transform: translate3d(0, 0, 0);
-    }
-    .pace-running:not(.pace-done) .page-loader {
-        display: block;
-    }
-    .pace-running:not(.pace-done) .page-loader div {
-        animation-duration: 1.2s;
-        animation-name: pageLoaderAnimation;
-        animation-iteration-count: infinite;
-        animation-timing-function: ease-in-out;
-    }
-    .turbolinks-progress-bar {
-        visibility: hidden !important;
-    }
-    [dir=rtl] .pace-running:not(.pace-done) .page-loader div,
-    [dir=rtl].pace-running:not(.pace-done) .page-loader div {
-        animation-name: pageLoaderAnimationRTL;
-    }
-    @-webkit-keyframes pageLoaderAnimation {
-        0% { right: 100%; left: 0; }
-        40% { right: 0; left: 0; }
-        60% { left: 0; right: 0; }
-        100% { left: 100%; right: 0; }
-    }
-    @keyframes pageLoaderAnimation {
-        0% { right: 100%; left: 0; }
-        40% { right: 0; left: 0; }
-        60% { left: 0; right: 0; }
-        100% { left: 100%; right: 0; }
-    }
-    @-webkit-keyframes pageLoaderAnimationRTL {
-        0% { left: 100%; right: 0; }
-        40% { left: 0; right: 0; }
-        60% { right: 0; left: 0; }
-        100% { right: 100%; left: 0; }
-    }
-    @keyframes pageLoaderAnimationRTL {
-        0% { left: 100%; right: 0; }
-        40% { left: 0; right: 0; }
-        60% { right: 0; left: 0; }
-        100% { right: 100%; left: 0; }
-    }
-</style>
-    <script src="/jquery-3.2.1/jquery-3.2.1.js"></script>
 
+    A:visited {
+        COLOR: #ea1921;
+        TEXT-DECORATION: none
+    }
 
-    <!-- Page -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/landing.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
+    H1 {
+        Z-INDEX: 2;
+        POSITION: relative;
+        PADDING-BOTTOM: 0px;
+        MARGIN: 140px auto 15px;
+        PADDING-LEFT: 0px;
+        WIDTH: 600px;
+        PADDING-RIGHT: 0px;
+        OVERFLOW: hidden;
+        PADDING-TOP: 0px;
+        xxxxborder: 1px solid
+    }
 
-    <!-- Libs -->
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/swiper/swiper.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/plyr/plyr.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/toastr/toastr.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/spinkit/spinkit.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/smartwizard/smartwizard.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/select2/select2.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/bootstrap-tagsinput/bootstrap-tagsinput.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/bootstrap-material-datetimepicker/bootstrap-material-datetimepicker.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
+    H2 {
+        POSITION: absolute;
+        TEXT-INDENT: -999px;
+        MARGIN: 0px;
+        FONT-SIZE: 0px;
+        TOP: 0px;
+        CURSOR: default;
+        LEFT: 0px;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        user-select: none
+    }
 
-    <!-- custom -->
-    <link rel="stylesheet" type="text/css" href="/css/custom.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
-    <link rel="stylesheet" type="text/css" href="/assets/vendor/libs/ladda/ladda.css;jsessionid=DF0B43ED574462B2692665E36ECF16CA">
+    H2 EM {
+        LINE-HEIGHT: 120px;
+        FONT-STYLE: italic;
+        TEXT-INDENT: 0px;
+        DISPLAY: block;
+        FONT-FAMILY: "Times New Roman", Times, Serif;
+        LETTER-SPACING: -5px;
+        COLOR: #ffdfdf;
+        FONT-SIZE: 200px;
+        FONT-WEIGHT: bold
+    }
 
-    <style type="text/css">
-        .pointer {
-            cursor: pointer
-        }
+    .link A {
+        MARGIN-RIGHT: 1em
+    }
 
-        /* Blocks */
-        .ui-block {
-            padding: 2.5rem 0;
-            border-top: .3125rem solid rgba(49, 68, 82, .07);
-        }
+    .link {
+        MARGIN: 0px auto 15px;
+        WIDTH: 600px;
+        COLOR: #505050
+    }
 
-        /* Code examples */
-        .uikit-example {
-            position: relative;
-            font-size: 14px;
-        }
+    .texts {
+        MARGIN: 0px auto 15px;
+        WIDTH: 600px;
+        COLOR: #505050
+    }
 
-        .nav-link.active {
-            /* color: #ff844e !important; */
-            font-weight: bold;
-            font-size: 16px;
-        }
+    .texts {
+        LINE-HEIGHT: 2
+    }
 
-        li.list-group-item {
-            border-top: 0;
-        }
-    </style>
-    <!-- 百度统计 -->
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?ff3e9c06b40ed6462941e1b8e7cd3850";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
+    .texts DD {
+        PADDING-BOTTOM: 0px;
+        MARGIN: 0px;
+        PADDING-LEFT: 15px;
+        PADDING-RIGHT: 0px;
+        PADDING-TOP: 0px
+    }
+
+    .texts UL {
+        PADDING-BOTTOM: 0px;
+        MARGIN: 0px;
+        PADDING-LEFT: 0px;
+        PADDING-RIGHT: 0px;
+        PADDING-TOP: 0px
+    }
+
+    .portal {
+        TEXT-ALIGN: center;
+        WHITE-SPACE: nowrap;
+        COLOR: #505050;
+        WORD-SPACING: 0.45em
+    }
+
+    .portal A:link {
+        COLOR: #505050;
+        WORD-SPACING: 0px
+    }
+
+    .portal A:visited {
+        COLOR: #505050;
+        WORD-SPACING: 0px
+    }
+
+    .portal A:hover {
+        COLOR: #db1a22
+    }
+
+    .portal A:active {
+        COLOR: #db1a22
+    }
+
+    .portal SPAN {
+        LINE-HEIGHT: 35px;
+        DISPLAY: inline-block;
+        HEIGHT: 38px
+    }
+
+    .portal SPAN SPAN {
+        PADDING-BOTTOM: 0px;
+        PADDING-LEFT: 20px;
+        PADDING-RIGHT: 0px;
+        PADDING-TOP: 0px
+    }
+
+    .portal SPAN SPAN SPAN {
+        PADDING-BOTTOM: 0px;
+        PADDING-LEFT: 0px;
+        PADDING-RIGHT: 20px;
+        BACKGROUND-POSITION: 100% -80px;
+        PADDING-TOP: 0px
+    }
+    </STYLE>
+    <!--[if lte IE 8]>
+    <STYLE type=text/css>H2 EM {
+        COLOR: #e4ebf8
+    }
+    </STYLE>
+    <![endif]-->
+    <SCRIPT type=text/javascript>
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-11293844-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
         })();
-    </script>
+
+    </SCRIPT>
+
+    <META name=GENERATOR content="MSHTML 8.00.6001.19393">
+</HEAD>
+<BODY>
+<H1>哎哟～404了～休息一下，玩玩这个游戏！
+    <EMBED height=400 type=application/x-shockwave-flash
+           align=L width=600 src=files/zhuamao.swf
+           allowscriptaccess="sameDomain" flashvars="width=600&amp;height=400"
+           scale="noborder" quality="high" wmode="transparent"></EMBED>
+</H1>
+<H2><EM>404 Error</EM>: 抱歉, 您所查找的页面不存在, 可能已被删除或您输错了网址!</H2>
+<P class=link>抱歉, 您所查找的页面不存在, 可能已被删除或您输错了网址! <A
+        href="#">&#9666;返回首页</A> <A
+        href="javascript:history.go(-1);">&#9666;返回上一页</A></P>
+<DL class=texts>
+    <DT><STRONG>休息一下，玩玩这个游戏。</STRONG></DT>
+    <DD>
+        <UL>
+            <LI>游戏玩法：将猫困在一个深色原点围成的圈子里面就算成功了。</LI>
+        </UL>
+    </DD>
+</DL>
+<P class=portal><SPAN><SPAN><SPAN>
 
 
-
-    <!-- Page -->
-    <link rel="stylesheet" href="/assets/css/error.css">
-</head>
-
-<body class="bg-primary  pace-done">
-
-<div class="container d-flex align-items-center ui-mh-100vh text-white">
-    <div class="row align-content-center align-items-start align-items-md-center w-100 py-5">
-
-        <div class="col-md-6 order-2 order-md-1 text-md-left text-center">
-            <h1 class="display-2 font-weight-bolder mb-4">呃......出错了！</h1>
-            <div class="text-xlarge font-weight-light mb-5">
-                看起来出了问题。
-                <br>
-                我们正在努力解决它。
-            </div>
-            <div class="text-big">
-                请再试一次或
-                <a href="#" class="text-white">
-                    <u>联系我们</u>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-6 order-1 order-md-2 text-center mb-5 mb-md-0">
-            <div class="ui-device macbook w-100 rounded" style="max-width: 500px">
-                <img class="device-img" src="/assets/img/devices/macbook-gold.png" alt="">
-                <div class="device-content">
-                    <div class="error-device-content bg-noise">
-                        <div class="error-device-code text-white font-weight-bolder">500</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<!-- Core scripts -->
-<script src="/assets/vendor/libs/popper/popper.js"></script>
-<script src="/assets/vendor/js/bootstrap.js"></script>
-
-
-</body></html>
+ </SPAN></SPAN></SPAN>
+    <SCRIPT type=text/javascript>
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc2c6bed2d140c53e5cde2fbb263011f6' type='text/javascript'%3E%3C/script%3E"));
+    </SCRIPT>
+</P>
+<SCRIPT type=text/javascript>
+    <!--
+    swfobject.registerObject("FlashID");
+    //-->
+</SCRIPT>
+</BODY>
+</HTML>

@@ -30,7 +30,7 @@ public class DefaultViewController {
     }
     @RequestMapping(value = "/permissions")
     public String permissions(){
-        return "permissions";
+        return "404";
     }
 
     @ResponseBody
@@ -70,7 +70,9 @@ public class DefaultViewController {
     }
 
     @RequestMapping(value = "test")
-    public String test() {
+    public String test(Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
         return "test";
     }
 }

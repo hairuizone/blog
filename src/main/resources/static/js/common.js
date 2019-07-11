@@ -31,8 +31,12 @@ function showGallerys() {
     window.location.href = url;
 }
 
-var galleryWin;
+function showVideos(){
+    var url = "videos";
+    window.location.href = url;
+}
 
+var galleryWin;
 function showGallery(id) {
     if (!galleryWin || galleryWin.closed) {
         var url = "gallery?gallery_id=" + id;

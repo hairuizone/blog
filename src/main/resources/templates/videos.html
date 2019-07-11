@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title th:text="${myinfo.webname}"></title>
+    <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
+
+    <link href="background/assets/css/amazeui.min.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!--bootstrap库-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <link href="css/categories.css" rel="stylesheet" type="text/css"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <script src="js/common.js"></script>
+
+</head>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+</script>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="header">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="javascript:void(0);" onclick="homepage()">
+                	<span>
+                		<img th:src="'img/'+${myinfo.brandimg}" class="img-circle"  style="height: 30px;width: 30px">
+                	</span>
+                    <span th:text="${myinfo.webname}" onclick="homepage()"></span>
+                </a>
+            </div>
+            <div class="container">
+                <div id="navbar-menu" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="javascript:void(0);" onclick="homepage();"><span class="glyphicon glyphicon-home">&nbsp;首页</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showCategories();"><span class="glyphicon glyphicon-th">&nbsp;分类</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showArchive();"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showTopic();"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showAboutme();"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showTransfer();"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
+                    </ul>
+
+                    <th:block th:if="${session.userinfo} != null">
+                        <li th:if="${session.userinfo.adminflag} == 'Y'" class="navinfo"><i class="fa fa-edit write-icon"></i><a class="write-blog" href="javascript:void(0);" onclick="writeBlog();"><span>写博客</span></a></li>
+                        <li class="navinfo"><i class="fa fa-envelope message-icon"></i><a class="message-center" href="javascript:void(0);" onclick="checkMsg();"><span>消息</span></a></li>
+                    </th:block>
+                    <li class="navinfo"><a class="music" onclick="musicplayer();" title="来点音乐"><span class="fa fa-music" style="margin-right: 10px;"></span></a></li>
+                    <li class="navinfo" th:if="${session.userinfo} != null" >
+                        <span style="margin-left: 5px;margin-right: 5px;">
+                            <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">
+                                <img class="img-circle" style="height: 30px;width: 30px;margin: 0 5px;" th:src="'images/'+${session.userinfo.prophoto}"/>
+                            </a>
+                            <label >晚上好，<span th:text="${session.userinfo.nickname}"></span></label>
+                        </span>
+                    </li>
+                    <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userLogin();"><button class="btn btn-sm">登录</button></a></li>
+                    <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userRegister();"><button class="btn btn-sm">注册</button></a></li>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container home">
+        <!-- 最新电影 -->
+        <div class="row block-title">
+            <div class="col-xs-6 title">
+                <h3><a href="/?m=vod-type-id-31.html">全部视频</a><span class="badge count-pop">422</span></h3>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-9 col-xlg-9 section-list sl2">
+
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/daludianying/2019-7/22875.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-11/201907111562834324.jpg"
+                                 alt="动物出击的海报"></a>
+                        <span class="corner score">7.0</span>
+                        <span class="corner version version4">HD1280高清国语中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/daludianying/2019-7/22875.html" title="一艘满载剧毒原料的外籍巨轮被海盗劫持，转眼间船上所有的人全部离奇死亡！只有一只鹦鹉幸存。而这艘失去控制的巨轮仍按照">动物出击</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp; 一艘满载剧毒原料的外籍巨轮被海盗劫持，转眼间船上所有的人全部离奇死亡！只有一只鹦鹉幸存。而这艘失去控制的巨轮仍按照</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/daludianying/2019-7/22753.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-05/201907051562320549.jpg"
+                                 alt="扫毒2天地对决的海报"></a>
+                        <span class="corner score">7.0</span>
+                        <span class="corner version version4">TS清晰修正版</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/daludianying/2019-7/22753.html">扫毒2天地对决</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp;毒品市场维持四分天下的格局已久，但自从地藏与墨西哥大毒枭跨境合作扩展势力，再加上一连串黑吃黑的动作，毒界变得风声鹤唳</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/oumeidianying/2019-7/22879.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-11/201907111562839990.jpg"
+                                 alt="太阳之女的海报"></a>
+                        <span class="corner score">8.0</span>
+                        <span class="corner version version4">DVD中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/oumeidianying/2019-7/22879.html">太阳之女</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; 2014年一位年轻的律师巴哈尔，回到了家乡小镇库尔德斯坦。在恐怖分子的一次袭击中，她丈夫死了，她和孩子，还有数千名妇女被抓到了监</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/oumeidianying/2019-7/22872.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-11/201907111562829304.jpg"
+                                 alt="婚礼客人的海报"></a>
+                        <span class="corner score">8.0</span>
+                        <span class="corner version version4">BD1280高清中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/oumeidianying/2019-7/22872.html">婚礼客人</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp; 戴夫·帕特尔加盟导演迈克尔·温特伯顿新片[婚礼客人](Wedding Guest，暂译)。影片背景发生在印度，片方</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/daludianying/2019-7/22873.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-11/201907111562832750.jpg"
+                                 alt="陈翔六点半之重楼别的海报"></a>
+                        <span class="corner score">8.0</span>
+                        <span class="corner version version4">HD1280高清国语中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/daludianying/2019-7/22873.html">陈翔六点半之重</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp;地方戏曲演员刘馆长和几个弟子一起经营着一家戏馆，戏馆收入微薄，每天只有几个逃票进来的老头，为了维持戏馆生存，刘馆长想</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/daludianying/2019-7/22874.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-11/201907111562834125.jpg"
+                                 alt="超力少女的海报"></a>
+                        <span class="corner score">7.0</span>
+                        <span class="corner version version4">HD1280高清国语中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/daludianying/2019-7/22874.html">超力少女</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;花朵儿向往美好的爱情，偶然认识了于东，一片痴心的来到他的身边，并认识了一些朋友，但是对于单亲家庭出身的</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/rihandianying/2019-7/22865.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-11/201907111562809961.jpg"
+                                 alt="雪之华的海报"></a>
+                        <span class="corner score">7.0</span>
+                        <span class="corner version version4">BD1280高清中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/rihandianying/2019-7/22865.html">雪之华</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp;中岛美嘉经典歌曲《雪花》（又译：雪之华，雪之花）将被改编成爱情电影，由登坂广臣（日本男子组合三代目 J Soul B</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/oumeidianying/2019-7/22866.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-04-07/201904071554614799.jpg"
+                                 alt="王者之舞3D的海报"></a>
+                        <span class="corner score">7.0</span>
+                        <span class="corner version version4">BD高清</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/oumeidianying/2019-7/22866.html">王者之舞3D</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp; 《王者之舞》是一部舞台剧，故事基于一个古老而又美丽的爱尔兰传说。跌宕起伏的剧情呈现出人性中黑暗与光明的斗争。为了权</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/gangtaidianying/2019-7/22854.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-10/201907101562744900.jpg"
+                                 alt="暹罗厨房的海报"></a>
+                        <span class="corner score">8.0</span>
+                        <span class="corner version version4">HD1280高清中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/gangtaidianying/2019-7/22854.html">暹罗厨房</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp;由万蒂公司发行，泰国三位青年导演共同导演的一部电影。影片讲述的是两个泰国饮食界的家族企业对于泰国菜烹饪的热爱以及追求</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/oumeidianying/2019-7/22853.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="http://img.kuyun88.com/pic/uploadimg/2018-7/201873012585568273.jpg" alt="幸福本源的海报"></a>
+                        <span class="corner score">6.0</span>
+                        <span class="corner version version4">HD1280高清中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/oumeidianying/2019-7/22853.html">幸福本源</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp;深陷在婚姻的绝望中，Helene Brindel感觉已被上帝所遗弃。伸出手，她触到了那个解救之人，著名的心理学家Ed</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/oumeidianying/2019-7/22857.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-10/201907101562745136.jpg"
+                                 alt="陷落天堂岛的海报"></a>
+                        <span class="corner score">6.0</span>
+                        <span class="corner version version4">HD1280高清中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/oumeidianying/2019-7/22857.html">陷落天堂岛</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp;Anna与儿子Max来到了一个风景如画的小岛度假，这里气候宜人，同行的游客也都和善友好，他们在这里嬉戏，看海龟在沙滩</em>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home">
+                    <div class="list_mov_poster img-responsive">
+                        <a href="/oumeidianying/2019-7/22858.html">
+                            <img class="img-responsive center-block lazy lazy1 lazyhot1"
+                                 src="https://img.tupian-zuida.com/pic/upload/vod/2019-07-10/201907101562745600.jpg"
+                                 alt="替罪羊的海报"></a>
+                        <span class="corner score">7.0</span>
+                        <span class="corner version version4">HD1280高清中字</span>
+                    </div>
+                    <div class="list_mov_title">
+                        <h4><a href="/oumeidianying/2019-7/22858.html">替罪羊</a></h4>
+                        <em>&nbsp; &nbsp; &nbsp; &nbsp;约亨沃尔特是德国银行的一名资深投资银行家，与其助手汤姆·斯莱扎克刚刚完成一笔大单。庆功会上约亨却突然跳楼自杀。全球范</em>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<style type="text/css">
+    @media (min-width: 1400px) {
+        .col-xlg-9 {
+            width: 95%;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .col-lg-2 {
+            width: 16.66666667%;
+        }
+    }
+
+
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .list_mov {
+        min-height: 200px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .list_mov, .list_mov h4, .switcher {
+        text-align: center;
+    }
+
+    .list_mov img {
+        width: 180px;
+    }
+
+    .list_mov img {
+        height: 220px !important;
+    }
+
+    .center-block {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .list_mov_poster {
+        position: relative;
+        width: 180px;
+        max-height: 240px;
+        min-height: 110px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 1px 1px 1px 0 rgba(51, 51, 51, .15);
+    }
+
+    .list_mov_poster .score {
+        top: 0;
+        left: 0;
+        padding: 2px 4px 1px;
+        background: #FFA30F;
+        color: #fff;
+        border-radius: 0 0 6px;
+    }
+
+    .list_mov_poster .version4 {
+        color: #fff;
+        background: #1CB6F3;
+    }
+
+    .list_mov_poster .ju, .list_mov_poster .version {
+        bottom: 0;
+        right: 0;
+        padding: 2px 4px 1px;
+        border-radius: 6px 0 0;
+    }
+
+    .list_mov_poster .corner {
+        display: block;
+        position: absolute;
+        font-size: 13px;
+    }
+
+    .list_mov_title {
+        height: 4.3em;
+        margin-top: 6px;
+        margin-bottom: 5px;
+        overflow: hidden;
+    }
+
+    .list_mov_title > h4 {
+        white-space: normal;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    .list_mov_title a {
+        color: #444;
+        font-weight: 600;
+    }
+
+    .list_mov_title em {
+        font-size: .9em;
+        white-space: normal;
+        line-height: 1.6em;
+    }
+
+    .list_mov em {
+        display: block;
+        color: #999;
+        font-size: 14px;
+        font-style: normal;
+    }
+</style>
+</body>
+</html>
