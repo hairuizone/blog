@@ -83,7 +83,15 @@ public class PubConstant {
     /**
      * 相册存放文件相对路径
      */
-    public static final String GALLERS_DIR = "/gallery/";
+    public static final String GALLERS_DIR = "gallery/";
+    /**
+     * 视频存放文件相对路径
+     */
+    public static final String VIDEOS_DIR = "video/";
+    /**
+     * 视频存放文件相对路径
+     */
+    public static final String COVERS_DIR = "cover/";
     /**
      * 相册预览照片数量
      */

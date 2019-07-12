@@ -8,19 +8,21 @@
 
     <link rel="icon" th:href="'../img/'+${myinfo.webicon}"/>
     <title th:text="${myinfo.webname}"></title>
-    <script src="../background/assets/js/echarts.min.js"></script>
+
     <link rel="stylesheet" href="../background/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="../background/assets/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="../background/assets/css/app.css">
     <script src="../background/assets/js/jquery.min.js"></script>
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <script src="../js/manage.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/viewer.css"/>
+    <!--<script src="lightgallery/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="../js/viewer.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body data-type="widgets">
 <script src="../background/assets/js/theme.js"></script>
 <div class="am-g tpl-g">
-
     <!--公共部分-start-->
     <!-- 头部 -->
     <header th:fragment="header">
@@ -114,7 +116,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="toolsList();" class="active">
+                        <a href="javascript:void(0);" onclick="toolsList();">
                             <i class="fa fa-cutlery sidebar-nav-link-logo"></i>工具管理
                         </a>
                     </li>
@@ -124,7 +126,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="videosList();">
+                        <a href="javascript:void(0);" onclick="videosList();" class="active">
                             <i class="fa fa-video-camera sidebar-nav-link-logo"></i>视频管理
                         </a>
                     </li>
@@ -135,7 +137,7 @@
                     <i class="fa fa-plus-square sidebar-nav-link-logo"></i> 系统配置
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
-                <ul class="sidebar-nav sidebar-nav-sub" style="display: none">
+                <ul class="sidebar-nav sidebar-nav-sub" style="display: none;">
                     <li class="sidebar-nav-link">
                         <a href="javascript:void(0);" onclick="userList();">
                             <i class="fa fa-user sidebar-nav-link-logo"></i>用户管理
@@ -162,43 +164,95 @@
     </div>
     <!--公共部分-end-->
     <!-- 内容区域 -->
-
     <div class="tpl-content-wrapper">
         <div class="row-content am-cf">
             <div class="row">
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title am-fl">添加在线工具</div>
+                            <div class="widget-title am-f1">添加视频</div>
                         </div>
                         <div class="widget-body am-fr">
-                            <form class="am-form tpl-form-border-form tpl-form-border-br" id="tools-form" type="post"  >
+                            <form id="videos-from" class="am-form tpl-form-border-form tpl-form-border-br" th:action="videos-adddata" method="post" enctype="multipart/form-data">
                                 <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">工具名称 <span class="tpl-form-line-small-title">Tool Name</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
-                                        <input type="text" class="tpl-form-input" name="toolName" placeholder="请输入工具名称文字10-20字左右" >
-                                        <small style="color: red">（必填）</small>
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label class="am-u-sm-3 am-form-label">工具访问URL <span class="tpl-form-line-small-title">URL</span></label>
-                                    <div class="am-u-sm-3 am-u-sm-pull-6">
-                                        <input type="text" class="tpl-form-input" name="url" placeholder="请输入在线URL地址" >
-                                        <small style="color: red">（必填）</small>
-                                    </div>
-                                </div>
-
-                                <div class="am-form-group">
-                                    <label for="user-intro" class="am-u-sm-3 am-form-label">工具介绍 <span class="tpl-form-line-small-title">Tool Introduce</span></label>
+                                    <label class="am-u-sm-3 am-form-label">视频名称<span class="tpl-form-line-small-title">Video Name</span></label>
                                     <div class="am-u-sm-4 am-u-sm-pull-5">
-                                        <textarea class="" name="introduce" rows="6" id="user-intro" placeholder="请对工具进行简单描述"></textarea>
+                                        <input type="text" class="tpl-form-input" name="name" placeholder="请输入名称">
+                                        <small>请填写名称文字10-30字左右。</small>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">视频类型<span class="tpl-form-line-small-title">Type</span></label>
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="vtype">
+                                            <option selected="selected" value="1">电影-战争</option>
+                                            <option value="2">电影-剧情</option>
+                                            <option value="3">电影-剧情</option>
+                                            <option value="4">个人生活片段</option>
+                                        </select>
+                                        <small style="color: red">（必选）</small>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">年代<span class="tpl-form-line-small-title">Publish Year</span></label>
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
+                                        <input type="text" class="tpl-form-input" name="publishYear" placeholder="请输入年代，数字">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group" hidden>
+                                    <label class="am-u-sm-3 am-form-label">作者<span class="tpl-form-line-small-title">Author</span></label>
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
+                                        <input type="text" placeholder="请输入作者姓名" th:value="${session.userinfo.username}" readonly name="creator">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">封面图 <span class="tpl-form-line-small-title">Cover Image</span></label>
+                                    <div class="am-u-sm-9">
+                                        <div class="am-form-group am-form-file">
+                                            <div class="tpl-form-file-img">
+                                                <img id="pic" src="../images/example_img.jpg" style="width: 140px;height: 220px;">
+                                            </div>
+                                            <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                                <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
+                                            <input id="img" type="file" multiple="" name="coverfile" accept="image/*">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">选择视频<span class="tpl-form-line-small-title">Cover Image</span></label>
+                                    <div class="am-u-sm-9">
+                                        <input id="videofile" class="videofile" type="file" multiple="" name="videofile" accept="video/*">
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">是否公开展示<span class="tpl-form-line-small-title">Show</span></label>
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
+                                        <select data-am-selected="{searchBox: 1}" style="display: none;" name="showFlag">
+                                            <option selected="selected" value="Y">公开</option>
+                                            <option value="N">不公开</option>
+                                        </select>
+                                        <small style="color: red">（必选）</small>
+                                    </div>
+                                </div>
+
+                                <div class="am-form-group">
+                                    <label class="am-u-sm-3 am-form-label">视频介绍<span class="tpl-form-line-small-title">Introduction</span></label>
+                                    <div class="am-u-sm-4 am-u-sm-pull-5">
+                                        <textarea class="" rows="6" placeholder="请填写视频介绍" name="introduction"></textarea>
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
                                     <div class="am-u-sm-9 am-u-sm-push-3">
-                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">提交</button>
+                                        <button type="button" class="am-btn am-btn-primary tpl-btn-bg-color-success submit-btn">确定
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -208,71 +262,152 @@
             </div>
         </div>
     </div>
-
 </div>
 
-<script language="JavaScript">
+<script type="text/javascript">
+
+    $('#videofile').bind('input propertychange', function(){
+        var filePath=$(this).val();
+        //设置上传格式 mkv、rmvb、avi、MP4、flv、wmv
+        if(filePath.indexOf("mkv")!=-1 || filePath.indexOf("MKV")!=-1
+            || filePath.indexOf("rmvb")!=-1 || filePath.indexOf("RMVB")!=-1
+            || filePath.indexOf("avi")!=-1 || filePath.indexOf("AVI")!=-1
+            || filePath.indexOf("mp4")!=-1 || filePath.indexOf("MP4")!=-1
+            || filePath.indexOf("flv")!=-1 || filePath.indexOf("FLV")!=-1
+            || filePath.indexOf("wmv")!=-1 || filePath.indexOf("WMV")!=-1
+            || filePath.indexOf("swf")!=-1 || filePath.indexOf("SWF")!=-1){
+
+            /*var arr=filePath.split('\\');
+            var fileName=arr[arr.length-1];*/
+        }else{
+            $('#videofile').val("");
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '您未上传文件，或者您上传文件类型有误！',
+                onConfirm: function () {
+                    return false;
+                }
+            });
+        }
+    })
+
+    $(function() {
+        $('#img').change(function() {
+            var file = this.files[0]; //选择上传的文件
+            var r = new FileReader();
+            r.readAsDataURL(file); //Base64
+            $(r).load(function() {
+                $('#pic').attr('src',this.result);
+            });
+        });
+    });
+
     $('.submit-btn').click(function () {
-        var toolName = $("input[name='toolName']").val();
-        if (toolName == "") {
+        var name = $("input[name='name']").val();
+        if (name == "") {
             AMUI.dialog.alert({
                 title: '提示信息',
-                content: '工具名称为必填',
+                content: '视频名称必填',
                 onConfirm: function () {
                 }
             });
             return;
         }
-        var url = $("input[name='url']").val();
-        if (url == "") {
+
+        var vtype = $("input[name='vtype']").val();
+        if (vtype == "") {
             AMUI.dialog.alert({
                 title: '提示信息',
-                content: '工具访问URL必填',
+                content: '视频类型必选',
                 onConfirm: function () {
                 }
             });
             return;
         }
+
+        var coverfile = $("input[name='coverfile']").val();
+        if (coverfile == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '请上传相册封面图',
+                onConfirm: function () {
+                }
+            });
+            return;
+        }
+
+        var videofile = $("input[name='videofile']").val();
+        if (videofile == "") {
+            AMUI.dialog.alert({
+                title: '提示信息',
+                content: '请上传视频文件',
+                onConfirm: function () {
+                }
+            });
+            return;
+        }
+
+        var formdata = new FormData($("#videos-from")[0]);
         $.ajax({
-            //几个参数需要注意一下
-            type: "POST",//方法类型
-            dataType: "json",//预期服务器返回的数据类型
-            url: "tools-adddata" ,//url
-            data: $('#tools-form').serialize(),
-            success: function (result) {
-                var flag = result.flag;
-                if (flag == "success") {
+            type: 'POST',
+            url: "videos-adddata",
+            data: formdata ,
+            dataType: 'JSON',
+            contentType: false,
+            processData:false,
+            success: function (data) {
+                if (data.flag == "success") {
                     AMUI.dialog.alert({
                         title: '提示信息',
-                        content: '添加工具成功',
+                        content: '创建成功',
                         onConfirm: function () {
-                            window.location = "tools-list";
+                            window.location.href = "videos-list";
                         }
                     });
-                }else{
-                    var message = result.message;
+
+                } else {
                     AMUI.dialog.alert({
-                        title: '错误提示',
-                        content: '添加工具失败，错误原因：'+message,
+                        title: '提示信息',
+                        content: '创建失败，原因：' + data.message,
                         onConfirm: function () {
+                            //window.location.href = "videos-list";
                         }
                     });
-                    return;
                 }
             },
-            error : function() {
+            error: function () {
                 AMUI.dialog.alert({
-                    title: '错误提示',
-                    content: '添加工具失败',
+                    title: '提示信息',
+                    content: '创建失败',
                     onConfirm: function () {
                     }
                 });
-                return;
             }
         });
     });
 </script>
+<style type="text/css">
+    .videofile {
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
 
+    .videofile:hover {
+        background: #AADFFD;
+        border-color: #78C3F3;
+        color: #004974;
+        text-decoration: none;
+    }
+</style>
 <script src="../background/assets/js/amazeui.min.js"></script>
 <script src="../background/assets/js/amazeui.dialog.min.js"></script>
 <script src="../background/assets/js/amazeui.datatables.min.js"></script>

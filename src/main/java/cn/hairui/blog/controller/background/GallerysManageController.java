@@ -142,8 +142,6 @@ public class GallerysManageController {
             e.printStackTrace();
         }
 
-
-        System.out.println(gallerys.toString());
         return map;
     }
 

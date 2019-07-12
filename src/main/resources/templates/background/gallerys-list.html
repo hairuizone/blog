@@ -125,6 +125,11 @@
                             <i class="fa fa-image sidebar-nav-link-logo"></i>相册管理
                         </a>
                     </li>
+                    <li class="sidebar-nav-link">
+                        <a href="javascript:void(0);" onclick="videosList();">
+                            <i class="fa fa-video-camera sidebar-nav-link-logo"></i>视频管理
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="sidebar-nav-link">
@@ -174,7 +179,7 @@
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
                                             <button type="button"
-                                                    class="am-btn am-btn-default am-btn-success addArticalBtn"><span
+                                                    class="am-btn am-btn-default am-btn-success addGalleryBtn"><span
                                                     class="am-icon-plus"></span> 新增
                                             </button>
                                         </div>
@@ -207,7 +212,7 @@
     </div>
 </div>
 <script>
-    $('.addArticalBtn').click(function () {
+    $('.addGalleryBtn').click(function () {
         var url = 'gallerys-add'
         window.location.href = url;
     });

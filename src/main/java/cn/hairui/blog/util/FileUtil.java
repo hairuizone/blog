@@ -19,4 +19,7 @@ public class FileUtil {
             file.delete();
         }
     }
+    public static void main(String[] args){
+        deleteSingleFile("D:/upload/video/ckin.mp4");
+    }
 }

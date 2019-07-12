@@ -8,15 +8,17 @@
 
     <link rel="icon" th:href="'../img/'+${myinfo.webicon}"/>
     <title th:text="${myinfo.webname}"></title>
-    <script src="../background/assets/js/echarts.min.js"></script>
+
     <link rel="stylesheet" href="../background/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="../background/assets/css/amazeui.datatables.min.css"/>
     <link rel="stylesheet" href="../background/assets/css/app.css">
     <script src="../background/assets/js/jquery.min.js"></script>
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <script src="../js/manage.js"></script>
-</head>
 
+</head>
+<style type="text/css">
+</style>
 <body data-type="widgets">
 <script src="../background/assets/js/theme.js"></script>
 <div class="am-g tpl-g">
@@ -73,7 +75,7 @@
                     <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
                     <label style="margin-bottom: 0px;" th:text="${session.userinfo.nickname}"></label>
                 </span>
-                <a href="javascript:;" class="tpl-user-panel-action-link" >
+                <a href="javascript:;" class="tpl-user-panel-action-link">
                     <span class="am-icon-pencil"></span>
                     账号设置
                 </a>
@@ -109,7 +111,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="booksList();" class="active">
+                        <a href="javascript:void(0);" onclick="booksList();">
                             <i class="fa fa-book sidebar-nav-link-logo"></i>书籍管理
                         </a>
                     </li>
@@ -124,7 +126,7 @@
                         </a>
                     </li>
                     <li class="sidebar-nav-link">
-                        <a href="javascript:void(0);" onclick="videosList();">
+                        <a href="javascript:void(0);" onclick="videosList();" class="active">
                             <i class="fa fa-video-camera sidebar-nav-link-logo"></i>视频管理
                         </a>
                     </li>
@@ -135,7 +137,7 @@
                     <i class="fa fa-plus-square sidebar-nav-link-logo"></i> 系统配置
                     <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
                 </a>
-                <ul class="sidebar-nav sidebar-nav-sub" style="display: none">
+                <ul class="sidebar-nav sidebar-nav-sub" style="display: none;">
                     <li class="sidebar-nav-link">
                         <a href="javascript:void(0);" onclick="userList();">
                             <i class="fa fa-user sidebar-nav-link-logo"></i>用户管理
@@ -168,7 +170,7 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title  am-cf">书籍列表</div>
+                            <div class="widget-title  am-cf">视频列表</div>
                         </div>
                         <div class="widget-body  am-fr">
 
@@ -177,7 +179,7 @@
                                     <div class="am-btn-toolbar">
                                         <div class="am-btn-group am-btn-group-xs">
                                             <button type="button"
-                                                    class="am-btn am-btn-default am-btn-success addBooksBtn"><span
+                                                    class="am-btn am-btn-default am-btn-success addVideoBtn"><span
                                                     class="am-icon-plus"></span> 新增
                                             </button>
                                         </div>
@@ -186,58 +188,22 @@
                             </div>
 
                             <div class="am-u-sm-12">
-                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black am-table-hover " id="example-r">
+                                <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black " id="example-r">
                                     <thead>
                                     <tr>
-                                        <th>编号</th>
-                                        <th>专题名称</th>
+                                        <th>视频编号</th>
+                                        <th>名称</th>
+                                        <th>类型</th>
+                                        <th>是否公开</th>
                                         <th>作者</th>
-                                        <th>发布日期</th>
+                                        <th>创建时间</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
-
                                     <tbody>
-                                    <tr class="gradeX"></tr>
+                                        <tr class="gradeX">
                                     </tbody>
                                 </table>
-                            </div>
-
-                            <div class="am-u-lg-12 am-cf">
-                                <div class="am-fr">
-                                    <ul class="am-pagination tpl-pagination">
-                                        <li th:if="${pageInfo.hasPreviousPage}"><a
-                                                th:href="@{'books-list?pageIndex=1'}"
-                                                aria-label="Previous"> <i class="fa fa-angle-double-left"></i>
-                                        </a></li>
-
-                                        <li th:if="${pageInfo.hasPreviousPage}"><a
-                                                th:href="@{'books-list?pageIndex='+${pageInfo.prePage}}"
-                                                aria-label="Previous"> <i class="fa fa-angle-left"></i>
-                                        </a></li>
-
-                                        <th:block th:each="nav : ${pageInfo.navigatepageNums}">
-                                            <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
-                                                    th:href="@{'books-list?pageIndex='+${nav}}"
-                                                    th:text="${nav}"></a></li>
-                                        </th:block>
-
-                                        <th:block th:if="${pageInfo.hasNextPage}">
-                                            <li><a
-                                                    th:href="@{'books-list?pageIndex='+${pageInfo.nextPage}}"
-                                                    aria-label="Next"><i class="fa fa-angle-right"></i>
-                                            </a></li>
-                                        </th:block>
-                                        <th:block th:if="${pageInfo.hasNextPage}">
-                                            <li><a
-                                                    th:href="@{'books-list?pageIndex='+${pageInfo.pages}}"
-                                                    aria-label="Next"><i class="fa fa-angle-double-right"></i>
-                                            </a></li>
-                                        </th:block>
-
-                                        <li><label th:text="'共'+${pageInfo.pages}+'页'"></label></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -246,23 +212,120 @@
         </div>
     </div>
 </div>
-
-<script language="JavaScript">
-
-    $('.addBooksBtn').click(function () {
-        var url = 'books-add'
+<script>
+    $('.addVideoBtn').click(function () {
+        var url = 'videos-add'
         window.location.href = url;
     });
 
+    function hiddenRow(id) {
+        AMUI.dialog.confirm({
+            title: '提示信息',
+            content: '是否设置为私密视频？',
+            onConfirm: function () {
+                $.ajax({
+                    type: "post",
+                    url: "videos-lock",
+                    data: {
+                        id: id,
+                        lock:'N'
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.flag == "success") {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '设置成功',
+                                onConfirm: function () {
+                                    window.location.href = "videos-list";
+                                }
+                            });
+
+                        } else {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '设置失败，原因：'+data.message,
+                                onConfirm: function () {
+
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+                        AMUI.dialog.alert({
+                            title: '提示信息',
+                            content: '设置失败',
+                            onConfirm: function () {
+
+                            }
+                        });
+                    }
+                });
+            },
+            onCancel: function () {
+                return;
+            }
+        });
+    }
+    function showRow(id) {
+        AMUI.dialog.confirm({
+            title: '提示信息',
+            content: '是否设置为公开视频？',
+            onConfirm: function () {
+                $.ajax({
+                    type: "post",
+                    url: "videos-lock",
+                    data: {
+                        id: id,
+                        lock:'Y'
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.flag == "success") {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '设置成功',
+                                onConfirm: function () {
+                                    window.location.href = "videos-list";
+                                }
+                            });
+
+                        } else {
+                            AMUI.dialog.alert({
+                                title: '提示信息',
+                                content: '设置失败，原因：'+data.message,
+                                onConfirm: function () {
+
+                                }
+                            });
+                        }
+                    },
+                    error: function () {
+                        AMUI.dialog.alert({
+                            title: '提示信息',
+                            content: '设置失败',
+                            onConfirm: function () {
+
+                            }
+                        });
+                    }
+                });
+            },
+            onCancel: function () {
+                return;
+            }
+        });
+    }
+
     function deleteRow(id) {
+        // AMUI.dialog.confirm的确定有bug已经修复
         AMUI.dialog.confirm({
             title: '是否确定删除',
             content: '删除后将不可恢复，是否继续？',
             onConfirm: function () {
                 $.ajax({
-
                     type: "post",
-                    url: "books-delete",
+                    url: "videos-delete",
                     data: {
                         id: id
                     },
@@ -273,15 +336,16 @@
                                 title: '提示信息',
                                 content: '删除成功',
                                 onConfirm: function () {
-                                    window.location.href = "books-list";
+                                    window.location.href = "videos-list";
                                 }
                             });
 
                         } else {
                             AMUI.dialog.alert({
                                 title: '提示信息',
-                                content: '删除失败，请重试',
+                                content: '删除失败,原因：'+data.message,
                                 onConfirm: function () {
+                                    window.location.href = "videos-list";
                                 }
                             });
                         }
@@ -291,10 +355,10 @@
                             title: '提示信息',
                             content: '删除失败',
                             onConfirm: function () {
+                                window.location.href = "videos-list";
                             }
                         });
                     }
-
                 });
             },
             onCancel: function () {
@@ -303,24 +367,40 @@
         });
     }
 </script>
-
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var booksList = [[${booksList}]];
-    var size = booksList.length;
+
+    var videosList = [[${videos}]];
+    var size = videosList.length;
     for (var i = 1; i <= size; i++) {
-        var x = document.getElementById('example-r').insertRow(i)
-        var id = x.insertCell(0)
-        var bookName = x.insertCell(1)
-        var author = x.insertCell(2)
-        var publishDate = x.insertCell(3)
-        var div = x.insertCell(4)
-        id.innerHTML = booksList[i - 1].id;
-        bookName.innerHTML = booksList[i - 1].bookName;
-        author.innerHTML = booksList[i - 1].author;
-        publishDate.innerHTML = booksList[i - 1].publishDate;
-        var idNo = booksList[i - 1].id;
-        var textHtml = '<div class="tpl-table-black-operation"> <a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a> </div>';
+        var x = document.getElementById('example-r').insertRow(i);
+        var id = x.insertCell(0);
+        var vname = x.insertCell(1);
+        var vtype = x.insertCell(2);
+        var showFlag = x.insertCell(3);
+        var creator = x.insertCell(4);
+        var createTime = x.insertCell(5);
+        var div = x.insertCell(6);
+
+        id.innerHTML = videosList[i - 1].id;
+        vname.innerHTML = videosList[i - 1].name;
+        vtype.innerHTML = videosList[i - 1].vtype;
+        var showFlagEn = videosList[i - 1].showFlag;
+        if(showFlagEn == "Y"){
+            showFlag.innerHTML = "公开";
+        }
+        if(showFlagEn == "N"){
+            showFlag.innerHTML = "不公开";
+        }
+        creator.innerHTML = videosList[i - 1].creator;
+        createTime.innerHTML = videosList[i - 1].createTime;
+        var idNo = videosList[i - 1].id;
+
+        var textHtml = '<div class="tpl-table-black-operation"> ' +
+            '<a href="javascript:void(0);" onclick=hiddenRow(' + idNo + '); class=""> <i class="am-icon-pencil"></i>设为私密视频</a>' +
+            '<a href="javascript:void(0);" onclick=showRow(' + idNo + '); class=""> <i class="am-icon-pencil"></i>设为公开视频</a>' +
+            '<a href="javascript:void(0);" onclick=deleteRow(' + idNo + ') class="tpl-table-black-operation-del"> <i class="am-icon-trash"></i> 删除 </a>' +
+            '</div>'
         div.innerHTML = textHtml;
     }
     /*]]>*/
@@ -332,4 +412,5 @@
 <script src="../background/assets/js/dataTables.responsive.min.js"></script>
 <script src="../background/assets/js/app.js"></script>
 </body>
+
 </html>

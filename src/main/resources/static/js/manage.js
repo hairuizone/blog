@@ -38,6 +38,10 @@ function gallerysList(){
     window.location.href = url;
 }
 
+function videosList() {
+    var url = "videos-list";
+    window.location.href = url;
+}
 function sysManage(){
     var url = "setting";
     window.location.href = url;
