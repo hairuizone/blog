@@ -52,18 +52,36 @@ public class VideosController {
             videosList = videosService.queryVideosShowList();
         } else if (PubConstant.YES_NO_Y.equals(userinfo.getAdminflag()) && !PubConstant.YES_NO_Y.equals(userinfo.getSuperUser())) {
             //管理人员 但不是超级用户
-            videosList = videosService.queryVideosListByOwner(userinfo.getUsername());
+            videosList = videosService.queryVideosListByOwnerAndShow(userinfo.getUsername());
         } else if (PubConstant.YES_NO_Y.equals(userinfo.getAdminflag()) && PubConstant.YES_NO_Y.equals(userinfo.getSuperUser())) {
             //超级用户
             videosList = videosService.queryVideosList();
         }
-
+        int vcount  = videosService.queryVideosCount();
         PageInfo<Videos> pageInfo = new PageInfo<Videos>(videosList);
-
-        model.addAttribute("videosList",videosList);
-        model.addAttribute("vcount","共xx个");
+        model.addAttribute("videosList", videosList);
+        model.addAttribute("vcount", "共"+vcount+"个");
         model.addAttribute("pageInfo", pageInfo);
-
         return "videos";
+    }
+
+    @RequestMapping(value = "videoplay")
+    public String videoPlay(HttpServletRequest request, Integer id, Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+        try {
+            Videos video = videosService.queryVideosById(id);
+            if(video != null){
+                model.addAttribute("video",video);
+            }else{
+                //重新组装视频不存在错误提示
+                video = new Videos();
+                System.out.println("视频不存在");
+            }
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return "videoplayer";
     }
 }

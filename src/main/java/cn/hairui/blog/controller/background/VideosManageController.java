@@ -8,6 +8,8 @@ import cn.hairui.blog.model.Videos;
 import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.service.VideosService;
 import cn.hairui.blog.util.FileUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -69,7 +71,28 @@ public class VideosManageController {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
 
-        List<Videos> videosList = videosService.queryVideosList();
+        Integer pageNum = null;
+        String pageNumStr = request.getParameter("pageIndex");
+        if (pageNumStr != null) {
+            pageNum = Integer.parseInt(pageNumStr);
+        }
+
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, 10);
+
+        List<Videos> videosList = null;
+        User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
+        if (PubConstant.YES_NO_Y.equals(user.getSuperUser())) {
+            //超级用户
+            videosList = videosService.queryVideosList();
+        } else if (!PubConstant.YES_NO_Y.equals(user.getSuperUser()) && PubConstant.YES_NO_Y.equals(user.getAdminflag())) {
+            //不是超级用户  但是管理用户
+            videosList = videosService.queryVideosListByOwner(user.getUsername());
+        }
+        PageInfo<Videos> pageInfo = new PageInfo<Videos>(videosList);
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("videos", videosList);
         return listPage;
     }
@@ -114,15 +137,38 @@ public class VideosManageController {
             targetPath.mkdirs();
         }
         //保存
+
+        InputStream is = null;
+        //输出流
+        OutputStream os = null;
+
+
         try {
             if (count == 0) {
                 byte[] bytes = file.getBytes();
                 Path path = Paths.get(uploadPath + PubConstant.VIDEOS_DIR + PubConstant.COVERS_DIR + coverName);
                 Files.write(path, bytes);
 
+                /*//这种方式上传大文件会造成内存不足
                 byte[] bytes1 = file1.getBytes();
                 Path path1 = Paths.get(uploadPath + PubConstant.VIDEOS_DIR + videoName);
-                Files.write(path1, bytes1);
+                Files.write(path1, bytes1);*/
+
+                byte[] buffer = new byte[2048];
+                int length = 0;
+                //关闭输入流
+                is = file1.getInputStream();
+                os = new FileOutputStream(new File(uploadPath + PubConstant.VIDEOS_DIR, videoName));
+                //循环读取文件
+                while (-1 != (length = is.read(buffer, 0, buffer.length))){
+                    os.write(buffer, 0, length);
+                }
+                try {
+                    os.close();
+                    is.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
                 Videos videos = new Videos();
                 videos.setName(name);

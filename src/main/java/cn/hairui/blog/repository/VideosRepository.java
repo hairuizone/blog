@@ -59,7 +59,15 @@ public class VideosRepository {
         return videosMapper.queryVideosShowList();
     }
 
+    public List<Videos> queryVideosListByOwnerAndShow(String username) {
+        return videosMapper.queryVideosListByOwnerAndShow(username);
+    }
+
     public List<Videos> queryVideosListByOwner(String username) {
         return videosMapper.queryVideosListByOwner(username);
+    }
+
+    public int queryVideosCount() {
+        return videosMapper.queryVideosCount();
     }
 }

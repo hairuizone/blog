@@ -177,7 +177,7 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">视频名称<span class="tpl-form-line-small-title">Video Name</span></label>
                                     <div class="am-u-sm-4 am-u-sm-pull-5">
-                                        <input type="text" class="tpl-form-input" name="name" placeholder="请输入名称">
+                                        <input type="text" class="tpl-form-input" id="tittle_name" name="name" placeholder="请输入名称">
                                         <small>请填写名称文字10-30字左右。</small>
                                     </div>
                                 </div>
@@ -188,8 +188,9 @@
                                         <select data-am-selected="{searchBox: 1}" style="display: none;" name="vtype">
                                             <option selected="selected" value="1">电影-战争</option>
                                             <option value="2">电影-剧情</option>
-                                            <option value="3">电影-剧情</option>
+                                            <option value="3">电影-喜剧</option>
                                             <option value="4">个人生活片段</option>
+                                            <option value="5">MV</option>
                                         </select>
                                         <small style="color: red">（必选）</small>
                                     </div>
@@ -198,7 +199,8 @@
                                 <div class="am-form-group">
                                     <label class="am-u-sm-3 am-form-label">年代<span class="tpl-form-line-small-title">Publish Year</span></label>
                                     <div class="am-u-sm-4 am-u-sm-pull-5">
-                                        <input type="text" class="tpl-form-input" name="publishYear" placeholder="请输入年代，数字">
+                                        <input type="text" class="tpl-form-input" name="publishYear" placeholder="请输入年代，数字"
+                                               onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
                                     </div>
                                 </div>
 
@@ -220,7 +222,6 @@
                                                 <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
                                             <input id="img" type="file" multiple="" name="coverfile" accept="image/*">
                                         </div>
-
                                     </div>
                                 </div>
 
@@ -268,22 +269,25 @@
 
     $('#videofile').bind('input propertychange', function(){
         var filePath=$(this).val();
-        //设置上传格式 mkv、rmvb、avi、MP4、flv、wmv
+        //设置上传格式 mkv、avi、MP4、flv、wmv
         if(filePath.indexOf("mkv")!=-1 || filePath.indexOf("MKV")!=-1
-            || filePath.indexOf("rmvb")!=-1 || filePath.indexOf("RMVB")!=-1
             || filePath.indexOf("avi")!=-1 || filePath.indexOf("AVI")!=-1
             || filePath.indexOf("mp4")!=-1 || filePath.indexOf("MP4")!=-1
             || filePath.indexOf("flv")!=-1 || filePath.indexOf("FLV")!=-1
             || filePath.indexOf("wmv")!=-1 || filePath.indexOf("WMV")!=-1
             || filePath.indexOf("swf")!=-1 || filePath.indexOf("SWF")!=-1){
 
-            /*var arr=filePath.split('\\');
-            var fileName=arr[arr.length-1];*/
+            var arr=filePath.split('\\');
+            var fileName=arr[arr.length-1];
+            var _name = $('#tittle_name').val();
+            if(_name == ""){
+                $('#tittle_name').val(fileName)
+            }
         }else{
             $('#videofile').val("");
             AMUI.dialog.alert({
                 title: '提示信息',
-                content: '您未上传文件，或者您上传文件类型有误！',
+                content: '您上传文件类型有误或不支持！',
                 onConfirm: function () {
                     return false;
                 }

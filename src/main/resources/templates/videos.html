@@ -89,7 +89,7 @@
 
                 <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3 list_mov list_mov_home" th:each="video : ${videosList}">
                     <div class="list_mov_poster img-responsive">
-                        <a href="javascript:void(0);">
+                        <a href="javascript:void(0);" th:onclick="'javascript:showVideo('+${video.id}+')'">
                             <img class="img-responsive center-block lazy lazy1 lazyhot1"
                                  th:src="'upload/video/cover/'+${video.coverPath}"></a>
                         <span class="corner score" th:text="${video.vtype}"></span>
@@ -102,41 +102,42 @@
                 </div>
 
             </div>
-            <div align="center">
-                <ul class="am-pagination tpl-pagination">
-                    <li th:if="${pageInfo.hasPreviousPage}"><a
-                            th:href="@{'videos?pageIndex=1'}"
-                            aria-label="Previous"> <i class="fa fa-angle-double-left"></i>
+
+        </div>
+        <div>
+            <ul class="am-pagination tpl-pagination">
+                <li th:if="${pageInfo.hasPreviousPage}"><a
+                        th:href="@{'videos?pageIndex=1'}"
+                        aria-label="Previous"> <i class="fa fa-angle-double-left"></i>
+                </a></li>
+
+                <li th:if="${pageInfo.hasPreviousPage}"><a
+                        th:href="@{'videos?pageIndex='+${pageInfo.prePage}}"
+                        aria-label="Previous"> <i class="fa fa-angle-left"></i>
+                </a></li>
+
+
+                <th:block th:each="nav : ${pageInfo.navigatepageNums}">
+                    <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
+                            th:href="@{'videos?pageIndex='+${nav}}"
+                            th:text="${nav}"></a></li>
+                </th:block>
+
+                <th:block th:if="${pageInfo.hasNextPage}">
+                    <li><a
+                            th:href="@{'videos?pageIndex='+${pageInfo.nextPage}}"
+                            aria-label="Next"><i class="fa fa-angle-right"></i>
                     </a></li>
-
-                    <li th:if="${pageInfo.hasPreviousPage}"><a
-                            th:href="@{'videos?pageIndex='+${pageInfo.prePage}}"
-                            aria-label="Previous"> <i class="fa fa-angle-left"></i>
+                </th:block>
+                <th:block th:if="${pageInfo.hasNextPage}">
+                    <li><a
+                            th:href="@{'videos?pageIndex='+${pageInfo.pages}}"
+                            aria-label="Next"><i class="fa fa-angle-double-right"></i>
                     </a></li>
+                </th:block>
 
-
-                    <th:block th:each="nav : ${pageInfo.navigatepageNums}">
-                        <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
-                                th:href="@{'videos?pageIndex='+${nav}}"
-                                th:text="${nav}"></a></li>
-                    </th:block>
-
-                    <th:block th:if="${pageInfo.hasNextPage}">
-                        <li><a
-                                th:href="@{'videos?pageIndex='+${pageInfo.nextPage}}"
-                                aria-label="Next"><i class="fa fa-angle-right"></i>
-                        </a></li>
-                    </th:block>
-                    <th:block th:if="${pageInfo.hasNextPage}">
-                        <li><a
-                                th:href="@{'videos?pageIndex='+${pageInfo.pages}}"
-                                aria-label="Next"><i class="fa fa-angle-double-right"></i>
-                        </a></li>
-                    </th:block>
-
-                    <li><label th:text="'共'+${pageInfo.pages}+'页'"></label></li>
-                </ul>
-            </div>
+                <li><label th:text="'共'+${pageInfo.pages}+'页'"></label></li>
+            </ul>
         </div>
 
     </div>

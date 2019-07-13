@@ -67,7 +67,17 @@ public class VideosServiceImpl implements VideosService {
     }
 
     @Override
+    public List<Videos> queryVideosListByOwnerAndShow(String username) {
+        return videosRepository.queryVideosListByOwnerAndShow(username);
+    }
+
+    @Override
     public List<Videos> queryVideosListByOwner(String username) {
         return videosRepository.queryVideosListByOwner(username);
+    }
+
+    @Override
+    public int queryVideosCount() {
+        return videosRepository.queryVideosCount();
     }
 }

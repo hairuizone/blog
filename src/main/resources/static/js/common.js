@@ -85,7 +85,6 @@ function showAboutme() {
 }
 
 var transferWin;
-
 function showTransfer() {
     if (!transferWin || transferWin.closed) {
         var url = "transfer";
@@ -110,6 +109,11 @@ function writeBlog() {
 function userLogin() {
     var url = "manage/login";
     window.location.href = url;
+}
+
+function showVideo(id) {
+    var url = "videoplay?id=" + id;
+    window.open(url);
 }
 
 function userRegister() {

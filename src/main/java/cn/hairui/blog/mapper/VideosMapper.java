@@ -50,5 +50,11 @@ public interface VideosMapper {
     public List<Videos> queryVideosShowList();
 
     @Select("SELELECT * FROM VIDEOS WHERE SHOW_FLAG='Y' OR CREATOR=#{username}")
+    public List<Videos> queryVideosListByOwnerAndShow(String username);
+
+    @Select("SELECT * FROM VIDEOS WHERE CREATOR=#{username}")
     public List<Videos> queryVideosListByOwner(String username);
+
+    @Select("SELECT COUNT(1) FROM VIDEOS")
+    public int queryVideosCount();
 }

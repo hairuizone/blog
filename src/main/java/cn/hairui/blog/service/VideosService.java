@@ -81,8 +81,24 @@ public interface VideosService {
 
     /**
      * 获取当前用户名下 并且展示为是的图片
+     *
+     * @param username
+     * @return
+     */
+    public List<Videos> queryVideosListByOwnerAndShow(String username);
+
+    /**
+     * 通过用户名获取当前用户名下的视频信息
+     *
      * @param username
      * @return
      */
     public List<Videos> queryVideosListByOwner(String username);
+
+    /**
+     * 获取所有视频数量
+     *
+     * @return
+     */
+    public int queryVideosCount();
 }
