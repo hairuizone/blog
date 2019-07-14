@@ -1,5 +1,6 @@
 package cn.hairui.blog.controller.foreground;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.Artical;
 import cn.hairui.blog.model.ArticalCategories;
@@ -40,6 +41,7 @@ public class ArticalCategoriesController {
     private ArticalService articalService;
 
     @RequestMapping(value = "/categories")
+    @WebLog(description = "查看文章分类")
     public String showCategories(HttpServletRequest request, Model model) {
 
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
@@ -108,8 +110,6 @@ public class ArticalCategoriesController {
         if (pageNumStr != null) {
             pageNum = Integer.parseInt(pageNumStr);
         }
-
-        System.out.println(pageNum);
         if (pageNum == null) {
             pageNum = 1;
         }

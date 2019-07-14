@@ -19,12 +19,6 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <script src="js/common.js"></script>
 </head>
-<style type="text/css">
-
-</style>
-<script language="JavaScript">
-
-</script>
 <body>
 <div class="container">
     <nav class="navbar navbar-default navbar-inverse">
@@ -71,7 +65,6 @@
                     </li>
                     <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userLogin();"><button class="btn btn-sm">登录</button></a></li>
                     <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userRegister();"><button class="btn btn-sm">注册</button></a></li>
-
                 </div>
             </div>
         </div>
@@ -84,7 +77,6 @@
                         <div class="categories">
                             <div class="categories-title"><h3 style="font-size: 20px">Archives</h3></div>
                             <div class="categories-comment am-animation-slide-top">
-
                                 <!--<label th:text="${categoryInfo}"></label>-->
                                 <div class="category" th:each="topicInfo:${topicInfos}">
                                     <span th:if="${topicInfo['current'] =='N'}">
@@ -130,10 +122,8 @@
                                                         <a a href="javascript:void(0);" style="font-size: 12px;"
                                                            th:text="${artical['categoriesName']}"></a>
                                                     </i>
-
                                                 </div>
                                             </li>
-
                                         </ul>
                                     </div>
                                 </div>
@@ -162,7 +152,6 @@
                                         </th:block>
 
                                         <li><span th:text="'共'+${pageInfo.pages}+'页'"></span></li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -173,6 +162,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

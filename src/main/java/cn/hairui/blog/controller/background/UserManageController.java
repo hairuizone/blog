@@ -1,5 +1,6 @@
 package cn.hairui.blog.controller.background;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.Books;
 import cn.hairui.blog.model.MyInfo;
@@ -52,11 +53,10 @@ public class UserManageController {
         if (pageNumStr != null) {
             pageNum = Integer.parseInt(pageNumStr);
         }
-
         if (pageNum == null) {
             pageNum = 1;
         }
-        PageHelper.startPage(pageNum, 10);
+        PageHelper.startPage(pageNum, PubConstant.TEN);
 
         List<User> userList = null;
         User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
@@ -67,19 +67,14 @@ public class UserManageController {
             //不是超级用户  但是管理用户
             userList = userService.queryNormalUserList();
         }
-
-
         PageInfo<User> pageInfo = new PageInfo<User>(userList);
-
-
         model.addAttribute("pageInfo", pageInfo);
-
         model.addAttribute("users", userList);
         return listPage;
     }
 
     @RequestMapping(value = "/login")
-    private String login(Model model) {
+    private String login(HttpServletRequest request, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         return loginPage;
@@ -97,10 +92,7 @@ public class UserManageController {
         HttpSession session = request.getSession();
         Map map = new HashMap();
         String password = MD5.getMD5ofStr(user.getPassword());
-        System.out.println(user.getUsername() + " " + password);
-
         User domain = userService.queryUserByNameAndPwd(user.getUsername(), password);
-
         if (domain != null && PubConstant.YES_NO_N.equals(domain.getLockflag())) {
             session.setAttribute(PubConstant.GLOBAL_SESSION_NAME, domain);
             map.put(PubConstant.flag, PubConstant.success);
@@ -117,7 +109,6 @@ public class UserManageController {
     @RequestMapping(value = "/user-reset", method = RequestMethod.POST)
     @ResponseBody
     public Map userPwdReset(HttpServletRequest request, Integer id, Model model) {
-
         Map map = new HashMap();
         User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
         if (PubConstant.YES_NO_Y.equals(user.getAdminflag())) {
@@ -135,7 +126,6 @@ public class UserManageController {
     @ResponseBody
     public Map lockAndUnlockUser(HttpServletRequest request, Integer id, String lock) {
         Map map = new HashMap();
-
         User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
         if (PubConstant.YES_NO_Y.equals(user.getAdminflag())) {
             if (!PubConstant.YES_NO_Y.equals(lock.trim().toUpperCase()) && !PubConstant.YES_NO_N.equals(lock.trim().toUpperCase())) {
@@ -150,7 +140,6 @@ public class UserManageController {
         } else {
             map.put(PubConstant.flag, PubConstant.failed);
         }
-        System.out.println(lock);
         return map;
     }
 }

@@ -1,5 +1,6 @@
 package cn.hairui.blog.controller.foreground;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.Artical;
 import cn.hairui.blog.model.Books;
@@ -32,6 +33,7 @@ public class BooksController {
     private BooksService booksService;
 
     @RequestMapping(value = "/books")
+    @WebLog(description = "查看书籍")
     public String showBooks(HttpServletRequest request, Model model){
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
@@ -43,7 +45,6 @@ public class BooksController {
             pageNum = Integer.parseInt(pageNumStr);
         }
 
-        System.out.println(pageNum);
         if (pageNum == null) {
             pageNum = 1;
         }
@@ -60,7 +61,6 @@ public class BooksController {
             try {
                 int idNo = Integer.parseInt(id);
                 Books book = booksService.queryBooksDetialById(idNo);
-                System.out.println(book.getLocalPath());
                 String bookType = "pdf";
                 if ("pdf".equals(bookType)) {
                     return "pdfviewer";

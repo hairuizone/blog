@@ -1,205 +1,184 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>错误提示</title>
+    <style type=text/css>
+        body {
+            padding-bottom: 0px;
+            margin: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            font: 14px/1.6 Arial, Sans-serif;
+            padding-top: 0px
+        }
 
-<HTML xmlns="http://www.w3.org/1999/xhtml">
-<HEAD><TITLE>错误提示</TITLE>
-    <META content="text/html; charset=utf-8" http-equiv=Content-Type>
-    <STYLE type=text/css>BODY {
-        PADDING-BOTTOM: 0px;
-        MARGIN: 0px;
-        PADDING-LEFT: 0px;
-        PADDING-RIGHT: 0px;
-        FONT: 14px/1.6 Arial, Sans-serif;
-        PADDING-TOP: 0px
-    }
+        a:link {
+            color: #ea1921;
+            text-decoration: none
+        }
 
-    A:link {
-        COLOR: #ea1921;
-        TEXT-DECORATION: none
-    }
+        a:visited {
+            color: #ea1921;
+            text-decoration: none
+        }
 
-    A:visited {
-        COLOR: #ea1921;
-        TEXT-DECORATION: none
-    }
+        h1 {
+            z-index: 2;
+            position: relative;
+            padding-bottom: 0px;
+            margin: 140px auto 15px;
+            padding-left: 0px;
+            width: 600px;
+            padding-right: 0px;
+            overflow: hidden;
+            padding-top: 0px;
+            xxxxborder: 1px solid
+        }
 
-    H1 {
-        Z-INDEX: 2;
-        POSITION: relative;
-        PADDING-BOTTOM: 0px;
-        MARGIN: 140px auto 15px;
-        PADDING-LEFT: 0px;
-        WIDTH: 600px;
-        PADDING-RIGHT: 0px;
-        OVERFLOW: hidden;
-        PADDING-TOP: 0px;
-        xxxxborder: 1px solid
-    }
+        h2 {
+            position: absolute;
+            text-indent: -999px;
+            margin: 0px;
+            font-size: 0px;
+            top: 0px;
+            cursor: default;
+            left: 0px;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            user-select: none
+        }
 
-    H2 {
-        POSITION: absolute;
-        TEXT-INDENT: -999px;
-        MARGIN: 0px;
-        FONT-SIZE: 0px;
-        TOP: 0px;
-        CURSOR: default;
-        LEFT: 0px;
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        user-select: none
-    }
+        h2 em {
+            line-height: 120px;
+            font-style: italic;
+            text-indent: 0px;
+            display: block;
+            font-family: "Times New Roman", Times, Serif;
+            letter-spacing: -5px;
+            color: #ffdfdf;
+            font-size: 200px;
+            font-weight: bold
+        }
 
-    H2 EM {
-        LINE-HEIGHT: 120px;
-        FONT-STYLE: italic;
-        TEXT-INDENT: 0px;
-        DISPLAY: block;
-        FONT-FAMILY: "Times New Roman", Times, Serif;
-        LETTER-SPACING: -5px;
-        COLOR: #ffdfdf;
-        FONT-SIZE: 200px;
-        FONT-WEIGHT: bold
-    }
+        .link a {
+            margin-right: 1em
+        }
 
-    .link A {
-        MARGIN-RIGHT: 1em
-    }
+        .link {
+            margin: 0px auto 15px;
+            width: 600px;
+            color: #505050
+        }
 
-    .link {
-        MARGIN: 0px auto 15px;
-        WIDTH: 600px;
-        COLOR: #505050
-    }
+        .texts {
+            margin: 0px auto 15px;
+            width: 600px;
+            color: #505050
+        }
 
-    .texts {
-        MARGIN: 0px auto 15px;
-        WIDTH: 600px;
-        COLOR: #505050
-    }
+        .texts {
+            line-height: 2
+        }
 
-    .texts {
-        LINE-HEIGHT: 2
-    }
+        .texts dd {
+            padding-bottom: 0px;
+            margin: 0px;
+            padding-left: 15px;
+            padding-right: 0px;
+            padding-top: 0px
+        }
 
-    .texts DD {
-        PADDING-BOTTOM: 0px;
-        MARGIN: 0px;
-        PADDING-LEFT: 15px;
-        PADDING-RIGHT: 0px;
-        PADDING-TOP: 0px
-    }
+        .texts ul {
+            padding-bottom: 0px;
+            margin: 0px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 0px
+        }
 
-    .texts UL {
-        PADDING-BOTTOM: 0px;
-        MARGIN: 0px;
-        PADDING-LEFT: 0px;
-        PADDING-RIGHT: 0px;
-        PADDING-TOP: 0px
-    }
+        .portal {
+            text-align: center;
+            white-space: nowrap;
+            color: #505050;
+            word-spacing: 0.45em
+        }
 
-    .portal {
-        TEXT-ALIGN: center;
-        WHITE-SPACE: nowrap;
-        COLOR: #505050;
-        WORD-SPACING: 0.45em
-    }
+        .portal a:link {
+            color: #505050;
+            word-spacing: 0px
+        }
 
-    .portal A:link {
-        COLOR: #505050;
-        WORD-SPACING: 0px
-    }
+        .portal a:visited {
+            color: #505050;
+            word-spacing: 0px
+        }
 
-    .portal A:visited {
-        COLOR: #505050;
-        WORD-SPACING: 0px
-    }
+        .portal a:hover {
+            color: #db1a22
+        }
 
-    .portal A:hover {
-        COLOR: #db1a22
-    }
+        .portal a:active {
+            color: #db1a22
+        }
 
-    .portal A:active {
-        COLOR: #db1a22
-    }
+        .portal span {
+            line-height: 35px;
+            display: inline-block;
+            height: 38px
+        }
 
-    .portal SPAN {
-        LINE-HEIGHT: 35px;
-        DISPLAY: inline-block;
-        HEIGHT: 38px
-    }
+        .portal span span {
+            padding-bottom: 0px;
+            padding-left: 20px;
+            padding-right: 0px;
+            padding-top: 0px
+        }
 
-    .portal SPAN SPAN {
-        PADDING-BOTTOM: 0px;
-        PADDING-LEFT: 20px;
-        PADDING-RIGHT: 0px;
-        PADDING-TOP: 0px
-    }
-
-    .portal SPAN SPAN SPAN {
-        PADDING-BOTTOM: 0px;
-        PADDING-LEFT: 0px;
-        PADDING-RIGHT: 20px;
-        BACKGROUND-POSITION: 100% -80px;
-        PADDING-TOP: 0px
-    }
-    </STYLE>
-    <!--[if lte IE 8]>
-    <STYLE type=text/css>H2 EM {
-        COLOR: #e4ebf8
-    }
-    </STYLE>
+        .portal span span span {
+            padding-bottom: 0px;
+            padding-left: 0px;
+            padding-right: 20px;
+            background-position: 100% -80px;
+            padding-top: 0px
+        }
+    </style>
+    <!--[if lte ie 8]>
+    <style type=text/css>
+        h2 em {
+            color: #e4ebf8
+        }
+    </style>
     <![endif]-->
-    <SCRIPT type=text/javascript>
-
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-11293844-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function () {
-            var ga = document.createElement('script');
-            ga.type = 'text/javascript';
-            ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(ga, s);
-        })();
-
-    </SCRIPT>
-
-    <META name=GENERATOR content="MSHTML 8.00.6001.19393">
-</HEAD>
-<BODY>
-<H1>哎哟～500了～休息一下，玩玩这个游戏！
-    <EMBED height=400 type=application/x-shockwave-flash
+    <meta name=generator content="MSHTML 8.00.6001.19393">
+</head>
+<body>
+<h1>哎哟～网页出错了～休息一下，玩玩这个游戏！
+    <embed height=400 type=application/x-shockwave-flash
            align=L width=600 src=files/zhuamao.swf
            allowscriptaccess="sameDomain" flashvars="width=600&amp;height=400"
            scale="noborder" quality="high" wmode="transparent"></EMBED>
-</H1>
-<H2><EM>500 Error</EM>: 抱歉, 您所查找的页面不存在, 可能已被删除或您输错了网址!</H2>
-<P class=link>抱歉, 您所查找的页面不存在, 可能已被删除或您输错了网址! <A
-        href="#">&#9666;返回首页</A> <A
-        href="javascript:history.go(-1);">&#9666;返回上一页</A></P>
-<DL class=texts>
-    <DT><STRONG>休息一下，玩玩这个游戏。</STRONG></DT>
-    <DD>
-        <UL>
-            <LI>游戏玩法：将猫困在一个深色原点围成的圈子里面就算成功了。</LI>
-        </UL>
-    </DD>
-</DL>
-<P class=portal><SPAN><SPAN><SPAN>
-
-
- </SPAN></SPAN></SPAN>
-    <SCRIPT type=text/javascript>
-        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc2c6bed2d140c53e5cde2fbb263011f6' type='text/javascript'%3E%3C/script%3E"));
-    </SCRIPT>
-</P>
-<SCRIPT type=text/javascript>
-    <!--
-    swfobject.registerObject("FlashID");
-    //-->
-</SCRIPT>
-</BODY>
-</HTML>
+</h1>
+<h2>
+    <em>500 error</em>
+    抱歉, 您所查找的页面不存在, 可能已被删除或您输错了网址!</h2>
+<p class=link>抱歉, 您所查找的页面不存在, 可能已被删除或您输错了网址! <a
+        href="javascript:void(0);" onclick="homepage()">&#9666;返回首页</a> <a
+        href="javascript:history.go(-1);">&#9666;返回上一页</a></p>
+<dl class=texts>
+    <dt><strong>休息一下，玩玩这个游戏。</strong></dt>
+    <dd>
+        <ul>
+            <li>游戏玩法：将猫困在一个深色原点围成的圈子里面就算成功了。</li>
+        </ul>
+    </dd>
+</dl>
+<script language="JavaScript">
+    function homepage() {
+        window.location.href = "index";
+    }
+</script>
+</body>
+</html>

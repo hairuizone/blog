@@ -8,6 +8,8 @@ import cn.hairui.blog.model.User;
 import cn.hairui.blog.service.GallerysService;
 import cn.hairui.blog.service.MyInfoService;
 import cn.hairui.blog.util.FileUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -60,7 +62,16 @@ public class GallerysManageController {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
         List<Gallerys> gallerysList = null;
-        //获取登录用户信息
+        Integer pageNum = null;
+        String pageNumStr = request.getParameter("pageIndex");
+        if (pageNumStr != null) {
+            pageNum = Integer.parseInt(pageNumStr);
+        }
+        if (pageNum == null) {
+            pageNum = 1;
+        }
+        PageHelper.startPage(pageNum, PubConstant.FIVE);
+        List<User> userList = null;
         User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);
         if (PubConstant.YES_NO_Y.equals(user.getSuperUser())) {
             //超级权限可以访问所有
@@ -71,13 +82,11 @@ public class GallerysManageController {
         } else {
             //非法用户 你想干什么
         }
-
-        System.out.println(gallerysList.toString());
+        PageInfo<Gallerys> pageInfo = new PageInfo<Gallerys>(gallerysList);
+        model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("gallerysList", gallerysList);
-
         return listPage;
     }
-
 
     @RequestMapping(value = "/gallerys-add")
     public String addGallerys(Model model) {
@@ -131,17 +140,12 @@ public class GallerysManageController {
             GalleryImg galleryImg = new GalleryImg();
             galleryImg.setImgPath(fileName);
             galleryImg.setGalleryId(galleryId);
-
             int i = gallerysService.addGalleryImg(galleryImg);
-
-            System.out.println("success");
             map.put(PubConstant.flag, PubConstant.success);
         } catch (Exception e) {
             map.put(PubConstant.flag, PubConstant.failed);
-            System.out.println("error");
             e.printStackTrace();
         }
-
         return map;
     }
 
@@ -274,7 +278,6 @@ public class GallerysManageController {
             if (galleryImg1 == null) {
                 //不存在重名的 可以删除文件
                 String path = uploadPath + PubConstant.GALLERS_DIR + imgPath;
-                System.out.println(path);
                 FileUtil.deleteSingleFile(path);
             }
 
@@ -329,20 +332,6 @@ public class GallerysManageController {
         model.addAttribute("gallerys", gallerys);
         return "background/gallery-upload";
     }
-
-    public static void main(String[] args) {
-        String a = "{}";
-
-        String[] aa = a.split("\\,\\{");
-        System.out.println(aa.length);
-        for (String i : aa) {
-            if (!i.startsWith("{")) {
-                i = "{" + i;
-            }
-            System.out.println(i);
-        }
-    }
-
     @RequestMapping(value = "galleryimg-upload")
     @ResponseBody
     public Map uploadGalleryImg(HttpServletRequest request, @RequestParam(value = "file", required = true) List<MultipartFile> files, Model model) {
@@ -367,7 +356,6 @@ public class GallerysManageController {
                 int x = gallerysService.queryGalleryImgByImgPath(file.getOriginalFilename());
                 if (x == 0) {
                     String imgFilePath = uploadPath + PubConstant.GALLERS_DIR + file.getOriginalFilename();//新生成的图片
-                    System.out.println(imgFilePath);
                     byte[] bytes = file.getBytes();
                     Path path = Paths.get(imgFilePath);
                     Files.write(path, bytes);
@@ -405,10 +393,8 @@ public class GallerysManageController {
             String imgName = (String) imgJson.get("name");
             String source = (String) imgJson.get("base64");
             String desc = (String) imgJson.get("desc");
-            System.out.println(desc);
             String dataPrix = ""; //base64格式前头
             String data = "";//实体部分数据
-
             String[] d = source.split("base64,");//将字符串分成数组
             if (d != null && d.length == 2) {
                 dataPrix = d[0];
@@ -472,7 +458,6 @@ public class GallerysManageController {
             } else {
                 System.out.println("图片" + imgName + "已经存在 不上传  不保存");
             }
-
             map.put(PubConstant.flag, PubConstant.success);
         }
         return map;

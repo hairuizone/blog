@@ -57,7 +57,7 @@ public class OnlineToolsManageController {
         if (pageNum == null) {
             pageNum = 1;
         }
-        PageHelper.startPage(pageNum, 5);
+        PageHelper.startPage(pageNum, PubConstant.TEN);
         List<OnlineTools> onlineToolsList = onlineToolsService.queryOnlineToolsList();
         PageInfo<OnlineTools> pageInfo = new PageInfo<OnlineTools>(onlineToolsList);
 

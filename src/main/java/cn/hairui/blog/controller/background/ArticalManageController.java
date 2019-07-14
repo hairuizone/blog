@@ -75,10 +75,9 @@ public class ArticalManageController {
         if (pageNum == null) {
             pageNum = 1;
         }
-        PageHelper.startPage(pageNum, 5);
+        PageHelper.startPage(pageNum, PubConstant.TEN);
         List<Artical> articals = articalService.queryArticalList();
         PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);
-
 
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("articalList", articals);
@@ -122,7 +121,6 @@ public class ArticalManageController {
         //随机设置封面图
         int i = new Random().nextInt(19) + 1;//1-20随机图片
         String imgPath = i + ".jpg";
-        System.out.println(imgPath);
         artical.setImgpath(imgPath);
         //初始化新增设置
         artical.setLikeNums(0);
@@ -140,7 +138,6 @@ public class ArticalManageController {
         artical.setId(nextId);
 
         Integer num = articalService.addArtical(artical);
-        System.out.println(nextId);
         model.addAttribute("artical", artical);
         return markdownPage;
     }
@@ -163,7 +160,6 @@ public class ArticalManageController {
 
         Artical artical = articalService.queryArticalDetailById(id);
         model.addAttribute("artical", artical);
-        System.out.println("update" + artical.getContent());
         return updatePage;
     }
 
@@ -174,7 +170,6 @@ public class ArticalManageController {
         if(artical.getTopicId().contains("请选择")){
             artical.setTopicId(null);
         }
-        System.out.println("updatedata" + artical.getContent());
         articalService.updateArtical(artical);
         model.addAttribute("artical", artical);
         return markdownPage;
@@ -233,14 +228,11 @@ public class ArticalManageController {
     public @ResponseBody Map<String, Object> demo(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         String contextName = request.getContextPath();
-        System.out.println(contextName);
         String fileName = file.getOriginalFilename();
 
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
         //重新生成文件名
         fileName = UUID.randomUUID()+suffixName;
-
-        System.out.println(fileName);
         File targetPath = new File(uploadPath);
         if (!targetPath.exists()) {
             targetPath.mkdirs();

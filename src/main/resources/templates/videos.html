@@ -21,7 +21,6 @@
 
 </head>
 <style type="text/css">
-
 </style>
 <script language="JavaScript">
 </script>
@@ -71,7 +70,6 @@
                     </li>
                     <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userLogin();"><button class="btn btn-sm">登录</button></a></li>
                     <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userRegister();"><button class="btn btn-sm">注册</button></a></li>
-
                 </div>
             </div>
         </div>
@@ -82,7 +80,6 @@
             <div class="col-xs-6 title">
                 <h3>全部视频&nbsp;<span class="badge count-pop" th:text="${vcount}"></span></h3>
             </div>
-
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-9 col-xlg-9 section-list sl2">
@@ -100,9 +97,7 @@
                         <em th:text="${video.introduction}"></em>
                     </div>
                 </div>
-
             </div>
-
         </div>
         <div>
             <ul class="am-pagination tpl-pagination">
@@ -139,7 +134,6 @@
                 <li><label th:text="'共'+${pageInfo.pages}+'页'"></label></li>
             </ul>
         </div>
-
     </div>
 </div>
 <style type="text/css">

@@ -60,7 +60,7 @@ public class BooksManageController {
         if (pageNum == null) {
             pageNum = 1;
         }
-        PageHelper.startPage(pageNum, 5);
+        PageHelper.startPage(pageNum, PubConstant.TEN);
         List<Books> booksList = booksService.queryBooksList();
         PageInfo<Books> pageInfo = new PageInfo<Books>(booksList);
 

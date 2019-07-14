@@ -59,7 +59,7 @@ public class ArticalTopicsManageController {
         if (pageNum == null) {
             pageNum = 1;
         }
-        PageHelper.startPage(pageNum, 5);
+        PageHelper.startPage(pageNum, PubConstant.TEN);
         List<ArticalTopics> articalTopicsList = articalTopicsService.qeuryArticalTopicsList();
         PageInfo<ArticalTopics> pageInfo = new PageInfo<ArticalTopics>(articalTopicsList);
 

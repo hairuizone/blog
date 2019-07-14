@@ -100,4 +100,6 @@ public class PubConstant {
      * 重置后初始化密码
      */
     public static final String ORIGIN_PWD = "111111";
+    public static final int FIVE = 5;
+    public static final int TEN = 10;
 }

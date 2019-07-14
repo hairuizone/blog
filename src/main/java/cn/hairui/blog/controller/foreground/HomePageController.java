@@ -1,11 +1,14 @@
 package cn.hairui.blog.controller.foreground;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.*;
 import cn.hairui.blog.service.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.beanutils.BeanMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,8 +51,9 @@ public class HomePageController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
+    @WebLog(description = "欢迎访问我的个人博客网站")
     public String indexPage(Model model) {
-
+        Logger logger = LoggerFactory.getLogger(getClass());
         //查询个人名片信息
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);

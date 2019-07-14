@@ -204,6 +204,42 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="am-u-lg-12 am-cf">
+                                <div class="am-fr">
+                                    <ul class="am-pagination tpl-pagination">
+                                        <li th:if="${pageInfo.hasPreviousPage}"><a
+                                                th:href="@{'gallerys-list?pageIndex=1'}"
+                                                aria-label="Previous"> <i class="fa fa-angle-double-left"></i>
+                                        </a></li>
+
+                                        <li th:if="${pageInfo.hasPreviousPage}"><a
+                                                th:href="@{'gallerys-list?pageIndex='+${pageInfo.prePage}}"
+                                                aria-label="Previous"> <i class="fa fa-angle-left"></i>
+                                        </a></li>
+
+                                        <th:block th:each="nav : ${pageInfo.navigatepageNums}">
+                                            <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
+                                                    th:href="@{'user-list?pageIndex='+${nav}}"
+                                                    th:text="${nav}"></a></li>
+                                        </th:block>
+
+                                        <th:block th:if="${pageInfo.hasNextPage}">
+                                            <li><a
+                                                    th:href="@{'gallerys-list?pageIndex='+${pageInfo.nextPage}}"
+                                                    aria-label="Next"><i class="fa fa-angle-right"></i>
+                                            </a></li>
+                                        </th:block>
+                                        <th:block th:if="${pageInfo.hasNextPage}">
+                                            <li><a
+                                                    th:href="@{'gallerys-list?pageIndex='+${pageInfo.pages}}"
+                                                    aria-label="Next"><i class="fa fa-angle-double-right"></i>
+                                            </a></li>
+                                        </th:block>
+
+                                        <li><label th:text="'共'+${pageInfo.pages}+'页'"></label></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

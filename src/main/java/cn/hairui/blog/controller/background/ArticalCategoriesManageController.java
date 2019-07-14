@@ -58,7 +58,7 @@ public class ArticalCategoriesManageController {
         if (pageNum == null) {
             pageNum = 1;
         }
-        PageHelper.startPage(pageNum, 5);
+        PageHelper.startPage(pageNum, PubConstant.TEN);
         List<ArticalCategories> articalCategories  = articalCategoriesService.queryArticalCategoriesList();
         PageInfo<ArticalCategories> pageInfo = new PageInfo<ArticalCategories>(articalCategories);
 
@@ -108,7 +108,6 @@ public class ArticalCategoriesManageController {
             String isShow = articalCategories.getIsShow();
             if ("Y".equals(isShow)) {
                 //首页展示 获取当前最大展示序号
-                System.out.println(articalCategories.getShowOrder());
                 Integer maxSerno = articalCategoriesService.queryArticalCategoriesMaxShowOrder();
                 if (maxSerno == null) {
                     maxSerno = 0;

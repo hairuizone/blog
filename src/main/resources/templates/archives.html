@@ -71,7 +71,6 @@
                     </li>
                     <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userLogin();"><button class="btn btn-sm">登录</button></a></li>
                     <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userRegister();"><button class="btn btn-sm">注册</button></a></li>
-
                 </div>
             </div>
         </div>
@@ -131,10 +130,8 @@
                                                         <a a href="javascript:void(0);" style="font-size: 12px;"
                                                            th:text="${artical['categoriesName']}"></a>
                                                     </i>
-
                                                 </div>
                                             </li>
-
                                         </ul>
                                     </div>
                                 </div>
@@ -145,25 +142,24 @@
                                     <ul class="page am-pagination  am-pagination-centered">
 
                                         <li th:if="${pageInfo.hasPreviousPage}"><a
-                                                th:href="@{'archives?pageIndex='+${pageInfo.prePage}}"
+                                                th:href="@{'archives?pageIndex='+${pageInfo.prePage}+'&date='+${date}}"
                                                 aria-label="Previous"> <i class="fa fa-angle-left"></i>&nbsp;上一页
                                         </a></li>
 
                                         <th:block th:each="nav : ${pageInfo.navigatepageNums}">
                                             <li th:class="${nav==pageInfo.pageNum}?'am-active':''"><a
-                                                    th:href="@{'archives?pageIndex='+${nav}}"
+                                                    th:href="@{'archives?pageIndex='+${nav}+'&date='+${date}}"
                                                     th:text="${nav}"></a></li>
                                         </th:block>
 
                                         <th:block th:if="${pageInfo.hasNextPage}">
                                             <li><a
-                                                    th:href="@{'archives?pageIndex='+${pageInfo.nextPage}}"
+                                                    th:href="@{'archives?pageIndex='+${pageInfo.nextPage}+'&date='+${date}}"
                                                     aria-label="Next"> 下一页&nbsp;<i class="fa fa-angle-right"></i>
                                             </a></li>
                                         </th:block>
 
                                         <li><span th:text="'共'+${pageInfo.pages}+'页'"></span></li>
-
                                     </ul>
                                 </div>
                             </div>
@@ -174,6 +170,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

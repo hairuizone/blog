@@ -1,5 +1,6 @@
 package cn.hairui.blog.controller;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.MusicList;
 import cn.hairui.blog.model.MyInfo;
@@ -29,6 +30,7 @@ public class DefaultViewController {
         return "redirect:/";
     }
     @RequestMapping(value = "/permissions")
+    @WebLog(description = "该用户操作权限不足")
     public String permissions(){
         return "404";
     }
@@ -40,6 +42,7 @@ public class DefaultViewController {
     }
 
     @RequestMapping(value = "musicplayer")
+    @WebLog(description = "欢迎访问音乐馆")
     public String musicplayer(String pid ,Model model) {
         if("".equals(pid) || pid == null){
             model.addAttribute("pid","-1");

@@ -1,5 +1,6 @@
 package cn.hairui.blog.controller.foreground;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.GalleryImg;
 import cn.hairui.blog.model.Gallerys;
@@ -43,6 +44,7 @@ public class GallerysController {
     private GallerysService gallerysService;
 
     @RequestMapping(value = "gallerys")
+    @WebLog(description = "查看相册")
     public String gallerysShow(HttpServletRequest request, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
@@ -80,7 +82,6 @@ public class GallerysController {
             gallerysInfo.add(map);
         }
         model.addAttribute("gallerysInfo", gallerysInfo);
-        System.out.println(gallerysList.toString());
         return "gallerys";
 
     }
@@ -104,10 +105,8 @@ public class GallerysController {
         } else if (PubConstant.YES_NO_Y.equals(userinfo.getAdminflag()) && PubConstant.YES_NO_Y.equals(userinfo.getSuperUser())) {
             //超级用户 无限制
         }
-
         List<GalleryImg> galleryImgList = gallerysService.queryGalleryImgList(gallery_id);
         model.addAttribute("galleryImgList", galleryImgList);
-        System.out.println(galleryImgList.toString());
         return "gallery";
     }
 }

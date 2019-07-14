@@ -80,7 +80,7 @@ public class VideosManageController {
         if (pageNum == null) {
             pageNum = 1;
         }
-        PageHelper.startPage(pageNum, 10);
+        PageHelper.startPage(pageNum, PubConstant.TEN);
 
         List<Videos> videosList = null;
         User user = (User) request.getSession().getAttribute(PubConstant.GLOBAL_SESSION_NAME);

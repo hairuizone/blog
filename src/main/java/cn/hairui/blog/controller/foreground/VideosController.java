@@ -1,5 +1,6 @@
 package cn.hairui.blog.controller.foreground;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.model.User;
@@ -31,6 +32,7 @@ public class VideosController {
     private VideosService videosService;
 
     @RequestMapping(value = "/videos")
+    @WebLog(description = "查看视频")
     public String videosShow(HttpServletRequest request, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);

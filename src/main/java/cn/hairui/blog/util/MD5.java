@@ -373,11 +373,4 @@ public class MD5 {
         String s = new String(ob);
         return s;
     }
-
-    public static void main(String[] a){
-
-        System.out.println(MD5.getMD5ofStr("admin123"));
-    }
-
-
 }

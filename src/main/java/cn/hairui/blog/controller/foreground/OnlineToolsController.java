@@ -1,5 +1,6 @@
 package cn.hairui.blog.controller.foreground;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.model.OnlineTools;
@@ -33,7 +34,9 @@ public class OnlineToolsController {
     private MyInfoService myInfoService;
     @Autowired
     private  OnlineToolsService onlineToolsService;
+
     @RequestMapping(value = "/tools")
+    @WebLog(description = "查看在线工具")
     public String tools(Model model){
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);

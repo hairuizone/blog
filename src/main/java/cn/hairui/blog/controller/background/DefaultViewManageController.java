@@ -97,7 +97,6 @@ public class DefaultViewManageController {
     @ResponseBody
     @Transactional
     public String updateMyInfoData(@ModelAttribute MyInfo myInfo) {
-        System.out.println(myInfo.toString());
         Map map = new HashMap();
         int id = myInfoService.updateMyInfo(myInfo);
         map.put(PubConstant.flag, PubConstant.success);
@@ -108,9 +107,7 @@ public class DefaultViewManageController {
     @ResponseBody
     @Transactional
     public String updateMuiscData(@ModelAttribute MusicList music) {
-        System.out.println(music.toString());
         Map map = new HashMap();
-
         int id = myInfoService.updateMusicListInfo(music);
         map.put(PubConstant.flag, PubConstant.success);
         return JSONUtils.toJSONString(map);

@@ -6,6 +6,7 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.github.pagehelper.PageHelper;
@@ -72,6 +73,7 @@ public class ArticalController {
 
 
     @RequestMapping(value = "/archives")
+    @WebLog(description = "查看文章归档")
     public String showArchives(HttpServletRequest request, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
@@ -116,6 +118,7 @@ public class ArticalController {
             articals = articalService.queryArticalList();
         } else {
             articals = articalService.queryArticalsByCreateDateYm(dateStr);
+            model.addAttribute("date",dateStr);
         }
 
         PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);

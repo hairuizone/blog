@@ -1,5 +1,6 @@
 package cn.hairui.blog.controller.foreground;
 
+import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
 import cn.hairui.blog.model.Artical;
 import cn.hairui.blog.model.ArticalTopics;
@@ -42,6 +43,7 @@ public class ArticalTopicsController {
     private ArticalTopicsService articalTopicsService;
 
     @RequestMapping(value = "/topics")
+    @WebLog(description = "查看专题文章")
     public String showTopics(HttpServletRequest request, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
         model.addAttribute("myinfo", myInfo);
@@ -94,7 +96,6 @@ public class ArticalTopicsController {
             articals = articalService.queryArticalsByTopicId(id);
         }
 
-        System.out.println(articals.size());
         PageInfo<Artical> pageInfo = new PageInfo<Artical>(articals);
         List<Map> articalList = new ArrayList<Map>();
         Iterator articalIterator = articals.iterator();
