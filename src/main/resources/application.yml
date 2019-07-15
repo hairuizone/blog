@@ -34,4 +34,5 @@ spring:
     multipart:
       max-file-size: 2000MB
       max-request-size: 2000MB
-
+logging:
+  file: D:/log/myblog.log
