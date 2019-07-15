@@ -1,7 +1,7 @@
 body {
 	margin: 0px;
 	padding: 0px;
-	background-color: #C3CCD5;
+	background-color: #baaabd;
 	font-family: 'Source Sans Pro', sans-serif;
 }
 .albums{
@@ -53,6 +53,7 @@ body {
 	color: rgba(53,117,159,1);
 	margin-top: 15px;
 	font-size: 18px;
+	font-weight: bolder;
 }
 .albums-tab-text span {
 	font-size: 14px;
