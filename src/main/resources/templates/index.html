@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title th:text="${myinfo.webname}"></title>
     <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
-
     <script src="js/jquery-3.3.1.min.js"></script>
     <!--bootstrap库-->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
@@ -15,14 +14,10 @@
     <!--主要写的css代码-->
     <link href="css/default.css" rel="stylesheet" type="text/css"/>
     <link href="css/index.css" rel="stylesheet" type="text/css"/>
-
     <link href="css/font-awesome.min.css" rel="stylesheet">
-
     <script src="js/common.js"></script>
-
 </head>
 <style type="text/css">
-
     .feed-about {
         position: relative;
         font-size: 18px;
@@ -112,8 +107,6 @@
         border-color: red;
         color: red;
     }
-
-
 </style>
 <script type="text/javascript">
 
@@ -226,7 +219,7 @@
                     <div class="feed-about">
                         <div class="about-main">
                             <div class="about-img">
-                                <img th:src="'images/'+${myinfo.prophoto}">
+                                <img th:src="'images/'+${myinfo.prophoto}" onclick="profess();">
                             </div>
                             <div class="about-name">—&nbsp;<th:block th:text="${myinfo.nickname}"/>&nbsp;—</div>
                             <div class="about-the" th:text="${myinfo.motto}"></div>

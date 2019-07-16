@@ -1,7 +1,6 @@
 package cn.hairui.blog.controller.background;
 
 import cn.hairui.blog.constant.PubConstant;
-import cn.hairui.blog.model.GalleryImg;
 import cn.hairui.blog.model.MyInfo;
 import cn.hairui.blog.model.User;
 import cn.hairui.blog.model.Videos;
@@ -21,7 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -65,7 +67,6 @@ public class VideosManageController {
     @Value("${virtual_upload_path}")
     private String virtualUploadPath;
 
-
     @RequestMapping(value = "/videos-list")
     public String videosList(HttpServletRequest request, Model model) {
         MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
@@ -76,7 +77,6 @@ public class VideosManageController {
         if (pageNumStr != null) {
             pageNum = Integer.parseInt(pageNumStr);
         }
-
         if (pageNum == null) {
             pageNum = 1;
         }
@@ -107,7 +107,7 @@ public class VideosManageController {
     @RequestMapping(value = "/videos-adddata")
     @ResponseBody
     @Transactional
-    public Map addGalleryData(HttpServletRequest request, String name, String vtype, Integer publishYear, String creator, String showFlag, String introduction, Model model) {
+    public Map addVideoData(HttpServletRequest request, String name, String vtype, Integer publishYear, String creator, String showFlag, String introduction, Model model) {
         Map map = new HashMap();
         int count = 0;
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -130,19 +130,15 @@ public class VideosManageController {
             count = videosService.queryVideosCountByFileName(videoName);
             System.out.println("文件名称：" + videoName);
         }
-
         ////文件上传 对象提交插入数据库
         File targetPath = new File(uploadPath + PubConstant.VIDEOS_DIR + PubConstant.COVERS_DIR);
         if (!targetPath.exists()) {
             targetPath.mkdirs();
         }
         //保存
-
         InputStream is = null;
         //输出流
         OutputStream os = null;
-
-
         try {
             if (count == 0) {
                 byte[] bytes = file.getBytes();

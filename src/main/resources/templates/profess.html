@@ -1,8 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>jquery+html5烂漫爱心表白动画</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${myinfo.webname}"></title>
+    <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
 
     <style type="text/css">
         @font-face {
@@ -17,9 +20,7 @@
     <script type="text/javascript" src="js/profess/functions.js"></script>
 
 </head>
-
 <body>
-
 <div id="mainDiv">
     <div id="content">
         <div id="code">

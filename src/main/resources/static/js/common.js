@@ -18,13 +18,20 @@ function categoriesShow(id) {
 }
 
 var musicWin;
-
 function musicplayer() {
     if (!musicWin || musicWin.closed) {
         var url = "musicplayer";
         window.open(url, "_musicWin");
     }
 }
+var professWin;
+function profess() {
+    if (!professWin || professWin.closed) {
+        var url = "profess";
+        window.open(url, "_professWin");
+    }
+}
+
 
 function showGallerys() {
     var url = "gallerys";
