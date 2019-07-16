@@ -142,6 +142,16 @@ public class ArticalServiceImpl implements ArticalService {
     }
 
     @Override
+    public int queryArticalsCountByTagName(String tagName) {
+        return articalRepository.queryArticalsCountByTagName(tagName);
+    }
+
+    @Override
+    public List<Artical> queryArticalsByTagName(String tag) {
+        return articalRepository.queryArticalsByTagName(tag);
+    }
+
+    @Override
     public List<String> queryAllArticalTagsLimited(int maxSize) {
         return articalRepository.queryArticalTagsLimited(maxSize);
     }

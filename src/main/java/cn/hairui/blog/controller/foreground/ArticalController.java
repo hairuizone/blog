@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import cn.hairui.blog.config.WebLog;
 import cn.hairui.blog.constant.PubConstant;
+import cn.hairui.blog.util.CommUtil;
 import com.alibaba.druid.support.json.JSONUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -144,5 +145,40 @@ public class ArticalController {
             model.addAttribute("archivesStatistic", "您在"+dateStr.replaceAll("-","年")+"月，一共发布了"+pageInfo.getTotal()+"篇文章");
         }
         return "archives";
+    }
+
+    @RequestMapping(value = "tags")
+    public String showTags(HttpServletRequest request, Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+        //查询统计标签
+        List<String> tagsList = articalService.queryAllArticalTags();
+        List<Map> tags = new ArrayList<>();
+        Iterator it = tagsList.iterator();
+
+        while(it.hasNext()){
+            Map map = new HashMap();
+            String tagName = it.next().toString();
+            int count = articalService.queryArticalsCountByTagName(tagName);
+            map.put("name",tagName);
+            map.put("num",count);
+            map.put("color", CommUtil.createRandomColor());
+            tags.add(map);
+        }
+        model.addAttribute("tags", tags);
+        return "tags";
+    }
+
+    @RequestMapping(value = "tag")
+    public String showTagArtical(HttpServletRequest request,Model model) {
+        MyInfo myInfo = myInfoService.findMyInfoById(PubConstant.MY_INFO_ID);
+        model.addAttribute("myinfo", myInfo);
+        String tag = request.getParameter("tag");
+
+        //查询统计标签
+        List<Artical> tagsList = articalService.queryArticalsByTagName(tag);
+        model.addAttribute("tags", tagsList);
+        model.addAttribute("desc","标签 #"+tag+"# 下一共发布了 " + tagsList.size() +" 篇文章，继续加油哦！");
+        return "tag";
     }
 }

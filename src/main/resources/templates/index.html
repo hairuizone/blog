@@ -292,11 +292,11 @@
                 <h2 class="htitle">标签</h2>
                 <aside>
                     <div class="tag_clouds">
-                        <a href="javascript:void(0);"  th:each="tags ,tagsStat :${tagsList}" th:text="${tags}" ></a>
+                        <a th:href="'tag?tag='+${tags}" th:each="tags ,tagsStat :${tagsList}" th:text="${tags}"></a>
                     </div>
                 </aside>
                 <div class="" style="text-align: right;font-size: 0.85em;">
-                    <a href="javascript:void(0);" onclick="javascritp:showTips();">查看更多</a>
+                    <a href="javascript:void(0);" onclick="javascritp:showTags();">查看更多</a>
                 </div>
             </div>
         </div>
@@ -376,7 +376,7 @@
                                 	<span th:text="${articalTop.createDate}"></span>
                                 	<span><a href="/"  th:case="'YC'" >【原创】</a></span>
                                 	<span><a href="/"  th:case="'ZZ'" >【转载】</a></span>
-                                	</p>
+                                </p>
                             </li>
                             
                             <!--单图-->

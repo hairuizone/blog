@@ -154,4 +154,12 @@ public class ArticalRepository {
     public List<Artical> queryArticalInTopicList() {
         return articalMapper.queryArticalInTopicList();
     }
+
+    public int queryArticalsCountByTagName(String tagName) {
+        return articalMapper.queryArticalsCountByTagName(tagName);
+    }
+
+    public List<Artical> queryArticalsByTagName(String tag) {
+        return articalMapper.queryArticalsByTagName(tag);
+    }
 }

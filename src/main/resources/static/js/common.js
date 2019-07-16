@@ -63,7 +63,19 @@ function showArchive(date) {
     }
     window.location.href = url;
 }
-
+function showTags(){
+    var url = "tags";
+    window.location.href = url;
+}
+function showTagArticals(tag) {
+    var url;
+    if (tag == undefined) {
+        url = "tag?tag=''";
+    } else {
+        url = "tag?tag=" + tag;
+    }
+    window.location.href = url;
+}
 function showTopic(id) {
     var url;
     if (id == undefined) {
@@ -128,6 +140,10 @@ function userLogout() {
 function manageSystem() {
     var url = "manage/home";
     window.location.href = url;
+}
+
+function showArchiveByDate(date){
+    alert(date);
 }
 
 $(function () {

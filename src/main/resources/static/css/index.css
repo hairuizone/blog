@@ -185,7 +185,7 @@ a.viewmore:hover{
 .bplist a img:hover { transform: scale(1.05) }
 .blogtext { font-size: 14px; color: #666; overflow: hidden; text-overflow: ellipsis; -webkit-box-orient: vertical; display: -webkit-box; -webkit-line-clamp: 3; margin-top: 20px }
 .bloginfo { margin-top: 20px; overflow: hidden; color: #999; line-height: 34px; }
-.bloginfo span { margin: 0 5px }
+.bloginfo span { margin: 0 5px;font-size: 12px; font-weight: bold;}
 .bloginfo span a { color: #096 }
 .avatar img { width: 30px; border-radius: 50%; }
 

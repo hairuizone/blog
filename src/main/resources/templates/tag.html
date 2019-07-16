@@ -48,7 +48,7 @@
                 <div id="navbar-menu" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="javascript:void(0);" onclick="homepage();"><span class="glyphicon glyphicon-home">&nbsp;首页</span></a></li>
-                        <li class="active"><a href="javascript:void(0);" onclick="showCategories();"><span class="glyphicon glyphicon-th">&nbsp;分类</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showCategories();"><span class="glyphicon glyphicon-th">&nbsp;分类</span></a></li>
                         <li><a href="javascript:void(0);" onclick="showArchive();"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
                         <li><a href="javascript:void(0);" onclick="showTopic();"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
                         <li><a href="javascript:void(0);" onclick="showAboutme();"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
@@ -79,61 +79,38 @@
         <div class="am-container">
             <div class="am-g">
                 <div class="site-inner">
-                    <div class="am-u-sm-12 am-u-md-3">
-                        <div class="categories">
-                            <div class="categories-title"><h3 style="font-size: 20px">Categories</h3></div>
-                            <div class="categories-comment am-animation-slide-top">
-
-                                <!--<label th:text="${categoryInfo}"></label>-->
-                                <div class="category" th:each="categoryInfo:${categoryInfos}">
-                                    <span th:if="${categoryInfo['current'] =='N'}">
-                                        <a href="javascript:void(0);" class="left-name-info" th:onclick="'javascript:showCategories('+${categoryInfo['categoryId']}+')'" th:text="${categoryInfo['categoryName']}"></a>
-                                        <span class="left-num-info"
-                                              th:text="'('+${categoryInfo['categoryNum']}+')'"></span>
-                                    </span>
-                                    <span th:if="${categoryInfo['current']=='Y'}">
-                                        <a class="left-name-info-2" th:text="${categoryInfo['categoryName']}"></a>
-                                        <span class="left-num-info-2"
-                                              th:text="'('+${categoryInfo['categoryNum']}+')'"></span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="am-u-sm-12 am-u-md-9">
+                    <div class="am-u-sm-12 am-u-md-12">
                         <div class="categoryTimeline">
                             <div class="timeline timeline-wrap">
                                 <div class="timeline-row"><span class="node"
                                                                 style="-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;"><i
                                         class="am-icon-folder"></i></span>
-                                    <h1 class="title  am-animation-slide-top" th:text="${articalCategoryName}"></h1></div>
-                                <div class="timeline-row-major" th:each="artical : ${articals}"><span
+                                    <h1 class="title  am-animation-slide-top" th:text="${desc}"></h1></div>
+                                <div class="timeline-row-major" th:each="artical : ${tags}"><span
                                         class="node am-animation-slide-top "></span>
                                     <div class="content am-animation-slide-top ">
-
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 <a href="javascript:void(0);" class="contentTitle"
-                                                   th:onclick="'javascript:articalDetail('+${artical['id']}+')'"
-                                                   th:text="${artical['tittle']}"></a>
+                                                   th:onclick="'javascript:articalDetail('+${artical.id}+')'"
+                                                   th:text="${artical.tittle}"></a>
                                                 <div class="" style="margin-top: 5px;color: #A2A2A2;">
                                                     <i class="am-icon-calendar">
                                                         <a href="javascript:void(0);" class=""
                                                            style="font-size: 12px;margin-right: 5px;"
-                                                           th:text="${artical['createDate']}"></a>
+                                                           th:text="${artical.createDate}"></a>
                                                     </i>
-                                                    <i class="am-icon-folder">
+                                                   <!-- <i class="am-icon-folder">
                                                         <a a href="javascript:void(0);" style="font-size: 12px;"
                                                            th:text="${artical['categoriesName']}"></a>
-                                                    </i>
+                                                    </i>-->
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="my-row" id="page-father">
+                            <!--<div class="my-row" id="page-father">
                                 <div id="pagination">
                                     <ul class="page am-pagination  am-pagination-centered">
                                         <li th:if="${pageInfo.hasPreviousPage}"><a
@@ -153,12 +130,10 @@
                                                     aria-label="Next"> 下一页&nbsp;<i class="fa fa-angle-right"></i>
                                             </a></li>
                                         </th:block>
-
                                         <li><span th:text="'共'+${pageInfo.pages}+'页'"></span></li>
-
                                     </ul>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>

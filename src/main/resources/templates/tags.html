@@ -1,1 +1,173 @@
-tags
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title th:text="${myinfo.webname}"></title>
+    <link rel="icon" th:href="'img/'+${myinfo.webicon}"/>
+
+    <link href="background/assets/css/amazeui.min.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!--bootstrap库-->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link href="css/default.css" rel="stylesheet" type="text/css"/>
+    <link href="css/categories.css" rel="stylesheet" type="text/css"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <script src="js/common.js"></script>
+</head>
+<style type="text/css">
+
+</style>
+<script language="JavaScript">
+
+</script>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default navbar-inverse">
+        <div class="header">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="javascript:void(0);" onclick="homepage()">
+                	<span>
+                		<img th:src="'img/'+${myinfo.brandimg}" class="img-circle"  style="height: 30px;width: 30px">
+                	</span>
+                    <span th:text="${myinfo.webname}" onclick="homepage()"></span>
+                </a>
+            </div>
+            <div class="container">
+                <div id="navbar-menu" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="javascript:void(0);" onclick="homepage();"><span class="glyphicon glyphicon-home">&nbsp;首页</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showCategories();"><span class="glyphicon glyphicon-th">&nbsp;分类</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showArchive();"><span class="glyphicon glyphicon-time">&nbsp;归档</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showTopic();"><span class="glyphicon glyphicon-bookmark">&nbsp;专题</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showAboutme();"><span class="glyphicon glyphicon-user">&nbsp;关于我</span></a></li>
+                        <li><a href="javascript:void(0);" onclick="showTransfer();"><span class="glyphicon glyphicon-eye-open">&nbsp;传送门</span></a></li>
+                    </ul>
+
+                    <th:block th:if="${session.userinfo} != null">
+                        <li th:if="${session.userinfo.adminflag} == 'Y'" class="navinfo"><i class="fa fa-edit write-icon"></i><a class="write-blog" href="javascript:void(0);" onclick="writeBlog();"><span>写博客</span></a></li>
+                        <li class="navinfo"><i class="fa fa-envelope message-icon"></i><a class="message-center" href="javascript:void(0);" onclick="checkMsg();"><span>消息</span></a></li>
+                    </th:block>
+                    <li class="navinfo"><a class="music" onclick="musicplayer();" title="来点音乐"><span class="fa fa-music" style="margin-right: 10px;"></span></a></li>
+                    <li class="navinfo" th:if="${session.userinfo} != null" >
+                        <span style="margin-left: 5px;margin-right: 5px;">
+                            <a href="#" id="myinfo" data-toggle="popover" data-placement="bottom" data-trigger="hover">
+                                <img class="img-circle" style="height: 30px;width: 30px;margin: 0 5px;" th:src="'images/'+${session.userinfo.prophoto}"/>
+                            </a>
+                            <label >晚上好，<span th:text="${session.userinfo.nickname}"></span></label>
+                        </span>
+                    </li>
+                    <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userLogin();"><button class="btn btn-sm">登录</button></a></li>
+                    <li th:if="${session.userinfo} == null" class="navinfo"><a href="javascript:void(0);" onclick="userRegister();"><button class="btn btn-sm">注册</button></a></li>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="main">
+        <div class="am-container">
+            <div id="tags" class="chip-container">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="tag-title center-align">
+                            <i class="fa fa-tags"></i>&nbsp;&nbsp;文章标签
+                        </div>
+                        <div class="tag-chips">
+                            <a th:href="'tag?tag='+${tag.name}" th:each="tag ,tagsStat :${tags}" >
+                                <span class="chip center-align waves-effect waves-light chip-default "
+                                    th:data-tagname="${tag['name']}" th:style="'background-color:'+${tag['color']} +';'" >
+                                    <label th:text="${tag['name']}"></label>
+                                    <span class="tag-length">
+                                        <label th:text="${tag['num']}"/>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<style type="text/css">
+
+    @media only screen and (min-width: 993px) {
+        .chip-container {
+            max-width: 1125px;
+        }
+    }
+    .card .card-content {
+        padding: 24px;
+        border-radius: 0 0 2px 2px;
+    }
+    .card {
+        border-radius: 10px;
+        box-shadow: 0 15px 35px rgba(50,50,93,.1),0 5px 15px rgba(0,0,0,.07)!important;
+    }
+    .card {
+        position: relative;
+        margin: .5rem 0 1rem 0;
+        background-color: #fff;
+        -webkit-transition: -webkit-box-shadow .25s;
+        transition: -webkit-box-shadow .25s;
+        transition: box-shadow .25s;
+        transition: box-shadow .25s, -webkit-box-shadow .25s;
+        border-radius: 2px;
+    }
+    .card {
+        border-radius: 0;
+    }
+    .card .card-content {
+        padding: 24px;
+        border-radius: 0 0 2px 2px;
+    }
+    .chip-container .tag-title {
+        margin-bottom: 10px;
+        color: #3c4858;
+        font-size: 1.75rem;
+        font-weight: 400;
+    }
+    .center, .center-align {
+        text-align: center;
+    }
+    .chip-container .tag-chips {
+        margin: 1rem auto .5rem;
+        max-width: 850px;
+        text-align: center;
+    }
+    .chip-container .chip {
+        margin: 10px 10px;
+        padding: 0 14px;
+        display: inline-block;
+        height: 38px;
+        min-width: 80px;
+        line-height: 39px;
+        font-size: 1rem;
+        font-weight: 500;
+        border-radius: 5px;
+        word-wrap: break-word;
+        cursor: pointer;
+        box-shadow: 0 3px 5px rgba(0,0,0,.12);
+    }
+    .chip-container .chip:hover {
+        color: #fff;
+        background: linear-gradient(to right,#4cbf30 0,#0f9d58 100%)!important;
+    }
+    .chip-default .tag-length {
+        color: #e91e63;
+    }
+</style>

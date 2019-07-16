@@ -194,4 +194,20 @@ public interface ArticalService {
      * @return
      */
     public List<Artical> queryArticalInTopicList();
+
+    /**
+     * 查询标签对应的文章数量
+     *
+     * @param tagName
+     * @return
+     */
+    public int queryArticalsCountByTagName(String tagName);
+
+    /**
+     * 查询标签下的文章
+     *
+     * @param tag
+     * @return
+     */
+    public List<Artical> queryArticalsByTagName(String tag);
 }

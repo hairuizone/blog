@@ -136,4 +136,10 @@ public interface ArticalMapper {
 
     @Select("SELECT * FROM ARTICAL WHERE TOPICID IN(SELECT ID FROM ARTICAL_TOPICS)")
     public List<Artical> queryArticalInTopicList();
+
+    @Select("SELECT COUNT(1) FROM ARTICAL WHERE TAGS LIKE CONCAT('%',#{tagName},'%')")
+    public int queryArticalsCountByTagName(String tagName);
+
+    @Select("SELECT * FROM ARTICAL WHERE TAGS LIKE CONCAT('%',#{tag},'%')")
+    public List<Artical> queryArticalsByTagName(String tag);
 }
