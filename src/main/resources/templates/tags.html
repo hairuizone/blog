@@ -87,9 +87,9 @@
                             <a th:href="'tag?tag='+${tag.name}" th:each="tag ,tagsStat :${tags}" >
                                 <span class="chip center-align waves-effect waves-light chip-default "
                                     th:data-tagname="${tag['name']}" th:style="'background-color:'+${tag['color']} +';'" >
-                                    <label th:text="${tag['name']}"></label>
+                                    <label style="font-weight: bold;" th:text="${tag['name']}"></label>
                                     <span class="tag-length">
-                                        <label th:text="${tag['num']}"/>
+                                        <label style="font-weight: bold;" th:text="${tag['num']}"/>
                                     </span>
                                 </span>
                             </a>
@@ -156,7 +156,7 @@
         height: 38px;
         min-width: 80px;
         line-height: 39px;
-        font-size: 1rem;
+        /*font-size: 1rem;*/
         font-weight: 500;
         border-radius: 5px;
         word-wrap: break-word;

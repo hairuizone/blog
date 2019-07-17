@@ -56,7 +56,7 @@ public class GallerysController {
             gallerysList = gallerysService.queryGallerysShowList();
         } else if (PubConstant.YES_NO_Y.equals(userinfo.getAdminflag()) && !PubConstant.YES_NO_Y.equals(userinfo.getSuperUser())) {
             //管理人员 但不是超级用户
-            gallerysList = gallerysService.queryGallerysListByOwner(userinfo.getUsername());
+            gallerysList = gallerysService.queryGallerysListByOwnerAndShow(userinfo.getUsername());
         } else if (PubConstant.YES_NO_Y.equals(userinfo.getAdminflag()) && PubConstant.YES_NO_Y.equals(userinfo.getSuperUser())) {
             //超级用户
             gallerysList = gallerysService.queryGallerysList();

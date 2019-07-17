@@ -18,97 +18,10 @@
     <script src="js/common.js"></script>
 </head>
 <style type="text/css">
-    .feed-about {
-        position: relative;
-        font-size: 18px;
-        display: block;
-    }
-    .about-main {
-        font-size: 14px;
-        padding: 5px 10px 5px;
-    }
-    .about-img {
-        text-align: center;
-        background: url(images/about-bg.jpg) center center no-repeat;
-        background-size: cover;
-        height: 80px;
-        margin: 0 0 25px 0;
-    }
-    .about-img img {
-        width: 80px;
-        height: auto;
-        margin: 20px 0 0 0;
-        padding: 5px;
-        border-radius: 50%;
-        border: 2px solid #e21b1b;
-    }
-    .about-name {
-        font-size: 18px;
-        font-weight: 700;
-        text-align: center;
-        height: 30px;
-    }
-    .about-the{
-        height: 100px;
-        margin-left: 10px;
-        margin-right: 10px;
-    }
-    #feed_widget ul {
-        margin: 0 10px;
-        overflow: hidden;
-        padding-left: 0px;
-    }
-    #feed_widget li {
-        float: left;
-        width: 20%;
-        height: 40px;
-        line-height: 38px;
-        list-style:none;
-    }
 
-    #feed_widget a {
-        width: 40px;
-        display: block;
-        text-align: center;
-        margin: 0 auto;
-        border-radius: 20px;
-        border: 1px solid;
-    }
-    .fa {
-        display: inline-block;
-        font: normal normal normal 14px/1 FontAwesome;
-        font-size: inherit;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-    #feed_widget a.qq{
-        border-color: #4FC3FF;
-        color: #4FC3FF;
-    }
-    #feed_widget a.weibo{
-        border-color: #FF9595;
-        color: #FF9595;
-    }
-    #feed_widget a.weixin{
-        border-color: #85D57D;
-        color: #85D57D;
-    }
-    #feed_widget a.github{
-        border-color: #4F5D95;
-        color: #4F5D95;
-    }
-    #feed_widget a.rss{
-        border-color: #F18D2B;
-        color: #F18D2B;
-    }
-
-    #feed_widget a:hover{
-        border-color: red;
-        color: red;
-    }
 </style>
 <script type="text/javascript">
+
 
 </script>
 <body>
@@ -407,16 +320,12 @@
                                                 aria-label="Next"> 下一页&nbsp;<i class="fa fa-angle-right"></i>
                                         </a>
 
-
                                     <span th:text="'共'+${pageInfo.pages}+'页'"></span>
 
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
     </div>
 </div>
 <footer>
@@ -436,7 +345,10 @@
             <p>Copyright © <a href="/" target="_blank">www.lihairuizone.com</a> All Rights Reserved. 备案号：<a href="/" target="_blank">陕ICP备11002373号-1</a></p>
         </div>
     </div>
-    <a href="#" class="top"></a>
+    <div id="toolBackTop" style="display: none;">
+        <a class="top" href="javascript:void (0);" title="返回顶部" onclick="gotop();return false;"></a>
+    </div>
 </footer>
+
 </body>
 </html>

@@ -86,4 +86,8 @@ public class GallerysRepository {
     public List<Gallerys> queryGallerysListByOwner(String username) {
         return gallerysMapper.queryGallerysListByOwner(username);
     }
+
+    public List<Gallerys> queryGallerysListByOwnerAndShow(String username) {
+        return gallerysMapper.queryGallerysListByOwnerAndShow(username);
+    }
 }

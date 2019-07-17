@@ -23,6 +23,7 @@ public interface GallerysService {
 
     /**
      * 创建相册
+     *
      * @param gallerys
      * @return
      */
@@ -30,6 +31,7 @@ public interface GallerysService {
 
     /**
      * 添加相册内容图
+     *
      * @param galleryImg
      * @return
      */
@@ -37,6 +39,7 @@ public interface GallerysService {
 
     /**
      * 通过相册编号获取相册中的照片数量
+     *
      * @param id
      * @return
      */
@@ -44,6 +47,7 @@ public interface GallerysService {
 
     /**
      * 通过相册编号查询指定数量的照片信息
+     *
      * @param id
      * @param galleryPreviewNum
      * @return
@@ -52,6 +56,7 @@ public interface GallerysService {
 
     /**
      * 获取相册下所有的照片信息
+     *
      * @param gallery_id
      * @return
      */
@@ -59,6 +64,7 @@ public interface GallerysService {
 
     /**
      * 通过相册编号获取相册信息
+     *
      * @param id
      * @return
      */
@@ -66,6 +72,7 @@ public interface GallerysService {
 
     /**
      * 更新相册信息
+     *
      * @param gallerys
      * @return
      */
@@ -73,6 +80,7 @@ public interface GallerysService {
 
     /**
      * 通过照片编号查询照片信息
+     *
      * @param id
      * @return
      */
@@ -80,6 +88,7 @@ public interface GallerysService {
 
     /**
      * 查询编号不是id 名称是imgName的照片
+     *
      * @param id
      * @param imgPath
      * @return
@@ -88,6 +97,7 @@ public interface GallerysService {
 
     /**
      * 通过照片编号删除照片信息
+     *
      * @param id
      * @return
      */
@@ -95,6 +105,7 @@ public interface GallerysService {
 
     /**
      * 获取相册中下一张照片的信息
+     *
      * @param galleryId
      * @return
      */
@@ -102,6 +113,7 @@ public interface GallerysService {
 
     /**
      * 修改封面图信息
+     *
      * @param galleryId
      * @param newImg
      * @return
@@ -110,6 +122,7 @@ public interface GallerysService {
 
     /**
      * 通过编号删除相册
+     *
      * @param galleryId
      * @return
      */
@@ -117,6 +130,7 @@ public interface GallerysService {
 
     /**
      * 通过图片名称查询是否已经存在了
+     *
      * @param imgName
      * @return
      */
@@ -124,13 +138,23 @@ public interface GallerysService {
 
     /**
      * 获取展示的相册信息
+     *
      * @return
      */
     public List<Gallerys> queryGallerysShowList();
 
     /**
      * 查询所有者的相册信息
+     *
      * @return
      */
     public List<Gallerys> queryGallerysListByOwner(String username);
+
+    /**
+     * 查询所有者以及展示状态为公开的相册
+     *
+     * @param username
+     * @return
+     */
+    public List<Gallerys> queryGallerysListByOwnerAndShow(String username);
 }

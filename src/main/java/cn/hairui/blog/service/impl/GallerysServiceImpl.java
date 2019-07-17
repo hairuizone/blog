@@ -104,4 +104,9 @@ public class GallerysServiceImpl implements GallerysService {
         return gallerysRepository.queryGallerysListByOwner(username);
     }
 
+    @Override
+    public List<Gallerys> queryGallerysListByOwnerAndShow(String username) {
+        return gallerysRepository.queryGallerysListByOwnerAndShow(username);
+    }
+
 }

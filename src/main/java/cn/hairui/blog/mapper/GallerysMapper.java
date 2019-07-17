@@ -73,4 +73,7 @@ public interface GallerysMapper {
 
     @Select("SELECT * FROM GALLERYS WHERE CREATOR=#{username}")
     public List<Gallerys> queryGallerysListByOwner(String username);
+
+    @Select("SELECT * FROM GALLERYS WHERE CREATOR=#{username} OR SHOW_FLAG='Y'")
+    public List<Gallerys> queryGallerysListByOwnerAndShow(String username);
 }

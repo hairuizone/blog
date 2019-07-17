@@ -136,3 +136,24 @@ label {
     margin-bottom: 0;
     font-weight: normal;
 }
+
+.index-card-footer {
+    font-size: 0.85em;
+    line-height: 1.6em;
+    border-top: 1px solid #eceff2;
+    padding-top: 5px;
+    margin-top: 20px;
+    margin-right: 10px;
+    text-align: right;
+}
+/*footer*/
+footer { background: #373D41; width: 100%; border-top: #de00a4 3px solid; padding: 15px 0; color: #bac0c5; font-size: 12px; }
+.wxbox { overflow: hidden; float: left; margin-right: 20px }
+.wxbox li { float: left; margin: 0 10px; text-align: center }
+.wxbox img { height: 100px }
+.endnav b { font-size: 15px; color: #de0066; }
+.endnav p { margin-bottom: 5px ;    margin-top: 0px;}
+footer a { color: #73777a; }
+footer a:hover { color: #00C1DE }
+.top { border-radius: 50%; width: 40px; height: 40px; display: block; background: url(../images/top.png) no-repeat center #000; right: 20px; bottom: 10%; position: fixed }
+
