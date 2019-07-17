@@ -228,7 +228,7 @@ a.curPage { color: #19585d; font-weight: bold; }
 }
 .about-img {
     text-align: center;
-    background: url(images/about-bg.jpg) center center no-repeat;
+    background: url(/images/about-bg.jpg) center center no-repeat;
     background-size: cover;
     height: 80px;
     margin: 0 0 25px 0;

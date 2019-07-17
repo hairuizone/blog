@@ -2,7 +2,7 @@ server:
   servlet:
     session:
       timeout: 30m
-    context-path: /myblog
+    #context-path: /myblog
   port: 8848
 
 mybatis:
